@@ -1,11 +1,11 @@
 # Navigation
-* (General Materials)[#general-materials]
-	* (Project Information)[#project-introduction]
-	* (Meeting Times)[#meeting-times]
-	* (Contact Information)[#contact-information]
-	* (Projcet Roles)[#project-roles]
-	* (Team Rules)[#team-rules]
-		* (Team Behavior)[#team-behavior]
+* [General Materials](#general-materials)
+	* [Project Information](#project-introduction)
+	* [Meeting Times](#meeting-times)
+	* [Contact Information](#contact-information)
+	* [Projcet Roles](#project-roles)
+	* [Team Rules](#team-rules)
+		* [Team Behavior](#team-behavior)
 
 # General Materials
 
