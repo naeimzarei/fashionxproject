@@ -12,8 +12,7 @@ Instructor- 11:15 AM-12:05 PM
 * Yashar Asgari: yasgari@ad.unc.edu  
 * Zach Burk: zburk@live.unc.edu  
 * Naeim Zarei: naeimz@live.unc.edu  
-* Client: Ignacio and Ashley 
-
+* Client: Ignacio Guerra, Ashley Rosenthal 
 
 ## Project Roles
 Client and Project Manager- Yashar Asgari   
@@ -58,33 +57,35 @@ Link to demo should be posted here.
 A page will be created for Influencers to login to fashionxproject, load their profile, accept the Terms and Conditions, and continue to a page where they are prompted with the option to upload their fashion content. The goal is for the Influencers to appeal to shoppers with similar body dimensions by providing the brand and link to the clothing via a post on the fashionxproject website. The program is designed to work on both mobile and desktop browsers, which means it will be a web app. 
 
 ### Tweet
+>\#fashionxproject is all about body positivity and is centered around you, your body, and your fashion interests!
 
 ## User Stories
+All user stories documented under deliverables/user-stories. 
 
 ## Personas
+All personas documented under deliverables/personas.
 
 ## Platform Analysis and Selection
 
 ### Platform Selection
-Express + MongoDB Atlas + Mongoose + EJS
+Possible server-side development
+* [Express](https://expressjs.com/)
 
-Express + MongoDB Atlas + Mongoose + EJS + jQuery
+Possible database management
+* [MongoDB Atlas](https://www.mongodb.com/what-is-mongodb)
+* [Mongoose (ODM)](https://mongoosejs.com/)
 
-Express + MongoDB Atlas + Mongoose + EJS + ember
+Possible JavaScript templating engines
+* [EJS](https://github.com/mde/ejs)
+* [Mustache](https://github.com/janl/mustache.js/)
+* [Handlebars](https://handlebarsjs.com/)
 
-Express + MongoDB Atlas + Mongoose + EJS + React
+Possible front-side development (optional)
+* [React](https://reactjs.org/)
+* [Ember](https://www.emberjs.com/)
+* [Vue](https://vuejs.org/)
 
-Possible JavaScript templating engines: EJS, Mustache, pug
-
-Discussion with Duke team to discuss platform choice to keep it consistent across the board.
-
-[Link to Express](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website)
-
-[Link to MongoDB](https://www.mongodb.com/what-is-mongodb)
-
-[Link to Mongoose](https://mongoosejs.com/)
-
-[Link to jQuery](https://jquery.com/)
+Discussion with Duke team to discuss platform choice to keep it consistent across the board, particularly the database management component. More analysis will be posted later as update is given from Duke team. 
 
 ### Server Selection
 Virtual machine 
@@ -97,14 +98,18 @@ Visual Studio Code
 # Sprint Deliverables
 
 ## Functional Specification
+Functional specification documented under deliverables/functional-spec.
 
 ## Design Doc
-Must include architecture diagram.
+Design documented under deliverables/design-doc.
 
 ## Test Plan
+Test plan documented under deliverables/test-plan.
 
 ## User Manual
+User manual documented under deliverables/user-manual.
 
 ## Version-Controlled Repository
+[GitHub](https://github.com/naeimzarei/fashionxproject)
 
 ## Executable Code
