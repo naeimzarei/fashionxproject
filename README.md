@@ -4,9 +4,9 @@
 The goal of this project is to add a page on the current fashionxproject website to allow 'influencers' to login, create a profile, and submit photos of their fashion content. The platform, fashionxproject, is a fashion start-up that finds clothing that looks good on people based on their body dimensions. As part of this project, the uploading of influencer profiles and content will be automated to reduce the amount of time it takes to process what is shown on the actual website to the shoppers. 
 
 ## Meeting Times
+Team- Friday 10 AM
 Client- Friday 11 AM in-person  
 Instructor- 11:15 AM-12:05 PM  
-Team- TBD 
 
 ## Contact Information
 * Yashar Asgari: yasgari@ad.unc.edu  
@@ -53,6 +53,11 @@ Link to demo should be posted here.
 # Requirements Deliverables
 
 ## Project Concept
+
+### Summary
+A page will be created for Influencers to login to fashionxproject, load their profile, accept the Terms and Conditions, and continue to a page where they are prompted with the option to upload their fashion content. The goal is for the Influencers to appeal to shoppers with similar body dimensions by providing the brand and link to the clothing via a post on the fashionxproject website. The program is designed to work on both mobile and desktop browsers, which means it will be a web app. 
+
+### Tweet
 
 ## User Stories
 
