@@ -60,6 +60,33 @@ Link to demo should be posted here.
 
 ## Platform Analysis and Selection
 
+### Platform Selection
+Express + MongoDB Atlas + Mongoose + EJS
+
+Express + MongoDB Atlas + Mongoose + EJS + jQuery
+
+Express + MongoDB Atlas + Mongoose + EJS + ember
+
+Express + MongoDB Atlas + Mongoose + EJS + React
+
+Possible JavaScript templating engines: EJS, Mustache, pug
+
+Discussion with Duke team to discuss platform choice to keep it consistent across the board.
+
+[Link to Express](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website)
+
+[Link to MongoDB](https://www.mongodb.com/what-is-mongodb)
+
+[Link to Mongoose](https://mongoosejs.com/)
+
+[Link to jQuery](https://jquery.com/)
+
+### Server Selection
+Firebase
+
+### Development Environment
+Visual Studio Code
+
 ## Prototype
 
 # Sprint Deliverables
