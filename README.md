@@ -87,7 +87,7 @@ Link to demo should be posted here.
 A page will be created for Influencers to login to fashionxproject, load their profile, accept the Terms and Conditions, and continue to a page where they are prompted with the option to upload their fashion content. The goal is for the Influencers to appeal to shoppers with similar body dimensions by providing the brand and link to the clothing via a post on the fashionxproject website. The program is designed to work on both mobile and desktop browsers, which means it will be a web app. 
 
 ### Tweet
->\#fashionxproject is all about body positivity and is centered around you, your body, and your fashion interests!
+>#fashionxproject is all about body positivity and is centered around you, your body, and your fashion interests!
 
 ## User Stories
 All user stories documented under deliverables/user-stories. 
