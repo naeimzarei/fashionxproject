@@ -37,7 +37,7 @@ If something happens and the group needs to revert code changes, what will you d
 > Each group member will have his own branch on GitHub for version control. A master branch will be used for stable code. If anything happens in one person's branch, it will not affect the master branch code. 
 
 How will team members notify other group members if he will be late to meetings or will not be able to attend all together?
-> It is expected for a group member to give a heads-up about their absence as soon as possible, preferablly 24 hours in advance. The group member will notify other team members via text or email. 
+> It is expected for a group member to give a heads-up about their absence as soon as possible, preferably 24 hours in advance. The group member will notify other team members via text or email. 
 
 If you reach a point where you and the group members cannot make an important decision, what will you do to move forward?
 > We do not expect to ever reach this point with this group, but if the need arises, we will consult the client and the instructor for input. 
