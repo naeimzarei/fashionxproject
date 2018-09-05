@@ -9,13 +9,13 @@ Instructor- 11:15 AM-12:05 PM
 Team- TBD 
 
 ## Contact Information
-* Yashar Asgari: yasgari@ad.unc.edu
-* Zach Burk
-* Naeim Zarei
-* Client: Ignacio and Ashley
+* Yashar Asgari: yasgari@ad.unc.edu  
+* Zach Burk: zburk@live.unc.edu  
+* Naeim Zarei: naeimz@live.unc.edu  
+* Client: Ignacio and Ashley 
 
 
-## Project Roles (TBD)
+## Project Roles
 Client and Project Manager- Yashar Asgari   
 Editor- Zach Burk  
 Chief Architect- Naeim Zarei  
