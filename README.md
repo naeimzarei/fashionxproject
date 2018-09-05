@@ -1,12 +1,42 @@
+# Navigation
+* [General Materials](#general-materials)
+	* [Project Information](#project-introduction)
+	* [Meeting Times](#meeting-times)
+	* [Contact Information](#contact-information)
+	* [Project Roles](#project-roles)
+	* [Team Rules](#team-rules)
+		* [Team Behavior](#team-behavior)
+		* [Coding Practices](#coding-practices)
+	* [Journal of Meetings](#journal-of-meetings)
+	* [Related Links](#related-links)
+* [Requirements Deliverables](#requirements-deliverables)
+	* [Project Concept](#project-concept)
+		* [Summary](#summary)
+		* [Tweet](#tweet)
+	* [User Stories](#user-stories)
+	* [Personas](#personas)
+	* [Platform Analysis and Selection](#platform-analysis-and-selection)
+		* [Platform Selection](#platform-selection)
+		* [Server Selection](#server-selection)
+		* [Development Environment](#development-environment)
+	* [Prototype](#prototype)
+* [Sprint Deliverables](#sprint-deliverables)
+	* [Functional Specification](#functional-specification)
+	* [Design Doc](#design-doc)
+	* [Test Plan](#test-plan)
+	* [User Manual](#user-manual)
+	* [Version-Controlled Repository](#version-controlled-repository)
+	* [Executable Code](#executable-code)
+
 # General Materials
 
 ## Project Introduction
 The goal of this project is to add a page on the current fashionxproject website to allow 'influencers' to login, create a profile, and submit photos of their fashion content. The platform, fashionxproject, is a fashion start-up that finds clothing that looks good on people based on their body dimensions. As part of this project, the uploading of influencer profiles and content will be automated to reduce the amount of time it takes to process what is shown on the actual website to the shoppers. 
 
 ## Meeting Times
-Team- Friday 10 AM
+Team- Friday 10 AM  
 Client- Friday 11 AM in-person  
-Instructor- 11:15 AM-12:05 PM  
+Instructor- Wednesday 11:15 AM-12:05 PM  
 
 ## Contact Information
 * Yashar Asgari: yasgari@ad.unc.edu  
@@ -41,7 +71,7 @@ If you reach a point where you and the group members cannot make an important de
 > We do not expect to ever reach this point with this group, but if the need arises, we will consult the client and the instructor for input. 
 
 ### Coding Practices
-Each function and method in JavaScript will be documented using JSDoc. We will consider JavaScript testing frameworks, such as Jest, to test the code before pushing it to the master branch. This testing will be done under /test. We will consider JavaScript linting service to ensure that our code is up-to-date with current styling conventions. Each person will have his own branch on GitHub so that checking in and out files will not be an issue. Before merging with master branch, it is preferred that a Pull Request is submitted, but for small  changes such as CSS changes, an automatic merge will suffice. 
+Each function and method in JavaScript will be documented using JSDoc. We will consider JavaScript testing frameworks, such as Jest, to test the code before pushing it to the master branch. This testing will be done under /test. We will consider JavaScript linting service to ensure that our code is up-to-date with current styling conventions. Each person will have his own branch on GitHub so that checking in and out files will not be an issue. Before merging with master branch, it is preferred that a Pull Request is submitted, but for small changes such as CSS changes, an automatic merge will suffice. 
 
 ## Journal of Meetings
 All meetings are documented under docs/meeting-notes on GitHub page.
