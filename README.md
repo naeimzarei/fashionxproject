@@ -90,7 +90,7 @@ A page will be created for Influencers to login to fashionxproject, load their p
 >#fashionxproject is all about body positivity and is centered around you, your body, and your fashion interests!
 
 ## User Stories
-All user stories documented under [deliverables/user-stories](#deliverables/user-stories). 
+All user stories documented under [deliverables/user-stories](#deliverables/user-stories/blank.md). 
 
 ## Personas
 All personas documented under deliverables/personas.
