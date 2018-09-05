@@ -1,6 +1,15 @@
+# Navigation
+* (General Materials)[#general-materials]
+	* (Project Information)[#project-introduction]
+	* (Meeting Times)[#meeting-times]
+	* (Contact Information)[#contact-information]
+	* (Projcet Roles)[#project-roles]
+	* (Team Rules)[#team-rules]
+		* (Team Behavior)[#team-behavior]
+
 # General Materials
 
-## [Project Introduction](#project-intro)
+## Project Introduction
 The goal of this project is to add a page on the current fashionxproject website to allow 'influencers' to login, create a profile, and submit photos of their fashion content. The platform, fashionxproject, is a fashion start-up that finds clothing that looks good on people based on their body dimensions. As part of this project, the uploading of influencer profiles and content will be automated to reduce the amount of time it takes to process what is shown on the actual website to the shoppers. 
 
 ## Meeting Times
