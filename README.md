@@ -4,22 +4,21 @@
 The goal of this project is to add a page on the current fashionxproject website to allow 'influencers' to login, create a profile, and submit photos of their fashion content. The platform, fashionxproject, is a fashion start-up that finds clothing that looks good on people based on their body dimensions. As part of this project, the uploading of influencer profiles and content will be automated to reduce the amount of time it takes to process what is shown on the actual website to the shoppers. 
 
 ## Meeting Times
-Client- Friday 10 AM in-person
-Instructor- 11:15 AM-12:05 PM
+Client- Friday 10 AM in-person  
+Instructor- 11:15 AM-12:05 PM  
 Team- TBD 
 
 ## Contact Information
-* Yashar Asgari
-* Zach Burk
-* Naeim Zarei
-* Client: Ignacio and Ashley
+* Yashar Asgari: yasgari@ad.unc.edu  
+* Zach Burk: zburk@live.unc.edu  
+* Naeim Zarei: naeimz@live.unc.edu  
+* Client: Ignacio and Ashley 
 
 
-## Project Roles (TBD)
-Client Manager-  
-Project Manager-  
-Editor-  
-Chief Architect-  
+## Project Roles
+Client and Project Manager- Yashar Asgari   
+Editor- Zach Burk  
+Chief Architect- Naeim Zarei  
 
 ## Team Rules
 
@@ -60,6 +59,33 @@ Link to demo should be posted here.
 ## Personas
 
 ## Platform Analysis and Selection
+
+### Platform Selection
+Express + MongoDB Atlas + Mongoose + EJS
+
+Express + MongoDB Atlas + Mongoose + EJS + jQuery
+
+Express + MongoDB Atlas + Mongoose + EJS + ember
+
+Express + MongoDB Atlas + Mongoose + EJS + React
+
+Possible JavaScript templating engines: EJS, Mustache, pug
+
+Discussion with Duke team to discuss platform choice to keep it consistent across the board.
+
+[Link to Express](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website)
+
+[Link to MongoDB](https://www.mongodb.com/what-is-mongodb)
+
+[Link to Mongoose](https://mongoosejs.com/)
+
+[Link to jQuery](https://jquery.com/)
+
+### Server Selection
+Firebase
+
+### Development Environment
+Visual Studio Code
 
 ## Prototype
 
