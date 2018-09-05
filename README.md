@@ -82,7 +82,7 @@ Discussion with Duke team to discuss platform choice to keep it consistent acros
 [Link to jQuery](https://jquery.com/)
 
 ### Server Selection
-Firebase
+Virtual machine 
 
 ### Development Environment
 Visual Studio Code
