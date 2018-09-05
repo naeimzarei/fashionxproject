@@ -5,7 +5,7 @@ The goal of this project is to add a page on the current fashionxproject website
 
 ## Meeting Times
 Client- Friday 10 AM in-person  
-Instructor- 11:15 AM-12:05 PM  
+Instructor- Wednesday 11:15 AM-12:05 PM  
 Team- TBD 
 
 ## Contact Information
@@ -42,7 +42,7 @@ If you reach a point where you and the group members cannot make an important de
 > We do not expect to ever reach this point with this group, but if the need arises, we will consult the client and the instructor for input. 
 
 ### Coding Practices
-Each function and method in JavaScript will be documented using JSDoc. We will consider JavaScript testing frameworks, such as Jest, to test the code before pushing it to the master branch. This testing will be done under /test. We will consider JavaScript linting service to ensure that our code is up-to-date with current styling conventions. Each person will have his own branch on GitHub so that checking in and out files will not be an issue. Before merging with master branch, it is preferred that a Pull Request is submitted, but for small  changes such as CSS changes, an automatic merge will suffice. 
+Each function and method in JavaScript will be documented using JSDoc. We will consider JavaScript testing frameworks, such as Jest, to test the code before pushing it to the master branch. This testing will be done under /test. We will consider JavaScript linting service to ensure that our code is up-to-date with current styling conventions. Each person will have his own branch on GitHub so that checking in and out files will not be an issue. Before merging with master branch, it is preferred that a Pull Request is submitted, but for small changes such as CSS changes, an automatic merge will suffice. 
 
 ## Journal of Meetings
 All meetings are documented under docs/meeting-notes on GitHub page.
