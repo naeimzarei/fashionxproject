@@ -90,10 +90,10 @@ A page will be created for Influencers to login to fashionxproject, load their p
 >#fashionxproject is all about body positivity and is centered around you, your body, and your fashion interests!
 
 ## User Stories
-All user stories documented under deliverables/user-stories. 
+All user stories documented under [deliverables/user-stories](deliverables/user-stories). 
 
 ## Personas
-All personas documented under deliverables/personas.
+All personas documented under [deliverables/personas](deliverables/personas).
 
 ## Platform Analysis and Selection
 
@@ -128,16 +128,16 @@ Visual Studio Code
 # Sprint Deliverables
 
 ## Functional Specification
-Functional specification documented under deliverables/functional-spec.
+Functional specification documented under [deliverables/functional-spec](deliverables/functional-spec).
 
 ## Design Doc
-Design documented under deliverables/design-doc.
+Design documented under [deliverables/design-doc](deliverables/design-doc).
 
 ## Test Plan
-Test plan documented under deliverables/test-plan.
+Test plan documented under [deliverables/design-doc](deliverables/test-plan).
 
 ## User Manual
-User manual documented under deliverables/user-manual.
+User manual documented under [deliverables/user-manual](deliverables/test-lan).
 
 ## Version-Controlled Repository
 [GitHub](https://github.com/naeimzarei/fashionxproject)
