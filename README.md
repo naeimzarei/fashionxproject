@@ -74,7 +74,7 @@ If you reach a point where you and the group members cannot make an important de
 Each function and method in JavaScript will be documented using JSDoc. We will consider JavaScript testing frameworks, such as Jest, to test the code before pushing it to the master branch. This testing will be done under /test. We will consider JavaScript linting service to ensure that our code is up-to-date with current styling conventions. Each person will have his own branch on GitHub so that checking in and out files will not be an issue. Before merging with master branch, it is preferred that a Pull Request is submitted, but for small changes such as CSS changes, an automatic merge will suffice. 
 
 ## Journal of Meetings
-All meetings are documented under docs/meeting-notes on GitHub page.
+All meetings are documented under [docs/meetings-notes](docs/meeting-notes) on GitHub page.
 
 ## Related Links
 Link to demo should be posted here.
