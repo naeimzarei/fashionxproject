@@ -118,7 +118,11 @@ Possible front-side development (optional)
 Discussion with Duke team to discuss platform choice to keep it consistent across the board, particularly the database management component. More analysis will be posted later as update is given from Duke team. 
 
 ### Server Selection
-Virtual machine 
+Virtual machine
+Possible server options
+* [AWS](https://aws.amazon.com)
+* [Digital Ocean](https://www.digitalocean.com/)
+* [Heroku](https://www.heroku.com/)
 
 ### Development Environment
 Visual Studio Code
