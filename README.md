@@ -35,7 +35,7 @@ The goal of this project is to add a page on the current fashionxproject website
 
 ## Meeting Times
 Team- Friday 10 AM  
-Client- Friday 11 AM in-person  
+Client- Friday 11 AM in-person/online 
 Instructor- Wednesday 11:15 AM-12:05 PM  
 
 ## Contact Information
@@ -116,6 +116,8 @@ Possible front-side development (optional)
 * [Vue](https://vuejs.org/)
 
 Discussion with Duke team to discuss platform choice to keep it consistent across the board, particularly the database management component. More analysis will be posted later as update is given from Duke team. 
+
+Update #1: our team is leaning towards using Express for the server-side development, MongoDB Atlas with Mongoose ODM (as well as the Duke team to keep consistency in database), and EJS/React for the front-end development. 
 
 ### Server Selection
 Possible server options
