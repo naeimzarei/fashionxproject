@@ -23,7 +23,7 @@ The entry point of the Express application. Sets up the server and gets it runni
 
     /config
 
-The file, [config.js](config/config.js), contains environmental variables to be used across the server files, such as the host and port the application will be hosted on. These variables are constants that are exported as a Node module. As a result, they can be imported from other Node files. 
+The file, [config.js](../../config/config.js), contains environmental variables to be used across the server files, such as the host and port the application will be hosted on. These variables are constants that are exported as a Node module. As a result, they can be imported from other Node files. 
 
     /controllers
 
