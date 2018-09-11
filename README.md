@@ -119,6 +119,8 @@ Discussion with Duke team to discuss platform choice to keep it consistent acros
 
 Update #1: our team is leaning towards using Express for the server-side development, MongoDB Atlas with Mongoose ODM (as well as the Duke team to keep consistency in database), and EJS/React for the front-end development. 
 
+Update #2: our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used.
+
 ### Server Selection
 Possible server options
 * [AWS](https://aws.amazon.com)
@@ -142,9 +144,31 @@ Design documented under [deliverables/design-doc](deliverables/design-doc).
 Test plan documented under [deliverables/design-doc](deliverables/test-plan).
 
 ## User Manual
-User manual documented under [deliverables/user-manual](deliverables/test-lan).
+User manual documented under [deliverables/user-manual](deliverables/user-manual).
 
 ## Version-Controlled Repository
 [GitHub](https://github.com/naeimzarei/fashionxproject)
 
 ## Executable Code
+
+### Installation
+``` bash
+cd /fashionxproject
+npm install 
+```
+
+Install any other dependencies that the terminal requires that you install. Only required dependencies need to be installed, not optional ones. 
+
+### Running
+``` bash
+npm run start
+```
+
+Open browser to the port and host indicated.
+
+### Testing
+``` bash
+npm run test
+```
+
+This will run JavaScript unit testing.
