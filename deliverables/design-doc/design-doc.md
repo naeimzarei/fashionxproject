@@ -11,7 +11,7 @@ Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express
 
 ## Diagram
 
-![alt text](public/images/image.png "A Diagram")
+![Diagram](../../public/images/image.png)
 
 Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
 
