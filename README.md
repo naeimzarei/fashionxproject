@@ -127,6 +127,11 @@ Possible server options
 * [Digital Ocean](https://www.digitalocean.com/)
 * [Heroku](https://www.heroku.com/)
 
+AWS will be used to host and run the code and databse. AWS credentials will be sent to each individual team member. The following AWS services will bee used:
+* EC2 - Run MongoDB Atlas
+* ElasticBeanstalk - Run Express server and render views
+* S3 - Host images that users upload
+
 ### Development Environment
 Visual Studio Code
 
