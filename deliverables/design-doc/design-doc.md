@@ -1,14 +1,4 @@
 # Design Document
-## Vocabulary
-
-Routes: forward requests to controller
-
-Controller: request information from model, create the HTML page using a JavaScript template engine such as EJS
-
-Views (templates): rendered data
-
-Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
-
 ## Diagram
 
 ![Diagram](../../public/images/image.png)
