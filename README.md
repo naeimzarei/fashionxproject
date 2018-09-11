@@ -35,7 +35,7 @@ The goal of this project is to add a page on the current fashionxproject website
 
 ## Meeting Times
 Team- Friday 10 AM  
-Client- Friday 11 AM in-person/online 
+Client- Friday 11 AM in-person/online   
 Instructor- Wednesday 11:15 AM-12:05 PM  
 
 ## Contact Information
