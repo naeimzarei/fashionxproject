@@ -1,7 +1,7 @@
 # Design Document
 ## Diagram
 
-![Diagram](../../public/images/image.png)
+![Diagram](../../app/public/images/image.png)
 
 Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
 
