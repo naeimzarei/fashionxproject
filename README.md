@@ -177,3 +177,21 @@ npm run test
 ```
 
 This will run JavaScript unit testing.
+
+## AWS
+```bash
+	pip install awsebcli --upgrade --user
+```
+This command installs the Elastic Beanstalk CLI tools.
+
+```bash
+	git add *
+	git commit -m "Your commit message"
+	git push 
+```
+You must first push your code changes to the branch.
+
+```bash
+	eb deploy production
+```
+Deploy changes to 'production' environment on Elastic Beanstalk
