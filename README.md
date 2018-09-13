@@ -180,7 +180,7 @@ npm run test
 
 This will run JavaScript unit testing.
 
-## AWS
+### AWS
 ```bash
 pip install awsebcli --upgrade --user
 ```
