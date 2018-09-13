@@ -204,3 +204,15 @@ eb deploy production-staging
 ```
 
 Deploy changes to 'production-staging' environment on Elastic Beanstalk
+
+```bash
+eb open production
+```
+
+Opens the 'production' environment on the browser.
+
+```bash
+eb open production-staging
+```
+
+Opens the 'production-staging' environment on the browser.
