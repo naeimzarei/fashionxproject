@@ -121,13 +121,15 @@ Update #1: our team is leaning towards using Express for the server-side develop
 
 Update #2: our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used.
 
+Update #3: our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used. For AWS, we are using Elastic Beanstalk to render the pages on the web. The EC2 service on AWS will be used to connect with MongoDB Atlas for database management. The S3 service will be used to upload pictures that the users upload on fashionxproject. 
+
 ### Server Selection
 Possible server options
 * [AWS](https://aws.amazon.com)
 * [Digital Ocean](https://www.digitalocean.com/)
 * [Heroku](https://www.heroku.com/)
 
-AWS will be used to host and run the code and databse. AWS credentials will be sent to each individual team member. The following AWS services will bee used:
+AWS will be used to host and run the code and databse. AWS credentials will be sent to each individual team member. The following AWS services will be used:
 * EC2 - Run MongoDB Atlas
 * ElasticBeanstalk - Run Express server and render views
 * S3 - Host images that users upload
