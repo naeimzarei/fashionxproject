@@ -194,4 +194,11 @@ You must first push your code changes to the branch.
 ```bash
 eb deploy production
 ```
+
 Deploy changes to 'production' environment on Elastic Beanstalk
+
+```bash
+eb deploy production-staging
+```
+
+Deploy changes to 'production-staging' environment on Elastic Beanstalk
