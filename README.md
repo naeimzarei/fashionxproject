@@ -139,6 +139,7 @@ Visual Studio Code
 
 ## Prototype
 [Prototype](https://drive.google.com/drive/folders/1Dkoj29jv4z1QjO1x-kMyqup3_6A6s72e)  
+<a href="https://drive.google.com/drive/folders/1Dkoj29jv4z1QjO1x-kMyqup3_6A6s72e" target="_blank">Prototype</a>
 
 # Sprint Deliverables
 
