@@ -176,4 +176,5 @@
     * A controller file will be used to populate the unpublished posts under the Moderator page. 
         * API fields: Photo, influencer, product name
         * Also generate a link to the post page for moderators to click and view what the post would look like for users.
+            * Route: Duke team working on shopper side.
     * Route: ~/fashionxproject/admin/dashboard
