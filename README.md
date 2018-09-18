@@ -137,6 +137,8 @@ AWS will be used to host and run the code and databse. AWS credentials will be s
 ### Development Environment
 Visual Studio Code
 
+Our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used. For AWS, we are using Elastic Beanstalk to render the pages on the web. The EC2 service on AWS will be used to connect with MongoDB Atlas for database management. The S3 service will be used to upload pictures that the users upload on fashionxproject. 
+
 ## Prototype
 [Prototype](https://drive.google.com/drive/folders/1Dkoj29jv4z1QjO1x-kMyqup3_6A6s72e)  
 
