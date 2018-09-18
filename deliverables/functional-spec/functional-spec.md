@@ -47,12 +47,35 @@
 2. The shopper button will be disabled since it is outside the scope of our project. Our project will focus on the influencer page as per the requirements established by the client. 
 
 ### Moderator
-1. 
+1. Moderator page
+    * Able to view all posts that are "pending" and not yet approved
+    * Able to change each post to be flagged as "published" to display live on the site
+2. Manage influencers
+    * Able to edit/remove influencers at any point
 
 ## Requirements
 
 ### Requirements by Priority 
-1. 
+1. Landing Page
+    1. Influencer Login
+    2. Shopper Login placeholder
+2. Influencer Page
+    1. Profile
+        1. Registration - terms of service, general info, measurements
+    2. Submit picture
+        1. Upload and crop pictures
+        2. Brand, size, and link to product
+3. Administator/Moderator
+    1. Approve/Reject posts to appear in shopper feed
+    2. Edit feed
+    3. Manage users
+4. Influencer Wallet
+    1. Influencer submission history
+    2. Track number of clicks per submission
+    3. Track how much they've earned from their content
+    4. In submission history, display number of clicks and revenue next to each submission
+
+
 
 ### Access Rights
 1. Shopper: 
@@ -106,7 +129,7 @@
     * The route for this page will be ~/fashionxproject/home
 2. Click on the Influencer link
     * Same as #1 except must update the routing to ensure that the user is redirected to the sign up or login page for Influencers
-    * Have to update the URL to ~fashionxproject//influencer/login
+    * Have to update the URL to ~fashionxproject/influencer/login
     * Must redirect influencer to provided route
 3. Influencer sign up or login 
     * Two buttons centered on the page: Log In and Sign Up
@@ -139,7 +162,7 @@
     * Must check that each required field is filled out properly when editing the profile information. If it is not, present a dialogue with an error stating which part needs to be corrected. A controller file for profile validation will be created.
     * This page will be served under ~/fashionxproject/influencer/profile
 8. Influencer submit picture page
-    * Ther user must click the Upload Pic button which will present an interface to the user with the ability to crop the picture to the required dimensions. 
+    * Ther user must click the Upload Pic button which will present an interface to the user with the ability to crop the picture to the required dimensions. Similar to Instagram.
     * A crop picture controller will be needed to ensure that the user crops the picture to the required dimensions. If not, present an error describing what needs to be fixed. The interface should already force a dimension when the picture is being uploaded, but the server must double check that the user has uploaded a proper picture with the required extension. If the extension is incorrect, reject the upload and present an error dialogue.
     * Once submitted, a post is created on the Administrative Panel for the moderator. The moderator must approve or reject the post. More on that in the section labeled Moderator below. 
     * Required picture extensions: .png, .jpeg, gif, ...
@@ -156,3 +179,21 @@
     * Post fields: Height (ft, in), Weight (lb), Bust, Waist, Hips, Leg Length, Size
     * Must check that each field is populated correctly. If a field does not exist, then either do not show the post or show the post but omit the field. Depending on situation, may decide to not show post at all or show with some fields omitted. 
     * Route: ~/fashionxproject/influencer/shop
+
+### Moderator
+1. Moderator sign up or login 
+    * Login:
+        * Different from influencers for moderators and admins to log in
+        * Route: to ~/fashionxproject/admin/login
+    * Sign Up:
+        * Moderators will not be able to sign-up on their own.
+        * Accounts will be created by administrators 
+        * API route for creating moderator and admin accounts: ~/fashionxproject/admin/signup
+2. Moderator dashboard page
+    * In this page, the moderator sees a list of posts that are not yet published. Moderators can click an "Approve" button or "Reject" button
+        * Clicking "Approve" turns the post `published` flag to `1`. Reject turns the `published` flag to `2`. Default `published` flag is `0` indicating unpublished.
+    * A controller file will be used to populate the unpublished posts under the Moderator page. 
+        * API fields: Photo, influencer, product name
+        * Also generate a link to the post page for moderators to click and view what the post would look like for users.
+            * Route: Duke team working on shopper side.
+    * Route: ~/fashionxproject/admin/dashboard
