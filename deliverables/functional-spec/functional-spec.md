@@ -56,7 +56,26 @@
 ## Requirements
 
 ### Requirements by Priority 
-1. 
+1. Landing Page
+    1. Influencer Login
+    2. Shopper Login placeholder
+2. Influencer Page
+    1. Profile
+        1. Registration - terms of service, general info, measurements
+    2. Submit picture
+        1. Upload and crop pictures
+        2. Brand, size, and link to product
+3. Administator/Moderator
+    1. Approve/Reject posts to appear in shopper feed
+    2. Edit feed
+    3. Manage users
+4. Influencer Wallet
+    1. Influencer submission history
+    2. Track number of clicks per submission
+    3. Track how much they've earned from their content
+    4. In submission history, display number of clicks and revenue next to each submission
+
+
 
 ### Access Rights
 1. Shopper: 
