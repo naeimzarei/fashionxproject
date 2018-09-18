@@ -188,6 +188,12 @@ pip install awsebcli --upgrade --user
 This command installs the Elastic Beanstalk CLI tools.
 
 ```bash
+eb init
+```
+
+Initialize elastic beanstalk in the directory. Must be done on all new computers.
+
+```bash
 git add *
 git commit -m "Your commit message"
 git push 
