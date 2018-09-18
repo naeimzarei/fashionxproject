@@ -162,11 +162,16 @@
     * Route: ~/fashionxproject/influencer/shop
 
 ### Moderator
-1. Influencer sign up or login 
+1. Moderator sign up or login 
     * Login:
         * Different from influencers for moderators and admins to log in
         * Route: to ~/fashionxproject/admin/login
-    * Sign Up button:
+    * Sign Up:
         * Moderators will not be able to sign-up on their own.
         * Accounts will be created by administrators 
         * API route for creating moderator and admin accounts: ~/fashionxproject/admin/signup
+2. Moderator dashboard page
+    * In this page, the moderator sees a list of posts that are not yet published. Moderators can click an "Approve" button or "Reject" button
+        * Clicking "Approve" turns the post `published` flag to `1`. Reject turns the `published` flag to `2`. Default `published` flag is `0` indicating unpublished.
+    * A controller file will be used to populate the unpublished posts under the Moderator page. 
+    * Route: ~/fashionxproject/admin/dashboard
