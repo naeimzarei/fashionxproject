@@ -174,4 +174,6 @@
     * In this page, the moderator sees a list of posts that are not yet published. Moderators can click an "Approve" button or "Reject" button
         * Clicking "Approve" turns the post `published` flag to `1`. Reject turns the `published` flag to `2`. Default `published` flag is `0` indicating unpublished.
     * A controller file will be used to populate the unpublished posts under the Moderator page. 
+        * API fields: Photo, influencer, product name
+        * Also generate a link to the post page for moderators to click and view what the post would look like for users.
     * Route: ~/fashionxproject/admin/dashboard
