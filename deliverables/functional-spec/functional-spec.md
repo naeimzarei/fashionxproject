@@ -81,18 +81,22 @@
 1. Shopper: 
     * Login on Shopper page
     * View posts by other influencers
+    * Account flag: shopper
 2. Influencer
     * Login to Influencer page
     * View their own posts 
     * Delete or modify their posts 
     * View posts by other influencers 
+    * Account flag: influencer 
 3. Moderator
     * Access to adminstrative panel
-    * Ability to approve or reject posts made by influencers 
-4. Owner
+    * Ability to approve or reject posts made by influencers
+    * Account Flag: moderator 
+4. Administrator
     * Access to administrative panel 
     * Ability to approve or reject posts made by influencers 
     * Ability to remove or add moderator access to accounts 
+    * Flag: administrator
 
 ### General Requirements 
 1. Header
@@ -183,12 +187,13 @@
 ### Moderator
 1. Moderator sign up or login 
     * Login:
-        * Different from influencers for moderators and admins to log in
+        * Moderators are influencers that can approve or reject influencer posts. 
+        * Moderators will use their influencer credentials to sign in to the moderator fashboard page.
         * Route: to ~/fashionxproject/admin/login
     * Sign Up:
         * Moderators will not be able to sign-up on their own.
-        * Accounts will be created by administrators 
-        * API route for creating moderator and admin accounts: ~/fashionxproject/admin/signup
+        * Accounts will be marked with a moderator flag by an administrator, not other moderators. Only administrators have the ability to give or remove moderator access to influencers. 
+        * Administrators can give moderators access on the moderator dashboard page since they have an administrative flag on their account. 
 2. Moderator dashboard page
     * In this page, the moderator sees a list of posts that are not yet published. Moderators can click an "Approve" button or "Reject" button
         * Clicking "Approve" turns the post `published` flag to `1`. Reject turns the `published` flag to `2`. Default `published` flag is `0` indicating unpublished.
