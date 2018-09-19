@@ -1,0 +1,44 @@
+.women-in-dress-bg {
+    background-image: url(../images/home_dress.png); 
+    background-position: center 0;
+    background-size: cover;
+    min-height: 400px;
+}
+
+.text-pink {
+    color: #eb9095;
+}
+
+.bg-pink {
+    background-color: #eb9095;
+}
+
+.btn-pink {
+    color: #fff;
+    background-color: #eb9095;
+    border-color: #eb9095;
+}
+
+.btn-pink:hover {
+    color: #eb9095;
+    background-color: transparent;
+    background-image: none;
+    border-color: #eb9095;
+}
+
+.btn-outline-pink:hover {
+    color: #fff;
+    background-color: #eb9095;
+    border-color: #eb9095;
+}
+
+.btn-outline-pink {
+    color: #eb9095;
+    background-color: transparent;
+    background-image: none;
+    border-color: #eb9095;
+}
+
+.monospace-font {
+    font-family: "Courier New", Courier, monospace;
+}
