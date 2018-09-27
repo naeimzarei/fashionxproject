@@ -42,13 +42,16 @@
     * Set up credentials for MongoDB Atlas 
     * Create collections
     * Possibly use Mongoose (ODM) and create schemas under /app/models
-5. Authentication
+5. Sign Up
+    * The sign up applies to both influencers and moderators. Logic will be implemented to manage both influencers and moderators. 
+    * Controller: the bcrypt module will be used to save the username and password of the user on the database, along with all other required and non-required fields. Controller 2, unlike controller 1, will populate the database while controller while checks for data integrity. Updates the database with requests from people to become moderators as well. Administrators must later approve that person moderator access before he or she can approve, edit, or reject posts. The moderator can still sign in the adminstrator panel but cannot view influencer posts that need to be approved until their account has been granted access.
+6. Authentication
     * Create a controller file called auth.js for authenticating the user under app/controllers
     * Use the bcrypt module to hash the passwords stored in the database. If the user's password converted to that hash matches the password hash in the database, then the user has been successfully authenticated. 
-6. Device Detection
+7. Device Detection
     * Must detect what device a user is using: mobile or desktop. If mobile, must ensure that dimensions of page are proper. If desktop, must ensure that the dimensions of the page span to that of the entire browser width and height. 
     * Can do this using BootStrap or plain CSS using the @media selector 
-7. Caching
+8. Caching
     * Must use server-side caching mechanism to check if user can remain signed on to the influencer login page. 
     * Controller: use Node's caching mechanism to check if user has previously authenticated to the influencer interface. The login credentials will expire after 30 days. 
 
@@ -73,7 +76,7 @@
     * API fields (required): First Name, Email, Age, Instagram Handle, Height (ft, in), Weight (lbs), Bust (Cup), Bust (Band), Waist (in), Hips (in), Usual Jean Size, Usual T-shirt size, Leg length, password
     * API fields (not required): Blog (link) 
     * Controller 1: must check for proper data types in the fields: for instance, a letter must not be inputted in the Waist field. Must check that user has filled all required information here as well. In addition, numbers should only be used for measurements. Measurements will be strictly of number type while other fields such as the Email field will be of type string. The user must also check the Terms of Service fine print at the bottom before click the Sign Up button. Must ensure that the user checks this box. If user does not check box, a dialogue will pop up requiring the user to check the box. 
-    * Controller 2: the bcrypt module will be used to save the username and password of the user on the database, along with all other required and non-required fields. Controller 2, unlike controller 1, will populate the database while controller while checks for data integrity.  
+    * Controller 2: sign up controller as documented under general requirements above. 
     * Route: ~/fashionxproject/influencer/signup
 5. Influencer login page 
     * API fields: Email, Password
@@ -120,7 +123,7 @@
         * Accounts will be marked with a moderator flag by an administrator, not other moderators. Only administrators have the ability to give or remove moderator access to influencers. 
         * API fields: full name, age, date of birth, email
         * Controller 1: check that required fields are properly filled out. 
-        * Controller 2: updates the database with requests from people to become moderators. Administrators must later approve that person moderator access before he or she can approve, edit, or reject posts. The moderator can still sign in the adminstrator panel but cannot view influencer posts that need to be approved until their account has been granted access. 
+        * Controller 2: sign up controller as documented under general requirements above. 
         * Route: ~/fashionxproject/admin/signup
 2. Moderator dashboard page
     * In this page, the moderator sees a list of posts that are not yet published. Moderators can click an "Approve" button or "Reject" button
