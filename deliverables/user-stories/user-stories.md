@@ -2,19 +2,10 @@
 
 - [x] This is an example checkbox. It will appear as a checkbox on the GitHub page but not on my editor.
 
-## General
-- [ ] As an influencer, shopper, and moderator of fashionxproject, I want to be redirected to an error page when something goes wrong.
-
 ## Influencer 
-- [ ] The user wants to visit the homepage of fashionxproject. This is complete when the user can view the home page of fashionxproject.
-- [ ] As an influencer, I would like to see a skeleton page for each influencer page, such as the sign up page, login page, home page, profile page, etcetera.
-- [ ] As an influencer, I would like the header for fashionxproject to be set on all influencer pages, excluding the fashionxproject home page. I must see these fields present on the header: fashionxproject logo, 'Shop by our body type. Transform your shopping experience'.
-- [ ] As an influencer, I would like the footer for fashionxproject to be on all influencer pages, except the home page. I must see these fields present on the footer: About Us, Instagram link, Facebook link, Pinterest link, Email link, Sign up newsletter, #BODYPOSITIVE, Privacy Policy, Terms of Service, Cookie Policy, Copyyright 2018 FASHIONXPROJECT, INC. All rights reserved.
-- [ ] An influencer wants to access the login page and post content. The influencer can achieve this by clicking "login" button on the fashionxproject home page.  
-- [ ] An influencer wants to access the sign up page for fashionxproject. The influencer can achieve this by clicking "sign up" button on the influencer page.  
-- [ ] An influencer wants to sign up for fashionxproject on the influencer page. The influencer needs to fill the required and the non-required fields if he or she chooses to do so. As a result, the influencer needs to see the sign up form. The required fields are: First Name, Email, Age, Instagram Handle, Height, Weight, Bust (Cup), Bust (Band), Waist, Hips, Usual Jean Size, Usual T-shirt size, and leg length. The non-required field is: Blog (link).
-- [ ] An influencer needs to check the Terms of Service fine print at the bottom of the influencer sign up page before he or she can officially create an account. Therefore, the Terms of Service checkbox must be visible to the influencer during the sign up process. 
-- [ ] An influencer needs to be informed if the information inputted on the sign up form is valid. If the information is not valid, the influencer sees a dialogue informing him or her of errors that need to be corrected. 
+- [ ] As an influencer, I want to sign up for fashionxproject on the influencer page. As a result, I need to see the sign up form. 
+- [ ] As an influncer, I need to check the Terms of Service fine print at the bottom of the influencer sign up page before I can can officially create an account. Therefore, the Terms of Service checkbox must be visible to me during the sign up process. 
+- [ ] As an influencer, I need to be informed if the information inputted on the sign up form is valid. If the information is not valid, the influencer sees a dialogue informing him or her of errors that need to be corrected. 
 - [ ] As an influencer, I want to sign in to fashionxproject on the influencer page. I must input my username and password on the influencer login page in order to continue. 
 - [ ] As an influencer, I want to be redirected to my home page after I input my email and password on the influencer login page. Once I click the 'Log In' button, I should be redirected to the influencer home page. 
 - [ ] As an influencer, I want to be informed if I inputted the correct credentials to login on the influencer page. If the email I use to login does not exist, then a dialogue should pop up informing me to input a valid email address. 
@@ -49,3 +40,4 @@
 
 ## Administrator
 - [ ] As an administrator, I would like to give or remove moderator rights to influencers on the moderator dashboard page. I should see a tab that allows me to look a user up by email and mark them as moderators, only if I have the right to do so. That is, I can only mark others as moderators if and only if I have an administrator flag. 
+- [ ] As an administrator, I would like to find a specific person to give or remove moderator access. I can do this by searching for that person by email or full name. 
