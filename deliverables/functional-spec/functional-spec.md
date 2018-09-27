@@ -104,11 +104,11 @@
     * Controller: When user clicks Submit Pic button, this interface pops up a file browser that allows the user to select a photo from his or her device (mobile or desktop). 
     * Route: ~/fashionxproject/influencer/submit
 10. Influencer shop page 
-    * Posts that other influencers have created will be generated on this page as a function of the Influencer's interests and body dimensions.
+    * As a reminder, influencers are shoppers but shoppers are not influencers. As a rseult, influencers will be redirected to shopper experience by clicking the shop button. The same credentials they used to login to the influencer login will be transferred so there will be no need to login again. 
     * API fields: Height (ft, in), Weight (lb), Bust, Waist, Hips, Leg Length, Size
     * Controller 1: must check that each field is populated correctly. If a field does not exist, then either do not show the post or show the post but omit the field. Depending on situation, may decide to not show post at all or show with some fields omitted. 
     * Controller 2: a filter controller will be required to hit the database to obtain posts relevant to what the Influencer requested.
-    * Route: ~/fashionxproject/shopper/shop, TBD
+    * Route: TBD
 
 ### Moderator
 1. Moderator sign up or login 
