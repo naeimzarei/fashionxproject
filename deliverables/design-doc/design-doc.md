@@ -1,9 +1,17 @@
 # Design Document
-## Diagram
 
+## Architecture
 ![Diagram](../../app/public/images/image.png)
 
 Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
+
+## Decomposition 
+
+## Modules
+
+## Data
+
+## Design Decisions
 
 ## Folder Structure
 
@@ -52,6 +60,9 @@ This folder contains Jest unit testing files.
 This folder contains view files, which are responsible for rendering data to the browser. These files output what the user sees on the screen.
 
 ## Other Files
+    .elasticbeanstalk
+
+
 
     .gitignore
 
