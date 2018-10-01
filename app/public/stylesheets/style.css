@@ -42,3 +42,24 @@
 .monospace-font {
     font-family: "Courier New", Courier, monospace;
 }
+
+.nav {
+    font-size: 25px;
+    color: #000;
+}
+
+.nav a {
+    font-size: 25px;
+    color: #000;
+}
+
+.footer {
+    background-color: #eee;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.footer a {
+    color: #000;
+    font-family: "Courier New", Courier, monospace;
+    text-decoration: underline;
+}
