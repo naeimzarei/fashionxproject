@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
-mongoose.connect('mongodb+srv://tester:naeim410@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://tester:<password>@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
+var db = mongoose.connection;
 
 // schema 
 var credentialsSchema = new mongoose.Schema({
@@ -20,7 +21,6 @@ credentialsSchema.statics.create_credentials = function (email, password, callba
     bcrypt.hash(password, 10, function (err, hash) {
         Credentials.create({email: email, password: hash}).then(callback);
     });
-    console.log('how about now?');
 };
 
 credentialsSchema.statics.delete_credentials = function(email, callback) {

@@ -21,6 +21,9 @@ module.exports = {
             leg_length: data.leg_length
         });
 
+        module.exports.push(profile);
+    },
+    push: function(profile) {
         profile.save(function(err) {
             if (err) throw err;
         });
