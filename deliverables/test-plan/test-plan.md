@@ -17,3 +17,18 @@ For functional testing, we will possibly use Robot Framework to ensure the user 
 The combination of unit and functional testing make up the regression testing for each sprint. We are testing both the functional aspect (user-interface) as well as the code (unit testing) to ensure that the results of the view match that of the code. 
 
 Unit testing will specifically focus on test cases centered around the programming side of things while the functional testing will heavily focus on the user experience. 
+
+### Sign-up Influencer
+1. Valid input test: Fill in all fields with valid input and submit
+2. Submit empty form
+3. Submit form with missing required fields: all missing except first name
+4. Invalid inputs
+    1. Name: 123
+    2. Age: abc
+    3. Height (ft): abc
+    4. Height (in): abc
+    5. Weight (lbs): abc
+    6. Waist (in): abc
+    7. Hips (in): abc
+    8. Leg Length: abc
+5. Submit form without agreeing to Terms of Service

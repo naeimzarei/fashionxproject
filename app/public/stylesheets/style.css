@@ -11,6 +11,11 @@
     position: fixed;
 }
 
+#manual-main{
+    text-align: center;
+    list-style-position: inside;
+}
+
 /* Fonts */
 .text-pink {
     color: #eb9095;
@@ -97,7 +102,10 @@ img.logo {
 .input-border-pink {
     box-shadow: 0 0 5px #eb9095;
 }
+#end-signup{
+    align-content: center;
 
+}
 /* Links */
 
 a{
