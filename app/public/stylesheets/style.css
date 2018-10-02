@@ -1,6 +1,6 @@
 .women-in-dress-bg {
-    background-image: url(../images/home_dress.png); 
-    background-position: center 0;
+    background-image: url(../images/home_dress.jpeg); 
+    background-position: center -150px;
     background-size: cover;
     min-height: 400px;
 }
@@ -43,14 +43,13 @@
     font-family: "Courier New", Courier, monospace;
 }
 
-.nav {
+.nav.header a i {
     font-size: 25px;
     color: #000;
 }
 
-.nav a {
-    font-size: 25px;
-    color: #000;
+.justify-start {
+    margin-right: auto;
 }
 
 .footer {
@@ -62,4 +61,8 @@
     color: #000;
     font-family: "Courier New", Courier, monospace;
     text-decoration: underline;
+}
+
+img.logo {
+    max-width: 400px;
 }
