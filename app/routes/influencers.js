@@ -17,8 +17,8 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
+    // signup_controller.signup('pass data here');
     console.log(req.body);
-    signup_controller.signup();
 });
 
 router.get('/home', (req, res, next) => {
