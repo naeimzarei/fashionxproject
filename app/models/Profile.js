@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://tester:<password>@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://tester:naeim410@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
 
 // schema 
 var profileSchema = mongoose.Schema({
