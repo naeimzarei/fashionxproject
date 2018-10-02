@@ -3,7 +3,7 @@ const express = require('express');
 const moxios = require('moxios');
 const request = require('supertest');
 
-describe('GET /users', () => {
+describe('POST /influencers/signup', () => {
   beforeEach(() => {
     moxios.install();
   });
@@ -11,11 +11,16 @@ describe('GET /users', () => {
     moxios.uninstall();
   });
 
-  test('GET /users should return an array of users', async () => {
+  test('should return an error for incomplete data', async () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
     })
-    const result = await request(app).get('/users');
-    expect(Array.isArray(result.body)).toBe(true);
+
+    const data = {
+        first_name: 'Incomplete profile'
+    };
+
+    const result = await request(app).post('/influencers/signup', data);
+    expect(request).toThrowError('unknown');
   });
 });
