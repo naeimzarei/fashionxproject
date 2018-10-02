@@ -11,7 +11,7 @@ describe('GET /users', () => {
     moxios.uninstall();
   });
 
-  test('should return an array of users', async () => {
+  test('GET /users should return an array of users', async () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
     })
