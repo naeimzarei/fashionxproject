@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 // define routes 
 var indexRouter = require('./routes/index');
-var dashboardRouter = require('./routes/dashboard');
+var templateRouter = require('./routes/template');
 var usersRouter = require('./routes/users');
 var influencersRouter = require('./routes/influencers');
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // set routes 
 app.use('/', indexRouter);
-app.use('/dashboard', dashboardRouter);
+app.use('/template', templateRouter);
 app.use('/users', usersRouter);
 app.use('/influencers', influencersRouter);
 

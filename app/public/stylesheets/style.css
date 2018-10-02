@@ -11,9 +11,13 @@
     position: fixed;
 }
 
-/* Text colors */
+/* Fonts */
 .text-pink {
     color: #eb9095;
+}
+
+.monospace-font {
+    font-family: "Courier New", Courier, monospace;
 }
 
 /* Backgrounds */
@@ -30,8 +34,8 @@
 }
 
 .women-in-dress-bg {
-    background-image: url(../images/home_dress.png); 
-    background-position: center 0;
+    background-image: url(../images/home_dress.jpeg); 
+    background-position: center -150px;
     background-size: cover;
     min-height: 400px;
 }
@@ -63,19 +67,19 @@
     border-color: #eb9095;
 }
 
-.monospace-font {
-    font-family: "Courier New", Courier, monospace;
-}
-
 /* Navigation */
-.nav {
+img.logo {
+    max-width: 400px;
+}
+
+.nav.header a i {
+>>>>>>> origin/zach
     font-size: 25px;
     color: #000;
 }
 
-.nav a {
-    font-size: 25px;
-    color: #000;
+.justify-start {
+    margin-right: auto;
 }
 
 /* Footers and headers */
@@ -91,7 +95,6 @@
 }
 
 /* Forms */
-
 .input-border-pink {
     box-shadow: 0 0 5px #eb9095;
 }
