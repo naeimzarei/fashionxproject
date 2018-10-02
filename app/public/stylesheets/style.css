@@ -97,3 +97,9 @@ img.logo {
 .input-border-pink {
     box-shadow: 0 0 5px #eb9095;
 }
+
+/* Links */
+
+a{
+    text-decoration: none;
+}
