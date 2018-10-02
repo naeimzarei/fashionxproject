@@ -67,6 +67,7 @@ var profileSchema = mongoose.Schema({
 });
 
 // static methods 
+profileSchema.statics.
 
 // instance methods 
 
