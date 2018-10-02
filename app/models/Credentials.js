@@ -1,30 +1,34 @@
 var mongoose = require('mongoose');
+let bcrypt = require('bcrypt');
 
-mongoose.connect('mongodb+srv://tester:<password>@cluster0-zz5rm.mongodb.net/users/credentials', { useNewUrlParser: true });
-var db = mongoose.connection;
-
-db.on('error', () => {
-    console.log('Error connecting to database.');
-})
-
-db.once('open', () => {
-    
-});
+mongoose.connect('mongodb+srv://tester:<password>@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
 
 // schema 
 var credentialsSchema = new mongoose.Schema({
-    email: String,
-    password: String
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 });
 
-// methods 
-credentialsSchema.methods.getEmail = () => {
-    return this.email;
+// static methods 
+credentialsSchema.statics.create_credentials = function (email, password, callback) {
+    bcrypt.hash(password, 10, function (err, hash) {
+        Credentials.create({email: email, password: hash}).then(callback);
+    });
 };
 
-credentialsSchema.once.getPassword = () => {
-    return this.password;
+credentialsSchema.statics.delete_credentials = function() {
+    
 };
+
+// instance methods 
 
 // model
-var Credentials = mongoose.model('Credentials', credentialsSchema);
+var Credentials = mongoose.model('Credentials', credentialsSchema, 'credentials');
+
+module.exports = Credentials;
