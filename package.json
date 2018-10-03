@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app/bin/www",
-    "test": "jest"
+    "start-production": "node app/bin/www"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
