@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
-mongoose.connect('mongodb+srv://tester:<password>@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://tester:naeim410@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
+var db = mongoose.connection;
 
 // schema 
 var credentialsSchema = new mongoose.Schema({
@@ -22,8 +23,8 @@ credentialsSchema.statics.create_credentials = function (email, password, callba
     });
 };
 
-credentialsSchema.statics.delete_credentials = function() {
-    
+credentialsSchema.statics.delete_credentials = function(email, callback) {
+    Credentials.deleteOne({email: email}).then(callback);
 };
 
 // instance methods 
