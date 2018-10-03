@@ -5,9 +5,15 @@
 
 Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
 
-## Decomposition 
-
 ## Modules
+1. Configuration (Node): store database information and other environment related fields 
+2. Controllers (Express): ask models for data and render the data using EJS. Controllers are invoked through the use of routes. In addition, controllers take care of the logic behind what is rendered on the page.
+3. Models (Node): turn database information into object-oriented format to make it simple to query the database. 
+4. Database (Mongoose): store user information. Models request data from the database. 
+5. Routes (Express): forward requests to controllers, that will later ask models for information from databse. 
+6. Tests: unit tests to ensure application is up and running 
+7. Views: controllers render data obtained from models and database on a web page using a JavaScript templating engine.
+8. Node modules: contain all necessary packages to get the application up and running 
 
 ## Data
 
