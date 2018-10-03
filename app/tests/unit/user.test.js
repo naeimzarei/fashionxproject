@@ -1,4 +1,4 @@
-const app = require('../app');
+const app = require('../../app');
 const express = require('express');
 const moxios = require('moxios');
 const request = require('supertest');
