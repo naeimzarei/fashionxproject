@@ -77,7 +77,7 @@ Each function and method in JavaScript will be documented using JSDoc. We will c
 All meetings are documented under [docs/meetings-notes](docs/meeting-notes) on GitHub page.
 
 ## Related Links
-[Link][http://production.2hhw2cxiwt.us-east-2.elasticbeanstalk.com]
+[Link](http://production.2hhw2cxiwt.us-east-2.elasticbeanstalk.com)
 
 # Requirements Deliverables
 
