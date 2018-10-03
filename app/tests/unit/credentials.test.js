@@ -1,11 +1,12 @@
 var Credentials = require('../../models/Credentials');
 var mongoose = require('mongoose');
+var config = require('../../config/config');
 
 var connection;
 var db;
 
 beforeAll(async () => {
-    connection = await mongoose.connect('mongodb+srv://tester:<password>@cluster0-zz5rm.mongodb.net/users', { useNewUrlParser: true });
+    connection = await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
     db = await mongoose.connection;
 });
 

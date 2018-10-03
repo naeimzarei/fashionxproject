@@ -7,4 +7,4 @@ npm-debug.log
 !.elasticbeanstalk/*.global.yml
 !.elasticbeanstalk/*.ebignore
 ~*
-config/*
+app/config/*

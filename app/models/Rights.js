@@ -1,3 +1,8 @@
+var mongoose = require('mongoose');
+var config = require('../config/config');
+
+mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+
 // schema 
 var rightsSchema = new mongoose.Schema({
     email: {
