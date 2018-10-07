@@ -8,39 +8,36 @@
         <div class='container col-5 mb-5'>
             <form class='bg-grey' action='/influencers/signup' method='post'>
                 <div class='form-group pt-3 pl-3 pr-3'>
-                    <input name='first_name' class='form-control input-border-pink' type='text' placeholder='First Name *' required>
+                    <input name='first_name' class='form-control border-pink' type='text' placeholder='First Name *' required>
                 </div>
-                <div class = "form-group pl-3 pl-3 pr-3">
-                    <input name="password" class="form-control input-border-pink" type="password" id = "passField" placeholder="Password *" required>
-                    <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="showPassCheckbox" onclick="showPass()">
-                            <label class="form-check-label" for="showPassCheckbox">
-                              Show Password
-                            </label>
-                        </div>
+                <div class="form-group pl-3 pr-3 mb-3">
+                    <span id='showPassCheckbox' class='hover text-center align-middle mt-2 text-pink' style='position: absolute; right: 3em;' onclick='showPass()'>
+                        Show
+                    </span>
+                    <input name="password" class="form-control border-pink" type="password" id="passField" placeholder="Password *" required>
                 </div>
                 
                 <div class='form-group pl-3 pr-3'>
-                    <input name='email' class='form-control input-border-pink' type='email' placeholder='Email *' required>
+                    <input name='email' class='form-control border-pink' type='email' placeholder='Email *' required>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='age' class='form-control input-border-pink' type='number' placeholder='Age *' min='1' required>
+                    <input name='age' class='form-control border-pink' type='number' placeholder='Age *' min='1' required>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='instagram_handle' class='form-control input-border-pink' type='text' placeholder='Instagram Handle *' required> 
+                    <input name='instagram_handle' class='form-control border-pink' type='text' placeholder='Instagram Handle *' required> 
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='blog' class='form-control input-border-pink' type='text' placeholder='Blog'> 
+                    <input name='blog' class='form-control border-pink' type='text' placeholder='Blog'> 
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <input name='height_ft' class='form-control col-6 input-border-pink' type='number' placeholder='Height (ft) *' min='1' required> 
-                    <input name='height_in' class='form-control col-6 input-border-pink' type='number' placeholder='(in) *' min='0' max='11' required> 
+                    <input name='height_ft' class='form-control col-6 border-pink' type='number' placeholder='Height (ft) *' min='1' required> 
+                    <input name='height_in' class='form-control col-6 border-pink' type='number' placeholder='(in) *' min='0' max='11' required> 
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='weight' class='form-control input-border-pink' type='number' placeholder='Weight (lbs) *' min='1' required>
+                    <input name='weight' class='form-control border-pink' type='number' placeholder='Weight (lbs) *' min='1' required>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='bust_cup' class='form-control col-sm-6 input-border-pink' required>
+                    <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
                         <option selected disabled> Bust (cup) *</option>
                         <option>A</option>
                         <option>B</option>
@@ -51,7 +48,7 @@
                         <option>G</option>
                         <option>H</option>
                     </select>
-                    <select name='bust_band' class='form-control col-6 input-border-pink' required>
+                    <select name='bust_band' class='form-control col-6 border-pink' required>
                         <option selected disabled> (band) *</option>
                         <option>Band A</option>
                         <option>Band B</option>
@@ -59,13 +56,13 @@
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='waist' class='form-control input-border-pink' type='number' placeholder='Waist (in) *' min='1' required> 
+                    <input name='waist' class='form-control border-pink' type='number' placeholder='Waist (in) *' min='1' required> 
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='hips' class='form-control input-border-pink' type='number' placeholder='Hips (in) *' min='1' required> 
+                    <input name='hips' class='form-control border-pink' type='number' placeholder='Hips (in) *' min='1' required> 
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <select name='jean_size' class='form-control input-border-pink' rqeuired>
+                    <select name='jean_size' class='form-control border-pink' rqeuired>
                         <option selected disabled>Usual Jean Size *</option>
                         <option>Extra Small (XS)</option>
                         <option>Small (S)</option>
@@ -75,7 +72,7 @@
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <select name='shirt_size' class='form-control input-border-pink' required>
+                    <select name='shirt_size' class='form-control border-pink' required>
                         <option selected disabled>Usual T-Shirt Size *</option>
                         <option>Extra Small (XS)</option>
                         <option>Small (S)</option>
@@ -85,7 +82,7 @@
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='leg_length' class='form-control input-border-pink' type='number' placeholder='Leg Length *' min='1' required>
+                    <input name='leg_length' class='form-control border-pink' type='number' placeholder='Leg Length *' min='1' required>
                 </div>
                 <div class='form-group bg-white' id = "end-signup">
                         <label class = "form-check-label text muted">
@@ -118,8 +115,12 @@
                 var x = document.getElementById("passField");
                 if (x.type === "password") {
                     x.type = "text";
+                    $('#showPassCheckbox').text('Hide');
+                    $('#showPassCheckbox').addClass('text-muted');
                 } else {
                     x.type = "password";
+                    $('#showPassCheckbox').text('Show');
+                    $('#showPassCheckbox').removeClass('text-muted');
                 }
             }
         </script>
