@@ -111,6 +111,10 @@
         </footer>
 
         <script>
+            // prevent highlighting of show/hide element in the password input 
+            $('#showPassCheckbox').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
+
+            // show or hide the password when the user clicks the show or hide element 
             function showPass(){
                 var x = document.getElementById("passField");
                 if (x.type === "password") {
