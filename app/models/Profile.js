@@ -14,7 +14,8 @@ var profileSchema = mongoose.Schema({
     },
     age: {
         type: Number,
-        required: true
+        required: true,
+        min: [18, "You must be atleast 18 years old to sign up"]
     },
     instagram_handle: {
         type: String,
