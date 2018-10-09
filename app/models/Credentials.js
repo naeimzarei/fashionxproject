@@ -2,14 +2,12 @@ var mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 var config = require('../config/config');
 
-mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
-var db = mongoose.connection;
-
 // schema 
 var credentialsSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -18,14 +16,33 @@ var credentialsSchema = new mongoose.Schema({
 });
 
 // static methods 
-credentialsSchema.statics.create_credentials = function (email, password, callback) {
-    bcrypt.hash(password, 10, function (err, hash) {
-        Credentials.create({email: email, password: hash}).then(callback);
+credentialsSchema.statics.push = async (email, password) => {
+    var hash = await bcrypt.hash(password, 10);
+    var credentials = new Credentials({
+        email: email,
+        password: hash
     });
+    await credentials.save();
+    return credentials;
 };
 
-credentialsSchema.statics.delete_credentials = function(email, callback) {
-    Credentials.deleteOne({email: email}).then(callback);
+credentialsSchema.statics.find = async (id) => {
+    var credentials = await Credentials.findById(id);
+    return credentials;
+};
+
+credentialsSchema.statics.remove = async (id) => {
+    var credentials = await Credentials.findByIdAndRemove(id);
+    return credentials;
+};
+
+credentialsSchema.statics.update = async (id, email, password) => {
+    var hash = await bcrypt.hash(password, 10);
+    var credentials = await Credentials.findByIdAndUpdate(id, {
+        email: email,
+        password: hash
+    });
+    return credentials;
 };
 
 // instance methods 
