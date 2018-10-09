@@ -33,13 +33,12 @@ profile_controller.find = async (id) => {
 };
 
 profile_controller.remove = async(id) => {
-    return await Profile.remove();
+    return await Profile.remove(id);
 };
 
 profile_controller.update = async (
     id,
     first_name,
-    password,
     email,
     age,
     instagram_handle,
@@ -58,7 +57,6 @@ profile_controller.update = async (
     return await Profile.update(
         id,
         first_name,
-        password,
         email,
         age,
         instagram_handle,

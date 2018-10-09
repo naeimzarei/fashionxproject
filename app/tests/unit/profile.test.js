@@ -1,61 +1,98 @@
-const app = require('../../app');
 var mongoose = require('mongoose');
-const request = require('supertest');
 var config = require('../../config/config');
 
-describe.only('POST /influencers/signup', () => {
-  beforeAll(async () => {
-    connection = await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
-    db = await mongoose.connection;
-  });
+var profile_controller = require('../../controllers/profile-controller');
 
-  afterAll(async() => {
-    await connection.disconnect();
-  });
+beforeAll(async () => {
+    await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+});
 
-  test('should return an error for incomplete data', async () => {
-    let data = {
-      first_name: 'Incomplete profile'
-    };
+afterAll(async () => {
+    await mongoose.disconnect();
+});
 
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
+var id;
 
-  test('should create and return new profile', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 5,
-      height_in: 10,
-      weight: 123,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
+test('push to profile works, no blog', async() => {
+    var profile = await profile_controller.push(
+        'James', 'email@gmail.com', 18, 'handle',
+        '', 5, 8, 143, 'C', 'Band C', 33, 33,
+        'Medium (M)', 'Medium (M)', 33
+    );
+    id = profile.id;
 
-    delete data.password;
-    return await request(app).post('/influencers/signup')
-      .send(data)
-      .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body.profile).toMatchObject(data);
+    expect(profile.first_name).toEqual('James');
+    expect(profile.email).toEqual('email@gmail.com');
+    expect(profile.age).toBe(18);
+    expect(profile.instagram_handle).toEqual('handle');
+    expect(profile.blog).toEqual('');
+    expect(profile.height_ft).toBe(5);
+    expect(profile.height_in).toBe(8);
+    expect(profile.weight).toBe(143);
+    expect(profile.bust_cup).toEqual('C');
+    expect(profile.bust_band).toEqual('Band C');
+    expect(profile.waist).toBe(33);
+    expect(profile.hips).toBe(33);
+    expect(profile.jean_size).toEqual('Medium (M)');
+    expect(profile.shirt_size).toEqual('Medium (M)');
+    expect(profile.leg_length).toBe(33);
+});
 
-        var Profile = mongoose.model('Profile');
-        Profile.deleteOne({email: response.body.profile.email }, function (err) {
-          if (err) console.log(err);
-        });
-      });
-  });
+test('finding new profile works, no blog', async () => {
+    var profile = await profile_controller.find(id);
+    expect(profile).not.toBeNull();
+});
+
+test('updating new profile works, no blog', async () => {
+    var profile = await profile_controller.update(id,
+        'Peter', 'anotheremail@gmail.com', 22, 'anotherhandle',
+        '', 4, 7, 140, 'B', 'Band B', 43, 43,
+        'Small (S)', 'Small (S)', 43
+    );
+    profile = await profile_controller.find(id);
+    expect(profile.first_name).toEqual('Peter');
+    expect(profile.email).toEqual('anotheremail@gmail.com');
+    expect(profile.age).toBe(22);
+    expect(profile.instagram_handle).toEqual('anotherhandle');
+    expect(profile.blog).toEqual('');
+    expect(profile.height_ft).toBe(4);
+    expect(profile.height_in).toBe(7);
+    expect(profile.weight).toBe(140);
+    expect(profile.bust_cup).toEqual('B');
+    expect(profile.bust_band).toEqual('Band B');
+    expect(profile.waist).toBe(43);
+    expect(profile.hips).toBe(43);
+    expect(profile.jean_size).toEqual('Small (S)');
+    expect(profile.shirt_size).toEqual('Small (S)');
+    expect(profile.leg_length).toBe(43);
+});
+
+test('updating new profile works, blog', async () => {
+    var profile = await profile_controller.update(id,
+        'Xavier', 'yetanotheremail@gmail.com', 25, 'yetanotherhandle',
+        'myblog.com', 6, 3, 141, 'A', 'Band A', 22, 22,
+        'Large (L)', 'Large (L)', 22
+    );
+    profile = await profile_controller.find(id);
+    expect(profile.first_name).toEqual('Xavier');
+    expect(profile.email).toEqual('yetanotheremail@gmail.com');
+    expect(profile.age).toBe(25);
+    expect(profile.instagram_handle).toEqual('yetanotherhandle');
+    expect(profile.blog).toEqual('myblog.com');
+    expect(profile.height_ft).toBe(6);
+    expect(profile.height_in).toBe(3);
+    expect(profile.weight).toBe(141);
+    expect(profile.bust_cup).toEqual('A');
+    expect(profile.bust_band).toEqual('Band A');
+    expect(profile.waist).toBe(22);
+    expect(profile.hips).toBe(22);
+    expect(profile.jean_size).toEqual('Large (L)');
+    expect(profile.shirt_size).toEqual('Large (L)');
+    expect(profile.leg_length).toBe(22);
+});
+
+test('removing new profile works, no blog', async () => {
+    var profile = await profile_controller.remove(id);
+    var profile_info = await profile_controller.find(profile.id);
+    expect(profile_info).toBeNull();
 });

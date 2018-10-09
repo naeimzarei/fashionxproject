@@ -6,10 +6,6 @@ var profileSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    password: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -99,7 +95,6 @@ var profileSchema = mongoose.Schema({
 // static methods 
 profileSchema.statics.push = async (
     first_name,
-    password,
     email,
     age,
     instagram_handle,
@@ -116,22 +111,21 @@ profileSchema.statics.push = async (
     leg_length
 ) => {
     var profile = new Profile({
-        'first_name': first_name,
-        'password': password,
-        'email': email,
-        'age': age,
-        'instagram_handle': instagram_handle,
-        'blog': (blog !== undefined) ? blog : '',
-        'height_ft': height_ft,
-        'height_in': height_in,
-        'weight': weight,
-        'bust_cup': bust_cup,
-        'bust_band': bust_band,
-        'waist': waist,
-        'hips': hips,
-        'jean_size': jean_size,
-        'shirt_size': shirt_size,
-        'leg_length': leg_length
+        first_name: first_name,
+        email: email,
+        age: age,
+        instagram_handle: instagram_handle,
+        blog: blog,
+        height_ft: height_ft,
+        height_in: height_in,
+        weight: weight,
+        bust_cup: bust_cup,
+        bust_band: bust_band,
+        waist: waist,
+        hips: hips,
+        jean_size: jean_size,
+        shirt_size: shirt_size,
+        leg_length: leg_length
     });
     await profile.save();
     return profile;
@@ -150,7 +144,6 @@ profileSchema.statics.remove = async (id) => {
 profileSchema.statics.update = async (
     id,
     first_name,
-    password,
     email,
     age,
     instagram_handle,
@@ -167,22 +160,21 @@ profileSchema.statics.update = async (
     leg_length
 ) => {
     var profile = await Profile.findByIdAndUpdate(id, {
-        'first_name': first_name,
-        'password': password,
-        'email': email,
-        'age': age,
-        'instagram_handle': instagram_handle,
-        'blog': (blog !== undefined) ? blog : '',
-        'height_ft': height_ft,
-        'height_in': height_in,
-        'weight': weight,
-        'bust_cup': bust_cup,
-        'bust_band': bust_band,
-        'waist': waist,
-        'hips': hips,
-        'jean_size': jean_size,
-        'shirt_size': shirt_size,
-        'leg_length': leg_length
+        first_name: first_name,
+        email: email,
+        age: age,
+        instagram_handle: instagram_handle,
+        blog: blog,
+        height_ft: height_ft,
+        height_in: height_in,
+        weight: weight,
+        bust_cup: bust_cup,
+        bust_band: bust_band,
+        waist: waist,
+        hips: hips,
+        jean_size: jean_size,
+        shirt_size: shirt_size,
+        leg_length: leg_length
     });
     return profile;
 };

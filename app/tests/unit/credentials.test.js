@@ -1,4 +1,3 @@
-var Credentials = require('../../models/Credentials');
 var mongoose = require('mongoose');
 var config = require('../../config/config');
 var bcrypt = require('bcrypt');
@@ -14,8 +13,6 @@ afterAll(async () => {
 });
 
 var id;
-var email;
-var password;
 
 test('push to credentials works', async () => {
     var credentials = await credentials_controller.push('sample@gmail.com', 'password');
@@ -26,7 +23,7 @@ test('push to credentials works', async () => {
     expect(hash_comparison).toBeTruthy();
 });
 
-test('remove new credentials works', async () => {
+test('removing new credentials works', async () => {
     var credentials = await credentials_controller.remove(id);
     var credentials_info = await credentials_controller.find(credentials.id);
     expect(credentials_info).toBeNull();
@@ -52,7 +49,7 @@ test('updating new credentials works', async () => {
     expect(credentials.email).toEqual('anotheremail@gmail.com');
 });
 
-test('remove new credentials works', async () => {
+test('removing new credentials works', async () => {
     var credentials = await credentials_controller.remove(id);
     var credentials_info = await credentials_controller.find(credentials.id);
     expect(credentials_info).toBeNull();

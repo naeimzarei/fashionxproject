@@ -8,29 +8,45 @@ mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PA
 var authSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
+        required: true,
+        unique: true
     },
     hash: {
-        type: String
+        type: String,
+        required: true
     }
 });
 
-// static methods
-authSchema.methods.get_hash = function (callback) {
-    Auth.findOne({email: this.email}, 'password', function (err, credentials) {
-        if (err) throw err;
-        this.hash = credentials.password;
-        callback(this.hash);
+authSchema.statics.push = async (email, password) => {
+    var hash = await bcrypt.hash(password, 10);
+    var auth = new Auth({
+        email: email,
+        hash: hash
     });
+    await auth.save();
+    return auth;
 };
 
-// instance methods 
+authSchema.statics.find = async (id) => {
+    var auth = await Auth.findById(id);
+    return auth;
+};
+
+authSchema.statics.remove = async (id) => {
+    var auth = await Auth.findByIdAndRemove(id);
+    return auth;
+};
+
+authSchema.statics.update = async (id, email, password) => {
+    var hash = await bcrypt.hash(password, 10);
+    var auth = await Auth.findByIdAndUpdate(id, {
+        email: email, 
+        hash: hash
+    });
+    return auth;
+};
 
 // model 
-var Auth = mongoose.model('Auth', authSchema, 'credentials');
+var Auth = mongoose.model('Auth', authSchema, 'auth');
 
 module.exports = Auth;
