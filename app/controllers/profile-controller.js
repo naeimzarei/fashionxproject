@@ -1,3 +1,4 @@
+/** Profile - Handles influencer account creation and contains all collected body information */
 var Profile = require('../models/Profile');
 
 var profile_controller = {};
