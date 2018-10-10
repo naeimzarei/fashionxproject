@@ -1,3 +1,4 @@
+/** Credentials - Handles email and password for influencer login" */
 var Credentials = require('../models/Credentials');
 
 var credentials_controller = {};
