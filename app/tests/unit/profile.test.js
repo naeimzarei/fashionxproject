@@ -13,6 +13,101 @@ afterAll(async () => {
 
 var id;
 
+
+test('push to profile should require fields', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James'
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require age to be greater than 18', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 5, 8, 143, 'C', 'Band C', 33, 33,
+            'Medium (M)', 'Medium (M)', 33
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require height ft to be integer', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 'abc', 8, 143, 'C', 'Band C', 33, 33,
+            'Medium (M)', 'Medium (M)', 33
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require height in to be integer', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 5, 'abc', 143, 'C', 'Band C', 33, 33,
+            'Medium (M)', 'Medium (M)', 33
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require weight to be integer', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 5, 1, 'abc', 'C', 'Band C', 33, 33,
+            'Medium (M)', 'Medium (M)', 33
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require waist to be integer', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 5, 1, 120, 'C', 'Band C', 'abc', 33,
+            'Medium (M)', 'Medium (M)', 33
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require hips to be integer', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 5, 1, 120, 'C', 'Band C', 33, 'abc',
+            'Medium (M)', 'Medium (M)', 33
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
+test('push to profile should require leg length to be integer', async() => {
+    try {
+        var profile = await profile_controller.push(
+            'James', 'email@gmail.com', 17, 'handle',
+            '', 5, 1, 120, 'C', 'Band C', 33, 33,
+            'Medium (M)', 'Medium (M)', 'abc'
+        );
+    } catch (err) {
+        expect(err).toBeTruthy();
+    }
+});
+
 test('push to profile works, no blog', async() => {
     var profile = await profile_controller.push(
         'James', 'email@gmail.com', 18, 'handle',
