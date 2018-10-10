@@ -1,3 +1,4 @@
+/** Signup - Validates profile information on influencer sign-up to ensure the data sent meets requirements */
 var util = require('../util/util');
 var Profile = require('../models/Profile');
 
