@@ -23,12 +23,11 @@ Unit testing will specifically focus on test cases centered around the programmi
 2. Submit empty form
 3. Submit form with missing required fields: all missing except first name
 4. Invalid inputs
-    1. Name: 123
-    2. Age: abc
-    3. Height (ft): abc
-    4. Height (in): abc
-    5. Weight (lbs): abc
-    6. Waist (in): abc
-    7. Hips (in): abc
-    8. Leg Length: abc
+    1. Age: abc
+    2. Height (ft): abc
+    3. Height (in): abc
+    4. Weight (lbs): abc
+    5. Waist (in): abc
+    6. Hips (in): abc
+    7. Leg Length: abc
 5. Submit form without agreeing to Terms of Service
