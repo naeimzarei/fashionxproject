@@ -1,3 +1,4 @@
+/** Rights - Handles permissions for influencers, moderators, and administrators */
 var Rights = require('../models/Rights');
 
 var rights_controller = {};
