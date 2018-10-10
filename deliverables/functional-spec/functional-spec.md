@@ -109,6 +109,7 @@
     * Route: ~/fashionxproject/influencer/submit
 10. Influencer shop page 
     * As a reminder, influencers are shoppers but shoppers are not influencers. As a rseult, influencers will be redirected to shopper experience by clicking the shop button. The same credentials they used to login to the influencer login will be transferred so there will be no need to login again. 
+    * Influencer can click button in header to return back to the influencer experience
     * API fields: Height (ft, in), Weight (lb), Bust, Waist, Hips, Leg Length, Size
     * Controller 1: must check that each field is populated correctly. If a field does not exist, then either do not show the post or show the post but omit the field. Depending on situation, may decide to not show post at all or show with some fields omitted. 
     * Controller 2: a filter controller will be required to hit the database to obtain posts relevant to what the Influencer requested.
