@@ -38,6 +38,7 @@
 3. Error pages
     * Such as 403 or 500 errors
     * Pages for each of these errors under /app/views/errors
+    * Making these error messages user friendly
 4. MongoDB Atlas integration
     * Set up credentials for MongoDB Atlas 
     * Create collections
