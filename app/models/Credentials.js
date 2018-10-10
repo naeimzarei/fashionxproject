@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 var config = require('../config/config');
 
+mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+
 // schema 
 var credentialsSchema = new mongoose.Schema({
     email: {

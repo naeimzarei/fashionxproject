@@ -8,37 +8,41 @@
         <div class='container col-5 mb-5'>
             <form class='bg-grey' action='/influencers/signup' method='post'>
                 <div class='form-group pt-3 pl-3 pr-3'>
-                    <input name='first_name' class='form-control border-pink' type='text' placeholder='First Name *' required>
+                    <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true}) %>
                 </div>
                 <div class="form-group pl-3 pr-3 mb-3">
                     <span id='showPassCheckbox' class='hover text-center align-middle mt-2 text-pink' style='position: absolute; right: 3em;' onclick='showPass()'>
                         Show
                     </span>
-                    <input name="password" class="form-control border-pink" type="password" id="passField" placeholder="Password *" required>
+                    <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField', placeholder: 'Password *', min: '', max: '', required: true}) %>
                 </div>
                 
                 <div class='form-group pl-3 pr-3'>
-                    <input name='email' class='form-control border-pink' type='email' placeholder='Email *' required>
+                    <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='age' class='form-control border-pink' type='number' placeholder='Age *' min='18' required>
+                    <%- include('../../partials/input', {name: 'age', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Age *', min: 18, max: '', required: true}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='instagram_handle' class='form-control border-pink' type='text' placeholder='Instagram Handle *' required> 
+                    <%- include('../../partials/input', {name: 'instagram_handle', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Instagram Handle *', min: '', max: '', required: true}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='blog' class='form-control border-pink' type='text' placeholder='Blog'> 
+                    <%- include('../../partials/input', {name: 'blog', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Blog', min: '', max: '', required: false}) %>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <input name='height_ft' class='form-control col-6 border-pink' type='number' placeholder='Height (ft) *' min='1' required> 
-                    <input name='height_in' class='form-control col-6 border-pink' type='number' placeholder='(in) *' min='0' max='11' required> 
+                    <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='weight' class='form-control border-pink' type='number' placeholder='Weight (lbs) *' min='1' required>
+                    <%- include('../../partials/input', {name: 'weight', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Weight (lbs) *', min: '1', max: '', required: true}) %>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
                     <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
-                        <option selected disabled> Bust (cup) *</option>
+                        <% placeholder = 'Bust (cup) *'; %>
+                        <% if (errors['bust_cup']) { %>
+                            <% placeholder = errors['bust_cup'] %>
+                        <% } %>
+                        <option selected disabled> <%= placeholder %> </option>
                         <option>A</option>
                         <option>B</option>
                         <option>C</option>
@@ -49,21 +53,29 @@
                         <option>H</option>
                     </select>
                     <select name='bust_band' class='form-control col-6 border-pink' required>
-                        <option selected disabled> (band) *</option>
+                        <% placeholder = '(band) *'; %>
+                        <% if (errors['bust_band']) { %>
+                            <% placeholder = errors['bust_band'] %>
+                        <% } %>
+                        <option selected disabled> <%= placeholder %> </option>
                         <option>Band A</option>
                         <option>Band B</option>
                         <option>Band C</option> 
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='waist' class='form-control border-pink' type='number' placeholder='Waist (in) *' min='1' required> 
+                    <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Waist (in) *', min: '0', max: '', required: true}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='hips' class='form-control border-pink' type='number' placeholder='Hips (in) *' min='1' required> 
+                    <%- include('../../partials/input', {name: 'hips', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Hips (in) *', min: '0', max: '', required: true}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <select name='jean_size' class='form-control border-pink' rqeuired>
-                        <option selected disabled>Usual Jean Size *</option>
+                        <% placeholder = 'Usual Jean Size *'; %>
+                        <% if (errors['jean_size']) { %>
+                            <% placeholder = errors['jean_size'] %>
+                        <% } %>
+                        <option selected disabled> <%= placeholder %> </option>
                         <option>Extra Small (XS)</option>
                         <option>Small (S)</option>
                         <option>Medium (M)</option>
@@ -73,7 +85,11 @@
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <select name='shirt_size' class='form-control border-pink' required>
-                        <option selected disabled>Usual T-Shirt Size *</option>
+                        <% placeholder = 'Usual T-Shirt Size *'; %>
+                        <% if (errors['shirt_size']) { %>
+                            <% placeholder = errors['shirt_size'] %>
+                        <% } %>
+                        <option selected disabled> <%= placeholder %> </option>
                         <option>Extra Small (XS)</option>
                         <option>Small (S)</option>
                         <option>Medium (M)</option>
@@ -82,7 +98,7 @@
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <input name='leg_length' class='form-control border-pink' type='number' placeholder='Leg Length *' min='1' required>
+                    <%- include('../../partials/input', {name: 'leg_length', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Leg Length *', min: '0', max: '', required: true}) %>
                 </div>
                 <div class='form-group bg-white' id = "end-signup">
                         <label class = "form-check-label text muted">
