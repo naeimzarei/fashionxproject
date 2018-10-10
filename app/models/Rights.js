@@ -1,3 +1,4 @@
+/** Handles permissions for each user */
 var mongoose = require('mongoose');
 var config = require('../config/config');
 
@@ -15,6 +16,11 @@ var rightsSchema = new mongoose.Schema({
     }
 });
 
+/**
+Set access level per user
+@param {string} email - User account email.
+@param {string} rights - Access level to assign to user.
+*/
 rightsSchema.statics.push = async (email, rights) => {
     var rights = new Rights({
         email: email,
@@ -24,16 +30,30 @@ rightsSchema.statics.push = async (email, rights) => {
     return rights;
 };
 
+/**
+Find access level per user
+@param {integer} id - User account id.
+*/
 rightsSchema.statics.find = async (id) => {
     var rights = await Rights.findById(id);
     return rights;
 };
 
+/**
+Remove access level per user
+@param {integer} id - User account id.
+*/
 rightsSchema.statics.remove = async (id) => {
     var rights = await Rights.findByIdAndRemove(id);
     return rights;
 };
 
+/**
+Update access level per user
+@param {integer} id - User account id.
+@param {string} email - User account email.
+@param {string} rights - New permission level to give to user.
+*/
 rightsSchema.statics.update = async (id, email, rights) => {
     var rights = await Rights.findByIdAndUpdate(id, {
         email: email,
