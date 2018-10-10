@@ -123,6 +123,41 @@ The database is implemented in model files as documented above. MongoDB Atlas is
 
 The configuration file as documented previously contains the username and password. The model files access these credentials by importing the config module. The username and password are not stored in GitHub. Rather, they are ignored by GitHub so the database does not get compromised. Furthermore, a SHA256 password is produced to make it even more difficult to reverse engineer the system. 
 
+The schema (or collections) for our database are as follows (Email being the foreign key):  
+User  
+/profile {  
+First Name: string  
+Email: string  
+Instagram handle: string  
+Blog: string  
+Age: int  
+Height: int  
+Weight: int  
+Waist: int  
+Hips: int  
+Bust: string  
+Band: string  
+Jean Size: int  
+Shirt Size: string  
+Leg Length: string  
+}  
+
+/auth {  
+Email: string  
+Hash: string  
+}  
+
+/credentials{  
+Email: string  
+Password: string  
+}  
+
+/rights{  
+Email: string  
+Rights: string  
+}
+
+
 ### Routes 
 
 Routes are all coded using Node. They forward requests to controllers, such visiting the home page of the web app. To simplify routing, the Express module is imported within each route file. Express has 'routers', which are files that route a specific path of the web app. For instance, ~/fashionxproject/influencers gets forwarded to the influencer router. Within each router, individual routes are defined. 
