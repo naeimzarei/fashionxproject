@@ -22,5 +22,9 @@ test('create new credentials', async() => {
 
     return await credentials.save().then((product) => {
         console.log('product', product);
+        var Credentials = mongoose.model('Credentials');
+        Credentials.deleteOne({email: product.email }, function (err) {
+          if (err) console.log(err);
+        });
     });
 });
