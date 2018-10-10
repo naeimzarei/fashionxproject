@@ -19,7 +19,7 @@ router.post('/signup', async (req, res, next) => {
     var errors = signup_controller.validate(req.body);
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
         var result = await signup_controller.signup(req.body);
-        res.json(result);
+        res.json(result); // route to profile page (render)
     } else {
         res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors});
     }
