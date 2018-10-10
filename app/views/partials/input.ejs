@@ -1,0 +1,10 @@
+<% placeholder = placeholder %>
+<% if (errors[name]) { %>
+    <% placeholder = errors[name] %>
+<% } %>
+
+<% if (required) { %>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' required>
+<% } else { %>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>'>
+<% } %>

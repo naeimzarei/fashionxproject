@@ -202,6 +202,35 @@ git push
 ```
 You must first push your code changes to the branch.
 
+```javascript
+var config = {};
+
+config.DATABASE_USERNAME = '';
+config.DATABASE_PASSWORD = '';
+
+module.exports = config;
+```
+
+In order to run the application properly, one must create a folder called ```config``` under the ```app``` folder and it must contain a file called ```config.js``` within the directory. A sample ```config.js``` file is in the root directory of this web app for reference. If this part is skipped, MongoDB authentication issues will occur. Therefore, the above two variables must be defined.
+
+```javascript
+config.DATABASE_USERNAME = <mongodb-atlas-user>
+```
+
+This is the user who is accessing the MongoDB Atlas credentials. A user is not the same as username of the MongoDB Atlas dashboard. It is the authorized user of MongoDB Atlas. Users can be defined within the MongoDB Atlas dashboard. 
+
+```javascript
+config.DATABASE_PASSWORD = 'mongodb-atlas-user-password';
+```
+
+This is the password of the particular user of the MongoDB Atlas database. The password is in SHA256 format to prevent reverse engineering.
+
+```bash
+echo -n <password> | openssl sha256
+```
+
+Use this CLI command to produce the SHA256 of any string of text using the UNIX terminal. Save this string of text in ```config.js```.
+
 ```bash
 eb deploy production
 ```

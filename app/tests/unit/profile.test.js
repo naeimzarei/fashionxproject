@@ -1,277 +1,98 @@
-const app = require('../../app');
 var mongoose = require('mongoose');
-const request = require('supertest');
 var config = require('../../config/config');
 
-describe.only('POST /influencers/signup', () => {
-  beforeAll(async () => {
-    connection = await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
-    db = await mongoose.connection;
-  });
+var profile_controller = require('../../controllers/profile-controller');
 
-  afterAll(async() => {
-    await connection.disconnect();
-  });
+beforeAll(async () => {
+    await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+});
 
-  test('should return an error for incomplete data', async () => {
-    let data = {
-      first_name: 'Incomplete profile'
-    };
+afterAll(async () => {
+    await mongoose.disconnect();
+});
 
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
+var id;
 
-  test('should not allow age to be text', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 'abc',
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 5,
-      height_in: 10,
-      weight: 123,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
+test('push to profile works, no blog', async() => {
+    var profile = await profile_controller.push(
+        'James', 'email@gmail.com', 18, 'handle',
+        '', 5, 8, 143, 'C', 'Band C', 33, 33,
+        'Medium (M)', 'Medium (M)', 33
+    );
+    id = profile.id;
 
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
+    expect(profile.first_name).toEqual('James');
+    expect(profile.email).toEqual('email@gmail.com');
+    expect(profile.age).toBe(18);
+    expect(profile.instagram_handle).toEqual('handle');
+    expect(profile.blog).toEqual('');
+    expect(profile.height_ft).toBe(5);
+    expect(profile.height_in).toBe(8);
+    expect(profile.weight).toBe(143);
+    expect(profile.bust_cup).toEqual('C');
+    expect(profile.bust_band).toEqual('Band C');
+    expect(profile.waist).toBe(33);
+    expect(profile.hips).toBe(33);
+    expect(profile.jean_size).toEqual('Medium (M)');
+    expect(profile.shirt_size).toEqual('Medium (M)');
+    expect(profile.leg_length).toBe(33);
+});
 
-  test('should not allow height ft to be text', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 'abc',
-      height_in: 10,
-      weight: 123,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
+test('finding new profile works, no blog', async () => {
+    var profile = await profile_controller.find(id);
+    expect(profile).not.toBeNull();
+});
 
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
+test('updating new profile works, no blog', async () => {
+    var profile = await profile_controller.update(id,
+        'Peter', 'anotheremail@gmail.com', 22, 'anotherhandle',
+        '', 4, 7, 140, 'B', 'Band B', 43, 43,
+        'Small (S)', 'Small (S)', 43
+    );
+    profile = await profile_controller.find(id);
+    expect(profile.first_name).toEqual('Peter');
+    expect(profile.email).toEqual('anotheremail@gmail.com');
+    expect(profile.age).toBe(22);
+    expect(profile.instagram_handle).toEqual('anotherhandle');
+    expect(profile.blog).toEqual('');
+    expect(profile.height_ft).toBe(4);
+    expect(profile.height_in).toBe(7);
+    expect(profile.weight).toBe(140);
+    expect(profile.bust_cup).toEqual('B');
+    expect(profile.bust_band).toEqual('Band B');
+    expect(profile.waist).toBe(43);
+    expect(profile.hips).toBe(43);
+    expect(profile.jean_size).toEqual('Small (S)');
+    expect(profile.shirt_size).toEqual('Small (S)');
+    expect(profile.leg_length).toBe(43);
+});
 
-  test('should not allow height in to be text', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 6,
-      height_in: 'abc',
-      weight: 123,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
+test('updating new profile works, blog', async () => {
+    var profile = await profile_controller.update(id,
+        'Xavier', 'yetanotheremail@gmail.com', 25, 'yetanotherhandle',
+        'myblog.com', 6, 3, 141, 'A', 'Band A', 22, 22,
+        'Large (L)', 'Large (L)', 22
+    );
+    profile = await profile_controller.find(id);
+    expect(profile.first_name).toEqual('Xavier');
+    expect(profile.email).toEqual('yetanotheremail@gmail.com');
+    expect(profile.age).toBe(25);
+    expect(profile.instagram_handle).toEqual('yetanotherhandle');
+    expect(profile.blog).toEqual('myblog.com');
+    expect(profile.height_ft).toBe(6);
+    expect(profile.height_in).toBe(3);
+    expect(profile.weight).toBe(141);
+    expect(profile.bust_cup).toEqual('A');
+    expect(profile.bust_band).toEqual('Band A');
+    expect(profile.waist).toBe(22);
+    expect(profile.hips).toBe(22);
+    expect(profile.jean_size).toEqual('Large (L)');
+    expect(profile.shirt_size).toEqual('Large (L)');
+    expect(profile.leg_length).toBe(22);
+});
 
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
-
-  test('should not allow height in inches to exceed 13', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 10,
-      height_in: 13,
-      weight: 123,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
-
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
-
-  test('should not allow weight to be less than 18', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 10,
-      height_in: 13,
-      weight: 17,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
-
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
-
-  test('should not allow weight to be text', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 10,
-      height_in: 13,
-      weight: 'abc',
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
-
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
-
-  test('should not allow hips to be text', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 10,
-      height_in: 13,
-      weight: 100,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 'abc',
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
-
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
-
-  test('should not allow leg length to be text', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 10,
-      height_in: 13,
-      weight: 100,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 30,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 'abc'
-    };
-
-    try {
-      await request(app).post('/influencers/signup').send(data);
-    } catch (err) {
-      expect(err).toBeTruthy();
-    };
-  });
-
-  test('should create and return new profile', async () => {
-    let data = {
-      first_name: 'John Doe',
-      email: 'john@example.com',
-      password: 'test',
-      age: 30,
-      instagram_handle: 'testInsta',
-      blog: 'www.example.com',
-      height_ft: 5,
-      height_in: 10,
-      weight: 123,
-      bust_cup: 'D',
-      bust_band: 'Band B',
-      waist: 33,
-      hips: 33,
-      jean_size: 'Medium (M)',
-      shirt_size: 'Small (S)',
-      leg_length: 33
-    };
-
-    delete data.password;
-    return await request(app).post('/influencers/signup')
-      .send(data)
-      .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body.profile).toMatchObject(data);
-
-        var Profile = mongoose.model('Profile');
-        Profile.deleteOne({email: response.body.profile.email }, function (err) {
-          if (err) console.log(err);
-        });
-      });
-  });
+test('removing new profile works, no blog', async () => {
+    var profile = await profile_controller.remove(id);
+    var profile_info = await profile_controller.find(profile.id);
+    expect(profile_info).toBeNull();
 });

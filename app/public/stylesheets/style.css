@@ -21,6 +21,14 @@
     color: #eb9095;
 }
 
+.text-white {
+    color: #FFFFFF;
+}
+
+.text-blue {
+    color: #007bff;
+}
+
 .monospace-font {
     font-family: "Courier New", Courier, monospace;
 }
@@ -38,11 +46,24 @@
     background-color: #FFFFFF;
 }
 
+.bg-blue {
+    background-color: #007bff;
+}
+
 .women-in-dress-bg {
     background-image: url(../images/home_dress.jpeg); 
     background-position: center -150px;
     background-size: cover;
     min-height: 400px;
+}
+
+/* Borders */
+.border-pink {
+    box-shadow: 0 0 5px #eb9095;
+}
+
+.border-radius-5 {
+    border-radius: 5px;
 }
 
 /* Buttons */
@@ -99,9 +120,7 @@ img.logo {
 }
 
 /* Forms */
-.input-border-pink {
-    box-shadow: 0 0 5px #eb9095;
-}
+
 #end-signup{
     align-content: center;
 
@@ -110,4 +129,9 @@ img.logo {
 
 a{
     text-decoration: none;
+}
+
+/* Pseudo-classes */
+.hover:hover {
+    cursor: pointer;
 }
