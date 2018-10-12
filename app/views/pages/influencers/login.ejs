@@ -1,0 +1,45 @@
+<!Doctype html>
+<html>
+    <head>
+        <% include ../../partials/head %>
+    </head>
+    <body>
+        <% include ../../partials/logo %>
+
+
+        <div id = "loginForm">
+            <div class='form-group pl-3 pr-3'>
+                <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true}) %>
+            </div>
+            <div class="form-group pl-3 pr-3 mb-3">
+                    <span id='showPassCheckbox2' class='hover text-center align-middle mt-2 text-pink' style='position: absolute; right: 3em;' onclick='showPass()'>
+                        Show
+                    </span>
+                    <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField2', placeholder: 'Password *', min: '', max: '', required: true}) %>
+            </div>
+
+        </div>
+        
+        <footer>
+            <% include ../../partials/footer %>
+        </footer>
+        <script>
+                // prevent highlighting of show/hide element in the password input 
+                $('#showPassCheckbox2').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
+    
+                // show or hide the password when the user clicks the show or hide element 
+                function showPass(){
+                    var x = document.getElementById("passField2");
+                    if (x.type === "password") {
+                        x.type = "text";
+                        $('#showPassCheckbox2').text('Hide');
+                        $('#showPassCheckbox2').addClass('text-muted');
+                    } else {
+                        x.type = "password";
+                        $('#showPassCheckbox2').text('Show');
+                        $('#showPassCheckbox2').removeClass('text-muted');
+                    }
+                }
+            </script>
+    </body>
+</html>

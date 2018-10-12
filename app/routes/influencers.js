@@ -4,11 +4,11 @@ var router = express.Router();
 var signup_controller = require('../controllers/signup-controller');
 
 router.get('/', (req, res, next) => {
-    res.render('pages/influencers/login', { title: 'Login' });
+    res.render('pages/influencers/login', { title: 'Login',errors: '' });
 });
 
 router.get('/login', (req, res, next) => {
-    res.render('pages/influencers/login', { title: 'Login' });
+    res.render('pages/influencers/login', { title: 'Login', errors: '' });
 });
 
 router.get('/signup', (req, res, next) => {
