@@ -178,10 +178,16 @@ Open browser to the port and host indicated.
 
 ### Testing
 ``` bash
-npm run test
+npm run test-unit
 ```
 
-This will run JavaScript unit testing.
+This will run JavaScript unit testing. It also outputs coverage details.
+
+``` bash
+npm run test-functional
+```
+
+This will run JavaScript functional testing for Google Chrome and Firefox.
 
 ### AWS
 ```bash

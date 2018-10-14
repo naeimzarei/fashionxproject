@@ -10,3 +10,4 @@ npm-debug.log
 app/config/*
 selenium-debug.log
 app/tests/functional/reports
+*coverage
