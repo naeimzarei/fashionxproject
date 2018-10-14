@@ -1,3 +1,4 @@
+/** Profile - Handles influencer account creation and contains all collected body information */
 var mongoose = require('mongoose');
 var config = require('../config/config');
 
@@ -95,6 +96,9 @@ var profileSchema = mongoose.Schema({
 // instance methods 
 
 // static methods 
+/**
+Create new profile based off of passed in data
+*/
 profileSchema.statics.push = async (
     first_name,
     email,
@@ -133,16 +137,28 @@ profileSchema.statics.push = async (
     return profile;
 };
 
+/**
+Find profile
+@param {integer} id - Profile id.
+*/
 profileSchema.statics.find = async (id) => {
     var profile = await Profile.findById(id);
     return profile;
 };
 
+/**
+Delete profile
+@param {integer} id - Profile id.
+*/
 profileSchema.statics.remove = async (id) => {
     var profile = await Profile.findByIdAndRemove(id);
     return profile;
 };
 
+/**
+Update profile with passed in data
+@param {integer} id - Profile id.
+*/
 profileSchema.statics.update = async (
     id,
     first_name,

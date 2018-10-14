@@ -1,10 +1,14 @@
+/** Signup - Validates profile information on influencer sign-up to ensure the data sent meets requirements */
 var util = require('../util/util');
 var Profile = require('../models/Profile');
 
 var profile_controller = require('./profile-controller');
 
 var signup_controller = {};
-
+/**
+Validates profile account creation input
+@param {object} profile - Profile data
+*/
 signup_controller.validate = (profile) => {
     var profile_info = {
         first_name: profile.first_name,
@@ -28,6 +32,10 @@ signup_controller.validate = (profile) => {
     return util.format_errors_object(profile_info, profile);
 };
 
+/**
+Executes profile account creation
+@param {object} profile - Profile data
+*/
 signup_controller.signup = async (profile) => {
     return await profile_controller.push(
         profile.first_name,

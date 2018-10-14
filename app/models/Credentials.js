@@ -1,3 +1,4 @@
+/** Credentials - Handles creating login information for each account - Currently a duplicate of model and controller */
 var mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 var config = require('../config/config');
@@ -18,6 +19,11 @@ var credentialsSchema = new mongoose.Schema({
 });
 
 // static methods 
+/**
+Create authentication credentials
+@param {string} email - User email address on account
+@param {string} password - Desired password that gets hashed
+*/
 credentialsSchema.statics.push = async (email, password) => {
     var hash = await bcrypt.hash(password, 10);
     var credentials = new Credentials({
@@ -28,16 +34,30 @@ credentialsSchema.statics.push = async (email, password) => {
     return credentials;
 };
 
+/**
+Find authentication credentials
+@param {integer} id - Authentication id
+*/
 credentialsSchema.statics.find = async (id) => {
     var credentials = await Credentials.findById(id);
     return credentials;
 };
 
+/**
+Delete authentication credentials
+@param {integer} id - Authentication id
+*/
 credentialsSchema.statics.remove = async (id) => {
     var credentials = await Credentials.findByIdAndRemove(id);
     return credentials;
 };
 
+/**
+Update authentication credentials
+@param {integer} id - Authentication id
+@param {string} email - Account email
+@param {string} password - New desired password
+*/
 credentialsSchema.statics.update = async (id, email, password) => {
     var hash = await bcrypt.hash(password, 10);
     var credentials = await Credentials.findByIdAndUpdate(id, {

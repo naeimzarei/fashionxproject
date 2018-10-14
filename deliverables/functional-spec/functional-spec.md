@@ -38,6 +38,7 @@
 3. Error pages
     * Such as 403 or 500 errors
     * Pages for each of these errors under /app/views/errors
+    * Making these error messages user friendly
 4. MongoDB Atlas integration
     * Set up credentials for MongoDB Atlas 
     * Create collections
@@ -108,6 +109,7 @@
     * Route: ~/fashionxproject/influencer/submit
 10. Influencer shop page 
     * As a reminder, influencers are shoppers but shoppers are not influencers. As a rseult, influencers will be redirected to shopper experience by clicking the shop button. The same credentials they used to login to the influencer login will be transferred so there will be no need to login again. 
+    * Influencer can click button in header to return back to the influencer experience
     * API fields: Height (ft, in), Weight (lb), Bust, Waist, Hips, Leg Length, Size
     * Controller 1: must check that each field is populated correctly. If a field does not exist, then either do not show the post or show the post but omit the field. Depending on situation, may decide to not show post at all or show with some fields omitted. 
     * Controller 2: a filter controller will be required to hit the database to obtain posts relevant to what the Influencer requested.
@@ -141,15 +143,17 @@
 5. Route: ~/fashionxproject/admin/dashboard/rights
 
 ## Requirements by Priority 
-1. Landing Page
-    1. Influencer Login
+1. Landing Page --Sprint 1
+    1. Influencer Sign Up
     2. Shopper Login placeholder
 2. Influencer Page
-    1. Profile
+    1. Profile -- Sprint 1 & 2
         1. Registration - terms of service, general info, measurements
+        2. Main feed/dashboard
     2. Submit picture
         1. Upload and crop pictures
         2. Brand, size, and link to product
+    3. Login Page --Sprint 2
 3. Moderator/adminstrator
     1. Approve/Reject posts to appear in shopper feed
     2. Edit feed
