@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var signup_controller = require('../controllers/signup-controller');
-var credentials_controller = require('../controllers/credentials-controller');
+var auth_controller = require('../controllers/auth-controller');
 
 router.get('/', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '' });
@@ -27,7 +27,13 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.post('/login', async(req, res, next) => {
-    await credentials_controller.authorize(req.body);
+    var result = await auth_controller.authenticate(req.body);
+    if (result) {
+        res.json(result);
+    } else {
+        res.status(401);
+        res.json({'Error': 'Unauthorized'});
+    }
 });
 
 

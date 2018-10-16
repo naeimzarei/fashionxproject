@@ -5,6 +5,8 @@ var config = require('../config/config');
 
 mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
 
+var credentials_controller = require('../controllers/credentials-controller');
+
 // schema 
 var authSchema = new mongoose.Schema({
     email: {
@@ -67,9 +69,17 @@ authSchema.statics.update = async (id, email, password) => {
     return auth;
 };
 
+/**
+ * Check that the user is authenticated
+ * @param {{}} profile the profile object 
+ */
 authSchema.statics.authenticate = async(profile) => {
-    var auth = await Auth.findOne({email: profile.email, password: profile.password});
-    return auth;
+    var auth = await credentials_controller.findCredentials(profile.email);
+    if (auth) {
+        var result = await bcrypt.compare(profile.password, auth.password);
+        return result;
+    }
+    return false;
 };
 
 // model 

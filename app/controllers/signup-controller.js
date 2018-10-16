@@ -38,7 +38,7 @@ Executes profile account creation
 @param {object} profile - Profile data
 */
 signup_controller.signup = async (profile) => {
-    return await profile_controller.push(
+    var profiles = await profile_controller.push(
         profile.first_name,
         profile.email,
         profile.age,
@@ -55,6 +55,9 @@ signup_controller.signup = async (profile) => {
         profile.shirt_size,
         profile.leg_length
     );
+
+    await credentials_controller.push(profile.email, profile.password);
+    return profiles;
 };
 
 module.exports = signup_controller;
