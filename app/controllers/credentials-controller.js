@@ -38,4 +38,8 @@ credentials_controller.update = async (id, email, password) => {
     return await Credentials.update(id, email, password);
 };
 
+credentials_controller.authorize = async (credentials) => {
+    return await Credentials.authorize(credentials.email, credentials.password);
+};
+
 module.exports = credentials_controller;
