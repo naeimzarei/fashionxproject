@@ -38,4 +38,11 @@ auth_controller.update = async (id, email, password) => {
     return await Auth.update(id, email, password);
 };
 
+/**
+ * Check user is authenticated.
+ */
+auth_controller.authenticate = async (email, password) => {
+    return await Auth.authenticate(email, password);
+};
+
 module.exports = auth_controller;

@@ -67,6 +67,11 @@ authSchema.statics.update = async (id, email, password) => {
     return auth;
 };
 
+authSchema.statics.authenticate = async(email, password) => {
+    var auth = await Auth.findOne({email: email, password: password});
+    console.log(auth.password);
+};
+
 // model 
 var Auth = mongoose.model('Auth', authSchema, 'auth');
 

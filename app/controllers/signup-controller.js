@@ -3,6 +3,7 @@ var util = require('../util/util');
 var Profile = require('../models/Profile');
 
 var profile_controller = require('./profile-controller');
+var credentials_controller = require('./credentials-controller');
 
 var signup_controller = {};
 /**
