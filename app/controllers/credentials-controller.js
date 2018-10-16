@@ -29,6 +29,14 @@ credentials_controller.find = async (id) => {
 };
 
 /**
+ * Check authentication credentials 
+ * @param {string} email the email 
+ */
+credentials_controller.findCredentials = async (email) => {
+    return await Credentials.findCredentials(email);
+};
+
+/**
 Update authentication credentials
 @param {integer} id - Authentication id
 @param {string} email - Account email

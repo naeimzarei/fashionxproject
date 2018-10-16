@@ -44,6 +44,15 @@ credentialsSchema.statics.find = async (id) => {
 };
 
 /**
+ * Check authenticate credentials 
+ * @param {string} email the email 
+ */
+credentialsSchema.statics.findCredentials = async (email) => {
+    var credentials = await Credentials.findOne({email: email});
+    return credentials;
+};
+
+/**
 Delete authentication credentials
 @param {integer} id - Authentication id
 */
