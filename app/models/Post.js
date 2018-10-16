@@ -1,0 +1,90 @@
+/** Post - Handles influencers creating posts */
+var mongoose = require('mongoose');
+var config = require('../config/config');
+
+mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+
+// schema 
+var postSchema = mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    user_email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    img_url: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    }
+});
+
+// instance methods 
+
+// static methods 
+/**
+Create new post based off of passed in data
+*/
+postSchema.statics.push = async (
+    title,
+    user_email,
+    img_url,
+    description
+) => {
+    var post = new Post({
+        title: title,
+        user_email: user_email,
+        img_url: img_url,
+        description: description
+    });
+    await post.save();
+    return post;
+};
+
+/**
+Find post
+@param {integer} id - Post id.
+*/
+postSchema.statics.find = async (id) => {
+    var post = await Post.findById(id);
+    return post;
+};
+
+/**
+Delete post
+@param {integer} id - Post id.
+*/
+postSchema.statics.remove = async (id) => {
+    var post = await Post.findByIdAndRemove(id);
+    return post;
+};
+
+/**
+Update post with passed in data
+@param {integer} id - Post id.
+*/
+postSchema.statics.update = async (
+    title,
+    user_email,
+    img_url,
+    description
+) => {
+    var post = await Post.findByIdAndUpdate(id, {
+        title: title,
+        user_email: user_email,
+        img_url: img_url,
+        description: description
+    });
+    return post;
+};
+
+// model
+var Post = mongoose.model('Post', postSchema, 'post');
+
+module.exports = Post;
