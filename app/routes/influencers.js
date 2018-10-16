@@ -18,6 +18,7 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
     var errors = signup_controller.validate(req.body);
+    console.log('errors',)
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
         var result = await signup_controller.signup(req.body);
         res.json(result); // route to profile page (render)
@@ -28,12 +29,7 @@ router.post('/signup', async (req, res, next) => {
 
 router.post('/login', async(req, res, next) => {
     var result = await auth_controller.authenticate(req.body);
-    if (result) {
-        res.json(result);
-    } else {
-        res.status(401);
-        res.json({'Error': 'Unauthorized'});
-    }
+    res.json(result);
 });
 
 
