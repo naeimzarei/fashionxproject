@@ -67,7 +67,7 @@ authSchema.statics.update = async (id, email, password) => {
     return auth;
 };
 
-authSchema.statics.authenticate = async(email, password) => {
+authSchema.statics.authenticate = async(profile) => {
     var auth = await Auth.findOne({email: email, password: password});
     console.log(auth.password);
 };
