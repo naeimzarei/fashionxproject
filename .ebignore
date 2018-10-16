@@ -4,3 +4,4 @@ npm-debug.log
 selenium-debug.log
 app/tests/functional/reports
 *coverage
+selenium-server.log

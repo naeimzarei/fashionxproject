@@ -35,9 +35,14 @@ signup_controller.validate = (profile) => {
     if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/.test(profile.password)){
         console.log('good pass');
     }else{
-        error_object['password'] = 'Your password must be atleast 6 characters with 1 number and 1 capital letter.';
+        error_object['password'] = 'Must have a length of 6 with 1 number and 1 capital letter.';
     }
 
+    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email)){
+        console.log("good email")
+    }else{
+        error_object['email'] = "Email must be valid"
+    }
 
 //add email validation
 
