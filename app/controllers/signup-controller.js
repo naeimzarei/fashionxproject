@@ -11,6 +11,7 @@ Validates profile account creation input
 @param {object} profile - Profile data
 */
 signup_controller.validate = (profile) => {
+    
     var profile_info = {
         first_name: profile.first_name,
         email: profile.email,
@@ -28,9 +29,19 @@ signup_controller.validate = (profile) => {
         shirt_size: profile.shirt_size,
         leg_length: profile.leg_length
     };
-    var profile = new Profile(profile_info);
+    var profiles = new Profile(profile_info);
 
-    return util.format_errors_object(profile_info, profile);
+    var error_object = util.format_errors_object(profile_info, profiles);
+    if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/.test(profile.password)){
+        console.log('good pass');
+    }else{
+        error_object['password'] = 'Your password must be atleast 6 characters with 1 number and 1 capital letter.';
+    }
+
+
+//add email validation
+
+    return error_object;
 };
 
 /**
