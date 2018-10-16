@@ -44,7 +44,6 @@ signup_controller.validate = (profile) => {
         error_object['email'] = "Email must be valid"
     }
 
-//add email validation
 
     return error_object;
 };
