@@ -4,7 +4,7 @@ var router = express.Router();
 var signup_controller = require('../controllers/signup-controller');
 
 router.get('/', (req, res, next) => {
-    res.render('pages/influencers/login', { title: 'Login',errors: '' });
+    res.render('pages/influencers/login', { title: 'Login', errors: '' });
 });
 
 router.get('/login', (req, res, next) => {
@@ -24,6 +24,11 @@ router.post('/signup', async (req, res, next) => {
         res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors});
     }
 });
+
+router.post('/login', async(req, res, next) => {
+    
+});
+
 
 router.get('/manual', (req, res, next) => {
     res.render('pages/influencers/manual', {title: "Help"});
