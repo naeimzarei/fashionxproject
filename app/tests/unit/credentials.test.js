@@ -1,16 +1,6 @@
-var mongoose = require('mongoose');
-var config = require('../../config/config');
 var bcrypt = require('bcrypt');
 
 var credentials_controller = require('../../controllers/credentials-controller');
-
-// beforeAll(async () => {
-//     await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
-// });
-
-// afterAll(async () => {
-//     await mongoose.disconnect();
-// });
 
 var id;
 var email;

@@ -1,4 +1,6 @@
 var util = {};
+var config = require('../config/config');
+var mongoose = require('mongoose');
 
 util.format_errors_object = (object_info, object) => {
     if (object.validateSync() === undefined) {
@@ -12,6 +14,11 @@ util.format_errors_object = (object_info, object) => {
         }
     }
     return errors;
+};
+
+util.connect = async () => {
+    await mongoose.set('useFindAndModify', false);
+    return await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true, useCreateIndex: true});
 };
 
 module.exports = util;
