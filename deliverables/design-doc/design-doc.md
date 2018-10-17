@@ -217,4 +217,12 @@ For the controllers and routes, we decided to go with Express because it is a ve
 
 We originally were thinking of using React.js or some other framework such as Angular for the view, but that required more work than necessary. It would have required us to brush up on an external dependency, which would increase the amount of time it takes to produce the product. As a result, we went with EJS, which is easily implemented and does not require an extensive learning curve. 
 
-For the future, we will be using AWS S3 service to store the thumbnails for the influencer posts. 
+In the future, we will be using AWS S3 service to store the thumbnails for the influencer posts. 
+
+An influencer is a shopper, but a shopper is not an influencer. An influencer can be directed to the shopping side, but a shopper cannot be directed to the influencer experience. If a person is marked as an influencer, then a button will appear on the shopping experience that will allow the influencer to go back to the influencer experience. This button will only appear on the shopping experience if and only if the user is marked as an influencer.
+
+A moderator is neither an influencer nor shopper. A moderator is an independent user that checks the posts of influencers before they are published. An administrator grants moderator access and can add or remove it at any time in the administrative panel.
+
+At the moment, anyone can sign up to be an influencer. We will talk with the client to see if that is something they really want or if influencers need to go through an extra step of authentication in order to sign up to use the services. 
+
+For authentication, we are using bcrypt module to hash the passwords and compare the hash with the inputted password during login. 

@@ -36,9 +36,8 @@
     * Footer for fashionxproject should be present on all influencer pages. 
     * All of the following must be present in all pages except the home page: About Us, Sign Up to Newsletter, Privacy Policy, Terms of Service, Cookie Policy
 3. Error pages
-    * Such as 403 or 500 errors
-    * Pages for each of these errors under /app/views/errors
     * Making these error messages user friendly
+    * Pages for each of these errors under /app/views/errors
 4. MongoDB Atlas integration
     * Set up credentials for MongoDB Atlas 
     * Create collections
@@ -158,8 +157,3 @@
     1. Approve/Reject posts to appear in shopper feed
     2. Edit feed
     3. Manage users
-4. Influencer Wallet (stretch goal)
-    1. Influencer submission history
-    2. Track number of clicks per submission
-    3. Track how much they've earned from their content
-    4. In submission history, display number of clicks and revenue next to each submission
