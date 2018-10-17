@@ -1,8 +1,8 @@
 /** Handles permissions for each user */
 var mongoose = require('mongoose');
-var config = require('../config/config');
+var util = require('../util/util');
 
-mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+util.connect();
 
 // schema 
 var rightsSchema = new mongoose.Schema({

@@ -1,15 +1,4 @@
-var mongoose = require('mongoose');
-var config = require('../../config/config');
-
 var rights_controller = require('../../controllers/rights-controller');
-
-// beforeAll(async () => {
-//     await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
-// });
-
-// afterAll(async () => {
-//     await mongoose.disconnect();
-// });
 
 var id;
 var email;
