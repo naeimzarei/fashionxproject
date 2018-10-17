@@ -21,11 +21,27 @@ credentials_controller.remove = async (id) => {
 };
 
 /**
+ * Delete authentication credentials
+ * @param {string} email 
+ */
+credentials_controller.removeCredentials = async (email) => {
+    return await Credentials.removeCredentials(email);
+};
+
+/**
 Find authentication credentials
 @param {integer} id - Authentication id
 */
 credentials_controller.find = async (id) => {
     return await Credentials.find(id);
+};
+
+/**
+ * Check authentication credentials 
+ * @param {string} email the email 
+ */
+credentials_controller.findCredentials = async (email) => {
+    return await Credentials.findCredentials(email);
 };
 
 /**
@@ -36,6 +52,22 @@ Update authentication credentials
 */
 credentials_controller.update = async (id, email, password) => {
     return await Credentials.update(id, email, password);
+};
+
+/**
+ * Update authentication credentials
+ * @param {string} email
+ * @param {string} password 
+ */
+credentials_controller.updateCredentials = async (previous_email, email, password) => {
+    return await Credentials.updateCredentials(previous_email, email, password);
+};
+
+/**
+ * Check user is authenticated.
+ */
+credentials_controller.authenticate = async (profile) => {
+    return await Credentials.authenticate(profile);
 };
 
 module.exports = credentials_controller;

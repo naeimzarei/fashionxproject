@@ -15,6 +15,9 @@
     text-align: left;
     list-style-position: inside;
 }
+section {
+    min-height: 45vh; /* minus the height of the footer */
+}
 
 /* Fonts */
 .text-pink {

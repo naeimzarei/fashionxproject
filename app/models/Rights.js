@@ -40,11 +40,29 @@ rightsSchema.statics.find = async (id) => {
 };
 
 /**
+ * Find access level per user 
+ * @param {string} email 
+ */
+rightsSchema.statics.findRights = async (email) => {
+    var rights = await Rights.findOne({email: email});
+    return rights;
+};
+
+/**
 Remove access level per user
 @param {integer} id - User account id.
 */
 rightsSchema.statics.remove = async (id) => {
     var rights = await Rights.findByIdAndRemove(id);
+    return rights;
+};
+
+/**
+ * Remove access level per user 
+ * @param {string} email 
+ */
+rightsSchema.statics.removeRights = async (email) => {
+    var rights = await Rights.findOneAndRemove({email: email});
     return rights;
 };
 
@@ -56,6 +74,19 @@ Update access level per user
 */
 rightsSchema.statics.update = async (id, email, rights) => {
     var rights = await Rights.findByIdAndUpdate(id, {
+        email: email,
+        rights: rights
+    });
+    return rights;
+};
+
+/**
+ * Update access level per user 
+ * @param {string} email 
+ * @param {string} rights 
+ */
+rightsSchema.statics.updateRights = async (email, rights) => {
+    var rights = await Rights.findOneAndUpdate({email: email}, {
         email: email,
         rights: rights
     });

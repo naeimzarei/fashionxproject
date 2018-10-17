@@ -6,8 +6,10 @@
     <body>
         <% include ../../partials/logo %>
 
-
-        <div id = "loginForm">
+        <section>
+        <div class = "container col-5 mb-5">
+        
+            <form class='bg-grey' action='/influencers/login' method='post'>
             <div class='form-group pl-3 pr-3'>
                 <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true}) %>
             </div>
@@ -17,9 +19,13 @@
                     </span>
                     <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField2', placeholder: 'Password *', min: '', max: '', required: true}) %>
             </div>
-
+            <div class='container text-center mb-4 bg-white ps-absolute'>
+            <button type="submit" class="btn btn-pink btn-primary text-center" >Log In</button>
+            </form>
         </div>
-        
+        </div>
+        <br>
+        </section>
         <footer>
             <% include ../../partials/footer %>
         </footer>

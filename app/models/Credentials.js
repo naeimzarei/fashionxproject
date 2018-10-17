@@ -44,12 +44,29 @@ credentialsSchema.statics.find = async (id) => {
 };
 
 /**
+ * Check authenticate credentials 
+ * @param {string} email the email 
+ */
+credentialsSchema.statics.findCredentials = async (email) => {
+    var credentials = await Credentials.findOne({email: email});
+    return credentials;
+};
+
+/**
 Delete authentication credentials
 @param {integer} id - Authentication id
 */
 credentialsSchema.statics.remove = async (id) => {
     var credentials = await Credentials.findByIdAndRemove(id);
     return credentials;
+};
+
+/**
+ * Delete authentication credentials
+ * @param {string} email - email address 
+ */
+credentialsSchema.statics.removeCredentials = async (email) => {
+    var credentials = await Credentials.findOneAndRemove({email: email});
 };
 
 /**
@@ -65,6 +82,33 @@ credentialsSchema.statics.update = async (id, email, password) => {
         password: hash
     });
     return credentials;
+};
+
+/**
+ * Update authentication credentails
+ * @param {string} email 
+ * @param {string} password 
+ */
+credentialsSchema.statics.updateCredentials = async (previous_email, email, password) => {
+    var hash = await bcrypt.hash(password, 10);
+    var credentials = await Credentials.findOneAndUpdate({email: previous_email}, {
+        email: email,
+        password: hash
+    });
+    return credentials;
+};
+
+/**
+ * Check that the user is authenticated
+ * @param {{}} profile the profile object 
+ */
+credentialsSchema.statics.authenticate = async(profile) => {
+    var auth = await Credentials.findCredentials(profile.email);
+    if (auth) {
+        var result = await bcrypt.compare(profile.password, auth.password);
+        return result;
+    }
+    return false;
 };
 
 // instance methods 
