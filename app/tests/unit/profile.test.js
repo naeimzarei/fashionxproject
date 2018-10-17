@@ -3,16 +3,16 @@ var config = require('../../config/config');
 
 var profile_controller = require('../../controllers/profile-controller');
 
-beforeAll(async () => {
-    await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
-});
+// beforeAll(async () => {
+//     await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true });
+// });
 
-afterAll(async () => {
-    await mongoose.disconnect();
-});
+// afterAll(async () => {
+//     await mongoose.disconnect();
+// });
 
 var id;
-
+var email;
 
 test('push to profile should require fields', async() => {
     try {
@@ -115,6 +115,7 @@ test('push to profile works, no blog', async() => {
         'Medium (M)', 'Medium (M)', 33
     );
     id = profile.id;
+    email = 'email@gmail.com';
 
     expect(profile.first_name).toEqual('James');
     expect(profile.email).toEqual('email@gmail.com');
@@ -135,6 +136,11 @@ test('push to profile works, no blog', async() => {
 
 test('finding new profile works, no blog', async () => {
     var profile = await profile_controller.find(id);
+    expect(profile).not.toBeNull();
+});
+
+test('finding new profile works, by email', async () => {
+    var profile = await profile_controller.findProfile(email);
     expect(profile).not.toBeNull();
 });
 
@@ -186,8 +192,41 @@ test('updating new profile works, blog', async () => {
     expect(profile.leg_length).toBe(22);
 });
 
+test('updating new profile works, by email', async () => {
+    await profile_controller.updateProfile(
+        'John', 'yetanotheremail@gmail.com', 27, 'yetanotherhandletwo',
+        'myblogs.com', 4, 2, 143, 'B', 'Band B', 24, 24,
+        'Small (S)', 'Small (S)', 14
+    );
+    var profile = await profile_controller.findProfile('yetanotheremail@gmail.com');
+    expect(profile.first_name).toEqual('John');
+    expect(profile.email).toEqual('yetanotheremail@gmail.com');
+    expect(profile.age).toBe(27);
+    expect(profile.instagram_handle).toEqual('yetanotherhandletwo');
+    expect(profile.blog).toEqual('myblogs.com');
+    expect(profile.height_ft).toBe(4);
+    expect(profile.height_in).toBe(2);
+    expect(profile.weight).toBe(143);
+    expect(profile.bust_cup).toEqual('B');
+    expect(profile.bust_band).toEqual('Band B');
+    expect(profile.waist).toBe(24);
+    expect(profile.hips).toBe(24);
+    expect(profile.jean_size).toEqual('Small (S)');
+    expect(profile.shirt_size).toEqual('Small (S)');
+    expect(profile.leg_length).toBe(14);
+});
+
 test('removing new profile works, no blog', async () => {
     var profile = await profile_controller.remove(id);
     var profile_info = await profile_controller.find(profile.id);
     expect(profile_info).toBeNull();
+});
+
+test('removing new profile works, by email', async () => {
+    var profile = await profile_controller.push(
+        'James', 'email@gmail.com', 18, 'handle',
+        '', 5, 8, 143, 'C', 'Band C', 33, 33,
+        'Medium (M)', 'Medium (M)', 33
+    );
+    await profile_controller.removeProfile('email@gmail.com');
 });

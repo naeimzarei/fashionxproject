@@ -146,6 +146,11 @@ profileSchema.statics.find = async (id) => {
     return profile;
 };
 
+profileSchema.statics.findProfile = async (email) => {
+    var profile = await Profile.findOne({email: email});
+    return profile;
+};
+
 /**
 Delete profile
 @param {integer} id - Profile id.
@@ -178,6 +183,43 @@ profileSchema.statics.update = async (
     leg_length
 ) => {
     var profile = await Profile.findByIdAndUpdate(id, {
+        first_name: first_name,
+        email: email,
+        age: age,
+        instagram_handle: instagram_handle,
+        blog: blog,
+        height_ft: height_ft,
+        height_in: height_in,
+        weight: weight,
+        bust_cup: bust_cup,
+        bust_band: bust_band,
+        waist: waist,
+        hips: hips,
+        jean_size: jean_size,
+        shirt_size: shirt_size,
+        leg_length: leg_length
+    });
+    return profile;
+};
+
+profileSchema.statics.updateProfile = async (
+    first_name,
+    email,
+    age,
+    instagram_handle,
+    blog,
+    height_ft,
+    height_in,
+    weight,
+    bust_cup,
+    bust_band,
+    waist,
+    hips,
+    jean_size,
+    shirt_size,
+    leg_length
+) => {
+    var profile = await Profile.findOneAndUpdate({email: email}, {
         first_name: first_name,
         email: email,
         age: age,
