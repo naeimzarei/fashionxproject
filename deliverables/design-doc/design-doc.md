@@ -7,7 +7,8 @@ Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express
 
 ## Decomposition 
 
-### Modules
+This application is constructed using Express, EJS, and MnogoDB. It is a typical MVC application: MongoDB and Mongoose provide the model and scheams, EJS provides the view, and the controller directs the flow of data by using Express routes.
+
 1. Configuration (Node): store database information and other environment related fields 
 2. Controllers (Node): ask models for data and render the data using EJS. Controllers are invoked through the use of routes. In addition, controllers take care of the logic behind what is rendered on the page.
 3. Models (Node): turn database information into object-oriented format to make it simple to query the database. 
@@ -18,7 +19,7 @@ Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express
 8. Node modules (Node): contain all necessary packages to get the application up and running 
 9. Server
 
-### Data
+### Modules
 
     /bin
 
@@ -203,3 +204,17 @@ The ```package-lock.json``` file is the helper file for ```package.json```.
 ### Etcetera 
 
 The ```.ebignore``` and ```.gitignore``` files define which files should be ignored for the production and development environments, respectively. 
+
+## Design Descisions 
+
+For the database, we decided to go with MongoDB Atlas for the purposes of this application. It is simple to implement and works really well with Express. 
+
+For the view, we decided to go with EJS because it is really easy to implement since Express routes support templating engines very well. 
+
+For the model, we decided to go with Mongoose (ODM), which obtains the data from MongoDB Atlas and constructs schemas. 
+
+For the controllers and routes, we decided to go with Express because it is a very popular module for implementing routes and middleware. In addition, it allows us to render the view using a JavaScript templating engine. 
+
+We originally were thinking of using React.js or some other framework such as Angular for the view, but that required more work than necessary. It would have required us to brush up on an external dependency, which would increase the amount of time it takes to produce the product. As a result, we went with EJS, which is easily implemented and does not require an extensive learning curve. 
+
+For the future, we will be using AWS S3 service to store the thumbnails for the influencer posts. 
