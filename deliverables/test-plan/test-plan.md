@@ -2,7 +2,7 @@
 
 ## Platforms
 1. Node files: use Jest for unit testing Node files on the server side 
-2. Browser: possibly use Robot Framework to ensure functionality in browser 
+2. Browser: possibly use Robot Framework to ensure functionality in browser, or use nightwatch.js for functional testing instead. As time has progressed, we have decided to use nightwatch.js for the browser functionality. 
 
 ## Test Cases
 For the purpose of this project, a combination of unit and functional testing will be implemented. 
