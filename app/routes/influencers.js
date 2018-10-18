@@ -3,6 +3,7 @@ var router = express.Router();
 
 var signup_controller = require('../controllers/signup-controller');
 var credentials_controller = require('../controllers/credentials-controller');
+var post_controller = require('../../controllers/post-controller');
 
 router.get('/', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '' });

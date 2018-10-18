@@ -10,6 +10,10 @@ var postSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    date: {
+        type: Date,
+        required: true
+    },
     user_email: {
         type: String,
         required: true,
@@ -24,7 +28,7 @@ var postSchema = mongoose.Schema({
         required: true
     },
     clicks: {
-        type: Integer
+        type: Number
     }
 });
 
