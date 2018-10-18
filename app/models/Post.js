@@ -22,6 +22,9 @@ var postSchema = mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    clicks: {
+        type: Integer
     }
 });
 
@@ -41,7 +44,8 @@ postSchema.statics.push = async (
         title: title,
         user_email: user_email,
         img_url: img_url,
-        description: description
+        description: description,
+        clicks: 0
     });
     await post.save();
     return post;
@@ -73,13 +77,15 @@ postSchema.statics.update = async (
     title,
     user_email,
     img_url,
-    description
+    description,
+    clicks
 ) => {
     var post = await Post.findByIdAndUpdate(id, {
         title: title,
         user_email: user_email,
         img_url: img_url,
-        description: description
+        description: description,
+        clicks: clicks
     });
     return post;
 };

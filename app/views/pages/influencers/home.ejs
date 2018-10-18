@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include ../partials/head %>
+    <% include ../../partials/head %>
   </head>
   <body>
       <header>
-        <% include ../partials/header %>
+        <% include ../../partials/header %>
       </header>
     <main>
         <div class="container-fluid">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempus vitae urna vel venenatis. Praesent quis magna odio. Ut dapibus ut enim ut aliquam. Donec blandit, augue sed rhoncus molestie, mi nunc lobortis tellus, luctus ullamcorper sem massa sit amet metus. Duis lobortis tristique commodo. Ut at sapien venenatis, mattis justo et, volutpat eros. Proin vitae rhoncus ex. Aliquam fringilla facilisis eros. Morbi rhoncus sed lectus ut porta. Sed sodales diam in est lobortis elementum. Curabitur lectus turpis, pharetra vitae est sit amet, placerat rutrum erat.</p>
-          <p>Nam tempor lorem ac arcu aliquet tristique. Nulla facilisi. Nunc elementum est id aliquam viverra. Curabitur rutrum scelerisque urna eget feugiat. Vivamus ac tincidunt diam, vel varius lorem. Mauris vulputate molestie erat ut hendrerit. Vestibulum a semper mauris. Integer ultrices in urna eget faucibus.</p>
-          <p>Maecenas id facilisis leo. Phasellus finibus ex sem, vitae iaculis purus imperdiet at. Proin ac auctor mauris. Duis iaculis quis mauris sit amet ultricies. Nam gravida, lacus eu ullamcorper condimentum, justo ex luctus orci, ac tempor eros mi sed magna. Vestibulum ac ullamcorper massa. Curabitur imperdiet hendrerit bibendum. Proin feugiat metus quis diam luctus, a rhoncus enim dictum. Morbi vestibulum diam maximus, efficitur felis in, gravida eros. Donec ut quam at felis cursus fringilla id quis lectus. Praesent dapibus lorem turpis, non mattis mi feugiat sit amet. Etiam eu tortor consequat, porta elit vitae, lobortis lacus. Sed vehicula vestibulum blandit. Aenean vel metus facilisis, dignissim lacus pharetra, ultrices velit. Phasellus eleifend varius egestas. Morbi egestas sapien ac libero blandit ultricies.</p>
-          <p>Mauris sit amet auctor mi, non lacinia libero. Nunc cursus pulvinar ante in lacinia. Integer et lectus et felis sollicitudin convallis sit amet eu quam. Vivamus sit amet ex rutrum erat fringilla aliquet. Aliquam suscipit elementum efficitur. Suspendisse potenti. Duis id augue varius, ultrices sapien quis, sodales metus.</p>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Thumbnail</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Clicks</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% posts.forEach(function(post) { %>
+                  <tr>
+                    <td><img src="<%= post.img_url %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail"></td>
+                    <th scope="row"><a href="<%= post.id %>"><%= post.title %></a></th>
+                    <td><%= post.date %></td>
+                    <td><%= post.clicks %></td>
+                    <td>
+                      <div class="btn-group btn-group-sm" role="group" aria-label="actions">
+                        <button type="button" class="btn btn-secondary">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                <% }); %>
+            </tbody>
+          </table>
         </div>
     </main>
 
     <footer>
-      <% include ../partials/footer %>
+      <% include ../../partials/footer %>
     </footer>
   </body>
 </html>
