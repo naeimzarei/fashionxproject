@@ -56,10 +56,19 @@ postSchema.statics.push = async (
 };
 
 /**
+Find all posts
+@param {string} email - Account email.
+*/
+postSchema.statics.findAll = async (email) => {
+    var post = await Post.find({}, null);
+    return post;
+};
+
+/**
 Find post
 @param {integer} id - Post id.
 */
-postSchema.statics.find = async (id) => {
+postSchema.statics.findById = async (id) => {
     var post = await Post.findById(id);
     return post;
 };

@@ -1,12 +1,12 @@
 /** Post - Handles influencer account creation and contains all collected body information and routes to models/Post.js */
 var Post = require('../models/Post');
 
-var Post_controller = {};
+var post_controller = {};
 
 /**
 Create new Post based off of passed in data
 */
-Post_controller.push = async (
+post_controller.push = async (
     title,
     date,
     img_url,
@@ -21,10 +21,18 @@ Post_controller.push = async (
 };
 
 /**
+Find all Posts belonging to an email
+@param {string} email - Account email.
+*/
+post_controller.findAll = async (email) => {
+    return await Post.findAll(email);
+};
+
+/**
 Find Post
 @param {integer} id - Post id.
 */
-Post_controller.find = async (id) => {
+post_controller.find = async (id) => {
     return await Post.find(id);
 };
 
@@ -32,7 +40,7 @@ Post_controller.find = async (id) => {
 Delete Post
 @param {integer} id - Post id.
 */
-Post_controller.remove = async(id) => {
+post_controller.remove = async(id) => {
     return await Post.remove(id);
 };
 
@@ -40,7 +48,7 @@ Post_controller.remove = async(id) => {
 Update Post with passed in data
 @param {integer} id - Post id.
 */
-Post_controller.update = async (
+post_controller.update = async (
     title,
     date,
     img_url,
@@ -54,7 +62,7 @@ Post_controller.update = async (
     );
 }
 
-Post_controller.updatePost = async(
+post_controller.updatePost = async(
     title,
     date,
     img_url,
@@ -68,4 +76,4 @@ Post_controller.updatePost = async(
     );
 }
 
-module.exports = Post_controller;
+module.exports = post_controller;
