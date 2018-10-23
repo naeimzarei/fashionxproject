@@ -184,10 +184,16 @@ npm run test-unit
 This will run JavaScript unit testing. It also outputs coverage details.
 
 ``` bash
-npm run test-functional
+npm install -g nightwatch
 ```
 
-This will run JavaScript functional testing for Google Chrome and Firefox.
+This will install Nightwatch globally on your machine. This is an important step, but it must only be done once. 
+
+```bash
+nightwatch --env chrome,firefox
+```
+
+Go to the root directory and run this command to commence functional testing in parallel. You must have both Firefox and Chrome installed. Make sure to type that command exactly as written above or it will not work properly. 
 
 ### AWS
 ```bash

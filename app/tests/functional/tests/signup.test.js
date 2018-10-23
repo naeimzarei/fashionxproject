@@ -8,6 +8,7 @@ module.exports = {
             .url('http://localhost:3000/influencers/signup')
             .waitForElementVisible('body', 1000)
             .expect.element('body').to.be.present
+        browser.assert.urlContains('influencers/signup');
     },
     'The sign up form is visible': (browser) => {
         browser
@@ -65,5 +66,9 @@ module.exports = {
         browser.useXpath()
         browser.expect.element(`//*[contains(text(), 'Need help?')]`).to.be.present
         browser.expect.element(`//*[contains(text(), 'Need help?')]`).to.be.an('button')
+    },
+    'The sign up button functions properly': (browser) => {
+        browser.expect.element(`//button[contains(text(), 'Sign Up')]`).to.be.present 
+        browser.expect.element(`//button[contains(text(), 'Sign Up')]`).to.be.an('button')
     }
 };
