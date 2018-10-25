@@ -14,7 +14,12 @@
                     <span id='showPassCheckbox' class='hover text-center align-middle mt-2 text-pink' style='position: absolute; right: 3em;' onclick='showPass()'>
                         Show
                     </span>
-                    <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField', placeholder: 'Password *', min: '6', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField', placeholder: 'Password *', min: '6', max: '12', required: true}) %> 
+                    <small id="passHelp" class="form-text text-muted">Must have a length of 6 with 1 number and 1 capital letter.</small>
+                    <script>
+                        // Must have script here or it will cause some issues. Hides password help during refresh.
+                        $('#passHelp').hide();
+                    </script>
                 </div>
                 
                 <div class='form-group pl-3 pr-3'>
@@ -129,7 +134,6 @@
         <script>
             // prevent highlighting of show/hide element in the password input 
             $('#showPassCheckbox').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
-
             // show or hide the password when the user clicks the show or hide element 
             function showPass(){
                 var x = document.getElementById("passField");
@@ -143,6 +147,18 @@
                     $('#showPassCheckbox').removeClass('text-muted');
                 }
             }
+
+            // check if password is valid or not
+            $('#passField').on('input', (evt) => {
+                let value = $(evt.target).val();
+                if (/(?=.*\d)(?=.*[A-Z]){6,12}/.test(value)) {
+                    $('#passHelp').hide();
+                } else if (value === '') {
+                    $('#passHelp').hide();
+                } else {
+                    $('#passHelp').show();
+                }
+            });
         </script>
     </body>
 </html>
