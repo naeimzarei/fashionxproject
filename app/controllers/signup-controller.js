@@ -32,7 +32,8 @@ signup_controller.validate = (profile) => {
     var profiles = new Profile(profile_info);
 
     var error_object = util.format_errors_object(profile_info, profiles);
-    if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/.test(profile.password)){
+    
+    if(/(?=.*\d)(?=.*[A-Z]){6,12}/.test(profile.password)){
         console.log('good pass');
     }else{
         error_object['password'] = 'Must have a length of 6 with 1 number and 1 capital letter.';
