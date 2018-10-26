@@ -32,12 +32,12 @@ util.VALIDATION_ERRORS = {
     HEIGHT_FT_INVALID: 'Please provide a valid height (ft).',
     HEIGHT_IN_INVALID: 'Please provide a valid height (in).',
     WEIGHT_INVALID: 'Please provide a valid weight (lbs).',
-    BUST_CUP_INVALID: 'Please provide a valid bust (cup).',
-    BUST_BAND_INVALID: 'Please provide a valid bust (band).',
+    BUST_CUP_INVALID: 'Please select a valid bust (cup).',
+    BUST_BAND_INVALID: 'Please select a valid bust (band).',
     WAIST_INVALID: 'Please provide a valid waist size (in).',
     HIPS_INVALID: 'Please provide a valid hips size (in).',
-    JEAN_SIZE_INVALID: 'Please provide a valid jean size.',
-    SHIRT_SIZE_INVALID: 'Please provide a valid shirt size.',
+    JEAN_SIZE_INVALID: 'Please select a valid jean size.',
+    SHIRT_SIZE_INVALID: 'Please select a valid shirt size.',
     LEG_LENGTH_INVALID: 'Please provide a valid leg length.'
 };
 

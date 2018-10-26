@@ -94,6 +94,12 @@ signup_controller.validate = async (profile) => {
                 error_object['bust_cup'] = VALIDATION_ERRORS['BUST_CUP_INVALID'];
             }
 
+            // check if bust (band) is valid 
+            const valid_bust_band = ['Band A', 'Band B', 'Band C'];
+            if (valid_bust_band.includes(profile.bust_band) === false || profile.bust_band === '(band) *') {
+                error_object['bust_band'] = VALIDATION_ERRORS['BUST_BAND_INVALID'];
+            }
+
             // check if waist is valid 
             if (isNaN(parseInt(profile.waist)) === false) {
                 if (parseInt(profile.waist) < 0) {
@@ -110,6 +116,18 @@ signup_controller.validate = async (profile) => {
                 }
             } else {
                 error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
+            }
+
+            // check if jean size is valid 
+            const valid_jean_size = ['Extra Small', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+            if (valid_jean_size.includes(profile.jean_size) === false || profile.jean_size === 'Usual Jean Size *') {
+                error_object['jean_size'] = VALIDATION_ERRORS['JEAN_SIZE_INVALID'];
+            }
+
+            // check if shirt size is valid 
+            const valid_shirt_size = ['Extra Small', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+            if (valid_shirt_size.includes(profile.shirt_size) === false || profile.shirt_size === 'Usual Shirt Size *') {
+                error_object['shirt_size'] = VALIDATION_ERRORS['SHIRT_SIZE_INVALID'];
             }
 
             // check if leg length is valid
