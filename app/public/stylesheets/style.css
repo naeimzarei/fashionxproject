@@ -15,8 +15,11 @@
     text-align: left;
     list-style-position: inside;
 }
-section {
+#loginSection {
     min-height: 45vh; /* minus the height of the footer */
+}
+#homeSection{
+    min-height: 60vh;
 }
 
 /* Fonts */
