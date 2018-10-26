@@ -1,6 +1,7 @@
 /** Signup - Validates profile information on influencer sign-up to ensure the data sent meets requirements */
 var util = require('../util/util');
 var Profile = require('../models/Profile');
+var emailExistence = require('email-existence');
 
 var profile_controller = require('./profile-controller');
 var credentials_controller = require('./credentials-controller');
@@ -10,7 +11,7 @@ var signup_controller = {};
 Validates profile account creation input
 @param {object} profile - Profile data
 */
-signup_controller.validate = (profile) => {
+signup_controller.validate = async (profile) => {
     
     var profile_info = {
         first_name: profile.first_name,
@@ -39,12 +40,20 @@ signup_controller.validate = (profile) => {
         error_object['password'] = 'Must have a length of 6 with 1 number and 1 capital letter.';
     }
 
-    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email)){
-        console.log("good email")
-    }else{
-        error_object['email'] = "Email must be valid"
-    }
+    var result = await new Promise((resolve, reject) => {
+        emailExistence.check(profile.email, (err, response) => {
+            result = response;
+            resolve(response);
+        });
+    });
 
+    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email)){
+        if (result === false) {
+            error_object['email'] = 'Email does not exist. Please provide a valid email address.';
+        } 
+    }else{
+        error_object['email'] = "Please provide a valid email address.";
+    }
 
     return error_object;
 };
