@@ -1,10 +1,13 @@
 var express = require('express');
 var moment = require('moment');
 var router = express.Router();
+var util = require('../util/util');
 
 var signup_controller = require('../controllers/signup-controller');
 var credentials_controller = require('../controllers/credentials-controller');
 var post_controller = require('../controllers/post-controller');
+
+var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
 router.get('/', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
@@ -35,7 +38,7 @@ router.post('/login', async(req, res, next) => {
         var posts = await post_controller.findAll(req.body.email);
         res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
     }else{
-        res.render('pages/influencers/login', {title: "Login", errors: {'email': 'Incorrect email or password. Please try again or Sign Up'}, fields: ''})
+        res.render('pages/influencers/login', {title: "Login", errors: {'email': VALIDATION_ERRORS['EMAIL_DOES_NOT_EXIST']}, fields: ''})
     }
 });
 
