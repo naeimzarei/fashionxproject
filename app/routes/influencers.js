@@ -35,7 +35,7 @@ router.post('/login', async(req, res, next) => {
         var posts = await post_controller.findAll(req.body.email);
         res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
     }else{
-        res.render('pages/influencers/login', {title: "Login", errors: {'email': 'Incorrect email or password. Please try again or Sign Up'}})
+        res.render('pages/influencers/login', {title: "Login", errors: {'email': 'Incorrect email or password. Please try again or Sign Up'}, fields: ''})
     }
 });
 

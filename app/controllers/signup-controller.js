@@ -1,5 +1,5 @@
 /** Signup - Validates profile information on influencer sign-up to ensure the data sent meets requirements */
-var emailExistence = require('email-existence');
+//var emailExistence = require('email-existence');
 var util = require('../util/util');
 
 var profile_controller = require('./profile-controller');
@@ -23,26 +23,23 @@ signup_controller.validate = async (profile) => {
     }
 
     // check if email address exists 
-    var email_promise = new Promise((resolve, reject) => {
-        emailExistence.check(profile.email, (err, response) => {
-            resolve(response);
-        });
-    });
+    // var email_promise = new Promise((resolve, reject) => {
+    //     emailExistence.check(profile.email, (err, response) => {
+    //         resolve(response);
+    //     });
+    // });
 
     var validation_promise = new Promise((resolve, reject) => {
-        email_promise.then((result) => {
+         
             // check if password is valid 
             if(/(?=.*\d)(?=.*[A-Z]){6,12}/.test(profile.password) === false){
                 error_object['password'] = VALIDATION_ERRORS['PASSWORD_INVALID'];
             }
 
             // check if email has valid syntax 
-            if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email)){
-                if (result === false) {
-                    error_object['email'] = VALIDATION_ERRORS['EMAIL_DOES_NOT_EXIST'];
-                } 
-            }else{
+            if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
                 error_object['email'] = VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'];
+                
             }
 
             // check if age is valid
@@ -139,7 +136,7 @@ signup_controller.validate = async (profile) => {
                 error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
             }
             resolve(error_object);
-        });
+        
     });
 
     return await validation_promise;
