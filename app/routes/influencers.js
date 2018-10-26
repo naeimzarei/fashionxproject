@@ -78,7 +78,7 @@ router.post('/login', async(req, res, next) => {
         ];
         res.render('pages/influencers/home', {title: "Home", posts: posts});    
     }else{
-        res.render('pages/influencers/login', {title: "Login", errors: {'email': 'Incorrect email or password. Please try again or Sign Up'}})
+        res.render('pages/influencers/login', {title: "Login", errors: {'email': 'Incorrect email or password. Please try again or Sign Up'}, fields: ''})
     }
 });
 
