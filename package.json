@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon app/bin/www",
     "start-production": "node app/bin/www",
-    "test-unit": "jest app/tests/unit --forceExit --detectOpenHandles --coverage"
+    "test-unit": "jest app/tests/unit --forceExit --detectOpenHandles --coverage",
+    "test-functional": "nightwatch --env chrome,firefox"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
