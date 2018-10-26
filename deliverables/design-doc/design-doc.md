@@ -108,6 +108,7 @@ Controllers are all coded using Node.
 1. ```app/controllers/auth.js```: the file that is used to ensure that the user is authenticated each time he or she visits the page. A caching mechanism will be used to store the information on the browser so that user is not required to sign in everytime. The authorization controller uses the bcrypt library to hash the password and compare it with the password the user inputs. If there is a match, the user is authenticated. It invokes the Auth model, which is the Mongoose schema used to model an authorization request to the database. 
 2. ```app/controllers/credentials-controller.js```: this controller stores and obtains the user's email and password from the database. It invokes the Credentials model, which is a Mongoose schema used to model a request for credentials to the database.
 3. ```app/controllers/signup-controller.js```: this controller is used to validate a sign up request from an influencer or administrator. It checks that required fields have been completed and stores the newly created user profile on the database. It invokes the Profile model, which is the Mongoose schema used to model a request for profile data. 
+4. ```app/controllers/post-controller.js```: this controller is used to validate a post creation request from an influencer. It checks that required fields have been completed and stores the newly created post on the database. It invokes the Post model, which is the Mongoose schema used to model a request for post data. 
 
 ### Models
 
@@ -117,6 +118,7 @@ Models are all coded using Node. Models are essentially that, models of data fro
 2. ```app/models/Credentials.js```: model for credentials controller. Used when a new user is created and every time user credentials are requested. 
 3. ```app/models/Profile.js```: model used in the signup controller. Used when a new user profile is being created or accessed from the database. 
 4. ```app/models/Rights.js```: model used in the rights controller. Used every time a request for the user's access right is made to the database. 
+5. ```app/models/Post.js```: model used in the post controller. Used every time a request for a post is made to the database. 
 
 ### Database
 
@@ -125,38 +127,56 @@ The database is implemented in model files as documented above. MongoDB Atlas is
 The configuration file as documented previously contains the username and password. The model files access these credentials by importing the config module. The username and password are not stored in GitHub. Rather, they are ignored by GitHub so the database does not get compromised. Furthermore, a SHA256 password is produced to make it even more difficult to reverse engineer the system. 
 
 The schema (or collections) for our database are as follows (Email being the foreign key):  
-User  
-/profile {  
-First Name: string  
-Email: string  
-Instagram handle: string  
-Blog: string  
-Age: int  
-Height: int  
-Weight: int  
-Waist: int  
-Hips: int  
-Bust: string  
-Band: string  
-Jean Size: int  
-Shirt Size: string  
-Leg Length: string  
-}  
-
-/auth {  
-Email: string  
-Hash: string  
-}  
-
-/credentials{  
-Email: string  
-Password: string  
-}  
-
-/rights{  
-Email: string  
-Rights: string  
+```javascript
+Profile {  
+    First Name: string  
+    Email: string  
+    Instagram handle: string  
+    Blog: string  
+    Age: int  
+    Height: int  
+    Weight: int  
+    Waist: int  
+    Hips: int  
+    Bust: string  
+    Band: string  
+    Jean Size: int  
+    Shirt Size: string  
+    Leg Length: string  
 }
+```
+
+```javascript
+Auth {  
+    Email: string  
+    Hash: string  
+}
+```
+
+```javascript
+Credentials {  
+    Email: string  
+    Password: string  
+}
+```
+
+```javascript
+Rights {
+    Email: string  
+    Rights: string  
+}
+```
+
+```javascript
+Post {
+    Email: string,
+    Title: string
+    Date: date,
+    Img Url: string,
+    Description: string,
+    Clicks: number
+}
+```
 
 
 ### Routes 
@@ -166,6 +186,7 @@ Routes are all coded using Node. They forward requests to controllers, such visi
 1. ```app/routes/index.js```: routes all requests on the main page of fashionxproject using Express. 
 2. ```app/routes/influencers.js```: routes all requests on the influencer page of fashionxproject using Express. 
 3. ```app/routes/dashboard.js```: routes all requests on the dashboard page of fashionxproject using Express.
+3. ```app/routes/template.js```: routes GET request to display template base used for all pages using Express.
 
 ### Server
 
