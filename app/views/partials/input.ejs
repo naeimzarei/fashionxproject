@@ -1,10 +1,23 @@
 <% placeholder = placeholder %>
+<% originalPlaceholder = placeholder %>
+<% value = '' %>
 <% if (errors[name]) { %>
     <% placeholder = errors[name] %>
+    <% value = '' %>
+<% } %>
+
+<% if (fields !== '') { %>
+    <% placeholder = originalPlaceholder %>
+    <% value = fields[name] %>
+<% } %>
+
+<% if (errors[name]) { %> 
+    <% placeholder = errors[name] %>
+    <% value = '' %>
 <% } %>
 
 <% if (required) { %>
-    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' required>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>' required>
 <% } else { %>
-    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>'>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>'>
 <% } %>

@@ -6,7 +6,7 @@
     <body>
         <% include ../../partials/logo %>
         <div class='container col-5 mb-5'>
-            <form class='bg-grey' action='/influencers/signup' method='post'>
+            <form id='signup-form' class='bg-grey' action='/influencers/signup' method='post'>
                 <div class='form-group pt-3 pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true}) %>
                 </div>
@@ -15,7 +15,7 @@
                         Show
                     </span>
                     <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField', placeholder: 'Password *', min: '6', max: '12', required: true}) %> 
-                    <small id="passHelp" class="form-text text-muted">Must have a length of 6 with 1 number and 1 capital letter.</small>
+                    <small id="passHelp" class="form-text text-muted">Password must be 6-12 characters long and must contain at least one number and capital letter.</small>
                     <script>
                         // Must have script here or it will cause some issues. Hides password help during refresh.
                         $('#passHelp').hide();
@@ -43,29 +43,16 @@
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
                     <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
-                        <% placeholder = 'Bust (cup) *'; %>
-                        <% if (errors['bust_cup']) { %>
-                            <% placeholder = errors['bust_cup'] %>
-                        <% } %>
-                        <option selected disabled> <%= placeholder %> </option>
-                        <option value='A'>A</option>
-                        <option value='B'>B</option>
-                        <option value='C'>C</option>
-                        <option value='D'>D</option>
-                        <option value='E'>E</option>
-                        <option value='F'>F</option>
-                        <option value='G'>G</option>
-                        <option value='H'>H</option>
+                        <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup'}) %>
+                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'bust_cup'}) %>
+                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'bust_cup'}) %>
+                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'bust_cup'}) %>
                     </select>
                     <select name='bust_band' class='form-control col-6 border-pink' required>
-                        <% placeholder = '(band) *'; %>
-                        <% if (errors['bust_band']) { %>
-                            <% placeholder = errors['bust_band'] %>
-                        <% } %>
-                        <option selected disabled> <%= placeholder %> </option>
-                        <option value='Band A'>Band A</option>
-                        <option value='Band B'>Band B</option>
-                        <option value='Band C'>Band C</option> 
+                        <%- include('../../partials/option', {value: '(band) *', placeholder: '(band) *', name: 'bust_band'}) %>
+                        <%- include('../../partials/option', {value: 'Band A', placeholder: 'Band A', name: 'bust_band'}) %>
+                        <%- include('../../partials/option', {value: 'Band B', placeholder: 'Band B', name: 'bust_band'}) %>
+                        <%- include('../../partials/option', {value: 'Band C', placeholder: 'Band C', name: 'bust_band'}) %>
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
@@ -76,30 +63,22 @@
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <select name='jean_size' class='form-control border-pink' rqeuired>
-                        <% placeholder = 'Usual Jean Size *'; %>
-                        <% if (errors['jean_size']) { %>
-                            <% placeholder = errors['jean_size'] %>
-                        <% } %>
-                        <option selected disabled> <%= placeholder %> </option>
-                        <option value='Extra Small (XS)'>Extra Small (XS)</option>
-                        <option value='Small (S)'>Small (S)</option>
-                        <option value='Medium (M)'>Medium (M)</option>
-                        <option value='Large (L)'>Large (L)</option>
-                        <option value='Extra Large (XL)'>Extra Large (XL)</option>
+                        <%- include('../../partials/option', {value: 'Usual Jean Size *', placeholder: 'Usual Jean Size *', name: 'jean_size'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Small (XS)', placeholder: 'Extra Small (XS)', name: 'jean_size'}) %>
+                        <%- include('../../partials/option', {value: 'Small (S)', placeholder: 'Small (S)', name: 'jean_size'}) %>
+                        <%- include('../../partials/option', {value: 'Medium (M)', placeholder: 'Medium (M)', name: 'jean_size'}) %>
+                        <%- include('../../partials/option', {value: 'Large (L)', placeholder: 'Large (L)', name: 'jean_size'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Large (XL)', placeholder: 'Extra Large (XL)', name: 'jean_size'}) %>
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <select name='shirt_size' class='form-control border-pink' required>
-                        <% placeholder = 'Usual T-Shirt Size *'; %>
-                        <% if (errors['shirt_size']) { %>
-                            <% placeholder = errors['shirt_size'] %>
-                        <% } %>
-                        <option selected disabled> <%= placeholder %> </option>
-                        <option value='Extra Small (XS)'>Extra Small (XS)</option>
-                        <option value='Small (S)'>Small (S)</option>
-                        <option value='Medium (M)'>Medium (M)</option>
-                        <option value='Large (L)'>Large (L)</option>
-                        <option value='Extra Large (XL)'>Extra Large (XL)</option>
+                        <%- include('../../partials/option', {value: 'Usual Shirt Size *', placeholder: 'Usual Shirt Size *', name: 'shirt_size'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Small (XS)', placeholder: 'Extra Small (XS)', name: 'shirt_size'}) %>
+                        <%- include('../../partials/option', {value: 'Small (S)', placeholder: 'Small (S)', name: 'shirt_size'}) %>
+                        <%- include('../../partials/option', {value: 'Medium (M)', placeholder: 'Medium (M)', name: 'shirt_size'}) %>
+                        <%- include('../../partials/option', {value: 'Large (L)', placeholder: 'Large (L)', name: 'shirt_size'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Large (XL)', placeholder: 'Extra Large (XL)', name: 'shirt_size'}) %>
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>

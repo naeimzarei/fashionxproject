@@ -1,0 +1,14 @@
+<% values = ['Bust (cup) *', '(band) *', 'Usual Jean Size *', 'Usual Shirt Size *'] %>
+
+<% if (fields !== '' && values.includes(value) === false && value === fields[name]) { %>
+    <option value='<%= value %>' selected> <%= value %></option>
+<% } else if (values.includes(value)) { %>
+    <% if (errors[name]) { %> 
+        <option value='<%= errors[name] %>' selected disabled> <%= errors[name] %> </option>
+    <% } else { %>
+        <option value='<%= value %>' selected disabled> <%= placeholder %> </option>
+    <% } %>
+<% } else { %>
+    <option value='<%= value %>'> <%= value %> </option>
+<% } %>
+

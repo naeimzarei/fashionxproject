@@ -1,61 +1,130 @@
 /** Signup - Validates profile information on influencer sign-up to ensure the data sent meets requirements */
-var util = require('../util/util');
-var Profile = require('../models/Profile');
 var emailExistence = require('email-existence');
+var util = require('../util/util');
 
 var profile_controller = require('./profile-controller');
 var credentials_controller = require('./credentials-controller');
-
 var signup_controller = {};
+
+const VALIDATION_ERRORS = util.VALIDATION_ERRORS;
+
 /**
 Validates profile account creation input
 @param {object} profile - Profile data
 */
-signup_controller.validate = async (profile) => {
-    
-    var profile_info = {
-        first_name: profile.first_name,
-        email: profile.email,
-        age: profile.age,
-        instagram_handle: profile.instagram_handle,
-        blog: profile.blog,
-        height_ft: profile.height_ft,
-        height_in: profile.height_in,
-        weight: profile.weight,
-        bust_cup: profile.bust_cup,
-        bust_band: profile.bust_band,
-        waist: profile.waist,
-        hips: profile.hips,
-        jean_size: profile.jean_size,
-        shirt_size: profile.shirt_size,
-        leg_length: profile.leg_length
-    };
-    var profiles = new Profile(profile_info);
+signup_controller.validate = async (profile) => {    
+    var error_object = {};
 
-    var error_object = util.format_errors_object(profile_info, profiles);
-    
-    if(/(?=.*\d)(?=.*[A-Z]){6,12}/.test(profile.password)){
-        console.log('good pass');
-    }else{
-        error_object['password'] = 'Must have a length of 6 with 1 number and 1 capital letter.';
+    // check if email already exists
+    var email_exists = (await profile_controller.findProfile(profile.email)) ? true : false;
+    if (email_exists) {
+        error_object['email'] = VALIDATION_ERRORS['EMAIL_DUPLICATE'];
+        // return error_object;
     }
 
-    var result = await new Promise((resolve, reject) => {
+    // check if email address exists 
+    var email_promise = new Promise((resolve, reject) => {
         emailExistence.check(profile.email, (err, response) => {
-            result = response;
             resolve(response);
         });
     });
 
-    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email)){
-        if (result === false) {
-            error_object['email'] = 'Email does not exist. Please provide a valid email address.';
-        } 
-    }else{
-        error_object['email'] = "Please provide a valid email address.";
-    }
+    var validation_promise = new Promise((resolve, reject) => {
+        email_promise.then((result) => {
+            // check if password is valid 
+            if(/(?=.*\d)(?=.*[A-Z]){6,12}/.test(profile.password) === false){
+                error_object['password'] = VALIDATION_ERRORS['PASSWORD_INVALID'];
+            }
 
-    return error_object;
+            // check if email has valid syntax 
+            if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email)){
+                if (result === false) {
+                    error_object['email'] = VALIDATION_ERRORS['EMAIL_DOES_NOT_EXIST'];
+                } 
+            }else{
+                error_object['email'] = VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'];
+            }
+
+            // check if age is valid
+            if (isNaN(parseInt(profile.age)) === false) {
+                if (parseInt(profile.age) < 18) {
+                    error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+                }
+            } else {
+                error_object['age'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
+            }
+
+            // check if blog URL is valid, if it exists 
+            if (profile.blog) {
+                if (/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(profile.blog) === false) {
+                    error_object['blog'] = VALIDATION_ERRORS['BLOG_INVALID'];
+                }
+            }
+
+            // check if height_in is valid 
+            if (isNaN(parseInt(profile.height_ft)) === false) {
+                if (parseInt(profile.height_ft) < 0) {
+                    error_object['height_ft'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
+                }
+            } else {
+                error_object['height_ft'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
+            }
+
+            // check if height_in is valid 
+            if (isNaN(parseInt(profile.height_in)) === false) {
+                if (parseInt(profile.heihgt_in) < 0) {
+                    error_object['height_in'] = VALIDATION_ERRORS['HEIGHT_IN_INVALID'];
+                }
+            } else {
+                error_object['height_in'] = VALIDATION_ERRORS['HEIGHT_IN_INVALID'];
+            }
+
+            // check if weight is valid 
+            if (isNaN(parseInt(profile.weight)) === false) {
+                if (parseInt(profile.weight) < 0) {
+                    error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
+                }
+            } else {
+                error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
+            }
+
+            // check if bust (cup) is valid 
+            const valid_bust_cup = ['A', 'B', 'C']
+            if (valid_bust_cup.includes(profile.bust_cup) === false || profile.bust_cup === 'Bust (cup) *') {
+                error_object['bust_cup'] = VALIDATION_ERRORS['BUST_CUP_INVALID'];
+            }
+
+            // check if waist is valid 
+            if (isNaN(parseInt(profile.waist)) === false) {
+                if (parseInt(profile.waist) < 0) {
+                    error_object['waist'] = VALIDATION_ERRORS['WAIST_INVALID'];
+                }
+            } else {
+                error_object['waist'] = VALIDATION_ERRORS['WAIST_INVALID'];
+            }
+
+            // check if hips is valid 
+            if (isNaN(parseInt(profile.hips)) === false) {
+                if (parseInt(profile.hips) < 0) {
+                    error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
+                }
+            } else {
+                error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
+            }
+
+            // check if leg length is valid
+            if (isNaN(parseInt(profile.leg_length)) === false) {
+                if (parseInt(profile.leg_length) < 0) {
+                    error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
+                }
+            } else {
+                error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
+            }
+            resolve(error_object);
+        });
+    });
+
+    return await validation_promise;
 };
 
 /**

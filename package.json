@@ -23,8 +23,7 @@
     "morgan": "^1.9.0",
     "nightwatch": "^1.0.11",
     "nodemon": "^1.18.4",
-    "popper.js": "^1.14.4",
-    "valid-url": "^1.0.9"
+    "popper.js": "^1.14.4"
   },
   "devDependencies": {
     "jest": "^23.6.0",

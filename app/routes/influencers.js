@@ -5,23 +5,22 @@ var signup_controller = require('../controllers/signup-controller');
 var credentials_controller = require('../controllers/credentials-controller');
 
 router.get('/', (req, res, next) => {
-    res.render('pages/influencers/login', { title: 'Login', errors: '' });
+    res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
 router.get('/login', (req, res, next) => {
-    res.render('pages/influencers/login', { title: 'Login', errors: '' });
+    res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
 router.get('/signup', (req, res, next) => {
-    res.render('pages/influencers/signup', { title: 'Sign Up', errors: ''});
+    res.render('pages/influencers/signup', { title: 'Sign Up', errors: '', fields: ''});
 });
 
 router.post('/signup', async (req, res, next) => {
-    var errors = signup_controller.validate(req.body);
+    var errors = await signup_controller.validate(req.body);
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
-        var result = await signup_controller.signup(req.body);
-        //res.json(result); 
+        await signup_controller.signup(req.body);
         const posts = [
             {
                 id: 1,
@@ -47,7 +46,7 @@ router.post('/signup', async (req, res, next) => {
         ];
         res.render('pages/influencers/home', {title: "Home", posts: posts}); 
     } else {
-        res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors});
+        res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors, fields: req.body});
     }
 });
 
