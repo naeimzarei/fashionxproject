@@ -10,13 +10,15 @@ post_controller.push = async (
     title,
     date,
     img_url,
-    clicks
+    clicks,
+    email
 ) => {
     return await Post.push(
         title,
         date,
         img_url,
-        clicks
+        clicks,
+        email
     );
 };
 
@@ -52,13 +54,15 @@ post_controller.update = async (
     title,
     date,
     img_url,
-    clicks
+    clicks,
+    email
 ) => {
     return await Post.update(
         title,
         date,
         img_url,
-        clicks
+        clicks,
+        email
     );
 }
 
@@ -66,13 +70,15 @@ post_controller.updatePost = async(
     title,
     date,
     img_url,
-    clicks
+    clicks,
+    email
 ) => {
     return await Post.updatePost(
         title,
         date,
         img_url,
-        clicks
+        clicks,
+        email
     );
 }
 

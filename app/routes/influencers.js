@@ -42,7 +42,6 @@ router.post('/login', async(req, res, next) => {
     }
 });
 
-
 router.get('/manual', (req, res, next) => {
     res.render('pages/influencers/manual', {title: "Help"});
 })
