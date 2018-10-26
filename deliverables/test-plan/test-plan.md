@@ -10,10 +10,14 @@ For the purpose of this project, a combination of unit and functional testing wi
 ### Unit Testing
 We will use the Jest framework for unit testing, a popular framework made by Facebook. This framework is designed specifically for JavaScript so it will work hand-in-hand with our Node-heavy project. 
 
+[Unit Test Cases](../../app/tests/unit)
+
 ### Functional Testing
 For functional testing, we will possibly use Robot Framework to ensure the user interface functionality is up and running during each sprint. 
 
 After researching, we have decided we will use nightwatch.js for functional testing. It is a framework on top of Selenium that allows for easy functional testing. 
+
+[Functional Test Cases](../../app/tests/functional/tests)
 
 ### Regression Testing
 The combination of unit and functional testing make up the regression testing for each sprint. We are testing both the functional aspect (user-interface) as well as the code (unit testing) to ensure that the results of the view match that of the code. 
