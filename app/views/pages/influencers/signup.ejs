@@ -15,7 +15,7 @@
                         Show
                     </span>
                     <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField', placeholder: 'Password *', min: '6', max: '12', required: true}) %> 
-                    <small id="passHelp" class="form-text text-muted">Password must be 6-12 characters long and must contain at least one number and capital letter.</small>
+                    <small id="passHelp" class="form-text text-danger">Password must be 6-12 characters long and must contain at least one number and capital letter.</small>
                     <script>
                         // Must have script here or it will cause some issues. Hides password help during refresh.
                         $('#passHelp').hide();
