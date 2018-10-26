@@ -1,4 +1,5 @@
 var express = require('express');
+var moment = require('moment');
 var router = express.Router();
 
 var signup_controller = require('../controllers/signup-controller');
@@ -39,9 +40,8 @@ router.get('/manual', (req, res, next) => {
 })
 
 router.get('/home', async(req, res, next) => {
-    var posts = await post_controller.findAll(req.body);
-    console.log(posts);
-    res.render('pages/influencers/home', {title: "Home", posts: posts});
+    var posts = await post_controller.findAll('test@example.com');
+    res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
 });
 
 module.exports = router;

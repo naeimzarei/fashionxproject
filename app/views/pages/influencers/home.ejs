@@ -9,33 +9,37 @@
       </header>
     <main>
         <div class="container-fluid">
-          <table class="table table-borderless">
-            <thead>
-              <tr>
-                <th scope="col">Thumbnail</th>
-                <th scope="col">Title</th>
-                <th scope="col">Date</th>
-                <th scope="col">Clicks</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-                <% posts.forEach(function(post) { %>
-                  <tr>
-                    <td><img src="<%= post.img_url %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail"></td>
-                    <th scope="row"><a href="<%= post.id %>"><%= post.title %></a></th>
-                    <td><%= post.date %></td>
-                    <td><%= post.clicks %></td>
-                    <td>
-                      <div class="btn-group btn-group-sm" role="group" aria-label="actions">
-                        <button type="button" class="btn btn-secondary">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                      </div>
-                    </td>
-                  </tr>
-                <% }); %>
-            </tbody>
-          </table>
+          <%if (posts.length === 0) { %>
+            <h3 class="text-center">No posts created yet.</h3>
+          <% } else { %>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">Thumbnail</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Clicks</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% posts.forEach(function(post) { %>
+                    <tr>
+                      <td><img src="<%= post.img_url %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail"></td>
+                      <th scope="row"><a href="<%= post.id %>"><%= post.title %></a></th>
+                      <td><%= moment(post.date).format('M/D/YYYY') %></td>
+                      <td><%= post.clicks %></td>
+                      <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="actions">
+                          <button type="button" class="btn btn-secondary">Edit</button>
+                          <button type="button" class="btn btn-danger">Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }); %>
+              </tbody>
+            </table>
+          <% } %>
         </div>
     </main>
 

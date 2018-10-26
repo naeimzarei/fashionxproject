@@ -14,7 +14,7 @@ var postSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    user_email: {
+    email: {
         type: String,
         required: true,
         unique: true
@@ -40,13 +40,13 @@ Create new post based off of passed in data
 */
 postSchema.statics.push = async (
     title,
-    user_email,
+    email,
     img_url,
     description
 ) => {
     var post = new Post({
         title: title,
-        user_email: user_email,
+        email: email,
         img_url: img_url,
         description: description,
         clicks: 0
@@ -60,7 +60,7 @@ Find all posts
 @param {string} email - Account email.
 */
 postSchema.statics.findAll = async (email) => {
-    var post = await Post.find({}, null);
+    var post = await Post.find({ email: email }, null);
     return post;
 };
 
@@ -88,14 +88,14 @@ Update post with passed in data
 */
 postSchema.statics.update = async (
     title,
-    user_email,
+    email,
     img_url,
     description,
     clicks
 ) => {
     var post = await Post.findByIdAndUpdate(id, {
         title: title,
-        user_email: user_email,
+        email: email,
         img_url: img_url,
         description: description,
         clicks: clicks
