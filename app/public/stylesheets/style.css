@@ -125,6 +125,12 @@ img.logo {
     text-decoration: underline;
 }
 
+footer {
+    position: absolute; 
+    bottom: 0; 
+    width: 100%; 
+}
+
 /* Forms */
 
 #end-signup{
