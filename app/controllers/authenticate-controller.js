@@ -17,20 +17,18 @@ authenticate_controller.strategy = () => {
             if (credentials) {
                 var result = await authenticateCredentials(email, password);
                 if (result) {
-                    console.log('here 1');
                     return done(null, credentials);
                 } else {
-                    console.log('here 2');
                     return done(null, false);
                 }
             } else {
-                console.log('here 3');
                 return done(null, false);
             }
         }
     ))
 
     passport.serializeUser((credentials, done) => {
+        console.log('credentials', credentials);
         done(null, credentials.id);
     });
 

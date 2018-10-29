@@ -32,7 +32,7 @@ test('should return error message when login credentials are incorrect', () => {
         }}, (err, res, body) => {
             expect(res.statusCode).toBe(200);
             expect(res.statusMessage).toBe('OK');
-            expect(body.includes('Email does not exist. Please provide a valid email address.')).toBeTruthy();
+            expect(body.includes('The email and or password combination is incorrect.')).toBeTruthy();
             resolve();
         });
     });

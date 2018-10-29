@@ -26,6 +26,7 @@ util.VALIDATION_ERRORS = {
     EMAIL_DOES_NOT_EXIST: 'Email does not exist. Please provide a valid email address.',
     EMAIL_DUPLICATE: 'Email already exists.',
     PASSWORD_INVALID: 'Password must be 6-12 characters long and must contain at least one number and capital letter.',
+    CREDENTIALS_INVALID: 'The email and or password combination is incorrect.',
     AGE_INVALID: 'You must be at least 18 years or older to register.',
     INSTAGRAM_HANDLE_INVALID: 'Please provide a valid Instagram handle.',
     BLOG_INVALID: 'Please provide a valid blog URL.',
