@@ -25,6 +25,7 @@ router.post('/signup', async (req, res, next) => {
     var errors = await signup_controller.validate(req.body);
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
+        await signup_controller.signup(req.body);
         var posts = await post_controller.findAll(req.body.email);
         res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
     } else {
