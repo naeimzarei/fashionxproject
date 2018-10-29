@@ -2,12 +2,14 @@ var express = require('express');
 var moment = require('moment');
 var router = express.Router();
 var util = require('../util/util');
+var passport = require('passport');
+var url = require('url');
 
 var signup_controller = require('../controllers/signup-controller');
-var credentials_controller = require('../controllers/credentials-controller');
 var post_controller = require('../controllers/post-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
+
 
 router.get('/', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
@@ -33,14 +35,26 @@ router.post('/signup', async (req, res, next) => {
     }
 });
 
-router.post('/login', async(req, res, next) => {
-    var result = await credentials_controller.authenticate(req.body);
-    if(result){
-        var posts = await post_controller.findAll(req.body.email);
-        res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
-    }else{
-        res.render('pages/influencers/login', {title: "Login", errors: {'email': VALIDATION_ERRORS['EMAIL_DOES_NOT_EXIST']}, fields: ''})
-    }
+router.get('/home', async (req, res, next) => {
+    console.log(req.url);
+});
+
+// router.post('/login', async(req, res, next) => {
+//     var result = await credentials_controller.authenticate(req.body);
+//     if(result){
+//         var posts = await post_controller.findAll(req.body.email);
+//         res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
+//     }else{
+//         res.render('pages/influencers/login', {title: "Login", errors: {'email': VALIDATION_ERRORS['EMAIL_DOES_NOT_EXIST']}, fields: ''})
+//     }
+// });
+
+router.post('/login', passport.authenticate('local'), async (req, res, next) => {
+    var posts = await post_controller.findAll(req.user.email);
+    // res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment})
+    // res.redirect('/users/' + req.user.username);
+    res.redirect('/influencers/home');
+    // console.log('user', req.user);
 });
 
 

@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 
 // define routes 
 var indexRouter = require('./routes/index');
@@ -10,7 +11,11 @@ var templateRouter = require('./routes/template');
 var usersRouter = require('./routes/users');
 var influencersRouter = require('./routes/influencers');
 
+// initialize express app
 var app = express();
+
+// controllers
+var authenticate_controller = require('./controllers/authenticate-controller');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +27,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// setup passport.js and sessions 
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport.js local strategy setup 
+authenticate_controller.strategy();
 
 // set routes 
 app.use('/', indexRouter);
