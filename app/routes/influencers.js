@@ -2,9 +2,9 @@ var express = require('express');
 var moment = require('moment');
 var router = express.Router();
 var util = require('../util/util');
+var passport = require('passport');
 
 var signup_controller = require('../controllers/signup-controller');
-var credentials_controller = require('../controllers/credentials-controller');
 var post_controller = require('../controllers/post-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
@@ -17,8 +17,27 @@ router.get('/', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
+/**
+ * Route the user to the login page
+ */
 router.get('/login', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
+});
+
+/**
+ * This checks that the given credentials for login page were correct/found in the DB. If so, it will redirect user to 
+ * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
+ */
+router.post('/login', async (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (user) {
+            req.logIn(user, (err) => {
+                return res.redirect('/influencers/home');
+            })
+        } else {
+            return res.render('pages/influencers/login', { title: 'Login', errors: {'email': VALIDATION_ERRORS['CREDENTIALS_INVALID']}, fields: ''})
+        }
+    })(req, res, next);
 });
 
 /**
@@ -46,17 +65,15 @@ router.post('/signup', async (req, res, next) => {
 });
 
 /**
- * This checks that the given credentials for login page were correct/found in the DB. If so, it will redirect user to 
- * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
+ * Route the user to the influencer home page after authentication passes 
  */
-
-router.post('/login', async(req, res, next) => {
-    var result = await credentials_controller.authenticate(req.body);
-    if(result){
-        var posts = await post_controller.findAll(req.body.email);
-        res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
-    }else{
-        res.render('pages/influencers/login', {title: "Login", errors: {'email': VALIDATION_ERRORS['EMAIL_DOES_NOT_EXIST']}, fields: ''})
+router.get('/home', async (req, res, next) => {
+    if (req.user) {
+        var posts = await post_controller.findAll(req.user.email);
+        console.log('posts', posts);
+        res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
+    } else {
+        res.redirect('/influencers/login');
     }
 });
 
@@ -65,11 +82,6 @@ router.post('/login', async(req, res, next) => {
  */
 router.get('/manual', (req, res, next) => {
     res.render('pages/influencers/manual', {title: "Help"});
-})
-
-// router.get('/home', async(req, res, next) => {
-//     var posts = await post_controller.findAll();
-//     res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
-// });
+});
 
 module.exports = router;
