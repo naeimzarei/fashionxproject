@@ -105,10 +105,11 @@ This file configures all necessary environmental variables, such as the username
 
 Controllers are all coded using Node. 
 
-1. ```app/controllers/auth.js```: the file that is used to ensure that the user is authenticated each time he or she visits the page. A caching mechanism will be used to store the information on the browser so that user is not required to sign in everytime. The authorization controller uses the bcrypt library to hash the password and compare it with the password the user inputs. If there is a match, the user is authenticated. It invokes the Auth model, which is the Mongoose schema used to model an authorization request to the database. 
+1. ```app/controllers/authenticate-controller.js```: the file that is used to ensure that the user is authenticated each time he or she visits the page. A caching mechanism will be used to store the information on the browser so that user is not required to sign in everytime. The authorization controller uses the bcrypt library to hash the password and compare it with the password the user inputs. If there is a match, the user is authenticated. It invokes the Auth model, which is the Mongoose schema used to model an authorization request to the database. 
 2. ```app/controllers/credentials-controller.js```: this controller stores and obtains the user's email and password from the database. It invokes the Credentials model, which is a Mongoose schema used to model a request for credentials to the database.
 3. ```app/controllers/signup-controller.js```: this controller is used to validate a sign up request from an influencer or administrator. It checks that required fields have been completed and stores the newly created user profile on the database. It invokes the Profile model, which is the Mongoose schema used to model a request for profile data. 
 4. ```app/controllers/post-controller.js```: this controller is used to validate a post creation request from an influencer. It checks that required fields have been completed and stores the newly created post on the database. It invokes the Post model, which is the Mongoose schema used to model a request for post data. 
+5. ```app/controllers/rights-controller.js```: this controller is used to set, remove, and find access levels for users. Access levels denote what a user can do within the app (e.g. shopper, influencer, moderator) each of which having their own rights (e.g. uploading pictures, approving them, etc.).
 
 ### Models
 

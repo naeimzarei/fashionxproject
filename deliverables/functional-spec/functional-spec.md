@@ -142,17 +142,17 @@
 5. Route: ~/fashionxproject/admin/dashboard/rights
 
 ## Requirements by Priority 
-1. Landing Page --Sprint 1
+1. Landing Page -- Sprint 1
     1. Influencer Sign Up
     2. Shopper Login placeholder
 2. Influencer Page
     1. Profile -- Sprint 1 & 2
         1. Registration - terms of service, general info, measurements
         2. Main feed/dashboard
-    2. Submit picture
+    2. Submit picture -- Sprint 3
         1. Upload and crop pictures
         2. Brand, size, and link to product
-    3. Login Page --Sprint 2
+    3. Login Page -- Sprint 2
 3. Moderator/adminstrator
     1. Approve/Reject posts to appear in shopper feed
     2. Edit feed

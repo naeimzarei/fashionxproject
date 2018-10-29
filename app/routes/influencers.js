@@ -9,6 +9,10 @@ var post_controller = require('../controllers/post-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
+/**
+ * Loads the login page once the user selects "influencer" on landing page.
+ */
+
 router.get('/', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
@@ -17,9 +21,17 @@ router.get('/login', (req, res, next) => {
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
+/**
+ * Loads signup form when user uses the signup link in the footer, or by typing it manually
+ */
 router.get('/signup', (req, res, next) => {
     res.render('pages/influencers/signup', { title: 'Sign Up', errors: '', fields: ''});
 });
+
+/**
+ * Once a user clicks the 'sign up' button on the form, it will validate inputs and redirect user to home page if all 
+ * goes well. If not, errors will be posted on the form itself.
+ */
 
 router.post('/signup', async (req, res, next) => {
     var errors = await signup_controller.validate(req.body);
@@ -33,6 +45,11 @@ router.post('/signup', async (req, res, next) => {
     }
 });
 
+/**
+ * This checks that the given credentials for login page were correct/found in the DB. If so, it will redirect user to 
+ * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
+ */
+
 router.post('/login', async(req, res, next) => {
     var result = await credentials_controller.authenticate(req.body);
     if(result){
@@ -43,6 +60,9 @@ router.post('/login', async(req, res, next) => {
     }
 });
 
+/**
+ * If the user clicks the 'need help' button on the signup form, it will redirect to the manual for fashionxproject
+ */
 router.get('/manual', (req, res, next) => {
     res.render('pages/influencers/manual', {title: "Help"});
 })
