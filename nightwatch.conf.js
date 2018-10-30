@@ -33,6 +33,9 @@ module.exports = {
             "selenium_host": "localhost",
             "desiredCapabilities": {
                 "browserName": "chrome",
+                "chromeOptions": {
+                    "args": ["headless", "no-sandbox", "disable-gpu"]
+                },
                 "acceptSslCerts": true,
                 "javascriptEnabled": true
             },
@@ -46,6 +49,9 @@ module.exports = {
             "selenium_host": "localhost",
             "desiredCapabilities": {
                 "browserName": "firefox",
+                "moz:firefoxOptions": {
+                    "args": ["-headless"]
+                },
                 "acceptSslCerts": true,
                 "javascriptEnabled": true
             },

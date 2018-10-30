@@ -57,8 +57,15 @@ router.post('/signup', async (req, res, next) => {
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
         await signup_controller.signup(req.body);
-        var posts = await post_controller.findAll(req.body.email);
-        res.render('pages/influencers/home', { title: "Home", posts: posts, moment: moment });
+        passport.authenticate('local', (err, user, info) => {
+            if (user) {
+                req.logIn(user, (err) => {
+                    return res.redirect('/influencers/home');
+                })
+            } else {
+                return res.render('pages/influencers/login', { title: 'Login', errors: {'email': VALIDATION_ERRORS['CREDENTIALS_INVALID']}, fields: ''})
+            }
+        })(req, res, next);
     } else {
         res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors, fields: req.body});
     }
@@ -70,7 +77,6 @@ router.post('/signup', async (req, res, next) => {
 router.get('/home', async (req, res, next) => {
     if (req.user) {
         var posts = await post_controller.findAll(req.user.email);
-        console.log('posts', posts);
         res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
     } else {
         res.redirect('/influencers/login');
