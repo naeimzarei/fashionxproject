@@ -17,7 +17,7 @@ This application is constructed using Express, EJS, and MnogoDB. It is a typical
 6. Tests (Jest): unit tests to ensure application is up and running 
 7. Views (EJS): controllers render data obtained from models and database on a web page using a JavaScript templating engine.
 8. Node modules (Node): contain all necessary packages to get the application up and running 
-9. Server
+9. Server: Hosted on AWS. AWS runs on Elastic Beanstalk to run a Node server 24/7 and handle restarts when updating code.
 
 ### Modules
 
