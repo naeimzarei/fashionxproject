@@ -15,7 +15,7 @@ describe('GET /users', () => {
   });
 
   test('should return posts belonging to a certain account', async () => {
-    var posts = await post_controller.findAll('test@example.com');
+    var posts = await post_controller.findAll('test@gmail.com');
     expect(posts).not.toBeNull();
     expect(Array.isArray(posts)).toBe(true);
     expect(posts.length).toBe(2);
