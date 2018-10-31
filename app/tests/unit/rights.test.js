@@ -49,9 +49,3 @@ test('updating new rights works, by email', async () => {
     expect(rights.rights).toEqual('shopper');
     expect(rights.email).toEqual('anotheremail@gmail.com');
 });
-
-test('removing new rights works', async () => {
-    var rights = await rights_controller.remove(id);
-    var rights_info = await rights_controller.find(rights.id);
-    expect(rights_info).toBeNull();
-});
