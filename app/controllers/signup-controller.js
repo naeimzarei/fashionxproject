@@ -107,13 +107,13 @@ signup_controller.validate = async (profile) => {
         }
 
         // check if jean size is valid 
-        const valid_jean_size = ['Extra Small', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+        const valid_jean_size = ['Extra Small (XS)', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
         if (valid_jean_size.includes(profile.jean_size) === false || profile.jean_size === 'Usual Jean Size *') {
             error_object['jean_size'] = VALIDATION_ERRORS['JEAN_SIZE_INVALID'];
         }
 
         // check if shirt size is valid 
-        const valid_shirt_size = ['Extra Small', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+        const valid_shirt_size = ['Extra Small (XS)', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
         if (valid_shirt_size.includes(profile.shirt_size) === false || profile.shirt_size === 'Usual Shirt Size *') {
             error_object['shirt_size'] = VALIDATION_ERRORS['SHIRT_SIZE_INVALID'];
         }
