@@ -8,7 +8,7 @@
 For the purpose of this project, a combination of unit and functional testing will be implemented. 
 
 ### Unit Testing
-We will use the Jest framework for unit testing, a popular framework made by Facebook. This framework is designed specifically for JavaScript so it will work hand-in-hand with our Node-heavy project. 
+We will use the Jest framework for unit testing, a popular framework made by Facebook. This framework is designed specifically for JavaScript so it will work hand-in-hand with our Node-heavy project. Ensure that the server is running in the background (npm run start) prior to executing the unit tests.
 
 [Unit Test Cases](../../app/tests/unit)
 

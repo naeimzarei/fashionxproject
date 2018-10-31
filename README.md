@@ -181,7 +181,7 @@ Open browser to the port and host indicated.
 npm run test-unit
 ```
 
-This will run JavaScript unit testing. It also outputs coverage details.
+This will run JavaScript unit testing. It also outputs coverage details. Ensure that the server is running prior to executing the unit tests (npm run start).
 
 ``` bash
 npm install -g nightwatch
