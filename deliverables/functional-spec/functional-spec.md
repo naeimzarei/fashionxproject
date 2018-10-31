@@ -1,7 +1,7 @@
 # Functional Specification
 
 ## User Types
-1. Shopper: shoppers are the fundamental user. They can only sign in to the shopper interface. 
+1. Shopper: shoppers are the fundamental user. They can only sign in to the shopper interface. The shopper interface is being designed by a team at Duke University.
 2. Influencer: influencers are shoppers that have the ability to post content. Influencers can log in to the shopper interface but shoppers cannot login to the influencer interface. 
 3. Moderator: moderators are separate from shoppers and influencers. They have the ability to edit, approve, or reject influencer posts. Moderators cannot login to the shopper or influencer interfaces. 
 4. Administrator: administrators are moderators with elevated privilege. They can grant or revoke moderator access to people.
