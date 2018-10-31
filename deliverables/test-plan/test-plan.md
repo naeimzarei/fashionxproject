@@ -26,16 +26,49 @@ Unit testing will specifically focus on test cases centered around the programmi
 
 Regression testing will be done only when new code requires unit testing. Basic CSS changes such as changing the color of an HTML element will not require regression testing to be done. However, controllers, routes, and models need to be tested for regression each time a branch wants to merge with the master branch.
 
-### Sign-up Influencer
-1. Valid input test: Fill in all fields with valid input and submit
-2. Submit empty form
-3. Submit form with missing required fields: all missing except first name
-4. Invalid inputs
-    1. Age: abc
+### Credentials
+1. Create credentials with valid inputs
+2. Remove credentails by ID
+3. Find credentials by ID
+4. Find credentials by email
+5. Update existing credentials by ID
+6. Update existing credentials by email
+7. Delete existing credentials by ID
+8. Delete existing credentials by email
+
+### Login
+1. Accessing influencer base URL should redirect to login view
+2. Access login view
+3. Incorrect login credentials display error message
+
+### Post
+1. Find all posts by user email
+2. Find no posts when invaliid user email
+
+### Profile
+1. Submit form with missing required fields: all missing except first name
+2. Invalid inputs
+    1. Age: 15
     2. Height (ft): abc
     3. Height (in): abc
     4. Weight (lbs): abc
     5. Waist (in): abc
     6. Hips (in): abc
     7. Leg Length: abc
-5. Submit form without agreeing to Terms of Service
+3. Valid input test: Fill in all required fields with valid inputs
+4. Find a created profile by ID
+5. Find a created profile by email
+6. Update by ID a previously created profile (no blog) with new data
+7. Update by ID a previously created profile (with blog) with new data
+8. Update by email a previously created profile (no blog) with new data
+9. Update by email a previously created profile (with blog) with new data
+10. Delete profile by ID
+11. Delete profile by email
+
+### Rights
+1. Create rights for a user
+2. Delete rights by ID
+3. Find rights by ID
+4. Find rights by email
+5. Update rights by ID
+6. Update rights by email
