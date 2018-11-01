@@ -14,6 +14,9 @@ var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
  */
 
 router.get('/', (req, res, next) => {
+    if (req.user) {
+        res.redirect('/influencers/home');
+    }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
@@ -21,6 +24,9 @@ router.get('/', (req, res, next) => {
  * Route the user to the login page
  */
 router.get('/login', (req, res, next) => {
+    if (req.user) {
+        res.redirect('/influencers/home');
+    }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
