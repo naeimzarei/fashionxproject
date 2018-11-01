@@ -28,13 +28,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// setup passport.js and sessions 
+// setup sessions 
 app.use(require('express-session')({ 
   secret: 'keyboard cat', 
   resave: false, 
   saveUninitialized: false,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false, httpOnly: true } 
+  // cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false, httpOnly: true } 
+  cookie: false
 }));
+
+// setup passport js
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -29,6 +29,9 @@ router.get('/login', (req, res, next) => {
  * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
  */
 router.post('/login', async (req, res, next) => {
+    if (req.body.remember_me) {
+        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+    }
     passport.authenticate('local', (err, user, info) => {
         if (user) {
             req.logIn(user, (err) => {

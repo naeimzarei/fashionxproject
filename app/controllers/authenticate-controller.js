@@ -6,6 +6,7 @@ var credentials_controller = require('../controllers/credentials-controller')
 
 var authenticate_controller = {};
 
+// set up the passport js strategy 
 authenticate_controller.strategy = () => {
     passport.use(new LocalStrategy(
         {
@@ -27,11 +28,12 @@ authenticate_controller.strategy = () => {
         }
     ))
 
+    // serialize the user given the user's credential id 
     passport.serializeUser((credentials, done) => {
-        console.log('credentials', credentials);
         done(null, credentials.id);
     });
 
+    // deserialize the user given the user's session id 
     passport.deserializeUser(async (id, done) => {
         var credentials = await credentials_controller.find(id);
         done(null, credentials);
