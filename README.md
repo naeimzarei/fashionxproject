@@ -237,6 +237,10 @@ config.DATABASE_PASSWORD = 'mongodb-atlas-user-password';
 
 This is the password of the particular user of the MongoDB Atlas database. The password is in SHA256 format to prevent reverse engineering.
 
+```javascript
+config.SESSION_SECRET = '...';
+```
+
 ```bash
 echo -n <password> | openssl sha256
 ```
