@@ -22,6 +22,7 @@ util.connect = async () => {
 };
 
 util.VALIDATION_ERRORS = {
+    FIRST_NAME_INVALID: 'Please provide a valid first name.',
     EMAIL_INVALID_SYNTAX: 'Please provide a valid email address.',
     EMAIL_DOES_NOT_EXIST: 'Email does not exist. Please provide a valid email address.',
     EMAIL_DUPLICATE: 'Email already exists.',

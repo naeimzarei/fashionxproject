@@ -7,6 +7,7 @@ var credentials_controller = require('../controllers/credentials-controller')
 var authenticate_controller = {};
 
 // set up the passport js strategy 
+/* istanbul ignore next */
 authenticate_controller.strategy = () => {
     passport.use(new LocalStrategy(
         {
@@ -44,6 +45,7 @@ authenticate_controller.strategy = () => {
  * Check that the user is authenticated
  * @param {{}} profile the profile object 
  */
+/* istanbul ignore next */
 authenticateCredentials = async(email, password) => {
     var auth = await credentials_controller.findCredentials(email);
     if (auth) {
