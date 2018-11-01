@@ -6,12 +6,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 
-// cookiers
-var cookieSession = require('cookie-session');
-app.use(cookieSession({
-
-}));
-
 // config 
 var config = require('./config/config');
 
