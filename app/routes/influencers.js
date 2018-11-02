@@ -3,11 +3,40 @@ var moment = require('moment');
 var router = express.Router();
 var util = require('../util/util');
 var passport = require('passport');
+var aws = require('aws-sdk')
+var multer = require('multer')
+var multerS3 = require('multer-s3')
 
 var signup_controller = require('../controllers/signup-controller');
 var post_controller = require('../controllers/post-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
+
+// config 
+var config = require('../config/config');
+
+// setup AWS
+aws.config.update({
+    secretAccessKey: config.SECRET_ACCESS_KEY,
+    accessKeyId: config.ACCESS_KEY_ID,
+    region: config.REGION
+});
+
+const s3 = new aws.S3();
+
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        acl: 'public-read',
+        bucket: config.BUCKET_NAME,
+        metadata: function (req, file, cb) {
+            cb(null, Object.assign({}, req.body));
+        },
+        key: function (req, file, cb) {
+            cb(null, Date.now() + '-' + file.originalname);
+        }
+    })
+});
 
 /**
  * Loads the login page once the user selects "influencer" on landing page.
@@ -103,8 +132,14 @@ router.get('/manual', (req, res, next) => {
  * Routes user to uplaod page when user clicks on plus square icon in the header.
  */
 router.get('/submit', (req, res, next) => {
-   
     res.render('pages/influencers/submit', { title: 'Submit Picture'});
+});
+
+/**
+ * Uploads photo to S3
+ */
+router.post('/upload-photo', upload.array('upl',1), (req, res, next) => {
+    res.send("Uploaded!");
 });
 
 module.exports = router;
