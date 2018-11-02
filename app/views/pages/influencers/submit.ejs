@@ -6,14 +6,19 @@
     <body>
         <% include ../../partials/logo %>
 
-
-            <form id='post-form' enctype="multipart/form-data" class='bg-grey' action='/influencers/upload-photo' method='post'>
-                <input type="file" name="upl"/>
-                <div class="container text-center monospace-font pb-3 mt-5">
-                    <button type="button" class="btn btn-pink btn-lg btn-primary text-center">Upload Pic</button>
+        <div class = "container col-5 mb-5">
+            <form class='bg-grey' enctype='multipart/form-data' action='/influencers/submit-post' method='post'>
+                <div class='form-group pl-3 pr-3 pt-3'>
+                    <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true}) %>
                 </div>
-                <input type="submit"/>
+                <div class='form-group pl-3 pr-3 pt-3'>
+                    <%- include('../../partials/input', {name: 'title', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Post Title', min: '', max: '', required: true}) %>
+                </div>
+                <div class='container text-center mb-4 bg-white ps-absolute'>
+                    <button type="submit" class="btn btn-pink btn-primary text-center" >Upload Photo</button>
+                </div>
             </form>
+        </div>
 
         <% include ../../partials/footer %>
     </body>

@@ -17,7 +17,7 @@
 <% } %>
 
 <% if (required) { %>
-    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>' required>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>' required multiple>
 <% } else { %>
-    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>'>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>' multiple>
 <% } %>

@@ -33,10 +33,10 @@ const upload = multer({
             cb(null, Object.assign({}, req.body));
         },
         key: function (req, file, cb) {
-            cb(null, Date.now() + '-' + file.originalname);
+            cb(null, req.user.email + '/' + Date.now() + '-' + file.originalname);
         }
     })
-});
+}).array('photo-upload', 10); // 10 species 10 max photos can be uploaded at a time
 
 /**
  * Loads the login page once the user selects "influencer" on landing page.
@@ -132,14 +132,23 @@ router.get('/manual', (req, res, next) => {
  * Routes user to uplaod page when user clicks on plus square icon in the header.
  */
 router.get('/submit', (req, res, next) => {
-    res.render('pages/influencers/submit', { title: 'Submit Picture'});
+    res.render('pages/influencers/submit', { title: 'Submit Picture', errors: '', fields: '' });
 });
 
 /**
- * Uploads photo to S3
+ * Post creation and handlese photo uploads photo to S3
  */
-router.post('/upload-photo', upload.array('upl',1), (req, res, next) => {
-    res.send("Uploaded!");
+router.post('/submit-post', async (req, res, next) => {
+    upload(req, res, function (error) {
+        if (error) {
+            console.log(error);
+            res.send('Upload failed!');
+        }
+        res.send('Uploaded photo(s)!');
+        var imgUrls = req.files.map(function(file) {
+            return file.location;
+        });
+    });
 });
 
 module.exports = router;
