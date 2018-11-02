@@ -99,4 +99,12 @@ router.get('/manual', (req, res, next) => {
     res.render('pages/influencers/manual', {title: "Help"});
 });
 
+/**
+ * Routes user to uplaod page when user clicks on plus square icon in the header.
+ */
+router.get('/submit', (req, res, next) => {
+   
+    res.render('pages/influencers/submit', { title: 'Submit Picture'});
+});
+
 module.exports = router;

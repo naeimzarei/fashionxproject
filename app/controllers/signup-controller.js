@@ -122,6 +122,11 @@ signup_controller.validate = async (profile) => {
         if (valid_shirt_size.includes(profile.shirt_size) === false || profile.shirt_size === 'Usual Shirt Size *') {
             error_object['shirt_size'] = VALIDATION_ERRORS['SHIRT_SIZE_INVALID'];
         }
+         // check if torso length is valid 
+         const valid_torso_length = ['Short', 'Average', 'Long']
+         if (valid_torso_length.includes(profile.torso_length) === false || profile.torso_length === 'Usual Torso Length *') {
+             error_object['torso_length'] = VALIDATION_ERRORS['TORSO_LENGTH_INVALID'];
+         }
 
         // check if leg length is valid
         if (isNaN(parseInt(profile.leg_length)) === false) {
@@ -157,7 +162,8 @@ signup_controller.signup = async (profile) => {
         profile.hips,
         profile.jean_size,
         profile.shirt_size,
-        profile.leg_length
+        profile.leg_length,
+        profile.torso_length
     );
 
     await credentials_controller.push(profile.email, profile.password);

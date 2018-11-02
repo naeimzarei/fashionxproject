@@ -19,7 +19,8 @@ var invalid_dummy_profile = {
     hips: -4,
     jean_size: 'short',
     shirt_size: 'medium',
-    leg_length: -4
+    leg_length: -4,
+    torso_length: 'Short'
 }
 
 var invalid_type_dummy_profile = {
@@ -38,7 +39,8 @@ var invalid_type_dummy_profile = {
     hips: '5',
     jean_size: 'Medium (M)',
     shirt_size: 'Medium (M)',
-    leg_length: '5'
+    leg_length: '5',
+    torso_length: 'Long'
 }
 
 valid_dummy_profile = {
@@ -57,7 +59,8 @@ valid_dummy_profile = {
     hips: '33',
     jean_size: 'Medium (M)',
     shirt_size: 'Medium (M)',
-    leg_length: '33'
+    leg_length: '33',
+    torso_length: 'Average'
 }
 
 test('should give error when incorrect profile information is given', async () => {
@@ -76,6 +79,7 @@ test('should give error when incorrect profile information is given', async () =
     expect(result.jean_size).toEqual(VALIDATION_ERRORS['JEAN_SIZE_INVALID'])
     expect(result.shirt_size).toEqual(VALIDATION_ERRORS['SHIRT_SIZE_INVALID'])
     expect(result.leg_length).toEqual(VALIDATION_ERRORS['LEG_LENGTH_INVALID'])
+    expect(result.torso_length).toEqual(VALIDATION_ERRORS['TORSO_LENGTH_INVALID'])
 })
 
 test('should give error when incorrect data type is passed', async () => {
@@ -102,6 +106,7 @@ test('should not give error when correct profile information is given', async ()
     expect(result.jean_size).toBeUndefined()
     expect(result.shirt_size).toBeUndefined()
     expect(result.leg_length).toBeUndefined()
+    expect(result.torso_length).toBeUndefined()
 })
 
 test('check first name validation', async () => {

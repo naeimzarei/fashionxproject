@@ -40,7 +40,8 @@ util.VALIDATION_ERRORS = {
     HIPS_INVALID: 'Please provide a valid hips size (in).',
     JEAN_SIZE_INVALID: 'Please select a valid jean size.',
     SHIRT_SIZE_INVALID: 'Please select a valid shirt size.',
-    LEG_LENGTH_INVALID: 'Please provide a valid leg length.'
+    LEG_LENGTH_INVALID: 'Please provide a valid leg length.',
+    TORSO_LENGTH_INVALID: 'Please provide a valid torso length'
 };
 
 module.exports = util;
