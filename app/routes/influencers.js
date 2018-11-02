@@ -30,7 +30,7 @@ const upload = multer({
         acl: 'public-read',
         bucket: config.BUCKET_NAME,
         metadata: function (req, file, cb) {
-            cb(null, Object.assign({}, req.body));
+            cb(null, Object.assign({}, req.body.product_link));
         },
         key: function (req, file, cb) {
             cb(null, req.user.email + '/' + Date.now() + '-' + file.originalname);
@@ -65,7 +65,8 @@ router.get('/login', (req, res, next) => {
  */
 router.post('/login', async (req, res, next) => {
     if (req.body.remember_me) {
-        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+        //req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+        req.session.cookie.maxAge = 21 * 24 * 60 * 60 * 1000;
     }
     passport.authenticate('local', (err, user, info) => {
         if (user) {
@@ -138,7 +139,8 @@ router.get('/submit', (req, res, next) => {
 /**
  * Post creation and handlese photo uploads photo to S3
  */
-router.post('/submit-post', async (req, res, next) => {
+router.post('/submit', (req,res,next) => {
+    
     upload(req, res, function (error) {
         if (error) {
             console.log(error);
