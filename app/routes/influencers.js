@@ -36,7 +36,8 @@ router.get('/login', (req, res, next) => {
  */
 router.post('/login', async (req, res, next) => {
     if (req.body.remember_me) {
-        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+        //req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+        req.session.cookie.maxAge = 21 * 24 * 60 * 60 * 1000;
     }
     passport.authenticate('local', (err, user, info) => {
         if (user) {
@@ -104,7 +105,11 @@ router.get('/manual', (req, res, next) => {
  */
 router.get('/submit', (req, res, next) => {
    
-    res.render('pages/influencers/submit', { title: 'Submit Picture'});
+    res.render('pages/influencers/submit', { title: 'Submit Picture', fields: '', errors: ''});
+});
+
+router.post('/submit', (req,res,next) =>{
+    //submit fields and pic
 });
 
 module.exports = router;
