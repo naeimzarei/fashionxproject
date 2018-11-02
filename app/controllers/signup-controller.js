@@ -22,15 +22,20 @@ signup_controller.validate = async (profile) => {
     }
 
     var validation_promise = new Promise((resolve, reject) => {
+        // check if first_name is valid 
+        profile.first_name = profile.first_name.toString().trim();
+        if (/\d/.test(profile.first_name) || profile.first_name === '') {
+            error_object['first_name'] = VALIDATION_ERRORS['FIRST_NAME_INVALID'];
+        }
+
         // check if password is valid 
-        if(/(?=.*\d)(?=.*[A-Z]){6,12}/.test(profile.password) === false){
+        if(/^((?=.*\d)(?=.*[A-Z])).{6,12}$/.test(profile.password) === false){
             error_object['password'] = VALIDATION_ERRORS['PASSWORD_INVALID'];
         }
 
         // check if email has valid syntax 
         if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
             error_object['email'] = VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'];
-            
         }
 
         // check if age is valid
@@ -39,7 +44,7 @@ signup_controller.validate = async (profile) => {
                 error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
             }
         } else {
-            error_object['age'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
+            error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
         }
 
         // check if blog URL is valid, if it exists 
@@ -49,7 +54,7 @@ signup_controller.validate = async (profile) => {
             }
         }
 
-        // check if height_in is valid 
+        // check if height_ift is valid 
         if (isNaN(parseInt(profile.height_ft)) === false) {
             if (parseInt(profile.height_ft) < 0) {
                 error_object['height_ft'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
@@ -60,7 +65,7 @@ signup_controller.validate = async (profile) => {
 
         // check if height_in is valid 
         if (isNaN(parseInt(profile.height_in)) === false) {
-            if (parseInt(profile.heihgt_in) < 0) {
+            if (parseInt(profile.height_in) < 0 || parseInt(profile.height_in) > 11) {
                 error_object['height_in'] = VALIDATION_ERRORS['HEIGHT_IN_INVALID'];
             }
         } else {
@@ -117,6 +122,11 @@ signup_controller.validate = async (profile) => {
         if (valid_shirt_size.includes(profile.shirt_size) === false || profile.shirt_size === 'Usual Shirt Size *') {
             error_object['shirt_size'] = VALIDATION_ERRORS['SHIRT_SIZE_INVALID'];
         }
+         // check if torso length is valid 
+         const valid_torso_length = ['Short', 'Average', 'Long']
+         if (valid_torso_length.includes(profile.torso_length) === false || profile.torso_length === 'Usual Torso Length *') {
+             error_object['torso_length'] = VALIDATION_ERRORS['TORSO_LENGTH_INVALID'];
+         }
 
         // check if leg length is valid
         if (isNaN(parseInt(profile.leg_length)) === false) {
@@ -135,6 +145,7 @@ signup_controller.validate = async (profile) => {
 Executes profile account creation
 @param {object} profile - Profile data
 */
+/* instanbul ignore next */
 signup_controller.signup = async (profile) => {
     var profiles = await profile_controller.push(
         profile.first_name,
@@ -151,7 +162,8 @@ signup_controller.signup = async (profile) => {
         profile.hips,
         profile.jean_size,
         profile.shirt_size,
-        profile.leg_length
+        profile.leg_length,
+        profile.torso_length
     );
 
     await credentials_controller.push(profile.email, profile.password);

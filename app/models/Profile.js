@@ -90,7 +90,16 @@ var profileSchema = mongoose.Schema({
         type: Number,
         required: true,
         min: [0, 'Leg length cannot be negative.']
-    }
+    },
+    torso_length: {
+        type: String,
+        required: true,
+        enum: [
+            'Short',
+            'Average',
+            'Long',
+        ]
+    },
 });
 
 // instance methods 
@@ -114,7 +123,8 @@ profileSchema.statics.push = async (
     hips,
     jean_size,
     shirt_size,
-    leg_length
+    leg_length,
+    torso_length
 ) => {
     var profile = new Profile({
         first_name: first_name,
@@ -131,7 +141,8 @@ profileSchema.statics.push = async (
         hips: hips,
         jean_size: jean_size,
         shirt_size: shirt_size,
-        leg_length: leg_length
+        leg_length: leg_length,
+        torso_length: torso_length
     });
     await profile.save();
     return profile;
@@ -180,7 +191,8 @@ profileSchema.statics.update = async (
     hips,
     jean_size,
     shirt_size,
-    leg_length
+    leg_length,
+    torso_length
 ) => {
     var profile = await Profile.findByIdAndUpdate(id, {
         first_name: first_name,
@@ -197,7 +209,8 @@ profileSchema.statics.update = async (
         hips: hips,
         jean_size: jean_size,
         shirt_size: shirt_size,
-        leg_length: leg_length
+        leg_length: leg_length,
+        torso_length: torso_length
     });
     return profile;
 };
@@ -217,7 +230,8 @@ profileSchema.statics.updateProfile = async (
     hips,
     jean_size,
     shirt_size,
-    leg_length
+    leg_length,
+    torso_length
 ) => {
     var profile = await Profile.findOneAndUpdate({email: email}, {
         first_name: first_name,
@@ -234,7 +248,8 @@ profileSchema.statics.updateProfile = async (
         hips: hips,
         jean_size: jean_size,
         shirt_size: shirt_size,
-        leg_length: leg_length
+        leg_length: leg_length,
+        torso_length: torso_length
     });
     return profile;
 };

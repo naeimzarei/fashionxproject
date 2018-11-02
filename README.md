@@ -181,7 +181,7 @@ Open browser to the port and host indicated.
 npm run test-unit
 ```
 
-This will run JavaScript unit testing. It also outputs coverage details.
+This will run JavaScript unit testing. It also outputs coverage details. Ensure that the server is running prior to executing the unit tests (npm run start).
 
 ``` bash
 npm install -g nightwatch
@@ -220,6 +220,8 @@ var config = {};
 config.DATABASE_USERNAME = '';
 config.DATABASE_PASSWORD = '';
 
+config.SESSION_SECRET = '...';
+
 module.exports = config;
 ```
 
@@ -236,6 +238,10 @@ config.DATABASE_PASSWORD = 'mongodb-atlas-user-password';
 ```
 
 This is the password of the particular user of the MongoDB Atlas database. The password is in SHA256 format to prevent reverse engineering.
+
+```javascript
+config.SESSION_SECRET = '...';
+```
 
 ```bash
 echo -n <password> | openssl sha256

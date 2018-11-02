@@ -22,6 +22,7 @@ util.connect = async () => {
 };
 
 util.VALIDATION_ERRORS = {
+    FIRST_NAME_INVALID: 'Please provide a valid first name.',
     EMAIL_INVALID_SYNTAX: 'Please provide a valid email address.',
     EMAIL_DOES_NOT_EXIST: 'Email does not exist. Please provide a valid email address.',
     EMAIL_DUPLICATE: 'Email already exists.',
@@ -39,7 +40,8 @@ util.VALIDATION_ERRORS = {
     HIPS_INVALID: 'Please provide a valid hips size (in).',
     JEAN_SIZE_INVALID: 'Please select a valid jean size.',
     SHIRT_SIZE_INVALID: 'Please select a valid shirt size.',
-    LEG_LENGTH_INVALID: 'Please provide a valid leg length.'
+    LEG_LENGTH_INVALID: 'Please provide a valid leg length.',
+    TORSO_LENGTH_INVALID: 'Please provide a valid torso length'
 };
 
 module.exports = util;

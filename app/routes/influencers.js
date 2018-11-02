@@ -14,6 +14,9 @@ var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
  */
 
 router.get('/', (req, res, next) => {
+    if (req.user) {
+        res.redirect('/influencers/home');
+    }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
@@ -21,6 +24,9 @@ router.get('/', (req, res, next) => {
  * Route the user to the login page
  */
 router.get('/login', (req, res, next) => {
+    if (req.user) {
+        res.redirect('/influencers/home');
+    }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
 
@@ -29,6 +35,9 @@ router.get('/login', (req, res, next) => {
  * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
  */
 router.post('/login', async (req, res, next) => {
+    if (req.body.remember_me) {
+        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+    }
     passport.authenticate('local', (err, user, info) => {
         if (user) {
             req.logIn(user, (err) => {
@@ -88,6 +97,14 @@ router.get('/home', async (req, res, next) => {
  */
 router.get('/manual', (req, res, next) => {
     res.render('pages/influencers/manual', {title: "Help"});
+});
+
+/**
+ * Routes user to uplaod page when user clicks on plus square icon in the header.
+ */
+router.get('/submit', (req, res, next) => {
+   
+    res.render('pages/influencers/submit', { title: 'Submit Picture'});
 });
 
 module.exports = router;

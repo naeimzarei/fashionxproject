@@ -21,14 +21,15 @@ profile_controller.push = async (
     hips,
     jean_size,
     shirt_size,
-    leg_length
+    leg_length,
+    torso_length
 ) => {
     return await Profile.push(
         first_name, email, age,
         instagram_handle, blog, height_ft,
         height_in, weight, bust_cup, bust_band,
         waist, hips, jean_size, shirt_size,
-        leg_length
+        leg_length, torso_length
     );
 };
 
@@ -85,7 +86,8 @@ profile_controller.update = async (
     hips,
     jean_size,
     shirt_size,
-    leg_length
+    leg_length,
+    torso_length
 ) => {
     return await Profile.update(
         id,
@@ -103,7 +105,8 @@ profile_controller.update = async (
         hips,
         jean_size,
         shirt_size,
-        leg_length 
+        leg_length,
+        torso_length 
     );
 }
 
@@ -122,7 +125,8 @@ profile_controller.updateProfile = async(
     hips,
     jean_size,
     shirt_size,
-    leg_length
+    leg_length,
+    torso_length
 ) => {
     return await Profile.updateProfile(
         first_name,
@@ -139,7 +143,8 @@ profile_controller.updateProfile = async(
         hips,
         jean_size,
         shirt_size,
-        leg_length 
+        leg_length,
+        torso_length 
     );
 }
 

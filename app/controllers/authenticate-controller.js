@@ -6,6 +6,8 @@ var credentials_controller = require('../controllers/credentials-controller')
 
 var authenticate_controller = {};
 
+// set up the passport js strategy 
+/* istanbul ignore next */
 authenticate_controller.strategy = () => {
     passport.use(new LocalStrategy(
         {
@@ -27,11 +29,12 @@ authenticate_controller.strategy = () => {
         }
     ))
 
+    // serialize the user given the user's credential id 
     passport.serializeUser((credentials, done) => {
-        console.log('credentials', credentials);
         done(null, credentials.id);
     });
 
+    // deserialize the user given the user's session id 
     passport.deserializeUser(async (id, done) => {
         var credentials = await credentials_controller.find(id);
         done(null, credentials);
@@ -42,6 +45,7 @@ authenticate_controller.strategy = () => {
  * Check that the user is authenticated
  * @param {{}} profile the profile object 
  */
+/* istanbul ignore next */
 authenticateCredentials = async(email, password) => {
     var auth = await credentials_controller.findCredentials(email);
     if (auth) {

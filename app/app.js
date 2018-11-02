@@ -1,9 +1,13 @@
+// parsers 
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
+
+// config 
+var config = require('./config/config');
 
 // define routes 
 var indexRouter = require('./routes/index');
@@ -28,13 +32,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// setup passport.js and sessions 
+// setup sessions 
 app.use(require('express-session')({ 
-  secret: 'keyboard cat', 
+  secret: config.SESSION_SECRET, 
   resave: false, 
-  saveUninitialized: false,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false, httpOnly: true } 
+  saveUninitialized: false
 }));
+
+// setup passport js
 app.use(passport.initialize());
 app.use(passport.session());
 
