@@ -9,6 +9,7 @@ var multerS3 = require('multer-s3')
 
 var signup_controller = require('../controllers/signup-controller');
 var post_controller = require('../controllers/post-controller');
+var profile_controller = require('../controllers/profile-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
@@ -164,6 +165,14 @@ router.get('/posts/:id', async (req, res, next) => {
     }
 
     res.render('pages/influencers/post', { title: data.title, post: data });
+});
+
+/**
+ * View user profile
+ */
+router.get('/profile', async (req, res, next) => {
+    var profile = await profile_controller.findProfile(req.user.email);
+    res.render('pages/influencers/profile', { title: 'My Profile', profile: profile });
 });
 
 module.exports = router;
