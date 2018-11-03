@@ -35,7 +35,7 @@ Find Post
 @param {integer} id - Post id.
 */
 post_controller.find = async (id) => {
-    return await Post.find(id);
+    return await Post.findById(id);
 };
 
 /**

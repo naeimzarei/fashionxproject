@@ -69,7 +69,7 @@ Find post
 @param {integer} id - Post id.
 */
 postSchema.statics.findById = async (id) => {
-    var post = await Post.findById(id);
+    var post = await Post.find({ _id: id }, null);
     return post;
 };
 
