@@ -153,4 +153,17 @@ router.post('/submit', (req,res,next) => {
     });
 });
 
+/**
+ * View post
+ */
+router.get('/posts/:id', async (req, res, next) => {
+    var post = await post_controller.find(req.params.id);
+    var data;
+    if (post.length) {
+        data = post[0];
+    }
+
+    res.render('pages/influencers/post', { title: data.title, post: data });
+});
+
 module.exports = router;
