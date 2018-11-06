@@ -1,6 +1,8 @@
 <% placeholder = placeholder %>
 <% originalPlaceholder = placeholder %>
-<% value = '' %>
+<% if (!value) { %>
+    <% value = '' %>
+<% } %>
 <% if (errors[name]) { %>
     <% placeholder = errors[name] %>
     <% value = '' %>

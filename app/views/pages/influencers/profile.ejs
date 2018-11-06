@@ -1,20 +1,92 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
-  <head>
-    <% include ../../partials/head %>
-  </head>
-  <body>
-      <header>
+    <head>
+        <% include ../../partials/head %>
+    </head>
+    <body>
         <% include ../../partials/header %>
-      </header>
-    <main>
-        <div class="container-fluid">
-            <h1><%= profile.first_name %></h1>
+        <div class='container-fluid'>
+            <h1>My Profile</h1>
+              <form id='signup-form' class='bg-grey' action='/influencers/updateProfile' method='post'>
+                <div class='form-group pt-3 pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: profile.first_name }) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'age', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Age *', min: 18, max: '', required: true, value: profile.age}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'instagram_handle', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Instagram Handle *', min: '', max: '', required: true, value: profile.instagram_handle}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'blog', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Blog', min: '', max: '', required: false, value: profile.blog}) %>
+                </div>
+                <div class='form-group form-inline pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true, value: profile.height_ft}) %>
+                    <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: profile.height_in}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'weight', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Weight (lbs) *', min: '1', max: '', required: true, value: profile.weight}) %>
+                </div>
+                <div class='form-group form-inline pl-3 pr-3'>
+                    <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
+                        <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup', selected: profile.bust_cup === 'Bust (cup) *'}) %>
+                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'bust_cup', selected: profile.bust_cup === 'A'}) %>
+                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'bust_cup', selected: profile.bust_cup === 'B'}) %>
+                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'bust_cup', selected: profile.bust_cup === 'C'}) %>
+                    </select>
+                    <select name='bust_band' class='form-control col-6 border-pink' required>
+                        <%- include('../../partials/option', {value: '(band) *', placeholder: '(band) *', name: 'bust_band', selected: profile.bust_band === '(band) *'}) %>
+                        <%- include('../../partials/option', {value: 'Band A', placeholder: 'Band A', name: 'bust_band', selected: profile.bust_band === 'Band A'}) %>
+                        <%- include('../../partials/option', {value: 'Band B', placeholder: 'Band B', name: 'bust_band', selected: profile.bust_band === 'Band B'}) %>
+                        <%- include('../../partials/option', {value: 'Band C', placeholder: 'Band C', name: 'bust_band', selected: profile.bust_band === 'Band C'}) %>
+                    </select>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Waist (in) *', min: '0', max: '', required: true, value: profile.waist}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'hips', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Hips (in) *', min: '0', max: '', required: true, value: profile.hips}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <select name='jean_size' class='form-control border-pink' rqeuired>
+                        <%- include('../../partials/option', {value: 'Usual Jean Size *', placeholder: 'Usual Jean Size *', name: 'jean_size', selected: profile.jean_size === 'Usual Jean Size *'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Small (XS)', placeholder: 'Extra Small (XS)', name: 'jean_size', selected: profile.jean_size === 'Extra Small (XS)'}) %>
+                        <%- include('../../partials/option', {value: 'Small (S)', placeholder: 'Small (S)', name: 'jean_size', selected: profile.jean_size === 'Small (S)'}) %>
+                        <%- include('../../partials/option', {value: 'Medium (M)', placeholder: 'Medium (M)', name: 'jean_size', selected: profile.jean_size === 'Medium (M)'}) %>
+                        <%- include('../../partials/option', {value: 'Large (L)', placeholder: 'Large (L)', name: 'jean_size', selected: profile.jean_size === 'Large (L)'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Large (XL)', placeholder: 'Extra Large (XL)', name: 'jean_size', selected: profile.jean_size === 'Extra Large (XL)'}) %>
+                    </select>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <select name='shirt_size' class='form-control border-pink' required>
+                        <%- include('../../partials/option', {value: 'Usual Shirt Size *', placeholder: 'Usual Shirt Size *', name: 'shirt_size', selected: profile.shirt_size === 'Usual Shirt Size *'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Small (XS)', placeholder: 'Extra Small (XS)', name: 'shirt_size', selected: profile.shirt_size === 'Extra Small (XS)'}) %>
+                        <%- include('../../partials/option', {value: 'Small (S)', placeholder: 'Small (S)', name: 'shirt_size', selected: profile.shirt_size === 'Small (S)'}) %>
+                        <%- include('../../partials/option', {value: 'Medium (M)', placeholder: 'Medium (M)', name: 'shirt_size', selected: profile.shirt_size === 'Medium (M)'}) %>
+                        <%- include('../../partials/option', {value: 'Large (L)', placeholder: 'Large (L)', name: 'shirt_size', selected: profile.shirt_size === 'Large (L)'}) %>
+                        <%- include('../../partials/option', {value: 'Extra Large (XL)', placeholder: 'Extra Large (XL)', name: 'shirt_size', selected: profile.shirt_size === 'Extra Large (XL)'}) %>
+                    </select>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'leg_length', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Leg Length *', min: '0', max: '', required: true, value: profile.leg_length}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                        <select name='torso_length' class='form-control border-pink' rqeuired>
+                            <%- include('../../partials/option', {value: 'Usual Torso Length *', placeholder: 'Usual Torso Length *', name: 'torso_length', selected: profile.torso_length === 'Usual Torso Length *'}) %>
+                            <%- include('../../partials/option', {value: 'Short', placeholder: 'Short', name: 'torso_length', selected: profile.torso_length === 'Short'}) %>
+                            <%- include('../../partials/option', {value: 'Average', placeholder: 'Average', name: 'torso_length', selected: profile.torso_length === 'Medium'}) %>
+                            <%- include('../../partials/option', {value: 'Long', placeholder: 'Long', name: 'torso_length', selected: profile.torso_length === 'Long'}) %>
+                        </select>
+                    </div>
+                
+                <div class='container text-center mb-4 bg-white ps-absolute'>
+                    <button class='btn btn-pink btn-primary text-center' type='submit'>Update</button>
+                </div>
+            </form>
         </div>
-    </main>
 
-    <footer>
-      <% include ../../partials/footer %>
-    </footer>
-  </body>
+        <br/>
+
+        <% include ../../partials/footer %>
+    </body>
 </html>

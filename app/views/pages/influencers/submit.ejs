@@ -11,26 +11,21 @@
                 <!-- first set-->
 
                 <div class='form-group form-inline pl-3 pr-3'>
-                        <!-- <select name='type' class='form-control col-sm-2 border-pink' required>
-                                <%- include('../../partials/option', {value: 'Type *', placeholder: 'Type *', name: 'type', disabled: "disabled"}) %>
-                                <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'type'}) %>
-                                <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'type'}) %>
-                            </select> -->
                     
-                    <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: ''}) %>
                             
-                    <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true}) %>
-                    <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true}) %>
-                    <%- include('../../partials/input', {name: 'selling_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Selling Price *', min: 0, max: '', required: true}) %>
-                    <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'selling_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Selling Price *', min: 0, max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true, value: ''}) %>
                     
                     <select name='condition' class='form-control col-sm-2 border-pink' required>
-                            <%- include('../../partials/option', {value: 'Condition *', placeholder: 'Condition *', name: 'type', disabled: "disabled"}) %>
-                            <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition'}) %>
-                            <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition'}) %>
-                            <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition'}) %>
-                            <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition'}) %>
-                            <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition'}) %>
+                            <%- include('../../partials/option', {value: 'Condition *', placeholder: 'Condition *', name: 'type', disabled: "disabled", selected: false}) %>
+                            <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition', selected: false}) %>
                             
                     </select>
                     <br>
@@ -38,7 +33,7 @@
                 </div>
             
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true, value: ''}) %>
                 </div>
 
                 <div class='form-group form-inline pl-3 pr-3'>

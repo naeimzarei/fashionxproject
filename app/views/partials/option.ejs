@@ -1,13 +1,17 @@
 <% values = ['Bust (cup) *', '(band) *', 'Usual Jean Size *', 'Usual Shirt Size *', 'Price *', 'Item *', 'Occasion *'] %>
-
-<% if (fields !== '' && values.includes(value) === false && value === fields[name]) { %>
+<% if (!selected) { %>
+    <% selected = false %>
+<% } %>
+<% if (fields !== '' && values.includes(value) === false && value === fields[name] && !selected) { %>
     <option value='<%= value %>' selected> <%= value %></option>
-<% } else if (values.includes(value)) { %>
+<% } else if (values.includes(value) && !selected) { %>
     <% if (errors[name]) { %> 
         <option value='<%= errors[name] %>' selected disabled> <%= errors[name] %> </option>
     <% } else { %>
         <option value='<%= value %>' selected disabled> <%= placeholder %> </option>
     <% } %>
+<% } else if (selected) { %>
+    <option value='<%= value %>' selected> <%= value %> </option>
 <% } else { %>
     <option value='<%= value %>'> <%= value %> </option>
 <% } %>
