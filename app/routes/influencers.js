@@ -112,6 +112,23 @@ router.post('/signup', async (req, res, next) => {
 });
 
 /**
+ * Once a user clicks the 'update' button on the form, it will validate inputs and redirect user to the My Profile page if all
+ * goes well. If not, errors will be posted on the form itself.
+ */
+router.post('/updateProfile', async (req, res, next) => {
+    req.body.email = req.user.email;
+    var errors = await profile_controller.validate(req.body);
+
+    if (Object.keys(errors).length === 0 && errors.constructor === Object) {
+        await profile_controller.updateProfile(req.body.first_name, req.body.email, req.body.age, req.body.instagram_handle, req.body.blog, req.body.height_ft, req.body.height_in, req.body.weight, req.body.bust_cup, req.body.bust_band, req.body.waist, req.body.hips, req.body.jean_size, req.body.shirt_size, req.body.leg_length, req.body.torso_length,);
+        return res.redirect('/influencers/profile');
+    } else {
+        var profile = await profile_controller.findProfile(req.user.email);
+        res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: errors, fields: req.body});
+    }
+});
+
+/**
  * Route the user to the influencer home page after authentication passes 
  */
 router.get('/home', async (req, res, next) => {

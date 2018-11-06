@@ -9,13 +9,13 @@
         <div class = "container col-5 mb-5">
             <form class='bg-grey' action='/influencers/login' method='post'>
                 <div class='form-group pl-3 pr-3 pt-3'>
-                    <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class="form-group pl-3 pr-3 mb-3">
                     <span id='showPassCheckbox2' class='hover text-center align-middle mt-2 text-pink' style='position: absolute; right: 3em;' onclick='showPass()'>
                         Show
                     </span>
-                    <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField2', placeholder: 'Password *', min: '', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'password', classes: 'form-control border-pink', type: 'password', id: 'passField2', placeholder: 'Password *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class="form-group pl-3 pr-3 mb-3 text-muted">
                     <input type="checkbox" name='remember_me' />
