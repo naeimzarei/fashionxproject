@@ -23,9 +23,33 @@ var postSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
+    item: {
         type: String,
         required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    },
+    brand: {
+        type: String,
+        required: true
+    },
+    selling_price: {
+        type: Number,
+        required: true
+    },
+    original_price: {
+        type: Number,
+        required: true
+    },
+    condition: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: false
     },
     clicks: {
         type: Number
@@ -42,12 +66,24 @@ postSchema.statics.push = async (
     title,
     email,
     img_url,
+    item,
+    size,
+    brand,
+    selling_price,
+    original_price,
+    condition,
     description
 ) => {
     var post = new Post({
         title: title,
         email: email,
         img_url: img_url,
+        item: item,
+        size: size,
+        brand: brand,
+        selling_price: selling_price,
+        original_price: original_price,
+        condition: condition,
         description: description,
         clicks: 0
     });
@@ -90,6 +126,12 @@ postSchema.statics.update = async (
     title,
     email,
     img_url,
+    item,
+    size,
+    brand,
+    selling_price,
+    original_price,
+    condition,
     description,
     clicks
 ) => {
@@ -97,6 +139,12 @@ postSchema.statics.update = async (
         title: title,
         email: email,
         img_url: img_url,
+        item: item,
+        size: size,
+        brand: brand,
+        selling_price: selling_price,
+        original_price: original_price,
+        condition: condition,
         description: description,
         clicks: clicks
     });
