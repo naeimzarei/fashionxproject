@@ -172,7 +172,7 @@ router.get('/posts/:id', async (req, res, next) => {
  */
 router.get('/profile', async (req, res, next) => {
     var profile = await profile_controller.findProfile(req.user.email);
-    res.render('pages/influencers/profile', { title: 'My Profile', profile: profile });
+    res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: '', fields: '' });
 });
 
 module.exports = router;
