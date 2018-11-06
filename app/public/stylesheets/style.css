@@ -138,6 +138,15 @@ footer {
     align-content: center;
 
 }
+input[type="month"]:before {
+    content: attr(placeholder) !important;
+    /*color: #495057; */
+    margin-right: 0.5em;
+  }
+  input[type="month"]:focus:before,
+  input[type="month"]:valid:before {
+    content: "";
+  }
 /* Links */
 
 a{

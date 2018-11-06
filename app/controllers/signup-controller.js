@@ -39,12 +39,39 @@ signup_controller.validate = async (profile) => {
         }
 
         // check if age is valid
-        if (isNaN(parseInt(profile.age)) === false) {
-            if (parseInt(profile.age) < 18) {
-                error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+
+        // if (isNaN(parseInt(profile.age)) === false) {
+        //     if (parseInt(profile.age) < 18) {
+        //         error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+        //     }
+        // } else {
+        //     error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+            
+        // }
+        var d = new Date();
+        console.log(typeof(profile.dob))
+        var mo = parseInt(d.getMonth());
+        var yr = parseInt(d.getFullYear());
+        var inputDob = profile.dob.split('-');
+        //check if input year subtracted from current year greater than 18
+        if(!(yr - parseInt(inputDob[0]) >= 19)){
+            //user may have turned 18 this year, check month
+            if((yr-parseInt(inputDob[0]) == 18)){
+                
+                //user is not yet old enough to signup (not yet 18)
+                if(parseInt(inputDob[1]) >= mo){
+                    error_object['age'] = VALIDATION_ERRORS['AGE_INVALID']
+                }
+
             }
-        } else {
-            error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+        }
+
+
+
+        //check if instagram handle contains '@'
+
+        if(!profile.instagram_handle.includes('@')){
+            error_object['instagram_handle'] = VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'];
         }
 
         // check if blog URL is valid, if it exists 
@@ -54,7 +81,18 @@ signup_controller.validate = async (profile) => {
             }
         }
 
-        // check if height_ift is valid 
+        //check if zipcode is valid
+        var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(profile.zip);
+        if(!isValidZip){
+            error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
+        }
+
+        //check if paypal account has '@'
+        if(!profile.paypal.includes('@')){
+            error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
+        }
+
+        // check if height_ft is valid 
         if (isNaN(parseInt(profile.height_ft)) === false) {
             if (parseInt(profile.height_ft) < 0) {
                 error_object['height_ft'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
@@ -82,13 +120,13 @@ signup_controller.validate = async (profile) => {
         }
 
         // check if bust (cup) is valid 
-        const valid_bust_cup = ['A', 'B', 'C']
+        const valid_bust_cup = ['AA', 'A', 'B', 'C', 'D', 'E (DD)', 'F (DDD)', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'];
         if (valid_bust_cup.includes(profile.bust_cup) === false || profile.bust_cup === 'Bust (cup) *') {
             error_object['bust_cup'] = VALIDATION_ERRORS['BUST_CUP_INVALID'];
         }
 
         // check if bust (band) is valid 
-        const valid_bust_band = ['Band A', 'Band B', 'Band C'];
+        const valid_bust_band = ['28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50', '52', '54', '56', '58', '60'];
         if (valid_bust_band.includes(profile.bust_band) === false || profile.bust_band === '(band) *') {
             error_object['bust_band'] = VALIDATION_ERRORS['BUST_BAND_INVALID'];
         }
@@ -102,40 +140,43 @@ signup_controller.validate = async (profile) => {
             error_object['waist'] = VALIDATION_ERRORS['WAIST_INVALID'];
         }
 
-        // check if hips is valid 
-        if (isNaN(parseInt(profile.hips)) === false) {
-            if (parseInt(profile.hips) < 0) {
-                error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
-            }
-        } else {
-            error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
-        }
 
         // check if jean size is valid 
-        const valid_jean_size = ['Extra Small (XS)', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+        const valid_jean_size = ['24', '25', '26', '27', '27', '28', '29', '30', '31', '32', '33', '34', '14 (Plus)', '16 (Plus)', '18 (Plus)',
+        '20 (Plus)', '22 (Plus)', '24 (Plus)', '26 (Plus)']
+        if (valid_jean_size.includes(profile.jean_size) === false || profile.jean_size === 'Usual Jean Size *') {
+            error_object['jean_size'] = VALIDATION_ERRORS['JEAN_SIZE_INVALID'];
+        }
         if (valid_jean_size.includes(profile.jean_size) === false || profile.jean_size === 'Usual Jean Size *') {
             error_object['jean_size'] = VALIDATION_ERRORS['JEAN_SIZE_INVALID'];
         }
 
         // check if shirt size is valid 
-        const valid_shirt_size = ['Extra Small (XS)', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+        const valid_shirt_size = [
+            'XS',
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+            'XXXL'
+        ]
         if (valid_shirt_size.includes(profile.shirt_size) === false || profile.shirt_size === 'Usual Shirt Size *') {
             error_object['shirt_size'] = VALIDATION_ERRORS['SHIRT_SIZE_INVALID'];
         }
          // check if torso length is valid 
-         const valid_torso_length = ['Short', 'Average', 'Long']
+         const valid_torso_length = ['Short', 'Regular', 'Long']
          if (valid_torso_length.includes(profile.torso_length) === false || profile.torso_length === 'Usual Torso Length *') {
              error_object['torso_length'] = VALIDATION_ERRORS['TORSO_LENGTH_INVALID'];
          }
 
         // check if leg length is valid
-        if (isNaN(parseInt(profile.leg_length)) === false) {
-            if (parseInt(profile.leg_length) < 0) {
-                error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
-            }
-        } else {
-            error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
+        const valid_leg_length = ['Petite', 'Regular', 'Tall']
+        if (valid_leg_length.includes(profile.leg_length) === false || profile.leg_length === 'Usual Torso Length *') {
+            error_object['torso_length'] = VALIDATION_ERRORS['TORSO_LENGTH_INVALID'];
         }
+
+        
         resolve(error_object); 
     });
     return await validation_promise;
@@ -150,20 +191,21 @@ signup_controller.signup = async (profile) => {
     var profiles = await profile_controller.push(
         profile.first_name,
         profile.email,
-        profile.age,
+        profile.dob,
         profile.instagram_handle,
+        profile.likeToKnowIt,
         profile.blog,
+        profile.zip,
+        profile.paypal,
         profile.height_ft,
         profile.height_in,
-        profile.weight,
-        profile.bust_cup,
         profile.bust_band,
+        profile.bust_cup,
         profile.waist,
-        profile.hips,
-        profile.jean_size,
         profile.shirt_size,
-        profile.leg_length,
-        profile.torso_length
+        profile.jean_size,
+        profile.torso_length,
+        profile.leg_length
     );
 
     await credentials_controller.push(profile.email, profile.password);

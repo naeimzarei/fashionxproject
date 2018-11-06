@@ -8,7 +8,7 @@ Create new Post based off of passed in data
 */
 post_controller.push = async (
     title,
-    date,
+    date, 
     img_url,
     clicks,
     email

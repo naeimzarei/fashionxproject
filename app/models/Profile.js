@@ -15,23 +15,35 @@ var profileSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    age: {
-        type: Number,
-        required: true,
-        min: [18, "You must be at least 18 years old to sign up."]
+    dob: {
+        type: String,
+        required: true
     },
     instagram_handle: {
         type: String,
         required: true
     },
+    likeToKnowIt: {
+        type: String,
+        required: false
+    },
     blog: {
         type: String,
         required: false
     },
+    zip: {
+        type: Number,
+        required: true
+    },
+    paypal: {
+        type: String,
+        required: true
+    },
     height_ft: {
         type: Number,
         required: true,
-        min: [0, 'Height cannot be negative.']
+        min: [0, 'Height cannot be negative.'],
+        max: [9, 'Height cannot be above 9 feet']
     },
     height_in: {
         type: Number,
@@ -39,67 +51,54 @@ var profileSchema = mongoose.Schema({
         min: [0, 'Height cannot be negative.'],
         max: [11, 'Height inches cannot exceed 11 inches.']
     },
-    weight: {
-        type: Number,
+    bust_band: {
+        type: String,
         required: true,
-        min: [0, 'Weight cannot be negative.']
+        enum: ['28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50', '52', '54', '56', '58', '60']
     },
     bust_cup: {
         type: String,
         required: true,
-        enum: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-    },
-    bust_band: {
-        type: String,
-        required: true,
-        enum: ['Band A', 'Band B', 'Band C']
+        enum: ['AA', 'A', 'B', 'C', 'D', 'E (DD)', 'F (DDD)', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']
     },
     waist: {
         type: Number,
         required: true,
-        min: [0, 'Waist cannot be negative']
-    },
-    hips: {
-        type: Number,
-        required: true,
-        min: [0, 'Hips cannot be negative.']
-    },
-    jean_size: {
-        type: String,
-        required: true,
-        enum: [
-            'Extra Small (XS)',
-            'Small (S)',
-            'Medium (M)',
-            'Large (L)',
-            'Extra Large (XL)'
-        ]
+        min: [0, 'Natural Waist cannot be negative']
     },
     shirt_size: {
         type: String,
         required: true,
         enum: [
-            'Extra Small (XS)',
-            'Small (S)',
-            'Medium (M)',
-            'Large (L)',
-            'Extra Large (XL)'
+            'XS',
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+            'XXXL'
         ]
     },
-    leg_length: {
-        type: Number,
+    jean_size: {
+        type: String,
         required: true,
-        min: [0, 'Leg length cannot be negative.']
+        enum: ['24', '25', '26', '27', '27', '28', '29', '30', '31', '32', '33', '34', '14 (Plus)', '16 (Plus)', '18 (Plus)',
+                '20 (Plus)', '22 (Plus)', '24 (Plus)', '26 (Plus)']
     },
     torso_length: {
         type: String,
         required: true,
         enum: [
             'Short',
-            'Average',
+            'Regular',
             'Long',
         ]
     },
+    leg_length: {
+        type: String,
+        required: true,
+        enum:['Petite', 'Regular', 'Long']
+    }
 });
 
 // instance methods 
@@ -111,38 +110,40 @@ Create new profile based off of passed in data
 profileSchema.statics.push = async (
     first_name,
     email,
-    age,
+    dob,
     instagram_handle,
+    likeToKnowIt,
     blog,
+    zip,
+    paypal,
     height_ft,
     height_in,
-    weight,
-    bust_cup,
     bust_band,
+    bust_cup,
     waist,
-    hips,
-    jean_size,
     shirt_size,
-    leg_length,
-    torso_length
+    jean_size,
+    torso_length,
+    leg_length
 ) => {
     var profile = new Profile({
         first_name: first_name,
         email: email,
-        age: age,
+        dob: dob,
         instagram_handle: instagram_handle,
+        likeToKnowIt: likeToKnowIt,
         blog: blog,
+        zip: zip,
+        paypal: paypal,
         height_ft: height_ft,
         height_in: height_in,
-        weight: weight,
-        bust_cup: bust_cup,
         bust_band: bust_band,
+        bust_cup: bust_cup,
         waist: waist,
-        hips: hips,
-        jean_size: jean_size,
         shirt_size: shirt_size,
-        leg_length: leg_length,
-        torso_length: torso_length
+        jean_size: jean_size,
+        torso_length: torso_length,
+        leg_length: leg_length
     });
     await profile.save();
     return profile;
@@ -179,38 +180,40 @@ profileSchema.statics.update = async (
     id,
     first_name,
     email,
-    age,
+    dob,
     instagram_handle,
+    likeToKnowIt,
     blog,
+    zip,
+    paypal,
     height_ft,
     height_in,
-    weight,
-    bust_cup,
     bust_band,
+    bust_cup,
     waist,
-    hips,
-    jean_size,
     shirt_size,
-    leg_length,
-    torso_length
+    jean_size,
+    torso_length,
+    leg_length
 ) => {
     var profile = await Profile.findByIdAndUpdate(id, {
         first_name: first_name,
         email: email,
-        age: age,
+        dob: dob,
         instagram_handle: instagram_handle,
+        likeToKnowIt: likeToKnowIt,
         blog: blog,
+        zip: zip,
+        paypal: paypal,
         height_ft: height_ft,
         height_in: height_in,
-        weight: weight,
-        bust_cup: bust_cup,
         bust_band: bust_band,
+        bust_cup: bust_cup,
         waist: waist,
-        hips: hips,
-        jean_size: jean_size,
         shirt_size: shirt_size,
-        leg_length: leg_length,
-        torso_length: torso_length
+        jean_size: jean_size,
+        torso_length: torso_length,
+        leg_length: leg_length
     });
     return profile;
 };
@@ -218,38 +221,40 @@ profileSchema.statics.update = async (
 profileSchema.statics.updateProfile = async (
     first_name,
     email,
-    age,
+    dob,
     instagram_handle,
+    likeToKnowIt,
     blog,
+    zip,
+    paypal,
     height_ft,
     height_in,
-    weight,
-    bust_cup,
     bust_band,
+    bust_cup,
     waist,
-    hips,
-    jean_size,
     shirt_size,
-    leg_length,
-    torso_length
+    jean_size,
+    torso_length,
+    leg_length
 ) => {
     var profile = await Profile.findOneAndUpdate({email: email}, {
         first_name: first_name,
         email: email,
-        age: age,
+        dob: dob,
         instagram_handle: instagram_handle,
+        likeToKnowIt: likeToKnowIt,
         blog: blog,
+        zip: zip,
+        paypal: paypal,
         height_ft: height_ft,
         height_in: height_in,
-        weight: weight,
-        bust_cup: bust_cup,
         bust_band: bust_band,
+        bust_cup: bust_cup,
         waist: waist,
-        hips: hips,
-        jean_size: jean_size,
         shirt_size: shirt_size,
-        leg_length: leg_length,
-        torso_length: torso_length
+        jean_size: jean_size,
+        torso_length: torso_length,
+        leg_length: leg_length
     });
     return profile;
 };
