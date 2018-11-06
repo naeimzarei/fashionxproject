@@ -46,6 +46,23 @@
                 </div>
             </div>
         </form>
+        <script>
+            //Description text box will 
+            $(function(){
+    
+                $('#descriptionArea').data('holder',$('#descriptionArea').attr('placeholder'));
+    
+                $('#descriptionArea').focusin(function(){
+                $(this).attr('placeholder','');
+                });
+                $('#descriptionArea').focusout(function(){
+                    $(this).attr('placeholder',$(this).data('holder'));
+                });
+    
+    
+            })
+            
+            </script>
 
         <% include ../../partials/footer %>
     </body>
