@@ -8,74 +8,35 @@
 
         <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
             <div class="container text-center monospace-font pb-3 mt-5">
-                <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='occasion' class='form-control col-sm-2 border-pink' multiple size = "5" required>
-                        <%- include('../../partials/option', {value: 'Occasion *', placeholder: 'Occasion *', name: 'occasion', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'occasion'}) %>
-                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'occasion'}) %>
-                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'occasion'}) %>
-                    </select>
-                    *Can select more than one occasion <br> (Command-Click on Mac or Ctrl-Click on Windows)
-                    
-                </div>
                 <!-- first set-->
 
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='item' class='form-control col-sm-2 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Item *', placeholder: 'Item *', name: 'item', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'item'}) %>
-                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'item'}) %>
-                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'item'}) %>
-                    </select>
-                    <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true}) %>
-                    <%- include('../../partials/input', {name: 'product_link', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Product Link *', min: '', max: '', required: true}) %>
+                        <!-- <select name='type' class='form-control col-sm-2 border-pink' required>
+                                <%- include('../../partials/option', {value: 'Type *', placeholder: 'Type *', name: 'type', disabled: "disabled"}) %>
+                                <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'type'}) %>
+                                <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'type'}) %>
+                            </select> -->
                     
-                    <select name='price' class='form-control col-2 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Price *', placeholder: 'Price *', name: 'price', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'Range A', placeholder: 'Range A', name: 'price'}) %>
-                        <%- include('../../partials/option', {value: 'Range B', placeholder: 'Range B', name: 'price'}) %>
-                        <%- include('../../partials/option', {value: 'Range C', placeholder: 'Range C', name: 'price'}) %>
+                    <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true}) %>
+                            
+                    <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'selling-price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Selling Price *', min: 0, max: '', required: true}) %>
+                    <%- include('../../partials/input', {name: 'original-price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true}) %>
+                    
+                    <select name='condition' class='form-control col-sm-2 border-pink' required>
+                            <%- include('../../partials/option', {value: 'Condition *', placeholder: 'Condition *', name: 'type', disabled: "disabled"}) %>
+                            <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition'}) %>
+                            <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition'}) %>
+                            <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition'}) %>
+                            <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition'}) %>
+                            <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition'}) %>
+                            
                     </select>
+                    <br>
+                    <textarea name="description" form="submit-pic-form" class = 'form-control border-pink' id = "descriptionArea" placeholder = "Enter description here... (optional)"></textarea>                    
                 </div>
             
-                <!-- second set-->          
-                <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='item' class='form-control col-sm-2 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Item *', placeholder: 'Item *', name: 'item', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'item'}) %>
-                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'item'}) %>
-                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'item'}) %>
-                    </select>
-                    <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true}) %>
-                    <%- include('../../partials/input', {name: 'product_link', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Product Link *', min: '', max: '', required: true}) %>
-                    
-                    <select name='price' class='form-control col-2 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Price *', placeholder: 'Price *', name: 'price', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'Range A', placeholder: 'Range A', name: 'price'}) %>
-                        <%- include('../../partials/option', {value: 'Range B', placeholder: 'Range B', name: 'price'}) %>
-                        <%- include('../../partials/option', {value: 'Range C', placeholder: 'Range C', name: 'price'}) %>
-                    </select>
-                </div>
-
-                <!-- third set-->
-                <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='item' class='form-control col-sm-2 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Item *', placeholder: 'Item *', name: 'item', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'item'}) %>
-                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'item'}) %>
-                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'item'}) %>
-                    </select>
-                    <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true}) %>
-                    <%- include('../../partials/input', {name: 'product_link', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Product Link *', min: '', max: '', required: true}) %>
-                    
-                    <select name='price' class='form-control col-2 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Price *', placeholder: 'Price *', name: 'price', disabled: "disabled"}) %>
-                        <%- include('../../partials/option', {value: 'Range A', placeholder: 'Range A', name: 'price'}) %>
-                        <%- include('../../partials/option', {value: 'Range B', placeholder: 'Range B', name: 'price'}) %>
-                        <%- include('../../partials/option', {value: 'Range C', placeholder: 'Range C', name: 'price'}) %>
-                    </select>
-                </div>
-
                 <div class='form-group form-inline pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true}) %>
                 </div>
@@ -85,10 +46,6 @@
                 </div>
             </div>
         </form>
-        <script>
-
-            
-            </script>
 
         <% include ../../partials/footer %>
     </body>

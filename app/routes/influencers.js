@@ -37,7 +37,7 @@ const upload = multer({
             cb(null, req.user.email + '/' + Date.now() + '-' + file.originalname);
         }
     })
-}).array('photo-upload', 10); // 10 species 10 max photos can be uploaded at a time
+}).array('photo-upload', 10); // 10 specifies 10 max photos can be uploaded at a time
 
 /**
  * Loads the login page once the user selects "influencer" on landing page.
