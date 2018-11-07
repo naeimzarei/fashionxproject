@@ -30,7 +30,8 @@
                             
                     </select>
                     <br>
-                    <textarea name="description" form="submit-pic-form" class = 'form-control border-pink' id = "descriptionArea" placeholder = "Enter description here... (optional)"></textarea>                    
+                    <textarea name="description" form="submit-pic-form" class = 'form-control border-pink desc' placeholder = "Enter description here... (optional)"></textarea>  
+                    <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
                 </div>
                 </div>
             
@@ -38,9 +39,7 @@
                     <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                        <button class="btn btn-pink btn-primary text-center" onclick="appendFormFields(true)" id = "addRow">Add Row</button>
-                        <button class="btn btn-pink btn-primary text-center" onclick="appendFormFields(false)" id = "deleteRow"hidden>Delete Row</button>
-                        
+                    <button class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
                 </div>
                 
                 <div class='form-group form-inline pl-3 pr-3'>
@@ -52,12 +51,12 @@
             //Description text box will populate placeholder when out of focus.
             $(function(){
     
-                $('#descriptionArea').data('holder',$('#descriptionArea').attr('placeholder'));
+                $('.desc').data('holder',$('.desc').attr('placeholder'));
     
-                $('#descriptionArea').focusin(function(){
+                $('.desc').focusin(function(){
                 $(this).attr('placeholder','');
                 });
-                $('#descriptionArea').focusout(function(){
+                $('.desc').focusout(function(){
                     $(this).attr('placeholder',$(this).data('holder'));
                 });
     
@@ -65,23 +64,20 @@
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
             //Takes in boolean to denote whether its an add or drop operation
-            var num = 1;
-            function appendFormFields(add){
+            var num;
+            var last;
+
+            function appendFormFields(){
                 var fields = document.querySelector('#fieldsDiv');
 
-                if(add){
-                    num ++;
-                    document.getElementById('formFieldsDiv').appendChild(fields.cloneNode(true));
-                }else{
+                last = fields.cloneNode(true)
+                document.getElementById('formFieldsDiv').appendChild(last);
+                $('#formFieldsDiv button').show();
+                
+            }
 
-                }
-
-                //hide or show the delete button depending how many rows are created
-                if(num >= 2){
-                    $('#deleteRow').show();
-                }else{
-                    $('#deleteRow').hide();
-                }
+            function deleteRow(){
+                $(this).parent().remove();
             }
 
             
