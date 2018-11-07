@@ -9,6 +9,9 @@
             <form id='signup-form' class='bg-grey' action='/influencers/signup' method='post'>
                 <div class='form-group pt-3 pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: ''}) %>
+                </div>                
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class="form-group pl-3 pr-3 mb-3">
                     <span id='showPassCheckbox' class='hover text-center align-middle mt-2 text-pink' style='position: absolute; right: 3em;' onclick='showPass()'>
@@ -20,10 +23,6 @@
                         // Must have script here or it will cause some issues. Hides password help during refresh.
                         $('#passHelp').hide();
                     </script>
-                </div>
-                
-                <div class='form-group pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'dob', classes: 'form-control border-pink', type: 'month', id: '', placeholder: 'Date of Birth *', min: '', max: '', required: true, value: ''}) %>
@@ -49,25 +48,6 @@
                     <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: ''}) %>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='bust_band' class='form-control col-6 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Bust (band) *', placeholder: 'Bust (band) *', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '28', placeholder: '28', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '30', placeholder: '32', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '34', placeholder: '34', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '36', placeholder: '36', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '38', placeholder: '38', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '40', placeholder: '40', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '42', placeholder: '42', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '44', placeholder: '44', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '46', placeholder: '46', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '48', placeholder: '48', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '50', placeholder: '50', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '52', placeholder: '52', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '54', placeholder: '54', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '56', placeholder: '56', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '58', placeholder: '58', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: '60', placeholder: '60', name: 'bust_band', selected: false}) %>
-                    </select>
                     <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
                             <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup', selected: false}) %>
                             <%- include('../../partials/option', {value: 'AA', placeholder: 'AA', name: 'bust_cup', selected: false}) %>
@@ -86,8 +66,26 @@
                             <%- include('../../partials/option', {value: 'M', placeholder: 'M', name: 'bust_cup', selected: false}) %>
                             <%- include('../../partials/option', {value: 'N', placeholder: 'N', name: 'bust_cup', selected: false}) %>
                             <%- include('../../partials/option', {value: 'O', placeholder: 'O', name: 'bust_cup', selected: false}) %>
- 
                     </select>
+                    <select name='bust_band' class='form-control col-6 border-pink' required>
+                            <%- include('../../partials/option', {value: 'Bust (band) *', placeholder: 'Bust (band) *', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '28', placeholder: '28', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '30', placeholder: '32', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '34', placeholder: '34', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '36', placeholder: '36', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '38', placeholder: '38', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '40', placeholder: '40', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '42', placeholder: '42', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '44', placeholder: '44', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '46', placeholder: '46', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '48', placeholder: '48', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '50', placeholder: '50', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '52', placeholder: '52', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '54', placeholder: '54', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '56', placeholder: '56', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '58', placeholder: '58', name: 'bust_band', selected: false}) %>
+                            <%- include('../../partials/option', {value: '60', placeholder: '60', name: 'bust_band', selected: false}) %>
+                        </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Natural Waist (in) *', min: '0', max: '', required: true, value: ''}) %>

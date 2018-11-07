@@ -42,8 +42,7 @@ var profileSchema = mongoose.Schema({
     height_ft: {
         type: Number,
         required: true,
-        min: [0, 'Height cannot be negative.'],
-        max: [9, 'Height cannot be above 9 feet']
+        min: [0, 'Height cannot be negative.']
     },
     height_in: {
         type: Number,

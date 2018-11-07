@@ -3,112 +3,26 @@ var util = require('../../util/util');
 
 const VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
-var invalid_dummy_profile = {
+var valid_dummy_profile = {
     first_name: 'Emily',
-    password: 'password',
-    email: 'fakeemailnobodyeverusesanymore@gmail.com',
-    age: 17,
-    instagram_handle: 'handle',
-    blog: 'blog',
-    height_ft: '-5',
-    height_in: '-5',
-    weight: '-15',
-    bust_cup: 'Bust C',
-    bust_band: 'A',
-    waist: -4,
-    hips: -4,
-    jean_size: 'short',
-    shirt_size: 'medium',
-    leg_length: -4,
-    torso_length: 'Short'
-}
-
-var invalid_type_dummy_profile = {
-    first_name: '4',
-    password: 'Password1',
-    email: 'fakeemailnobodyeverusesanymore@gmail.com',
-    age: '18',
-    instagram_handle: 4,
-    blog: 4,
-    height_ft: '5',
-    height_in: '5',
-    weight: '155',
-    bust_cup: 3,
-    bust_band: 4,
-    waist: '5',
-    hips: '5',
-    jean_size: 'Medium (M)',
-    shirt_size: 'Medium (M)',
-    leg_length: '5',
-    torso_length: 'Long'
-}
-
-valid_dummy_profile = {
-    first_name: 'Emily',
-    password: 'Password1',
-    email: 'fakeemailnobodyeverusesanymore@gmail.com',
-    age: '18',
-    instagram_handle: 'handle',
-    blog: 'blog.com',
+    email: 'fakemailnobodyeverusesanymore@gmail.com',
+    dob: '2018-11',
+    instagram_handle: '@handle',
+    zip: '74383',
+    paypal: '@fake',
     height_ft: '5',
     height_in: '11',
-    weight: '155',
-    bust_cup: 'C',
-    bust_band: 'Band B',
+    bust_cup: 'G',
+    bust_band: '40',
     waist: '33',
-    hips: '33',
-    jean_size: 'Medium (M)',
-    shirt_size: 'Medium (M)',
-    leg_length: '33',
-    torso_length: 'Average'
+    shirt_size: 'M',
+    jean_size: '30',
+    torso_length: 'Regular',
+    leg_length: 'Petite'
 }
 
-test('should give error when incorrect profile information is given', async () => {
-    var result = await signup_controller.validate(invalid_dummy_profile)
-
-    expect(result.password).toEqual(VALIDATION_ERRORS['PASSWORD_INVALID'])
-    expect(result.age).toEqual(VALIDATION_ERRORS['AGE_INVALID'])
-    expect(result.blog).toEqual(VALIDATION_ERRORS['BLOG_INVALID'])
-    expect(result.height_ft).toEqual(VALIDATION_ERRORS['HEIGHT_FT_INVALID'])
-    expect(result.height_in).toEqual(VALIDATION_ERRORS['HEIGHT_IN_INVALID'])
-    expect(result.bust_cup).toEqual(VALIDATION_ERRORS['BUST_CUP_INVALID'])
-    expect(result.bust_band).toEqual(VALIDATION_ERRORS['BUST_BAND_INVALID'])
-    expect(result.waist).toEqual(VALIDATION_ERRORS['WAIST_INVALID'])
-    expect(result.hips).toEqual(VALIDATION_ERRORS['HIPS_INVALID'])
-    expect(result.jean_size).toEqual(VALIDATION_ERRORS['JEAN_SIZE_INVALID'])
-    expect(result.shirt_size).toEqual(VALIDATION_ERRORS['SHIRT_SIZE_INVALID'])
-    expect(result.leg_length).toEqual(VALIDATION_ERRORS['LEG_LENGTH_INVALID'])
-    expect(result.torso_length).toEqual(VALIDATION_ERRORS['TORSO_LENGTH_INVALID'])
-})
-
-test('should give error when incorrect data type is passed', async () => {
-    var result = await signup_controller.validate(invalid_type_dummy_profile);
-
-    expect(result.first_name).toEqual(VALIDATION_ERRORS['FIRST_NAME_INVALID'])
-    expect(result.blog).toEqual(VALIDATION_ERRORS['BLOG_INVALID'])
-    expect(result.bust_cup).toEqual(VALIDATION_ERRORS['BUST_CUP_INVALID'])
-    expect(result.bust_band).toEqual(VALIDATION_ERRORS['BUST_BAND_INVALID'])
-})
-
-test('should not give error when correct profile information is given', async () => {
-    var result = await signup_controller.validate(valid_dummy_profile)
-    expect(result.password).toBeUndefined()
-    expect(result.age).toBeUndefined()
-    expect(result.blog).toBeUndefined()
-    expect(result.height_ft).toBeUndefined()
-    expect(result.height_in).toBeUndefined()
-    expect(result.bust_cup).toBeUndefined()
-    expect(result.bust_band).toBeUndefined()
-    expect(result.waist).toBeUndefined()
-    expect(result.hips).toBeUndefined()
-    expect(result.jean_size).toBeUndefined()
-    expect(result.shirt_size).toBeUndefined()
-    expect(result.leg_length).toBeUndefined()
-    expect(result.torso_length).toBeUndefined()
-})
-
 test('check first name validation', async () => {
-    var result;
+    var result
     var clone = Object.assign({}, valid_dummy_profile)
     clone.first_name = '4'
     result = await signup_controller.validate(clone)
@@ -128,6 +42,26 @@ test('check first name validation', async () => {
     clone.first_name = '4Ap4ple4'
     result = await signup_controller.validate(clone)
     expect(result.first_name).toEqual(VALIDATION_ERRORS['FIRST_NAME_INVALID'])
+})
+
+test('check email validation', async () => {
+    var result;
+    var clone = Object.assign({}, valid_dummy_profile)
+    clone.email = 'email@gmail.com'
+    result = await signup_controller.validate(clone)
+    expect(result.email).toBeUndefined()
+    clone.email = 'email@@gmail.com'
+    result = await signup_controller.validate(clone)
+    expect(result.email).toEqual(VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'])
+    clone.email = 'email@email.com'
+    result = await signup_controller.validate(clone)
+    expect(result.email).toBeUndefined();
+    clone.email = 'email@gmail.domain.com'
+    result = await signup_controller.validate(clone)
+    expect(result.email).toBeUndefined();
+    clone.email = 'email@gmail'
+    result = await signup_controller.validate(clone)
+    expect(result.email).toEqual(VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'])
 })
 
 test('check password validation', async () => {
@@ -165,73 +99,52 @@ test('check password validation', async () => {
     expect(result.password).toEqual(VALIDATION_ERRORS['PASSWORD_INVALID'])
 })
 
-test('check email validation', async () => {
+// do not remove. must be implemented later ...
+test('test date of birth validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.email = 'email@gmail.com'
+    clone.dob = valid_dummy_profile.dob
     result = await signup_controller.validate(clone)
-    expect(result.email).toBeUndefined()
-    clone.email = 'email@@gmail.com'
-    result = await signup_controller.validate(clone)
-    expect(result.email).toEqual(VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'])
-    clone.email = 'email@email.com'
-    result = await signup_controller.validate(clone)
-    expect(result.email).toBeUndefined();
-    clone.email = 'email@gmail.domain.com'
-    result = await signup_controller.validate(clone)
-    expect(result.email).toBeUndefined();
-    clone.email = 'email@gmail'
-    result = await signup_controller.validate(clone)
-    expect(result.email).toEqual(VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'])
+    expect(result.dob).toBeUndefined()
+    // clone.dob = 'May 44, 2018'
+    // result = await signup_controller.validate(clone)
+    // expect(result.dob).toEqual(VALIDATION_ERRORS['AGE_INVALID'])
 })
 
-test('check age validation', async () => {
+test('check instagram validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.age = 'age'
+    clone.instagram_handle = 'handle'
     result = await signup_controller.validate(clone)
-    expect(result.age).toEqual(VALIDATION_ERRORS['AGE_INVALID'])
-    clone.age = '0'
+    expect(result.instagram_handle).toEqual(VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'])
+    clone.instagram_handle = '@handle'
     result = await signup_controller.validate(clone)
-    expect(result.age).toEqual(VALIDATION_ERRORS['AGE_INVALID'])
-    clone.age = '17'
-    result = await signup_controller.validate(clone)
-    expect(result.age).toEqual(VALIDATION_ERRORS['AGE_INVALID'])
-    clone.age = '18'
-    result = await signup_controller.validate(clone)
-    expect(result.age).toBeUndefined()
-    clone.age = '19'
-    result = await signup_controller.validate(clone)
-    expect(result.age).toBeUndefined()
-    clone.age = '-1'
-    result = await signup_controller.validate(clone)
-    expect(result.age).toEqual(VALIDATION_ERRORS['AGE_INVALID'])
+    expect(result.instagram_handle).toBeUndefined()
 })
 
-test('check blog validation', async () => {
+test('check zip validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.blog = 'blog'
+    clone.zip = 'ABCDE'
     result = await signup_controller.validate(clone)
-    expect(result.blog).toEqual(VALIDATION_ERRORS['BLOG_INVALID'])
-    clone.blog = 'blog.com'
+    expect(result.zip).toEqual(VALIDATION_ERRORS['ZIP_INVALID'])
+    clone.zip = '77417'
     result = await signup_controller.validate(clone)
-    expect(result.blog).toBeUndefined()
-    clone.blog = 'blog-it.com'
+    expect(result.zip).toBeUndefined()
+    clone.zip = '774174'
     result = await signup_controller.validate(clone)
-    expect(result.blog).toBeUndefined()
-    clone.blog = 'http://localhost.com/blogs'
+    expect(result.zip).toEqual(VALIDATION_ERRORS['ZIP_INVALID'])
+})
+
+test('check paypal validation', async () => {
+    var result;
+    var clone = Object.assign({}, valid_dummy_profile)
+    clone.paypal = 'fake'
     result = await signup_controller.validate(clone)
-    expect(result.blog).toBeUndefined()
-    clone.blog = 'https://localhost.com/blogs'
+    expect(result.paypal).toEqual(VALIDATION_ERRORS['PAYPAL_INVALID'])
+    clone.paypal = '@fake'
     result = await signup_controller.validate(clone)
-    expect(result.blog).toBeUndefined()
-    clone.blog = 'www.blog.com'
-    result = await signup_controller.validate(clone)
-    expect(result.blog).toBeUndefined()
-    clone.blog = 'http://wwww.blog.com'
-    result = await signup_controller.validate(clone)
-    expect(result.blog).toBeUndefined()
+    expect(result.paypal).toBeUndefined()
 })
 
 test('check height_ft validation', async () => {
@@ -271,61 +184,26 @@ test('check height_in validation', async () => {
     expect(result.height_in).toBeUndefined()
 })
 
-test('check weight validation', async () => {
-    var result;
-    var clone = Object.assign({}, valid_dummy_profile)
-    clone.weight = 'weight'
-    result = await signup_controller.validate(clone)
-    expect(result.weight).toEqual(VALIDATION_ERRORS['WEIGHT_INVALID'])
-    clone.weight = '-5'
-    result = await signup_controller.validate(clone)
-    expect(result.weight).toEqual(VALIDATION_ERRORS['WEIGHT_INVALID'])
-    clone.weight = '0'
-    result = await signup_controller.validate(clone)
-    expect(result.weight).toBeUndefined()
-    clone.weight = '5'
-    result = await signup_controller.validate(clone)
-    expect(result.weight).toBeUndefined()
-})
-
 test('check bust_cup validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.bust_cup = 'bust_cup'
+    clone.bust_cup = 'Z'
     result = await signup_controller.validate(clone)
     expect(result.bust_cup).toEqual(VALIDATION_ERRORS['BUST_CUP_INVALID'])
-    clone.bust_cup = 'A'
+    clone.bust_cup = 'E (DD)'
     result = await signup_controller.validate(clone)
     expect(result.bust_cup).toBeUndefined()
-    clone.bust_cup = 'B'
-    result = await signup_controller.validate(clone)
-    expect(result.bust_cup).toBeUndefined()
-    clone.bust_cup = 'C'
-    result = await signup_controller.validate(clone)
-    expect(result.bust_cup).toBeUndefined()
-    clone.bust_cup = 'D'
-    result = await signup_controller.validate(clone)
-    expect(result.bust_cup).toEqual(VALIDATION_ERRORS['BUST_CUP_INVALID'])
 })
 
 test('check bust_band validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.bust_band = 'bust_band'
+    clone.bust_band = '70'
     result = await signup_controller.validate(clone)
     expect(result.bust_band).toEqual(VALIDATION_ERRORS['BUST_BAND_INVALID'])
-    clone.bust_band = 'Band A'
+    clone.bust_band = '60'
     result = await signup_controller.validate(clone)
     expect(result.bust_band).toBeUndefined()
-    clone.bust_band = 'Band B'
-    result = await signup_controller.validate(clone)
-    expect(result.bust_band).toBeUndefined()
-    clone.bust_band = 'Band C'
-    result = await signup_controller.validate(clone)
-    expect(result.bust_band).toBeUndefined()
-    clone.bust_band = 'Band D'
-    result = await signup_controller.validate(clone)
-    expect(result.bust_band).toEqual(VALIDATION_ERRORS['BUST_BAND_INVALID'])
 })
 
 test('check waist validation', async () => {
@@ -345,71 +223,46 @@ test('check waist validation', async () => {
     expect(result.waist).toBeUndefined()
 })
 
-test('check hips validation', async () => {
+test('check shirt_size validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.hips = 'hips'
+    clone.shirt_size = 'XXXL'
     result = await signup_controller.validate(clone)
-    expect(result.hips).toEqual(VALIDATION_ERRORS['HIPS_INVALID'])
-    clone.hips = '-5'
+    expect(result.shirt_size).toBeUndefined()
+    clone.shirt_size = 'XXXXL'
     result = await signup_controller.validate(clone)
-    expect(result.hips).toEqual(VALIDATION_ERRORS['HIPS_INVALID'])
-    clone.hips = '0'
-    result = await signup_controller.validate(clone)
-    expect(result.hips).toBeUndefined()
-    clone.hips = '5'
-    result = await signup_controller.validate(clone)
-    expect(result.hips).toBeUndefined()
+    expect(result.shirt_size).toEqual(VALIDATION_ERRORS['SHIRT_SIZE_INVALID'])
 })
 
 test('check jean_size validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.jean_size = 'jean_size'
+    clone.jean_size = '28 (Plus)'
     result = await signup_controller.validate(clone)
     expect(result.jean_size).toEqual(VALIDATION_ERRORS['JEAN_SIZE_INVALID'])
-    clone.jean_size = 'medium'
-    result = await signup_controller.validate(clone)
-    expect(result.jean_size).toEqual(VALIDATION_ERRORS['JEAN_SIZE_INVALID'])
-    clone.jean_size = 'Extra Small (XS)'
-    result = await signup_controller.validate(clone)
-    expect(result.jean_size).toBeUndefined()
-    clone.jean_size = 'Small (S)'
-    result = await signup_controller.validate(clone)
-    expect(result.jean_size).toBeUndefined()
-    clone.jean_size = 'Medium (M)'
-    result = await signup_controller.validate(clone)
-    expect(result.jean_size).toBeUndefined()
-    clone.jean_size = 'Large (L)'
-    result = await signup_controller.validate(clone)
-    expect(result.jean_size).toBeUndefined()
-    clone.jean_size = 'Extra Large (XL)'
+    clone.jean_size = '26 (Plus)'
     result = await signup_controller.validate(clone)
     expect(result.jean_size).toBeUndefined()
 })
 
-test('check shirt_size validation', async () => {
+test('check torso_length validation', async () => {
     var result;
     var clone = Object.assign({}, valid_dummy_profile)
-    clone.shirt_size = 'shirt_size'
+    clone.torso_length = 'Invalid'
     result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toEqual(VALIDATION_ERRORS['SHIRT_SIZE_INVALID'])
-    clone.shirt_size = 'medium'
+    expect(result.torso_length).toEqual(VALIDATION_ERRORS['TORSO_LENGTH_INVALID'])
+    clone.torso_length = 'Regular'
     result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toEqual(VALIDATION_ERRORS['SHIRT_SIZE_INVALID'])
-    clone.shirt_size = 'Extra Small (XS)'
+    expect(result.torso_length).toBeUndefined()
+})
+
+test('check leg_length validation', async () => {
+    var result;
+    var clone = Object.assign({}, valid_dummy_profile)
+    clone.leg_length = 'Invalid'
     result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toBeUndefined()
-    clone.shirt_size = 'Small (S)'
+    expect(result.leg_length).toEqual(VALIDATION_ERRORS['LEG_LENGTH_INVALID'])
+    clone.leg_length = 'Tall'
     result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toBeUndefined()
-    clone.shirt_size = 'Medium (M)'
-    result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toBeUndefined()
-    clone.shirt_size = 'Large (L)'
-    result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toBeUndefined()
-    clone.shirt_size = 'Extra Large (XL)'
-    result = await signup_controller.validate(clone)
-    expect(result.shirt_size).toBeUndefined()
+    expect(result.leg_length).toBeUndefined()
 })

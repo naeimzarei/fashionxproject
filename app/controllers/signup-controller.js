@@ -38,18 +38,7 @@ signup_controller.validate = async (profile) => {
             error_object['email'] = VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'];
         }
 
-        // check if age is valid
-
-        // if (isNaN(parseInt(profile.age)) === false) {
-        //     if (parseInt(profile.age) < 18) {
-        //         error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
-        //     }
-        // } else {
-        //     error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
-            
-        // }
         var d = new Date();
-        console.log(typeof(profile.dob))
         var mo = parseInt(d.getMonth());
         var yr = parseInt(d.getFullYear());
         var inputDob = profile.dob.split('-');
@@ -66,10 +55,7 @@ signup_controller.validate = async (profile) => {
             }
         }
 
-
-
         //check if instagram handle contains '@'
-
         if(!profile.instagram_handle.includes('@')){
             error_object['instagram_handle'] = VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'];
         }
@@ -164,7 +150,7 @@ signup_controller.validate = async (profile) => {
         // check if leg length is valid
         const valid_leg_length = ['Petite', 'Regular', 'Tall']
         if (valid_leg_length.includes(profile.leg_length) === false || profile.leg_length === 'Usual Torso Length *') {
-            error_object['torso_length'] = VALIDATION_ERRORS['TORSO_LENGTH_INVALID'];
+            error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
         }
 
         
