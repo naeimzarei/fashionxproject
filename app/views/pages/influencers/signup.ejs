@@ -26,72 +26,125 @@
                     <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'age', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Age *', min: 18, max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'dob', classes: 'form-control border-pink', type: 'month', id: '', placeholder: 'Date of Birth *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'instagram_handle', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Instagram Handle *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
+                        <%- include('../../partials/input', {name: 'likeToKnowIt', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Liketoknowit Profile URL', min: '', max: '', required: false, value: ''}) %>
+                </div>
+                
+                <div class='form-group pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'blog', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Blog', min: '', max: '', required: false, value: ''}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                        <%- include('../../partials/input', {name: 'zip', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Zip Code *', min: '', max: '', required: true, value: ''}) %>
+                    </div>
+                <div class='form-group pl-3 pr-3'>
+                     <%- include('../../partials/input', {name: 'paypal', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Paypal Account *', min: '', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true, value: ''}) %>
                     <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: ''}) %>
                 </div>
-                <div class='form-group pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'weight', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Weight (lbs) *', min: '1', max: '', required: true, value: ''}) %>
-                </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
-                        <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'bust_cup', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'bust_cup', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'bust_cup', selected: false}) %>
-                    </select>
                     <select name='bust_band' class='form-control col-6 border-pink' required>
-                        <%- include('../../partials/option', {value: '(band) *', placeholder: '(band) *', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Band A', placeholder: 'Band A', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Band B', placeholder: 'Band B', name: 'bust_band', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Band C', placeholder: 'Band C', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'Bust (band) *', placeholder: 'Bust (band) *', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '28', placeholder: '28', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '30', placeholder: '32', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '34', placeholder: '34', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '36', placeholder: '36', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '38', placeholder: '38', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '40', placeholder: '40', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '42', placeholder: '42', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '44', placeholder: '44', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '46', placeholder: '46', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '48', placeholder: '48', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '50', placeholder: '50', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '52', placeholder: '52', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '54', placeholder: '54', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '56', placeholder: '56', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '58', placeholder: '58', name: 'bust_band', selected: false}) %>
+                        <%- include('../../partials/option', {value: '60', placeholder: '60', name: 'bust_band', selected: false}) %>
+                    </select>
+                    <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
+                            <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'AA', placeholder: 'AA', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'B', placeholder: 'B', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'C', placeholder: 'C', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'D', placeholder: 'D', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'E (DD)', placeholder: 'E (DD)', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'F (DDD)', placeholder: 'F (DDD)', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'G', placeholder: 'G', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'H', placeholder: 'H', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'I', placeholder: 'I', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'J', placeholder: 'J', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'K', placeholder: 'K', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'L', placeholder: 'L', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'M', placeholder: 'M', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'N', placeholder: 'N', name: 'bust_cup', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'O', placeholder: 'O', name: 'bust_cup', selected: false}) %>
+ 
                     </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Waist (in) *', min: '0', max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Natural Waist (in) *', min: '0', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'hips', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Hips (in) *', min: '0', max: '', required: true, value: ''}) %>
+                    <select name='shirt_size' class='form-control border-pink' rqeuired>
+                        <%- include('../../partials/option', {value: 'Usual Jean Size *', placeholder: 'Usual Shirt Size *', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'XS', placeholder: 'XS', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'S', placeholder: 'S', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'M', placeholder: 'M', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'L', placeholder: 'L', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'XL', placeholder: 'XL', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'XXL', placeholder: 'XXL', name: 'shirt_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: 'XXXL', placeholder: 'XXXL', name: 'shirt_size', selected: false}) %>
+                        
+                    </select>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                    <select name='jean_size' class='form-control border-pink' rqeuired>
+                    <select name='jean_size' class='form-control border-pink' required>
                         <%- include('../../partials/option', {value: 'Usual Jean Size *', placeholder: 'Usual Jean Size *', name: 'jean_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Extra Small (XS)', placeholder: 'Extra Small (XS)', name: 'jean_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Small (S)', placeholder: 'Small (S)', name: 'jean_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Medium (M)', placeholder: 'Medium (M)', name: 'jean_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Large (L)', placeholder: 'Large (L)', name: 'jean_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Extra Large (XL)', placeholder: 'Extra Large (XL)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '24', placeholder: '24', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '25', placeholder: '25', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '26', placeholder: '26', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '27', placeholder: '27', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '28', placeholder: '28', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '29', placeholder: '29', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '30', placeholder: '30', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '31', placeholder: '31', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '32', placeholder: '32', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '33', placeholder: '33', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '34', placeholder: '34', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '14 (Plus)', placeholder: '14 (Plus)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '16 (Plus)', placeholder: '16 (Plus)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '18 (Plus)', placeholder: '18 (Plus)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '20 (Plus)', placeholder: '20 (Plus)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '22 (Plus)', placeholder: '22 (Plus)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '24 (Plus)', placeholder: '24 (Plus)', name: 'jean_size', selected: false}) %>
+                        <%- include('../../partials/option', {value: '26 (Plus)', placeholder: '26 (Plus)', name: 'jean_size', selected: false}) %>
+                        
                     </select>
-                </div>
-                <div class='form-group pl-3 pr-3'>
-                    <select name='shirt_size' class='form-control border-pink' required>
-                        <%- include('../../partials/option', {value: 'Usual Shirt Size *', placeholder: 'Usual Shirt Size *', name: 'shirt_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Extra Small (XS)', placeholder: 'Extra Small (XS)', name: 'shirt_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Small (S)', placeholder: 'Small (S)', name: 'shirt_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Medium (M)', placeholder: 'Medium (M)', name: 'shirt_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Large (L)', placeholder: 'Large (L)', name: 'shirt_size', selected: false}) %>
-                        <%- include('../../partials/option', {value: 'Extra Large (XL)', placeholder: 'Extra Large (XL)', name: 'shirt_size', selected: false}) %>
-                    </select>
-                </div>
-                <div class='form-group pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'leg_length', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Leg Length *', min: '0', max: '', required: true, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
                         <select name='torso_length' class='form-control border-pink' rqeuired>
                                 <%- include('../../partials/option', {value: 'Usual Torso Length *', placeholder: 'Usual Torso Length *', name: 'torso_length', selected: false}) %>                                
                             <%- include('../../partials/option', {value: 'Short', placeholder: 'Short', name: 'torso_length', selected: false}) %>
-                            <%- include('../../partials/option', {value: 'Average', placeholder: 'Average', name: 'torso_length', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Regular', placeholder: 'Regular', name: 'torso_length', selected: false}) %>
                             <%- include('../../partials/option', {value: 'Long', placeholder: 'Long', name: 'torso_length', selected: false}) %>
                         </select>
-                    </div>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                        <select name='leg_length' class='form-control border-pink' rqeuired>
+                                <%- include('../../partials/option', {value: 'Usual Leg Length *', placeholder: 'Usual Leg Length *', name: 'leg_length', selected: false}) %>                                
+                            <%- include('../../partials/option', {value: 'Petite', placeholder: 'Petite', name: 'leg_length', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Regular', placeholder: 'Regular', name: 'leg_length', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Tall', placeholder: 'Tall', name: 'leg_length', selected: false}) %>
+                        </select>                
+                </div>
                 
                 <div class='form-group bg-white' id = "end-signup">
                         <label class = "form-check-label text muted">
