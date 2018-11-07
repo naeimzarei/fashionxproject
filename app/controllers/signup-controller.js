@@ -111,13 +111,13 @@ signup_controller.validate = async (profile) => {
         }
 
         // check if weight is valid 
-        if (isNaN(parseInt(profile.weight)) === false) {
-            if (parseInt(profile.weight) < 0) {
-                error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
-            }
-        } else {
-            error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
-        }
+        // if (isNaN(parseInt(profile.weight)) === false) {
+        //     if (parseInt(profile.weight) < 0) {
+        //         error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
+        //     }
+        // } else {
+        //     error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
+        // }
 
         // check if bust (cup) is valid 
         const valid_bust_cup = ['AA', 'A', 'B', 'C', 'D', 'E (DD)', 'F (DDD)', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'];
