@@ -1,8 +1,9 @@
-<% values = ['Bust (cup) *', '(band) *', 'Usual Jean Size *', 'Usual Shirt Size *', 'Price *', 'Item *', 'Occasion *'] %>
+<% values = ['Bust (cup) *', 'Bust (band) *', 'Usual Jean Size *', 'Usual Shirt Size *', 'Price *', 'Item *', 'Occasion *'] %>
 <% if (!selected) { %>
     <% selected = false %>
 <% } %>
-<% if (fields !== '' && values.includes(value) === false && value === fields[name] && !selected) { %>
+
+<% if (fields !== '' && values.includes(value) === false && value === fields[name]) { %>
     <option value='<%= value %>' selected> <%= value %></option>
 <% } else if (values.includes(value) && !selected) { %>
     <% if (errors[name]) { %> 

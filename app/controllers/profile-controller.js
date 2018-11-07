@@ -134,27 +134,28 @@ Create new profile based off of passed in data
 profile_controller.push = async (
     first_name,
     email,
-    age,
+    dob,
     instagram_handle,
+    likeToKnowIt,
     blog,
+    zip,
+    paypal,
     height_ft,
     height_in,
-    weight,
-    bust_cup,
     bust_band,
+    bust_cup,
     waist,
-    hips,
-    jean_size,
     shirt_size,
-    leg_length,
-    torso_length
+    jean_size,
+    torso_length,
+    leg_length
 ) => {
     return await Profile.push(
-        first_name, email, age,
-        instagram_handle, blog, height_ft,
-        height_in, weight, bust_cup, bust_band,
-        waist, hips, jean_size, shirt_size,
-        leg_length, torso_length
+        first_name, email, dob,
+        instagram_handle, likeToKnowIt, blog, zip, paypal, height_ft,
+        height_in, bust_band, bust_cup,
+        waist, shirt_size,jean_size, torso_length,
+        leg_length
     );
 };
 
@@ -199,77 +200,79 @@ profile_controller.update = async (
     id,
     first_name,
     email,
-    age,
+    dob,
     instagram_handle,
+    likeToKnowIt,
     blog,
+    zip,
+    paypal,
     height_ft,
     height_in,
-    weight,
-    bust_cup,
     bust_band,
+    bust_cup,
     waist,
-    hips,
-    jean_size,
     shirt_size,
-    leg_length,
-    torso_length
+    jean_size,
+    torso_length,
+    leg_length
 ) => {
     return await Profile.update(
         id,
         first_name,
         email,
-        age,
+        dob,
         instagram_handle,
+        likeToKnowIt,
         blog,
+        zip,
+        paypal,
         height_ft,
         height_in,
-        weight,
-        bust_cup,
         bust_band,
+        bust_cup,
         waist,
-        hips,
-        jean_size,
         shirt_size,
-        leg_length,
-        torso_length 
+        jean_size,
+        torso_length,
+        leg_length
     );
 }
 
 profile_controller.updateProfile = async(
     first_name,
     email,
-    age,
+    dob,
     instagram_handle,
     blog,
+    zip,
+    paypal,
     height_ft,
     height_in,
-    weight,
-    bust_cup,
     bust_band,
+    bust_cup,
     waist,
-    hips,
-    jean_size,
     shirt_size,
-    leg_length,
-    torso_length
+    jean_size,
+    torso_length,
+    leg_length
 ) => {
     return await Profile.updateProfile(
         first_name,
         email,
-        age,
+        dob,
         instagram_handle,
         blog,
+        zip,
+        paypal,
         height_ft,
         height_in,
-        weight,
-        bust_cup,
         bust_band,
+        bust_cup,
         waist,
-        hips,
-        jean_size,
         shirt_size,
-        leg_length,
-        torso_length 
+        jean_size,
+        torso_length,
+        leg_length 
     );
 }
 
