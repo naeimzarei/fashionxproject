@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/util/util.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">app/util</a> util.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.94% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.94% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span></td><td class="text"><pre class="prettyprint lang-js">var util = {};
+var config = require('../config/config');
+var mongoose = require('mongoose');
+&nbsp;
+util.format_errors_object = <span class="fstat-no" title="function not covered" >(o</span>bject_info, object) =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (object.validateSync() === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        return {};</span>
+    }
+    var err = <span class="cstat-no" title="statement not covered" >object.validateSync().errors;</span>
+    var errors = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >    for (field in object_info) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err[field]) {</span>
+<span class="cstat-no" title="statement not covered" >            errors[field] = err[field].message;</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    return errors;</span>
+};
+&nbsp;
+util.connect = async () =&gt; {
+    await mongoose.set('useFindAndModify', false);
+    return await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true, useCreateIndex: true});
+};
+&nbsp;
+util.VALIDATION_ERRORS = {
+    FIRST_NAME_INVALID: 'Please provide a valid first name.',
+    EMAIL_INVALID_SYNTAX: 'Please provide a valid email address.',
+    EMAIL_DOES_NOT_EXIST: 'Email does not exist. Please provide a valid email address.',
+    EMAIL_DUPLICATE: 'Email already exists.',
+    PASSWORD_INVALID: 'Password must be 6-12 characters long and must contain at least one number and capital letter.',
+    CREDENTIALS_INVALID: 'The email and or password combination is incorrect.',
+    AGE_INVALID: 'You must be at least 18 years or older to register.',
+    INSTAGRAM_HANDLE_INVALID: 'Please provide a valid Instagram handle.',
+    BLOG_INVALID: 'Please provide a valid blog URL.',
+    HEIGHT_FT_INVALID: 'Please provide a valid height (ft).',
+    HEIGHT_IN_INVALID: 'Please provide a valid height (in).',
+    WEIGHT_INVALID: 'Please provide a valid weight (lbs).',
+    BUST_CUP_INVALID: 'Please select a valid bust (cup).',
+    BUST_BAND_INVALID: 'Please select a valid bust (band).',
+    WAIST_INVALID: 'Please provide a valid waist size (in).',
+    HIPS_INVALID: 'Please provide a valid hips size (in).',
+    JEAN_SIZE_INVALID: 'Please select a valid jean size.',
+    SHIRT_SIZE_INVALID: 'Please select a valid shirt size.',
+    LEG_LENGTH_INVALID: 'Please provide a valid leg length.'
+};
+&nbsp;
+module.exports = util;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 01 2018 18:37:06 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

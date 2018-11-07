@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="5">
+
+  <testsuite name="tests.home.test"
+    errors="0" failures="0" hostname="" id="" package="tests" skipped="0"
+    tests="5" time="6.009" timestamp="Tue, 23 Oct 2018 22:19:43 GMT">
+  
+    <testcase name="The home page is visible" classname="tests.home.test" time="3.448" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The shopper button functions properly" classname="tests.home.test" time="0.4230" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The influencer button functions properly" classname="tests.home.test" time="0.4700" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="The sign up button functions properly" classname="tests.home.test" time="0.7820" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The login button functions properly" classname="tests.home.test" time="0.8860" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

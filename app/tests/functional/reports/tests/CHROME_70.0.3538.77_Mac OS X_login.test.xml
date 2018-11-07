@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="7">
+
+  <testsuite name="tests.login.test"
+    errors="0" failures="0" hostname="" id="" package="tests" skipped="0"
+    tests="7" time="1.981" timestamp="Thu, 01 Nov 2018 22:37:14 GMT">
+  
+    <testcase name="The login page is visible" classname="tests.login.test" time="1.340" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The email field is visible" classname="tests.login.test" time="0.02100" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="The email field can be populated" classname="tests.login.test" time="0.2520" assertions="0">
+    </testcase>
+  
+    <testcase name="The email field is properly populated" classname="tests.login.test" time="0.05000" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="The password field is visible" classname="tests.login.test" time="0.03300" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="The password field can be populated" classname="tests.login.test" time="0.2390" assertions="0">
+    </testcase>
+  
+    <testcase name="The password field is properly populated" classname="tests.login.test" time="0.04600" assertions="1">
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

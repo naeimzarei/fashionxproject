@@ -1,0 +1,119 @@
+18:37:10.165 INFO [GridLauncherV3.launch] - Selenium build info: version: '3.14.0', revision: 'aacccce0'
+18:37:10.167 INFO [GridLauncherV3$1.launch] - Launching a standalone Selenium Server on port 4444
+2018-11-01 18:37:10.271:INFO::main: Logging initialized @377ms to org.seleniumhq.jetty9.util.log.StdErrLog
+18:37:10.467 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 4444
+18:37:11.021 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "moz:firefoxOptions": {
+    "args": [
+      "-headless"
+    ]
+  },
+  "name": "Tests \u002f Home Test"
+}
+18:37:11.022 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "chrome",
+  "chromeOptions": {
+    "args": [
+      "headless",
+      "no-sandbox",
+      "disable-gpu"
+    ]
+  },
+  "javascriptEnabled": true,
+  "name": "Tests \u002f Home Test"
+}
+18:37:11.023 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+18:37:11.023 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+Starting ChromeDriver 2.42.591059 (a3d9684d10d61aa0c45f6723b327283be1ebaad8) on port 17672
+Only local connections are allowed.
+1541111831443	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/var/folders/zw/xsc9_xxj0svfn6bqr4x04t6m0000gn/T/rust_mozprofile.UNu8bd6QnMxs"
+*** You are running in headless mode.
+18:37:11.754 INFO [ProtocolHandshake.createSession] - Detected dialect: OSS
+18:37:12.198 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session fddcf53a849780c18708e6c7715482de (org.openqa.selenium.chrome.ChromeDriverService)
+18:37:14.319 INFO [ActiveSessions$1.onStop] - Removing session fddcf53a849780c18708e6c7715482de (org.openqa.selenium.chrome.ChromeDriverService)
+18:37:14.347 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "chrome",
+  "chromeOptions": {
+    "args": [
+      "headless",
+      "no-sandbox",
+      "disable-gpu"
+    ]
+  },
+  "javascriptEnabled": true,
+  "name": "Tests \u002f Login Test"
+}
+18:37:14.347 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 2.42.591059 (a3d9684d10d61aa0c45f6723b327283be1ebaad8) on port 4977
+Only local connections are allowed.
+1541111834571	Marionette	INFO	Listening on port 58926
+18:37:14.730 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+18:37:14.751 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 4c43336f-8034-5a46-bd83-3f475eef4a86 (org.openqa.selenium.firefox.GeckoDriverService)
+18:37:14.798 INFO [ProtocolHandshake.createSession] - Detected dialect: OSS
+18:37:14.856 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session d7a2648317382d63731b0fb6b1db5d77 (org.openqa.selenium.chrome.ChromeDriverService)
+18:37:16.372 INFO [ActiveSessions$1.onStop] - Removing session d7a2648317382d63731b0fb6b1db5d77 (org.openqa.selenium.chrome.ChromeDriverService)
+18:37:16.398 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "chrome",
+  "chromeOptions": {
+    "args": [
+      "headless",
+      "no-sandbox",
+      "disable-gpu"
+    ]
+  },
+  "javascriptEnabled": true,
+  "name": "Tests \u002f Signup Test"
+}
+18:37:16.399 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 2.42.591059 (a3d9684d10d61aa0c45f6723b327283be1ebaad8) on port 41491
+Only local connections are allowed.
+18:37:16.876 INFO [ProtocolHandshake.createSession] - Detected dialect: OSS
+18:37:16.935 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session df4852601ddd767e38a51b83628eba2a (org.openqa.selenium.chrome.ChromeDriverService)
+1541111837143	Marionette	INFO	Stopped listening on port 58926
+JavaScript error: jar:file:///Applications/Firefox.app/Contents/Resources/omni.ja!/components/nsUrlClassifierListManager.js, line 597: TypeError: this.tablesData[table] is undefined
+18:37:17.781 INFO [ActiveSessions$1.onStop] - Removing session 4c43336f-8034-5a46-bd83-3f475eef4a86 (org.openqa.selenium.firefox.GeckoDriverService)
+18:37:17.803 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "moz:firefoxOptions": {
+    "args": [
+      "-headless"
+    ]
+  },
+  "name": "Tests \u002f Login Test"
+}
+18:37:17.803 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+1541111837860	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/var/folders/zw/xsc9_xxj0svfn6bqr4x04t6m0000gn/T/rust_mozprofile.3eMUZscMru6L"
+*** You are running in headless mode.
+1541111840829	Marionette	INFO	Listening on port 59266
+18:37:20.858 INFO [ActiveSessions$1.onStop] - Removing session df4852601ddd767e38a51b83628eba2a (org.openqa.selenium.chrome.ChromeDriverService)
+18:37:21.062 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+18:37:21.071 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session a3b71bf9-cf66-7647-90c5-7a1591ccb22b (org.openqa.selenium.firefox.GeckoDriverService)
+1541111842393	Marionette	INFO	Stopped listening on port 59266
+18:37:22.995 INFO [ActiveSessions$1.onStop] - Removing session a3b71bf9-cf66-7647-90c5-7a1591ccb22b (org.openqa.selenium.firefox.GeckoDriverService)
+18:37:23.024 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "moz:firefoxOptions": {
+    "args": [
+      "-headless"
+    ]
+  },
+  "name": "Tests \u002f Signup Test"
+}
+18:37:23.024 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+1541111843074	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/var/folders/zw/xsc9_xxj0svfn6bqr4x04t6m0000gn/T/rust_mozprofile.9NPfBKU0meHV"
+*** You are running in headless mode.
+1541111845089	Marionette	INFO	Listening on port 59598
+18:37:25.179 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+18:37:25.182 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 4975fb2a-91b7-4d4b-9b09-a913127fb57f (org.openqa.selenium.firefox.GeckoDriverService)
+1541111850305	Marionette	INFO	Stopped listening on port 59598
+18:37:30.790 INFO [ActiveSessions$1.onStop] - Removing session 4975fb2a-91b7-4d4b-9b09-a913127fb57f (org.openqa.selenium.firefox.GeckoDriverService)

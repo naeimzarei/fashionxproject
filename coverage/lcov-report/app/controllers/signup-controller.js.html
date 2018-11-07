@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/controllers/signup-controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">app/controllers</a> signup-controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.65% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>63/68</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">93.55% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>58/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.65% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>63/68</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/** Signup - Validates profile information on influencer sign-up to ensure the data sent meets requirements */
+//var emailExistence = require('email-existence');
+var util = require('../util/util');
+&nbsp;
+var profile_controller = require('./profile-controller');
+var credentials_controller = require('./credentials-controller');
+var signup_controller = {};
+&nbsp;
+const VALIDATION_ERRORS = util.VALIDATION_ERRORS;
+&nbsp;
+/**
+Validates profile account creation input
+@param {object} profile - Profile data
+*/
+signup_controller.validate = async (profile) =&gt; {    
+    var error_object = {};
+&nbsp;
+    // check if email already exists
+    var email_exists = (await profile_controller.findProfile(profile.email)) ? <span class="branch-0 cbranch-no" title="branch not covered" >true </span>: false;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (email_exists) {
+<span class="cstat-no" title="statement not covered" >        error_object['email'] = VALIDATION_ERRORS['EMAIL_DUPLICATE'];</span>
+    }
+&nbsp;
+    var validation_promise = new Promise((resolve, reject) =&gt; {
+        // check if first_name is valid 
+        profile.first_name = profile.first_name.toString().trim();
+        if (/\d/.test(profile.first_name) || profile.first_name === '') {
+            error_object['first_name'] = VALIDATION_ERRORS['FIRST_NAME_INVALID'];
+        }
+&nbsp;
+        // check if password is valid 
+        if(/^((?=.*\d)(?=.*[A-Z])).{6,12}$/.test(profile.password) === false){
+            error_object['password'] = VALIDATION_ERRORS['PASSWORD_INVALID'];
+        }
+&nbsp;
+        // check if email has valid syntax 
+        if(/^(([^&lt;&gt;()\[\]\\.,;:\s@"]+(\.[^&lt;&gt;()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
+            error_object['email'] = VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'];
+        }
+&nbsp;
+        // check if age is valid
+        if (isNaN(parseInt(profile.age)) === false) {
+            if (parseInt(profile.age) &lt; 18) {
+                error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+            }
+        } else {
+            error_object['age'] = VALIDATION_ERRORS['AGE_INVALID'];
+        }
+&nbsp;
+        // check if blog URL is valid, if it exists 
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (profile.blog) {
+            if (/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)/.test(profile.blog) === false) {
+                error_object['blog'] = VALIDATION_ERRORS['BLOG_INVALID'];
+            }
+        }
+&nbsp;
+        // check if height_ift is valid 
+        if (isNaN(parseInt(profile.height_ft)) === false) {
+            if (parseInt(profile.height_ft) &lt; 0) {
+                error_object['height_ft'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
+            }
+        } else {
+            error_object['height_ft'] = VALIDATION_ERRORS['HEIGHT_FT_INVALID'];
+        }
+&nbsp;
+        // check if height_in is valid 
+        if (isNaN(parseInt(profile.height_in)) === false) {
+            if (parseInt(profile.height_in) &lt; 0 || parseInt(profile.height_in) &gt; 11) {
+                error_object['height_in'] = VALIDATION_ERRORS['HEIGHT_IN_INVALID'];
+            }
+        } else {
+            error_object['height_in'] = VALIDATION_ERRORS['HEIGHT_IN_INVALID'];
+        }
+&nbsp;
+        // check if weight is valid 
+        if (isNaN(parseInt(profile.weight)) === false) {
+            if (parseInt(profile.weight) &lt; 0) {
+                error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
+            }
+        } else {
+            error_object['weight'] = VALIDATION_ERRORS['WEIGHT_INVALID'];
+        }
+&nbsp;
+        // check if bust (cup) is valid 
+        const valid_bust_cup = ['A', 'B', 'C']
+        if (valid_bust_cup.includes(profile.bust_cup) === false || profile.bust_cup === 'Bust (cup) *') {
+            error_object['bust_cup'] = VALIDATION_ERRORS['BUST_CUP_INVALID'];
+        }
+&nbsp;
+        // check if bust (band) is valid 
+        const valid_bust_band = ['Band A', 'Band B', 'Band C'];
+        if (valid_bust_band.includes(profile.bust_band) === false || profile.bust_band === '(band) *') {
+            error_object['bust_band'] = VALIDATION_ERRORS['BUST_BAND_INVALID'];
+        }
+&nbsp;
+        // check if waist is valid 
+        if (isNaN(parseInt(profile.waist)) === false) {
+            if (parseInt(profile.waist) &lt; 0) {
+                error_object['waist'] = VALIDATION_ERRORS['WAIST_INVALID'];
+            }
+        } else {
+            error_object['waist'] = VALIDATION_ERRORS['WAIST_INVALID'];
+        }
+&nbsp;
+        // check if hips is valid 
+        if (isNaN(parseInt(profile.hips)) === false) {
+            if (parseInt(profile.hips) &lt; 0) {
+                error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
+            }
+        } else {
+            error_object['hips'] = VALIDATION_ERRORS['HIPS_INVALID'];
+        }
+&nbsp;
+        // check if jean size is valid 
+        const valid_jean_size = ['Extra Small (XS)', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+        if (valid_jean_size.includes(profile.jean_size) === false || profile.jean_size === 'Usual Jean Size *') {
+            error_object['jean_size'] = VALIDATION_ERRORS['JEAN_SIZE_INVALID'];
+        }
+&nbsp;
+        // check if shirt size is valid 
+        const valid_shirt_size = ['Extra Small (XS)', 'Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)']
+        if (valid_shirt_size.includes(profile.shirt_size) === false || profile.shirt_size === 'Usual Shirt Size *') {
+            error_object['shirt_size'] = VALIDATION_ERRORS['SHIRT_SIZE_INVALID'];
+        }
+&nbsp;
+        // check if leg length is valid
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (isNaN(parseInt(profile.leg_length)) === false) {
+            if (parseInt(profile.leg_length) &lt; 0) {
+                error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            error_object['leg_length'] = VALIDATION_ERRORS['LEG_LENGTH_INVALID'];</span>
+        }
+        resolve(error_object); 
+    });
+    return await validation_promise;
+};
+&nbsp;
+/**
+Executes profile account creation
+@param {object} profile - Profile data
+*/
+/* instanbul ignore next */
+signup_controller.signup = <span class="fstat-no" title="function not covered" >as</span>ync (profile) =&gt; {
+    var profiles = <span class="cstat-no" title="statement not covered" >await profile_controller.push(</span>
+        profile.first_name,
+        profile.email,
+        profile.age,
+        profile.instagram_handle,
+        profile.blog,
+        profile.height_ft,
+        profile.height_in,
+        profile.weight,
+        profile.bust_cup,
+        profile.bust_band,
+        profile.waist,
+        profile.hips,
+        profile.jean_size,
+        profile.shirt_size,
+        profile.leg_length
+    );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    await credentials_controller.push(profile.email, profile.password);</span>
+<span class="cstat-no" title="statement not covered" >    return profiles;</span>
+};
+&nbsp;
+module.exports = signup_controller;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 01 2018 18:37:06 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

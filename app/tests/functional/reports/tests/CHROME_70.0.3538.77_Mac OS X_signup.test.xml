@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="6">
+
+  <testsuite name="tests.signup.test"
+    errors="0" failures="0" hostname="" id="" package="tests" skipped="0"
+    tests="6" time="4.417" timestamp="Thu, 01 Nov 2018 22:37:16 GMT">
+  
+    <testcase name="The sign up page is visible" classname="tests.signup.test" time="1.440" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The sign up form is visible" classname="tests.signup.test" time="0.06600" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The sign up form fields can be populated" classname="tests.signup.test" time="2.177" assertions="0">
+    </testcase>
+  
+    <testcase name="The sign up form fields are properly populated" classname="tests.signup.test" time="0.6290" assertions="16">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The help button functions properly" classname="tests.signup.test" time="0.05900" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The sign up button functions properly" classname="tests.signup.test" time="0.04600" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

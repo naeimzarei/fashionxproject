@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="2"
+            failures="0"
+            tests="3">
+
+  <testsuite name="tests.home.test"
+    errors="2" failures="0" hostname="" id="" package="tests" skipped="2"
+    tests="3" time="1.304" timestamp="">
+  
+    <testcase name="The home page is visible" classname="tests.home.test" time="0.9010" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The shopper button functions properly" classname="tests.home.test" time="0.1990" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="The influencer button functions properly" classname="tests.home.test" time="0.2040" assertions="0">
+    </testcase>
+  
+
+  
+
+  
+    
+    <testcase
+      name="The sign up button functions properly" classname="tests.home.test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="The login button functions properly" classname="tests.home.test">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

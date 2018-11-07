@@ -3,10 +3,10 @@
 - [x] This is an example checkbox. It will appear as a checkbox on the GitHub page but not on my editor.
 
 ## Influencer 
-- [ ] As an influencer, I want to sign up for fashionxproject on the influencer page. As a result, I need to see the sign up form. 
-- [ ] As an influncer, I need to check the Terms of Service fine print at the bottom of the influencer sign up page before I can can officially create an account. Therefore, the Terms of Service checkbox must be visible to me during the sign up process. 
-- [ ] As an influencer, I need to be informed if the information inputted on the sign up form is valid. If the information is not valid, the influencer sees a dialogue informing him or her of errors that need to be corrected. 
-- [ ] As an influencer, I want to sign in to fashionxproject on the influencer page. I must input my username and password on the influencer login page in order to continue. 
+- [x] As an influencer, I want to sign up for fashionxproject on the influencer page. As a result, I need to see the sign up form. 
+- [x] As an influncer, I need to check the Terms of Service fine print at the bottom of the influencer sign up page before I can can officially create an account. Therefore, the Terms of Service checkbox must be visible to me during the sign up process. 
+- [x] As an influencer, I need to be informed if the information inputted on the sign up form is valid. If the information is not valid, the influencer sees a dialogue informing him or her of errors that need to be corrected. 
+- [] As an influencer, I want to sign in to fashionxproject on the influencer page. I must input my username and password on the influencer login page in order to continue. 
 - [ ] As an influencer, I want to be redirected to my home page after I input my email and password on the influencer login page. Once I click the 'Log In' button, I should be redirected to the influencer home page. 
 - [ ] As an influencer, I want to be informed if I inputted the correct credentials to login on the influencer page. If the email I use to login does not exist, then a dialogue should pop up informing me to input a valid email address. 
 - [ ] As an influencer, I want to be informed if I inputted the correct password on the influencer login page. If I have not inputted the correct password, then a dialogue should pop up informing me to input the correct password. 
