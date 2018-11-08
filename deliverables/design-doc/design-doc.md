@@ -5,6 +5,10 @@
 
 Source: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
 
+For the uploading interface, we will use Amazon S3, a cloud storage solution to upload the post pictures that influencers make. Amazon S3 will be called on by routes and controllers. 
+
+For hosting, we will use Elastic Beanstalk, a hosting solution by Amazon. Elastic Beanstalk will host our Express application and manage all traffic to the server. 
+
 ## Decomposition 
 
 This application is constructed using Express, EJS, and MnogoDB. It is a typical MVC application: MongoDB and Mongoose provide the model and scheams, EJS provides the view, and the controller directs the flow of data by using Express routes.
