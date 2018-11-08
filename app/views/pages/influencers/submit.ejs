@@ -2,15 +2,18 @@
 <html>
     <head>
         <% include ../../partials/head %>
+        <link  href="../../../../node_modules/cropperjs/src/css/cropper.css" rel="stylesheet">
+        <script src="../../../../node_modules/cropperjs/src/js/cropper.js"></script>
     </head>
     <body>
         <% include ../../partials/header %>
 
         <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
-            <div class="container text-center monospace-font pb-3 mt-5">
+            <div class="container text-center monospace-font pb-3 mt-5" >
                 <!-- first set-->
 
-                <div class='form-group form-inline pl-3 pr-3'>
+                <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
+                <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
                     
                     <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: ''}) %>
                             
@@ -29,33 +32,56 @@
                             
                     </select>
                     <br>
-                    <textarea name="description" form="submit-pic-form" class = 'form-control border-pink' id = "descriptionArea" placeholder = "Enter description here... (optional)"></textarea>                    
+                    <textarea name="description" form="submit-pic-form" class = 'form-control border-pink desc' placeholder = "Enter description here... (optional)"></textarea>  
+                    <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
+                </div>
                 </div>
             
                 <div class='form-group form-inline pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true, value: ''}) %>
                 </div>
-
+                <div class='form-group form-inline pl-3 pr-3'>
+                    <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
+                </div>
+                
                 <div class='form-group form-inline pl-3 pr-3'>
                     <button type="submit" class="btn btn-pink btn-primary text-center" >Create Post</button>
                 </div>
             </div>
         </form>
         <script>
-            //Description text box will 
+            //Description text box will populate placeholder when out of focus.
             $(function(){
     
-                $('#descriptionArea').data('holder',$('#descriptionArea').attr('placeholder'));
+                $('.desc').data('holder',$('.desc').attr('placeholder'));
     
-                $('#descriptionArea').focusin(function(){
+                $('.desc').focusin(function(){
                 $(this).attr('placeholder','');
                 });
-                $('#descriptionArea').focusout(function(){
+                $('.desc').focusout(function(){
                     $(this).attr('placeholder',$(this).data('holder'));
                 });
     
     
             })
+            //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
+            //Takes in boolean to denote whether its an add or drop operation
+            var num;
+            var last;
+
+            function appendFormFields(){
+                var fields = document.querySelector('#fieldsDiv');
+
+                last = fields.cloneNode(true)
+                document.getElementById('formFieldsDiv').appendChild(last);
+                $('#formFieldsDiv button').show();
+                
+            }
+
+            function deleteRow(){
+                $(this).parent().remove();
+            }
+
             
             </script>
 

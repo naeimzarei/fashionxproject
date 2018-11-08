@@ -120,7 +120,7 @@ router.post('/updateProfile', async (req, res, next) => {
     var errors = await profile_controller.validate(req.body);
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
-        await profile_controller.updateProfile(req.body.first_name, req.body.email, req.body.age, req.body.instagram_handle, req.body.blog, req.body.height_ft, req.body.height_in, req.body.weight, req.body.bust_cup, req.body.bust_band, req.body.waist, req.body.hips, req.body.jean_size, req.body.shirt_size, req.body.leg_length, req.body.torso_length,);
+        await profile_controller.updateProfile(req.body.first_name, req.body.email, req.body.dob, req.body.instagram_handle, req.body.likeToKnowIt, req.body.blog, req.body.zip, req.body.paypal, req.body.height_ft, req.body.height_in, req.body.bust_band, req.body.bust_cup, req.body.waist, req.body.shirt_size, req.body.jean_size, req.body.torso_length, req.body.leg_length);
         return res.redirect('/influencers/profile');
     } else {
         var profile = await profile_controller.findProfile(req.user.email);
