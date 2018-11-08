@@ -2,8 +2,8 @@
 <html>
     <head>
         <% include ../../partials/head %>
-        <link  href="../../../../node_modules/cropperjs/src/css/cropper.css" rel="stylesheet">
-        <script src="../../../../node_modules/cropperjs/src/js/cropper.js"></script>
+        <link  href="/stylesheets/cropper.min.css" rel="stylesheet">
+        <script src="/javascripts/cropper.min.js"></script>
     </head>
     <body>
         <% include ../../partials/header %>
@@ -40,6 +40,11 @@
                 <div class='form-group form-inline pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true, value: ''}) %>
                 </div>
+
+                <!-- only accept image types, nothing else -->
+                <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])">
+                <img id='image-source' src='' alt='Some Image'/>
+
                 <div class='form-group form-inline pl-3 pr-3'>
                     <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
                 </div>
@@ -82,8 +87,16 @@
                 $(this).parent().remove();
             }
 
-            
-            </script>
+            function checkFile(img) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image-source').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(img);
+            }
+
+            // var cropper = new Cropper(document.getElementById)
+        </script>
 
         <% include ../../partials/footer %>
     </body>
