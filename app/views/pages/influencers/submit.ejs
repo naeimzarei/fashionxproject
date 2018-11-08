@@ -43,8 +43,9 @@
 
                 <!-- only accept image types, nothing else -->
                 <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])">
+                <div id = "imgDiv" class = "container text-center monospace-font pb-3 mt-5">
                 <img id='image-source' src='' alt='Some Image'/>
-
+                </div>
                 <div class='form-group form-inline pl-3 pr-3'>
                     <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
                 </div>
@@ -92,10 +93,33 @@
                 reader.onload = function(e) {
                     $('#image-source').attr('src', e.target.result);
                 }
-                reader.readAsDataURL(img);
+                //reader.readAsDataURL(img);
             }
 
-            // var cropper = new Cropper(document.getElementById)
+           //image cropping
+           var img1;
+            var cropper;
+            $("input[type='file']").on("change", function(event1) {
+                src1 = URL.createObjectURL(event1.target.files[0]);
+                img1 = new Image(); //html image element passed into cropper.js
+                img1.src = src1;
+                $('#imgDiv').append(img1); //wrap img in container
+
+                cropper = new Cropper(img1, {
+                    aspectRatio: 1/1,
+                    crop(event){
+                        console.log(event.detail.x);
+                        console.log(event.detail.y);
+                        console.log(event.detail.width);
+                        console.log(event.detail.height);
+                        console.log(event.detail.rotate);
+                        console.log(event.detail.scaleX);
+                        console.log(event.detail.scaleY);
+                    },
+                });
+
+                
+            });
         </script>
 
         <% include ../../partials/footer %>
