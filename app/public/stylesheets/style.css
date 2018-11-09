@@ -99,6 +99,9 @@
     border-color: #eb9095;
 }
 
+#imgDiv img {
+    max-width: 100%;
+}
 
 /* Navigation */
 img.logo {

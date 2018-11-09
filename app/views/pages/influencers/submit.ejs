@@ -38,14 +38,13 @@
                 </div>
             
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'photo-upload', classes: 'form-control border-pink', type: 'file', id: '', placeholder: 'Photo', min: '', max: '', required: true, value: ''}) %>
+                    
+                    <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
                 </div>
 
                 <!-- only accept image types, nothing else -->
-                <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])">
-                <div id = "imgDiv" class = "container text-center monospace-font pb-3 mt-5">
-                <img id='image-source' src='' alt='Some Image'/>
-                </div>
+                <!-- <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])"> -->
+                <!-- <img id='image-source' src='' alt='Some Image'/> -->
                 <div class='form-group form-inline pl-3 pr-3'>
                     <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
                 </div>
@@ -55,6 +54,7 @@
                 </div>
             </div>
         </form>
+        <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'></div>
         <script>
             //Description text box will populate placeholder when out of focus.
             $(function(){
@@ -88,13 +88,13 @@
                 $(this).parent().remove();
             }
 
-            function checkFile(img) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#image-source').attr('src', e.target.result);
-                }
-                //reader.readAsDataURL(img);
-            }
+            // function checkFile(img) {
+            //     var reader = new FileReader();
+            //     reader.onload = function(e) {
+            //         $('#image-source').attr('src', e.target.result);
+            //     }
+            //     reader.readAsDataURL(img);
+            // }
 
            //image cropping
            var img1;
@@ -116,6 +116,9 @@
                         console.log(event.detail.scaleX);
                         console.log(event.detail.scaleY);
                     },
+                    viewMode: 1,
+                    minCropBoxWidth: 250,
+                    minCropBoxHeight: 250
                 });
 
                 
