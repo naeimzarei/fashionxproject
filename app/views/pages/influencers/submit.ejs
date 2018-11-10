@@ -104,6 +104,7 @@
 
             //image cropping
             var img1;
+            var imageSrcURLs = [];
             var cropper;
             $("input[type='file']").on("change", function(event1) {
                 
@@ -125,9 +126,17 @@
                         imageSmoothingQuality: 'high',
                     });
                 
-                    
+                    var croppedImage = new Image();
+                    //javascript image with src equal to user cropped image
+                    croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
+                    //save image urls/blob to array everytime a user crops
                     var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
-                    console.log(typeof croppedImageSrc)
+                    imageSrcURLs.push(croppedImageSrc)
+                    console.log(imageSrcURLs.length)
+                    console.log(typeof croppedImage)
+                    //clear UI for next image crop if need be
+                    $('#imgDiv').empty();
+
                 })
                 cropper = new Cropper(img1, {
                     aspectRatio: 1/1,
