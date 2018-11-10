@@ -25,20 +25,33 @@
                     <li>Click "Sign Up"
                 </ol>
 
-                <h2>Influencer Dashboard</h2>
+                <h2>Influencer: Dashboard</h2>
 
                 <hr class = "my-4">
                 <p>
                 After entering in your login credentials, you will be brought to the dashboard page where you can see all of your posts. <br>
-                If you try to input login credentials but return to the login page with a message saying "Email does not exist", this means that 
-                it is not stored in our database, meaning you should go to the <a href = "/influencers/signup">signup page</a> to create an account.
+                If you try to input login credentials but return to the login page with a message saying "Email does not exist",<br> this means that 
+                we do not have an account with those credentials in our records. Go to the <a href = "/influencers/signup">signup page</a> to create an account.
+                </p>
+
+                <h2> Influencer: Create a Post</h2>
+                <hr class = "my-4">
+                <p>
+                    Once you login, you may create a post by going to the top right of the page (header) and clicking the button with a "+".<br>
+                    This will direct you to the post creation page. Here, you can input the required information (denoted with a '*') and <br>
+                    can choose up to 10 images from your device to upload (and crop if necessary). Once completed, press the "Create Post" button.<br>
+                    <br>
+                    Cropping:<br>
+                    When you upload an image, a cropping interface will appear where you can choose the region and zoom to your liking.<br>
+                    Currently, the minimum image size (width x height) is 250 x 250 with the max being 1080 x 1080 (conforming to Instagram standards) <br>
+                    and an aspect ratio of 1:1.
                 </p>
             </div>
             
         </div>
     </main>
-    <footer>
-        <% include ../../partials/footer %>
-    </footer>
-</body>
+    
+    <% include ../../partials/footer %>
+    
+  </body>
 </html>

@@ -44,6 +44,7 @@
                 <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                     
                     <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
+                    <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
                 </div>
 
                 <!-- only accept image types, nothing else -->
@@ -53,15 +54,19 @@
                 <!-- <div class='form-group form-inline pl-3 pr-3'>
                     <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
                 </div> -->
-                
+                <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>
+
                 <div class='form-group form-inline pl-3 pr-3'>
                     <button type="submit" class="btn btn-pink btn-primary text-center" >Create Post</button>
                 </div>
             </div>
+            
+            <!-- Render thumbnails for cropped images -->
+            <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
+            
         </form>
-        <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'>
-            <!--<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center' onclick = 'getCroppedPic()' hidden>Done</button> -->
-        </div>
+        
+        <!-- <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'></div> -->
         <script>
             //Description text box will populate placeholder when out of focus.
             $(function(){
@@ -102,6 +107,13 @@
             //     }
             //     reader.readAsDataURL(img);
             // }
+            
+            //help info for uploading images
+            $("input[type='file']").hover(function(){
+                $('#uploadHelp').append("<small class='form-text text-danger'>You may upload/crop up to 10 images in one post.</small>")
+            }, function(){
+                $('#uploadHelp').empty();
+            });
 
             //image cropping and saving image
             var img1;
@@ -113,7 +125,9 @@
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
                 $('#imgDiv').append(img1); //wrap img in container
-                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done</button>")
+                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
+                
+                //done cropping button event handler
                 $('#doneCropping').on("click", function(){
                     var croppedCanvas = cropper.getCroppedCanvas({
                         width: 160,
@@ -128,9 +142,10 @@
                     });
                 
                     var croppedImage = new Image();
-                    //javascript image with src equal to user cropped image
+                    //javascript image with src assigned from user cropped image
                     croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
 
+                    $('#thumbnails').append(croppedImage);
                     //save image urls/blob to array everytime a user crops
                     var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
                     imageSrcURLs.push(croppedImageSrc)
