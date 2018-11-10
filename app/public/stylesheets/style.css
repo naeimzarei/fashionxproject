@@ -102,6 +102,9 @@
 #imgDiv img {
     max-width: 100%;
 }
+#doneCropping{
+    align-self: center; 
+}
 
 /* Navigation */
 img.logo {
