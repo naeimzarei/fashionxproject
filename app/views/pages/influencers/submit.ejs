@@ -41,7 +41,7 @@
                 </div>
                 </div>
             
-                <div class='form-group form-inline pl-3 pr-3'>
+                <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                     
                     <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
                 </div>
@@ -58,7 +58,9 @@
                 </div>
             </div>
         </form>
-        <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'></div>
+        <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'>
+            <!--<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center' onclick = 'getCroppedPic()' hidden>Done</button> -->
+        </div>
         <script>
             //Description text box will populate placeholder when out of focus.
             $(function(){
@@ -100,32 +102,69 @@
             //     reader.readAsDataURL(img);
             // }
 
-           //image cropping
-           var img1;
+            //image cropping
+            var img1;
             var cropper;
             $("input[type='file']").on("change", function(event1) {
+                
                 src1 = URL.createObjectURL(event1.target.files[0]);
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
                 $('#imgDiv').append(img1); //wrap img in container
-
+                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done</button>")
+                $('#doneCropping').on("click", function(){
+                    var croppedCanvas = cropper.getCroppedCanvas({
+                        width: 160,
+                        height: 90,
+                        minWidth: 250, //set min contraints
+                        minHeight: 250,
+                        maxWidth: 1080, //set max constraints based on Instagram
+                        maxHeight: 1080,
+                        fillColor: '#fff',
+                        imageSmoothingEnabled: false,
+                        imageSmoothingQuality: 'high',
+                    });
+                
+                    
+                    var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
+                    console.log(typeof croppedImageSrc)
+                })
                 cropper = new Cropper(img1, {
                     aspectRatio: 1/1,
                     crop(event){
-                        console.log(event.detail.x);
-                        console.log(event.detail.y);
-                        console.log(event.detail.width);
-                        console.log(event.detail.height);
-                        console.log(event.detail.rotate);
-                        console.log(event.detail.scaleX);
-                        console.log(event.detail.scaleY);
+                        // console.log(event.detail.x);
+                        // console.log(event.detail.y);
+                        // console.log(event.detail.width);
+                        // console.log(event.detail.height);
+                        // console.log(event.detail.rotate);
+                        // console.log(event.detail.scaleX);
+                        // console.log(event.detail.scaleY);
                     },
                     viewMode: 1,
                     minCropBoxWidth: 250,
-                    minCropBoxHeight: 250
+                    minCropBoxHeight: 250,
+                    maxCropBoxHeight:1080,
+                    maxCropBoxWidth: 1080,
                 });
 
+                function getCroppedPic(){
+                    var croppedCanvas = cropper.getCroppedCanvas({
+                        width: 160,
+                        height: 90,
+                        minWidth: 250, //set min contraints
+                        minHeight: 250,
+                        maxWidth: 1080, //set max constraints based on Instagram
+                        maxHeight: 1080,
+                        fillColor: '#fff',
+                        imageSmoothingEnabled: false,
+                        imageSmoothingQuality: 'high',
+                    });
                 
+                    
+                    var croppedImage = croppedCanvas.toDataURL("img/jpeg")
+                    console.log(typeof croppedImage)
+                    $('#doneCropping').hide();
+                }
             });
         </script>
 
