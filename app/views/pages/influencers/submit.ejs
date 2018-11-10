@@ -10,7 +10,6 @@
 
         <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
             <div class="container text-center monospace-font pb-3 mt-5" >
-                <!-- first set-->
 
                 <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
                 <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
@@ -54,15 +53,16 @@
                 <!-- <div class='form-group form-inline pl-3 pr-3'>
                     <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
                 </div> -->
-                <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>
 
                 <div class='form-group form-inline pl-3 pr-3'>
                     <button type="submit" class="btn btn-pink btn-primary text-center" >Create Post</button>
                 </div>
+                <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
+                
+                <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>                
             </div>
             
             <!-- Render thumbnails for cropped images -->
-            <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
             
         </form>
         
@@ -141,11 +141,16 @@
                         imageSmoothingQuality: 'high',
                     });
                 
+                    //created in case this is what's passed on form submit
                     var croppedImage = new Image();
-                    //javascript image with src assigned from user cropped image
+                    //javascript image with src assigned from user cropped image.
                     croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
 
-                    $('#thumbnails').append(croppedImage);
+
+                    //Add thumbnail of cropped image to page
+                    $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
+
+
                     //save image urls/blob to array everytime a user crops
                     var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
                     imageSrcURLs.push(croppedImageSrc)
