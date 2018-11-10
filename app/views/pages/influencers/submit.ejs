@@ -147,24 +147,6 @@
                     maxCropBoxWidth: 1080,
                 });
 
-                function getCroppedPic(){
-                    var croppedCanvas = cropper.getCroppedCanvas({
-                        width: 160,
-                        height: 90,
-                        minWidth: 250, //set min contraints
-                        minHeight: 250,
-                        maxWidth: 1080, //set max constraints based on Instagram
-                        maxHeight: 1080,
-                        fillColor: '#fff',
-                        imageSmoothingEnabled: false,
-                        imageSmoothingQuality: 'high',
-                    });
-                
-                    
-                    var croppedImage = croppedCanvas.toDataURL("img/jpeg")
-                    console.log(typeof croppedImage)
-                    $('#doneCropping').hide();
-                }
             });
         </script>
 
