@@ -66,7 +66,7 @@
                     </div> -->
 
                     <div class='form-group form-inline pl-3 pr-3'>
-                        <button type="submit" class="btn btn-pink btn-primary text-center" >Create Post</button>
+                        <button type="submit" id = "createPost" class="btn btn-pink btn-primary text-center" >Create Post</button>
                     </div>
                     <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
                     
@@ -96,21 +96,21 @@
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
             //Takes in boolean to denote whether its an add or drop operation
-            var num;
-            var last;
+            // var num;
+            // var last;
 
-            function appendFormFields(){
-                var fields = document.querySelector('#fieldsDiv');
+            // function appendFormFields(){
+            //     var fields = document.querySelector('#fieldsDiv');
 
-                last = fields.cloneNode(true)
-                document.getElementById('formFieldsDiv').appendChild(last);
-                $('#formFieldsDiv button').show();
+            //     last = fields.cloneNode(true)
+            //     document.getElementById('formFieldsDiv').appendChild(last);
+            //     $('#formFieldsDiv button').show();
                 
-            }
+            // }
 
-            function deleteRow(){
-                $(this).parent().remove();
-            }
+            // function deleteRow(){
+            //     $(this).parent().remove();
+            // }
 
             // function checkFile(img) {
             //     var reader = new FileReader();
@@ -158,6 +158,12 @@
                     //javascript image with src assigned from user cropped image.
                     croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
 
+                    //get blob to send to server
+                    croppedCanvas.toBlob(function(blob){
+
+
+
+                    }, 'image/jpeg', .95) //convert to JPEG at 95% quality 
 
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
@@ -166,7 +172,7 @@
                     //save image urls/blob to array everytime a user crops
                     var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
                     imageSrcURLs.push(croppedImageSrc)
-
+                    //console.log(JSON.stringify(imageSrcURLs))
                     //clear UI for next image crop if need be
                     $('#imgDiv').empty();
 
@@ -183,6 +189,16 @@
                 });
 
             });
+
+            $('#createPost').on('click', function(){
+                //var form = new FormData(document.getElementById("submit-pic-form"));
+                //form.append("img_urls", imageSrcURLs)
+                var form = $('#submit-pic-form').serializeArray();
+                form.push({"name":"img_urls", "value":imageSrcURLs});
+                console.log(JSON.stringify(form))
+                //possibly need to convert from src string to file (server side?)
+            });
+
         </script>
 
         <% include ../../partials/footer %>

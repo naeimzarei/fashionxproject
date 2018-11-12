@@ -158,6 +158,7 @@ router.get('/submit', (req, res, next) => {
  * Post creation and handlese photo uploads photo to S3
  */
 router.post('/submit', async (req,res,next) => {
+    //decode img string possibly 
     upload(req, res, async function (error) {
         if (error) {
             console.log(error);
