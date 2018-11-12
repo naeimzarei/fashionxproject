@@ -157,9 +157,8 @@ router.get('/submit', (req, res, next) => {
 /**
  * Post creation and handlese photo uploads photo to S3
  */
-router.post('/submit', (req,res,next) => {
-    
-    upload(req, res, function (error) {
+router.post('/submit', async (req,res,next) => {
+    upload(req, res, async function (error) {
         if (error) {
             console.log(error);
             res.send('Upload failed!');
@@ -168,6 +167,9 @@ router.post('/submit', (req,res,next) => {
         var imgUrls = req.files.map(function(file) {
             return file.location;
         });
+
+        var data = req.body;
+        await post_controller.push(data.title, req.user.email, imgUrls, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, 0);
     });
 });
 

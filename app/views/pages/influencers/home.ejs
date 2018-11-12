@@ -26,7 +26,7 @@
               <tbody>
                   <% posts.forEach(function(post) { %>
                     <tr>
-                      <td><img src="<%= post.img_url %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail"></td>
+                      <td><img src="<%= post.img_urls[0] %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail"></td>
                       <th scope="row"><a href="posts/<%= post.id %>"><%= post.title %></a></th>
                       <td><%= moment(post.date).format('M/D/YYYY') %></td>
                       <td><%= post.clicks %></td>

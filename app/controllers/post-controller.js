@@ -9,7 +9,7 @@ Create new Post based off of passed in data
 post_controller.push = async (
     title,
     email,
-    img_url,
+    img_urls,
     item,
     size,
     brand,
@@ -22,7 +22,7 @@ post_controller.push = async (
     return await Post.push(
         title,
         email,
-        img_url,
+        img_urls,
         item,
         size,
         brand,
@@ -65,7 +65,7 @@ Update Post with passed in data
 post_controller.update = async (
     title,
     email,
-    img_url,
+    img_urls,
     item,
     size,
     brand,
@@ -78,7 +78,7 @@ post_controller.update = async (
     return await Post.update(
         title,
         email,
-        img_url,
+        img_urls,
         item,
         size,
         brand,
@@ -93,7 +93,7 @@ post_controller.update = async (
 post_controller.updatePost = async(
     title,
     email,
-    img_url,
+    img_urls,
     item,
     size,
     brand,
@@ -106,7 +106,7 @@ post_controller.updatePost = async(
     return await Post.updatePost(
         title,
         email,
-        img_url,
+        img_urls,
         item,
         size,
         brand,
