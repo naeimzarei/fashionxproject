@@ -1,0 +1,190 @@
+<!Doctype html>
+<html>
+    <head>
+        <% include ../../partials/head %>
+        <link  href="/stylesheets/cropper.min.css" rel="stylesheet">
+        <script src="/javascripts/cropper.min.js"></script>
+    </head>
+    <body>
+        <% include ../../partials/header %>
+
+        <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
+            <div class="container text-center monospace-font pb-3 mt-5" >
+
+                <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
+                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
+                        
+                        <select name='item' class='form-control col-sm-2 border-pink' required>
+                            <%- include('../../partials/option', {value: 'Item *', placeholder: 'Item *', name: 'item', disabled: "disabled", selected: post.item === 'Item *'}) %>
+                            <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'item', selected: post.item === 'Individual Item'}) %>
+                            <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'item', selected: post.item === 'Bundle of Items'}) %>
+                            
+                        </select>    
+                    </div>
+                    
+                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: post.size}) %>
+                    </div>
+
+                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: post.brand}) %>
+                    </div>
+
+                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'selling_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Selling Price *', min: 0, max: '', required: true, value: post.selling_price}) %>
+                        <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true, value: post.original_price}) %>
+                    </div>
+                        
+                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
+                        <select name='condition' class='form-control col-sm-2 border-pink' required>
+                                <%- include('../../partials/option', {value: 'Condition *', placeholder: 'Condition *', name: 'type', disabled: "disabled", selected: post.condition === 'Condition *'}) %>
+                                <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: post.condition === 'New with tags (Never worn, tags attached)'}) %>
+                                <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: post.condition === 'Excellent (Worn just a few times, looks as new)'}) %>
+                                <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: post.condition === 'Very Good (Worn, but still looks great)'}) %>
+                                <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition', selected: post.condition === 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)'}) %>
+                                <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition', selected: post.condition === 'Satisfactory (It has some flaws, all noted in the description and visible in pics)'}) %>
+                                
+                        </select>
+                    </div>
+                    
+                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
+                        <textarea name="description" form="submit-pic-form" class = 'form-control border-pink desc' placeholder = "Enter description here... (optional)" value="<%= post.description %>"></textarea>  
+                        <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
+                    </div>
+
+                    <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
+                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
+                        <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
+                    </div>
+
+                    <!-- only accept image types, nothing else -->
+                    <!-- <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])"> -->
+                    <!-- <img id='image-source' src='' alt='Some Image'/> -->
+                    <!-- Add row -->
+                    <!-- <div class='form-group form-inline pl-3 pr-3'>
+                        <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
+                    </div> -->
+
+                    <div class='form-group form-inline pl-3 pr-3'>
+                        <button type="submit" class="btn btn-pink btn-primary text-center" >Update Post</button>
+                    </div>
+                    <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
+                    
+                    <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>     
+                </div>           
+            </div>
+            
+            <!-- Render thumbnails for cropped images -->
+            
+        </form>
+        
+        <!-- <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'></div> -->
+        <script>
+            //Description text box will populate placeholder when out of focus.
+            $(function(){
+    
+                $('.desc').data('holder',$('.desc').attr('placeholder'));
+    
+                $('.desc').focusin(function(){
+                $(this).attr('placeholder','');
+                });
+                $('.desc').focusout(function(){
+                    $(this).attr('placeholder',$(this).data('holder'));
+                });
+    
+    
+            })
+            //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
+            //Takes in boolean to denote whether its an add or drop operation
+            var num;
+            var last;
+
+            function appendFormFields(){
+                var fields = document.querySelector('#fieldsDiv');
+
+                last = fields.cloneNode(true)
+                document.getElementById('formFieldsDiv').appendChild(last);
+                $('#formFieldsDiv button').show();
+                
+            }
+
+            function deleteRow(){
+                $(this).parent().remove();
+            }
+
+            // function checkFile(img) {
+            //     var reader = new FileReader();
+            //     reader.onload = function(e) {
+            //         $('#image-source').attr('src', e.target.result);
+            //     }
+            //     reader.readAsDataURL(img);
+            // }
+            
+            //help info for uploading images
+            $("input[type='file']").hover(function(){
+                $('#uploadHelp').append("<small class='form-text text-danger'>You may upload/crop up to 10 images in one post.</small>")
+            }, function(){
+                $('#uploadHelp').empty();
+            });
+
+            //image cropping and saving image
+            var img1;
+            var imageSrcURLs = [];
+            var cropper;
+            $("input[type='file']").on("change", function(event1) {
+                
+                src1 = URL.createObjectURL(event1.target.files[0]);
+                img1 = new Image(); //html image element passed into cropper.js
+                img1.src = src1;
+                $('#imgDiv').append(img1); //wrap img in container
+                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
+                
+                //done cropping button event handler
+                $('#doneCropping').on("click", function(){
+                    var croppedCanvas = cropper.getCroppedCanvas({
+                        width: 160,
+                        height: 90,
+                        minWidth: 250, //set min contraints
+                        minHeight: 250,
+                        maxWidth: 1080, //set max constraints based on Instagram
+                        maxHeight: 1080,
+                        fillColor: '#fff',
+                        imageSmoothingEnabled: false,
+                        imageSmoothingQuality: 'high',
+                    });
+                
+                    //created in case this is what's passed on form submit
+                    var croppedImage = new Image();
+                    //javascript image with src assigned from user cropped image.
+                    croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
+
+
+                    //Add thumbnail of cropped image to page
+                    $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
+
+
+                    //save image urls/blob to array everytime a user crops
+                    var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
+                    imageSrcURLs.push(croppedImageSrc)
+
+                    //clear UI for next image crop if need be
+                    $('#imgDiv').empty();
+
+                })
+                cropper = new Cropper(img1, {
+                    aspectRatio: 1/1,
+                    crop(event){
+                    },
+                    viewMode: 1,
+                    minCropBoxWidth: 250,
+                    minCropBoxHeight: 250,
+                    maxCropBoxHeight:1080,
+                    maxCropBoxWidth: 1080,
+                });
+
+            });
+        </script>
+
+        <% include ../../partials/footer %>
+    </body>
+</html>

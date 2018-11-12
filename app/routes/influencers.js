@@ -188,6 +188,19 @@ router.get('/posts/:id', async (req, res, next) => {
 });
 
 /**
+ * Edit post
+ */
+router.get('/posts/:id/edit', async (req, res, next) => {
+    var post = await post_controller.find(req.params.id);
+    var data;
+    if (post.length) {
+        data = post[0];
+    }
+
+    res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
+});
+
+/**
  * View user profile
  */
 router.get('/profile', async (req, res, next) => {
