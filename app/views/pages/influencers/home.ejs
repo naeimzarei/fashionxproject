@@ -30,7 +30,7 @@
                       <td><%= moment(post.date).format('M/D/YYYY') %></td>
                       <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="actions">
-                          <button type="button" class="btn btn-secondary">Edit</button>
+                          <a href="/influencers/posts/<%= post.id %>/edit"><button type="button" class="btn btn-secondary">Edit</button></a>
                           <button type="button" class="btn btn-danger">Delete</button>
                         </div>
                       </td>
