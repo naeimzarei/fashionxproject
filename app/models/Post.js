@@ -8,7 +8,7 @@ mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PA
 var postSchema = mongoose.Schema({
     item: {
         type: String,
-        required: false
+        required: true
     },
     size: {
         type: String,
@@ -36,7 +36,7 @@ var postSchema = mongoose.Schema({
     },
     date: {
         type: Date,
-        required: false
+        required: true
     },
     email: {
         type: String,
@@ -127,7 +127,6 @@ postSchema.statics.update = async (
     email,
     img_urls
 ) => {
-    console.log(id);
     var post = await Post.findByIdAndUpdate(id, {
         item: item,
         size: size,

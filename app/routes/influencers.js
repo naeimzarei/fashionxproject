@@ -164,7 +164,6 @@ router.post('/submit', async (req,res,next) => {
             console.log(error);
             res.send('Upload failed!');
         }
-        res.send('Uploaded photo(s)!');
         var imgUrls = req.files.map(function(file) {
             return file.location;
         });
@@ -172,6 +171,7 @@ router.post('/submit', async (req,res,next) => {
         var data = req.body;
         data.date = new Date();
         await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.data, req.user.email, data.img_urls);
+        return res.redirect('/influencers/home');
     });
 });
 
@@ -206,7 +206,9 @@ router.get('/posts/:id/edit', async (req, res, next) => {
  */
 router.post('/updatePost', async (req, res, next) => {
     var data = req.body;
-    await post_controller.update(data.id, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.data, req.user.email, data.img_urls);
+    data.date = new Date();
+    data.img_urls = data.img_urls.split(',');
+    await post_controller.update(data.id, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 

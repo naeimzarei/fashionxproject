@@ -10,8 +10,8 @@
               <form id='signup-form' class='bg-grey' action='/influencers/updateProfile' method='post'>
                 <div class='form-group pt-3 pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: profile.first_name}) %>
-                </div>                
-            
+                </div>
+
                 <div class='form-group pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'dob', classes: 'form-control border-pink', type: 'month', id: '', placeholder: 'Date of Birth *', min: '', max: '', required: true, value: profile.dob}) %>
                 </div>
