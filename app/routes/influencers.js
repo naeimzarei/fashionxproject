@@ -169,7 +169,8 @@ router.post('/submit', async (req,res,next) => {
         });
 
         var data = req.body;
-        await post_controller.push(data.title, req.user.email, imgUrls, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, 0);
+        data.date = new Date();
+        await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.data, req.user.email, data.img_urls);
     });
 });
 
@@ -183,7 +184,7 @@ router.get('/posts/:id', async (req, res, next) => {
         data = post[0];
     }
 
-    res.render('pages/influencers/post', { title: data.title, post: data });
+    res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data });
 });
 
 /**

@@ -6,26 +6,9 @@ mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PA
 
 // schema 
 var postSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: false
-    },
-    date: {
-        type: Date,
-        required: false
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    img_urls: {
-        type: Array,
-        required: true
-    },
     item: {
         type: String,
-        required: true
+        required: false
     },
     size: {
         type: String,
@@ -51,8 +34,18 @@ var postSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    clicks: {
-        type: Number
+    date: {
+        type: Date,
+        required: false
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    img_urls: {
+        type: Array,
+        required: true
     }
 });
 
@@ -63,21 +56,18 @@ var postSchema = mongoose.Schema({
 Create new post based off of passed in data
 */
 postSchema.statics.push = async (
-    title,
-    email,
-    img_urls,
     item,
     size,
     brand,
     selling_price,
     original_price,
     condition,
-    description
+    description,
+    date,
+    email,
+    img_urls
 ) => {
     var post = new Post({
-        title: title,
-        email: email,
-        img_urls: img_urls,
         item: item,
         size: size,
         brand: brand,
@@ -85,7 +75,9 @@ postSchema.statics.push = async (
         original_price: original_price,
         condition: condition,
         description: description,
-        clicks: 0
+        date: date,
+        email: email,
+        img_urls: img_urls
     });
     await post.save();
     return post;
@@ -123,9 +115,6 @@ Update post with passed in data
 @param {integer} id - Post id.
 */
 postSchema.statics.update = async (
-    title,
-    email,
-    img_urls,
     item,
     size,
     brand,
@@ -133,12 +122,11 @@ postSchema.statics.update = async (
     original_price,
     condition,
     description,
-    clicks
+    date,
+    email,
+    img_urls
 ) => {
     var post = await Post.findByIdAndUpdate(id, {
-        title: title,
-        email: email,
-        img_urls: img_urls,
         item: item,
         size: size,
         brand: brand,
@@ -146,7 +134,9 @@ postSchema.statics.update = async (
         original_price: original_price,
         condition: condition,
         description: description,
-        clicks: clicks
+        date: date,
+        email: email,
+        img_urls: img_urls
     });
     return post;
 };
