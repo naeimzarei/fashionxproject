@@ -123,6 +123,7 @@ router.post('/updateProfile', async (req, res, next) => {
         await profile_controller.updateProfile(req.body.first_name, req.body.email, req.body.dob, req.body.instagram_handle, req.body.likeToKnowIt, req.body.blog, req.body.zip, req.body.paypal, req.body.height_ft, req.body.height_in, req.body.bust_band, req.body.bust_cup, req.body.waist, req.body.shirt_size, req.body.jean_size, req.body.torso_length, req.body.leg_length);
         return res.redirect('/influencers/profile');
     } else {
+        console.log(error);
         var profile = await profile_controller.findProfile(req.user.email);
         res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: errors, fields: req.body});
     }
