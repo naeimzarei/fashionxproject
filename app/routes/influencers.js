@@ -220,4 +220,12 @@ router.get('/profile', async (req, res, next) => {
     res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: '', fields: '' });
 });
 
+/**
+ * Delete post
+ */
+router.post('/posts/:id/delete', async (req, res, next) => {
+    await post_controller.remove(req.params.id);
+    return res.redirect('/influencers/home');
+});
+
 module.exports = router;
