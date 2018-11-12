@@ -7,9 +7,6 @@ var post_controller = {};
 Create new Post based off of passed in data
 */
 post_controller.push = async (
-    title,
-    email,
-    img_urls,
     item,
     size,
     brand,
@@ -17,20 +14,21 @@ post_controller.push = async (
     original_price,
     condition,
     description,
-    clicks
+    date,
+    email,
+    img_urls
 ) => {
     return await Post.push(
-        title,
-        email,
-        img_urls,
         item,
-        size,
-        brand,
-        selling_price,
-        original_price,
-        condition,
-        description,
-        clicks
+    size,
+    brand,
+    selling_price,
+    original_price,
+    condition,
+    description,
+    date,
+    email,
+    img_urls
     );
 };
 
@@ -63,9 +61,6 @@ Update Post with passed in data
 @param {integer} id - Post id.
 */
 post_controller.update = async (
-    title,
-    email,
-    img_urls,
     item,
     size,
     brand,
@@ -73,12 +68,11 @@ post_controller.update = async (
     original_price,
     condition,
     description,
-    clicks
+    date,
+    email,
+    img_urls
 ) => {
     return await Post.update(
-        title,
-        email,
-        img_urls,
         item,
         size,
         brand,
@@ -86,14 +80,14 @@ post_controller.update = async (
         original_price,
         condition,
         description,
-        clicks
+        date,
+        email,
+        img_urls
     );
 }
 
-post_controller.updatePost = async(
-    title,
-    email,
-    img_urls,
+post_controller.update = async(
+    id,
     item,
     size,
     brand,
@@ -101,12 +95,13 @@ post_controller.updatePost = async(
     original_price,
     condition,
     description,
-    clicks
+    date,
+    email,
+    img_urls
 ) => {
-    return await Post.updatePost(
-        title,
-        email,
-        img_urls,
+    console.log(id);
+    return await Post.update(
+        id,
         item,
         size,
         brand,
@@ -114,7 +109,9 @@ post_controller.updatePost = async(
         original_price,
         condition,
         description,
-        clicks
+        date,
+        email,
+        img_urls
     );
 }
 

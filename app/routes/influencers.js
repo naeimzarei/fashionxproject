@@ -201,6 +201,15 @@ router.get('/posts/:id/edit', async (req, res, next) => {
 });
 
 /**
+ * Update post
+ */
+router.post('/updatePost', async (req, res, next) => {
+    var data = req.body;
+    await post_controller.update(data.id, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.data, req.user.email, data.img_urls);
+    return res.redirect('/influencers/home');
+});
+
+/**
  * View user profile
  */
 router.get('/profile', async (req, res, next) => {

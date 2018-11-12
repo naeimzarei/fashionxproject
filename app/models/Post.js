@@ -115,6 +115,7 @@ Update post with passed in data
 @param {integer} id - Post id.
 */
 postSchema.statics.update = async (
+    id,
     item,
     size,
     brand,
@@ -126,6 +127,7 @@ postSchema.statics.update = async (
     email,
     img_urls
 ) => {
+    console.log(id);
     var post = await Post.findByIdAndUpdate(id, {
         item: item,
         size: size,
