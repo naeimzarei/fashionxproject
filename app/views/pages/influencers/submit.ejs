@@ -168,11 +168,11 @@
 
                     //get blob to send to server
                     croppedCanvas.toBlob(function(blob){
-
-                        var formData = new FormData();
+                        var form = document.getElementById("submit-pic-form")
+                        var formData = new FormData(form);
                         
                         formData.append('croppedImage', blob)
-                        console.log(JSON.stringify(formData));
+                        console.log('formData' + JSON.stringify(formData));
                         $.ajax('/influencers/uploadPhoto', {
                             method: "POST",
                             data: formData,
