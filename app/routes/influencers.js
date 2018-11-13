@@ -37,7 +37,7 @@ const upload = multer({
             cb(null, req.user.email + '/' + Date.now() + '-' + file.originalname);
         }
     })
-}).array('photo-upload', 10); // 10 specifies 10 max photos can be uploaded at a time
+}).single('croppedImage'); // 10 specifies 10 max photos can be uploaded at a time
 
 /**
  * Loads the login page once the user selects "influencer" on landing page.
@@ -159,20 +159,24 @@ router.get('/submit', (req, res, next) => {
  * Post creation and handlese photo uploads photo to S3
  */
 router.post('/submit', async (req,res,next) => {
-    //decode img string possibly 
+    var data = req.body;
+    data.date = new Date();
+    data.img_urls = data.img_urls.split(',');
+    await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    return res.redirect('/influencers/home');
+});
+
+/**
+ * Handle photo upload to S3
+ */
+router.post('/uploadPhoto', async (req,res,next) => {
     upload(req, res, async function (error) {
         if (error) {
             console.log(error);
             res.send('Upload failed!');
         }
-        var imgUrls = req.files.map(function(file) {
-            return file.location;
-        });
-        var data = req.body;
-        data.date = new Date();
-        console.log('req body ' + JSON.stringify(req.body))
-        await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
-        return res.redirect('/influencers/home');
+
+        res.send(req.file.location);
     });
 });
 
