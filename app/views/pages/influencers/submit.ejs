@@ -8,6 +8,7 @@
     <body>
         <% include ../../partials/header %>
 
+        
         <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
             <div class="container text-center monospace-font pb-3 mt-5" >
 
@@ -54,6 +55,8 @@
 
                     <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                         <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
+                        <input type="text" id="photo-upload-hidden" name="photo-upload" class="form-control border-pink" hidden>
+                        
                         <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
                     </div>
 
@@ -156,12 +159,28 @@
                     //created in case this is what's passed on form submit
                     var croppedImage = new Image();
                     //javascript image with src assigned from user cropped image.
-                    croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
+                    croppedImage.src = croppedCanvas.toDataURL("image/jpeg")
 
                     //get blob to send to server
                     croppedCanvas.toBlob(function(blob){
 
-
+                        var formData = new FormData();
+                        
+                        formData.append('croppedImage', blob)
+                        console.log(JSON.stringify(formData));
+                        $.ajax('/influencers/uploadPhoto', {
+                            method: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function() {
+                            console.log('Upload success');
+                                document.getElementById('photo-upload-hidden').value = croppedCanvas.toDataURL("image/jpeg") + ","
+                            },
+                            error() {
+                            console.log('Upload error');
+                            },
+                        });
 
                     }, 'image/jpeg', .95) //convert to JPEG at 95% quality 
 
