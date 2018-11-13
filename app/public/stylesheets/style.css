@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'Cabin';
+    src: url('Cabin-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Lato', arial, sans-serif;
+}
+
 /* Positioning */
 
 .ps-absolute {
@@ -115,9 +126,22 @@ img.logo {
     color: #fff;
 }
 
-.nav.header a i {
-    font-size: 25px;
+.nav.header a {
     color: #ffffff;
+}
+
+.nav.header .dropdown-menu {
+    background-color: #000000;
+}
+
+.nav.header .dropdown-menu .dropdown-item:hover {
+    background-color: #323232;
+}
+
+.nav .brand-name {
+    line-height: 44px;
+    font-family: 'Cabin', arial, sans-serif;
+    font-size: 22px;
 }
 
 .justify-start {
@@ -127,13 +151,11 @@ img.logo {
 /* Footers and headers */
 .footer {
     background-color: #000000;
-    font-family: Helvetica, sans-serif;
     color: #ffffff;
 }
 
 .footer a {
     color: #ffffff;
-    font-family: Helvetica, sans-serif;
     text-decoration: underline;
 }
 
