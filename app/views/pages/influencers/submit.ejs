@@ -167,6 +167,7 @@
                                 debugger;
                                 console.log('Upload success');
                                 document.getElementById('photo-upload-hidden').value += response + ","
+                                document.getElementById('photo-upload').value = null;
                             },
                             error() {
                                 console.log('Upload error');
