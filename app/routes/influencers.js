@@ -203,6 +203,7 @@ router.get('/posts/:id/edit', async (req, res, next) => {
     if (post.length) {
         data = post[0];
     }
+    data.img_urls = data.img_urls.join(',');
 
     res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
 });

@@ -56,7 +56,7 @@
                     <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                         <!-- only accept image types, nothing else -->
                         <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
-                        <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden value="">
+                        <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden value="<%= post.img_urls %>">
 
                         <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
                     </div>
@@ -85,8 +85,12 @@
                 $('.desc').focusout(function(){
                     $(this).attr('placeholder',$(this).data('holder'));
                 });
-    
-    
+
+                imgUrls = document.getElementById('photo-upload-hidden').value.split(',');
+                for (var i = 0; i < imgUrls.length; i++) {
+                    //Add thumbnail of cropped image to page
+                    $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + imgUrls[i] + "'/>");
+                }
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
             //Takes in boolean to denote whether its an add or drop operation
