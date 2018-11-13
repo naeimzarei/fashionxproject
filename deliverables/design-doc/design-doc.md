@@ -174,12 +174,16 @@ Rights {
 
 ```javascript
 Post {
-    Email: string,
-    Title: string
-    Date: date,
-    Img Url: string,
+    Item: string,
+    Size: string,
+    Brand: string,
+    Selling_price: number,
+    Original_price: number,
+    Condition: string,
     Description: string,
-    Clicks: number
+    Date: date,
+    Email: string,
+    Img_urls: array
 }
 ```
 
