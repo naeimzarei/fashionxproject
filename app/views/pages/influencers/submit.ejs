@@ -7,7 +7,12 @@
     </head>
     <body>
         <% include ../../partials/header %>
-
+        
+        <div class="container text-center monospace-font pb-3 mt-5" id = "photo-upload-div">
+                
+            <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*" multiple>
+            <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
+        </div>
         <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
             <div class="container text-center monospace-font pb-3 mt-5" >
 
@@ -52,10 +57,9 @@
                         <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
-                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
-                        <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
-                    </div>
+                    
+                    <input type="hidden" id="photo-upload-hidden" name="photo-upload" class="form-control border-pink" accept="image/*" multiple hidden>
+                        
 
                     <!-- only accept image types, nothing else -->
                     <!-- <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])"> -->
@@ -77,6 +81,7 @@
             <!-- Render thumbnails for cropped images -->
             
         </form>
+        
         
         <!-- <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'></div> -->
         <script>
@@ -129,7 +134,8 @@
 
             //image cropping and saving image
             var img1;
-            var imageSrcURLs = [];
+            var imageSrcURLs = []; //save all cropped image src urls
+            var imageBlobs = []; //save all cropped image blobs
             var cropper;
             $("input[type='file']").on("change", function(event1) {
                 
@@ -153,6 +159,9 @@
                         imageSmoothingQuality: 'high',
                     });
                 
+
+                    var hidden = document.getElementById('photo-upload-hidden');
+                    
                     //created in case this is what's passed on form submit
                     var croppedImage = new Image();
                     //javascript image with src assigned from user cropped image.
@@ -161,16 +170,22 @@
                     //get blob to send to server
                     croppedCanvas.toBlob(function(blob){
 
-
+                        imageBlobs.push(blob)
 
                     }, 'image/jpeg', .95) //convert to JPEG at 95% quality 
+                    
+                    hidden.value = croppedCanvas.toDataURL("image/jpeg", .95)
+                    var test = $('#photo-upload').val()
+                    console.log('input vals'  + JSON.stringify(test))
 
+                    console.log('hidden value'  + JSON.stringify(hidden.value))
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
 
 
                     //save image urls/blob to array everytime a user crops
-                    var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
+                    var croppedImageSrc = croppedCanvas.toDataURL("image/jpeg", .95)
+
                     imageSrcURLs.push(croppedImageSrc)
                     //console.log(JSON.stringify(imageSrcURLs))
                     //clear UI for next image crop if need be
@@ -190,14 +205,19 @@
 
             });
 
-            $('#createPost').on('click', function(){
-                //var form = new FormData(document.getElementById("submit-pic-form"));
-                //form.append("img_urls", imageSrcURLs)
-                var form = $('#submit-pic-form').serializeArray();
-                form.push({"name":"img_urls", "value":imageSrcURLs});
-                console.log(JSON.stringify(form))
-                //possibly need to convert from src string to file (server side?)
-            });
+            // $('#createPost').on('click', function(){
+            //     //var form = new FormData(document.getElementById("submit-pic-form"));
+            //     //form.append("img_urls", imageSrcURLs)
+            //     var form = $('#submit-pic-form').serializeArray();
+            //     //form.push({"name":"img_urls", "value":imageSrcURLs});
+            //     imageBlobs.forEach(function(element) {
+            //         //create file out of image blob 
+            //         element = new File([element], "testName");
+            //     }, this);
+            //     form.push({"name":"img_urls", "value":imageBlobs})
+            //     //console.log(JSON.stringify(form)  + "array size" + imageSrcURLs.length)
+            //     //possibly need to convert from src string to file (server side?)
+            // });
 
         </script>
 
