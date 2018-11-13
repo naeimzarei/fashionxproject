@@ -7,17 +7,8 @@
     </head>
     <body>
         <% include ../../partials/header %>
-<<<<<<< HEAD
-        
-        <div class="container text-center monospace-font pb-3 mt-5" id = "photo-upload-div">
-                
-            <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*" multiple>
-            <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
-        </div>
-=======
 
         
->>>>>>> master
         <form id='submit-pic-form' enctype='multipart/form-data' class='bg-grey' action='/influencers/submit' method='post'>
             <div class="container text-center monospace-font pb-3 mt-5" >
 
@@ -62,18 +53,12 @@
                         <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
                     </div>
 
-<<<<<<< HEAD
-                    
-                    <input type="hidden" id="photo-upload-hidden" name="photo-upload" class="form-control border-pink" accept="image/*" multiple hidden>
-                        
-=======
                     <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                         <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
                         <input type="text" id="photo-upload-hidden" name="photo-upload" class="form-control border-pink" hidden>
                         
                         <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
                     </div>
->>>>>>> master
 
                     <!-- only accept image types, nothing else -->
                     <!-- <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])"> -->
