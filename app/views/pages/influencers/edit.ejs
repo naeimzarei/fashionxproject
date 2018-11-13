@@ -47,34 +47,32 @@
                                 
                         </select>
                     </div>
-                    
+
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
                         <textarea name="description" form="submit-pic-form" class = 'form-control border-pink desc' placeholder = "Enter description here... (optional)"><%= post.description %></textarea>  
                         <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
                     </div>
 
-                    <!-- only accept image types, nothing else -->
-                    <!-- <input type="file" id="image-upload" name="image-upload" accept="image/*" onchange="checkFile(this.files[0])"> -->
-                    <!-- <img id='image-source' src='' alt='Some Image'/> -->
-                    <!-- Add row -->
-                    <!-- <div class='form-group form-inline pl-3 pr-3'>
-                        <button type = "button" class="btn btn-pink btn-primary text-center" onclick="appendFormFields()" id = "addRow">Add Row</button>                        
-                    </div> -->
+                    <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
+                        <!-- only accept image types, nothing else -->
+                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
+                        <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden value="">
+
+                        <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
+                    </div>
 
                     <div class='form-group form-inline pl-3 pr-3'>
                         <button type="submit" class="btn btn-pink btn-primary text-center" >Update Post</button>
                     </div>
                     <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
-                    
+
+                    <!-- Render thumbnails for cropped images -->
                     <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>     
                 </div>           
             </div>
             
-            <!-- Render thumbnails for cropped images -->
-            
         </form>
         
-        <!-- <div id = "imgDiv" class='container' style='width: 500px; height: 500px;'></div> -->
         <script>
             //Description text box will populate placeholder when out of focus.
             $(function(){
@@ -92,21 +90,21 @@
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
             //Takes in boolean to denote whether its an add or drop operation
-            var num;
-            var last;
+            // var num;
+            // var last;
 
-            function appendFormFields(){
-                var fields = document.querySelector('#fieldsDiv');
+            // function appendFormFields(){
+            //     var fields = document.querySelector('#fieldsDiv');
 
-                last = fields.cloneNode(true)
-                document.getElementById('formFieldsDiv').appendChild(last);
-                $('#formFieldsDiv button').show();
+            //     last = fields.cloneNode(true)
+            //     document.getElementById('formFieldsDiv').appendChild(last);
+            //     $('#formFieldsDiv button').show();
                 
-            }
+            // }
 
-            function deleteRow(){
-                $(this).parent().remove();
-            }
+            // function deleteRow(){
+            //     $(this).parent().remove();
+            // }
 
             // function checkFile(img) {
             //     var reader = new FileReader();
@@ -125,16 +123,14 @@
 
             //image cropping and saving image
             var img1;
-            var imageSrcURLs = [];
             var cropper;
             $("input[type='file']").on("change", function(event1) {
-                
                 src1 = URL.createObjectURL(event1.target.files[0]);
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
                 $('#imgDiv').append(img1); //wrap img in container
                 $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
-                
+
                 //done cropping button event handler
                 $('#doneCropping').on("click", function(){
                     var croppedCanvas = cropper.getCroppedCanvas({
@@ -149,24 +145,44 @@
                         imageSmoothingQuality: 'high',
                     });
                 
+
+                    var hidden = document.getElementById('photo-upload-hidden');
+                    
                     //created in case this is what's passed on form submit
                     var croppedImage = new Image();
                     //javascript image with src assigned from user cropped image.
-                    croppedImage.src = croppedCanvas.toDataURL("img/jpeg")
+                    croppedImage.src = croppedCanvas.toDataURL("image/png")
 
+                    //get blob to send to server
+                    croppedCanvas.toBlob(function(blob){
+                        var formData = new FormData();
+                        // Get the original pictures names without extension
+                        var filename = document.getElementById('photo-upload').value.split(/(\\|\/)/g).pop().split('.').slice(0, -1).join('.');
+                        formData.append('croppedImage', blob, filename + '.png');
+                        $.ajax('/influencers/uploadPhoto', {
+                            method: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                console.log('Upload success');
+                                document.getElementById('photo-upload-hidden').value += response + ","
+                                document.getElementById('photo-upload').value = null;
+                            },
+                            error() {
+                                console.log('Upload error');
+                            },
+                        });
+
+                    }, 'image/jpeg', .95) //convert to JPEG at 95% quality 
 
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
 
-
-                    //save image urls/blob to array everytime a user crops
-                    var croppedImageSrc = croppedCanvas.toDataURL("img/jpeg")
-                    imageSrcURLs.push(croppedImageSrc)
-
                     //clear UI for next image crop if need be
                     $('#imgDiv').empty();
+                });
 
-                })
                 cropper = new Cropper(img1, {
                     aspectRatio: 1/1,
                     crop(event){
@@ -177,7 +193,6 @@
                     maxCropBoxHeight:1080,
                     maxCropBoxWidth: 1080,
                 });
-
             });
         </script>
 

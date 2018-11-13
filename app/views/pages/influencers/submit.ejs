@@ -154,7 +154,6 @@
                     //get blob to send to server
                     croppedCanvas.toBlob(function(blob){
                         var formData = new FormData();
-                        debugger;
                         // Get the original pictures names without extension
                         var filename = document.getElementById('photo-upload').value.split(/(\\|\/)/g).pop().split('.').slice(0, -1).join('.');
                         formData.append('croppedImage', blob, filename + '.png');
@@ -164,7 +163,6 @@
                             processData: false,
                             contentType: false,
                             success: function(response) {
-                                debugger;
                                 console.log('Upload success');
                                 document.getElementById('photo-upload-hidden').value += response + ","
                                 document.getElementById('photo-upload').value = null;
