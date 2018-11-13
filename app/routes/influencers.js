@@ -162,7 +162,9 @@ router.post('/submit', async (req,res,next) => {
     var data = req.body;
     data.date = new Date();
     data.img_urls = data.img_urls.split(',');
-    data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
+    if (data.img_urls[data.img_urls.length - 1].length < 2) {
+        data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
+    }
     await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
@@ -203,7 +205,7 @@ router.get('/posts/:id/edit', async (req, res, next) => {
     if (post.length) {
         data = post[0];
     }
-    data.img_urls = data.img_urls.join(',');
+    data.img_urls = data.img_urls.join(',') + ',';
 
     res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
 });
@@ -215,6 +217,10 @@ router.post('/updatePost', async (req, res, next) => {
     var data = req.body;
     data.date = new Date();
     data.img_urls = data.img_urls.split(',');
+    if (data.img_urls[data.img_urls.length - 1].length < 2) {
+        data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
+    }
+    console.log(data);
     await post_controller.update(data.id, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });

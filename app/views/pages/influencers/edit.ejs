@@ -10,7 +10,6 @@
 
         <form id='submit-pic-form' class='bg-grey' action='/influencers/updatePost' method='post'>
             <input name='id' type='text' value='<%= post.id %>' hidden>
-            <input name='img_urls' type='text' value='<%= post.img_urls %>' hidden>
             <div class="container text-center monospace-font pb-3 mt-5" >
                 <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
@@ -87,6 +86,7 @@
                 });
 
                 imgUrls = document.getElementById('photo-upload-hidden').value.split(',');
+                imgUrls.pop();
                 for (var i = 0; i < imgUrls.length; i++) {
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + imgUrls[i] + "'/>");
@@ -169,6 +169,7 @@
                             processData: false,
                             contentType: false,
                             success: function(response) {
+                                debugger;
                                 console.log('Upload success');
                                 document.getElementById('photo-upload-hidden').value += response + ","
                                 document.getElementById('photo-upload').value = null;
