@@ -36,7 +36,7 @@ body {
 
 /* Fonts */
 .text-pink {
-    color: #eb9095;
+    color: #7C4889;
 }
 
 .text-white {
@@ -53,7 +53,7 @@ body {
 
 /* Backgrounds */
 .bg-pink {
-    background-color: #eb9095;
+    background-color: #7C4889;
 }
 
 .bg-grey {
@@ -77,7 +77,7 @@ body {
 
 /* Borders */
 .border-pink {
-    box-shadow: 0 0 5px #eb9095;
+    box-shadow: 0 0 5px #7C4889;
 }
 
 .border-radius-5 {
@@ -87,28 +87,28 @@ body {
 /* Buttons */
 .btn-pink {
     color: #fff;
-    background-color: #eb9095;
-    border-color: #eb9095;
+    background-color: #7C4889;
+    border-color: #7C4889;
 }
 
 .btn-pink:hover {
-    color: #eb9095;
+    color: #7C4889;
     background-color: transparent;
     background-image: none;
-    border-color: #eb9095;
+    border-color: #7C4889;
 }
 
 .btn-outline-pink:hover {
     color: #fff;
-    background-color: #eb9095;
-    border-color: #eb9095;
+    background-color: #7C4889;
+    border-color: #7C4889;
 }
 
 .btn-outline-pink {
-    color: #eb9095;
+    color: #7C4889;
     background-color: transparent;
     background-image: none;
-    border-color: #eb9095;
+    border-color: #7C4889;
 }
 
 #imgDiv img {
