@@ -52,6 +52,7 @@ Regression testing will be done only when new code requires unit testing. Basic 
     5. File: None chosen
     6. Type: Blank
     7. Condition: Blank
+4. Must have atleast one picture to upload for each post
 
 ### Profile
 1. Submit form with missing required fields: all missing except first name
