@@ -85,8 +85,22 @@
                 imgUrls.pop();
                 for (var i = 0; i < imgUrls.length; i++) {
                     //Add thumbnail of cropped image to page
-                    $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + imgUrls[i] + "'/>");
+                    $('#thumbnails').append(`
+                        <div class="item mr-4">
+                            <span class="notify-badge" data-img-url='${imgUrls[i]}'>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </span>
+                            <img class='img-thumbnail' src = '${imgUrls[i]}'/>
+                        </div>
+                    `);
                 }
+
+                $('#thumbnails').on("click", '.notify-badge', function(event){
+                    // Remove image from display
+                    event.target.parentElement.parentElement.remove();
+                    // Remove image URL
+                    document.getElementById('photo-upload-hidden').value = document.getElementById('photo-upload-hidden').value.replace(event.target.parentElement.dataset.imgUrl + ',', '');
+                });
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
             //Takes in boolean to denote whether its an add or drop operation
@@ -171,6 +185,20 @@
                                 document.getElementById('photo-upload-hidden').value += response + ","
                                 document.getElementById('photo-upload').value = null;
                                 $("#updatePost").removeAttr("disabled"); // Allow form submit
+
+                                //Add thumbnail of cropped image to page
+                                $('#thumbnails').append(`
+                                    <div class="item mr-4">
+                                        <span class="notify-badge" data-img-url='${response}'>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </span>
+                                        <img class='img-thumbnail' src = '${response}'/>
+                                    </div>
+                                `);
+
+                                if ($('.img-thumbnail').length >= 10) {
+                                    $("input[type='file']").attr("disabled", "disabled");
+                                }
                             },
                             error() {
                                 console.log('Upload error');
@@ -179,16 +207,10 @@
 
                     }, 'image/png', .95) //convert to JPEG at 95% quality 
 
-                    //Add thumbnail of cropped image to page
-                    $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
-
-                    if ($('.img-thumbnail').length >= 10) {
-                        $("input[type='file']").attr("disabled", "disabled");
-                    }
-
                     //clear UI for next image crop if need be
                     $('#imgDiv').empty();
                 });
+
 
                 cropper = new Cropper(img1, {
                     aspectRatio: 1/1,
