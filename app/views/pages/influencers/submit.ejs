@@ -122,8 +122,10 @@
                 src1 = URL.createObjectURL(event1.target.files[0]);
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
+
                 $('#imgDiv').append(img1); //wrap img in container
                 $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
+                $("#createPost").attr("disabled", "disabled"); // Disable form submit until image cropped and uploaded
 
                 //done cropping button event handler
                 $('#doneCropping').on("click", function(){
@@ -162,16 +164,21 @@
                                 console.log('Upload success');
                                 document.getElementById('photo-upload-hidden').value += response + ",";
                                 document.getElementById('photo-upload').value = null;
+                                $("#createPost").removeAttr("disabled"); // Allow form submit
                             },
                             error() {
                                 console.log('Upload error');
                             },
                         });
 
-                    }, 'image/jpeg', .95) //convert to JPEG at 95% quality 
+                    }, 'image/png', .95) //convert to PNG at 95% quality 
 
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
+
+                    if ($('.img-thumbnail').length >= 10) {
+                        $("input[type='file']").attr("disabled", "disabled");
+                    }
 
                     //clear UI for next image crop if need be
                     $('#imgDiv').empty();
