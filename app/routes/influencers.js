@@ -61,6 +61,14 @@ router.get('/login', (req, res, next) => {
 });
 
 /**
+ * Log out current user
+ */
+router.get('/logout', (req, res, next) => {
+    req.logout();
+    res.redirect('/influencers/login');
+});
+
+/**
  * This checks that the given credentials for login page were correct/found in the DB. If so, it will redirect user to 
  * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
  */
