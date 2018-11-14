@@ -12,14 +12,17 @@
             <h1><b>Brand:</b> <%= post.brand %></h1>
             <hr class = "my-4">
             
+            <tr>
+            <% post.img_urls.forEach(function(pic) { %>
+                  <td><img src="<%= pic %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail" style="max-width: 200px;"></td>
+            <% }); %>
+            </tr>
+
             <h4><b>Size:</b> <%= post.size %> </h4>
             <h4><b>Asking Price:</b> <%= post.selling_price %></h4>
             <h4><b>Original Price:</b> <%= post.original_price %></h4>
             <h4><b>Condition:</b> <%= post.condition %></h4>
-            <h4><b>Description:</b> <%= post.description %></h4>
-
-            <hr class = "my-4">
-            
+            <h4><b>Description:</b> <%= post.description %></h4>            
 
 
             Date posted: <%= post.date %>
