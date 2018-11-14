@@ -195,6 +195,10 @@
                                         <img class='img-thumbnail' src = '${response}'/>
                                     </div>
                                 `);
+
+                                if ($('.img-thumbnail').length >= 10) {
+                                    $("input[type='file']").attr("disabled", "disabled");
+                                }
                             },
                             error() {
                                 console.log('Upload error');
@@ -202,10 +206,6 @@
                         });
 
                     }, 'image/png', .95) //convert to JPEG at 95% quality 
-
-                    if ($('.img-thumbnail').length >= 10) {
-                        $("input[type='file']").attr("disabled", "disabled");
-                    }
 
                     //clear UI for next image crop if need be
                     $('#imgDiv').empty();
