@@ -193,3 +193,14 @@ a{
 .hover:hover {
     cursor: pointer;
 }
+
+.item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-20px;
+    top:10px;
+}
