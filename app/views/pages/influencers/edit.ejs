@@ -50,14 +50,14 @@
 
                     <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                         <!-- only accept image types, nothing else -->
-                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*" required>
+                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
                         <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden value="<%= post.img_urls %>">
 
                         <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
                     </div>
 
                     <div class='form-group form-inline pl-3 pr-3'>
-                        <button type="submit" class="btn btn-pink btn-primary text-center" >Update Post</button>
+                        <button type="submit" id = "updatePost" class="btn btn-pink btn-primary text-center" >Update Post</button>
                     </div>
                     <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
 
@@ -194,6 +194,15 @@
                     maxCropBoxWidth: 1080,
                 });
             });
+            $('#updatePost').click(function(event){
+          
+                var temp = document.getElementById('photo-upload-hidden').value
+                if(temp.length == 0){
+                    event.preventDefault();
+                    $('#uploadHelp').append("<small class='form-text text-danger'>You must upload atleast one picture for a post.</small>")
+                    
+                }
+            })
         </script>
 
         <% include ../../partials/footer %>

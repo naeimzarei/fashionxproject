@@ -50,7 +50,7 @@
 
                     <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
                         <!-- only accept image types, nothing else -->
-                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*" required>
+                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
                         <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden>
 
                         <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
@@ -188,6 +188,16 @@
                     maxCropBoxWidth: 1080,
                 });
             });
+
+            $('#createPost').click(function(event){
+                
+                var temp = document.getElementById('photo-upload-hidden').value
+                if(temp.length == 0){
+                    event.preventDefault();
+                    $('#uploadHelp').append("<small class='form-text text-danger'>You must upload atleast one picture for a post.</small>")
+                    
+                }
+            })
         </script>
 
         <% include ../../partials/footer %>
