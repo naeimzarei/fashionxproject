@@ -84,6 +84,9 @@ router.post('/login', async (req, res, next) => {
  * Loads signup form when user uses the signup link in the footer, or by typing it manually
  */
 router.get('/signup', (req, res, next) => {
+    if (req.user) {
+        return res.redirect('/influencers/home');
+    }
     res.render('pages/influencers/signup', { title: 'Sign Up', errors: '', fields: ''});
 });
 
