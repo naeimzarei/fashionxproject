@@ -57,6 +57,7 @@ function checkAuth(req, res, next) {
     return res.redirect('/influencers/login');
   } else {
     //authenticate user
+    res.locals.user = req.user;
     next();
   } 
 }
