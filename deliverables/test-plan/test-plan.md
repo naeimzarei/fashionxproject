@@ -50,6 +50,8 @@ Regression testing will be done only when new code requires unit testing. Basic 
     3. Selling price: -10
     4. Original price: -10
     5. File: None chosen
+    6. Type: Blank
+    7. Condition: Blank
 
 ### Profile
 1. Submit form with missing required fields: all missing except first name
