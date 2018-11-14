@@ -80,7 +80,7 @@
                     $(this).attr('placeholder',$(this).data('holder'));
                 });
     
-                $('.notify-badge').on("click", function(event){
+                $('#thumbnails').on("click", '.notify-badge', function(event){
                     // Remove image from display
                     event.target.parentElement.parentElement.remove();
                     // Remove image URL

@@ -95,7 +95,7 @@
                     `);
                 }
 
-                $('.notify-badge').on("click", function(event){
+                $('#thumbnails').on("click", '.notify-badge', function(event){
                     // Remove image from display
                     event.target.parentElement.parentElement.remove();
                     // Remove image URL
@@ -185,6 +185,16 @@
                                 document.getElementById('photo-upload-hidden').value += response + ","
                                 document.getElementById('photo-upload').value = null;
                                 $("#updatePost").removeAttr("disabled"); // Allow form submit
+
+                                //Add thumbnail of cropped image to page
+                                $('#thumbnails').append(`
+                                    <div class="item mr-4">
+                                        <span class="notify-badge" data-img-url='${response}'>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </span>
+                                        <img class='img-thumbnail' src = '${response}'/>
+                                    </div>
+                                `);
                             },
                             error() {
                                 console.log('Upload error');
@@ -192,16 +202,6 @@
                         });
 
                     }, 'image/png', .95) //convert to JPEG at 95% quality 
-
-                    //Add thumbnail of cropped image to page
-                    $('#thumbnails').append(`
-                        <div class="item mr-4">
-                            <span class="notify-badge" data-img-url='${croppedImage.src}'>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </span>
-                            <img class='img-thumbnail' src = '${croppedImage.src}'/>
-                        </div>
-                    `);
 
                     if ($('.img-thumbnail').length >= 10) {
                         $("input[type='file']").attr("disabled", "disabled");
