@@ -15,10 +15,8 @@
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
                         
                         <select name='item' class='form-control col-sm-2 border-pink' required>
-                            <%- include('../../partials/option', {value: 'Item *', placeholder: 'Item *', name: 'item', disabled: "disabled", selected: post.item === 'Item *'}) %>
                             <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'item', selected: post.item === 'Individual Item'}) %>
-                            <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'item', selected: post.item === 'Bundle of Items'}) %>
-                            
+                            <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'item', selected: post.item === 'Bundle of Items'}) %>                        
                         </select>    
                     </div>
                     
@@ -37,13 +35,11 @@
                         
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
                         <select name='condition' class='form-control col-sm-2 border-pink' required>
-                                <%- include('../../partials/option', {value: 'Condition *', placeholder: 'Condition *', name: 'type', disabled: "disabled", selected: post.condition === 'Condition *'}) %>
                                 <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: post.condition === 'New with tags (Never worn, tags attached)'}) %>
                                 <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: post.condition === 'Excellent (Worn just a few times, looks as new)'}) %>
                                 <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: post.condition === 'Very Good (Worn, but still looks great)'}) %>
                                 <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition', selected: post.condition === 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)'}) %>
                                 <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition', selected: post.condition === 'Satisfactory (It has some flaws, all noted in the description and visible in pics)'}) %>
-                                
                         </select>
                     </div>
 

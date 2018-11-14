@@ -15,10 +15,8 @@
                 <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
                         <select name='item' class='form-control col-sm-2 border-pink' required>
-                            <%- include('../../partials/option', {value: 'Item *', placeholder: 'Item *', name: 'item', disabled: "disabled", selected: false}) %>
                             <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'item', selected: false}) %>
                             <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'item', selected: false}) %>
-                            
                         </select>    
                     </div>
 
@@ -37,13 +35,11 @@
 
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
                         <select name='condition' class='form-control col-sm-2 border-pink' required>
-                                <%- include('../../partials/option', {value: 'Condition *', placeholder: 'Condition *', name: 'type', disabled: "disabled", selected: false}) %>
-                                <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: false}) %>
-                                <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: false}) %>
-                                <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: false}) %>
-                                <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition', selected: false}) %>
-                                <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition', selected: false}) %>
-                                
+                            <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Good (Found tiny flaws, which I noted in my listing and made visible in my pictures)', placeholder: 'Good', name: 'condition', selected: false}) %>
+                            <%- include('../../partials/option', {value: 'Satisfactory (It has some flaws, all noted in the description and visible in pics)', placeholder: 'Satisfactory', name: 'condition', selected: false}) %>
                         </select>
                     </div>
 
