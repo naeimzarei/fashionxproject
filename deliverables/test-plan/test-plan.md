@@ -44,6 +44,12 @@ Regression testing will be done only when new code requires unit testing. Basic 
 ### Post
 1. Find all posts by user email
 2. Find no posts when invaliid user email
+3. Invalid inputs
+    1. Size: Blank
+    2. Brand: Blank
+    3. Selling price: -10
+    4. Original price: -10
+    5. File: None chosen
 
 ### Profile
 1. Submit form with missing required fields: all missing except first name
