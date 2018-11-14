@@ -50,12 +50,16 @@ authenticate_controller.strategy();
 app.use('/', indexRouter);
 app.use('/template', templateRouter);
 app.use('/users', usersRouter);
-app.use('/influencers', influencersRouter);
+app.use('/influencers', checkAuth, influencersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+function checkAuth(req, res, next) {
+  if (req.originalUrl !== '/influencers/login' && !req.user) {
+    return res.redirect('/influencers/login');
+  } else {
+    //authenticate user
+    next();
+  } 
+}
 
 // error handler
 app.use(function(err, req, res, next) {
