@@ -20,15 +20,13 @@
 - [x] As an influencer on the influencer profile page, I should see a form similar to the influencer sign up page that allows me to update the various fields, such as my name, email, and height. 
 - [ ] As an influencer, my profile page should be updated after I click the 'Save Changes' button on the influencer profile page. 
 - [x] As an influencer on the influencer submit page, I should see the various fields present for me to upload a picture later on. 
-- [] As an influencer using a mobile device on the influencer submit page, I should see a cropping interface popup allowing me to navigate to my phone directory 
-- [] As an influencer using a desktop browser on the influencer submit page, I should see a cropping interface popup allowing me to navigate to the computer directory where I can choose a picture to upload. 
-- [ ] As an influencer using a desktop browser on he influencer submit page, I should be able to crop the picture I upload to the required dimensions. 
-- [ ] As an influencer using a mobile device on the influencer submit page, I should be able to crop the picture I upload to the required dimensions. 
+- [x] As an influencer using a mobile device on the influencer submit page, I should see a cropping interface popup allowing me to navigate to my phone directory 
+- [x] As an influencer using a desktop browser on the influencer submit page, I should see a cropping interface popup allowing me to navigate to the computer directory where I can choose a picture to upload. 
+- [x] As an influencer using a desktop browser on he influencer submit page, I should be able to crop the picture I upload to the required dimensions. 
+- [x] As an influencer using a mobile device on the influencer submit page, I should be able to crop the picture I upload to the required dimensions. 
 - [x] As an influencer on the influencer submit page, I should see a message informing me that my post has been sent for processing after I click the 'Upload Pic' button. 
 - [x] As an influnecer on the influencer submit page, if I have not properly filled out all fields (Item, Size, Link), then a dialogue should pop up informing to fill in the required fields. 
-- [ ] As an influencer on the influencer shopping page, I should see various influencer posts. The photos must have these fields as a caption below them: Height, Weight, Bust, Waist, Leg Length, Brand, Clothing type, Size.
-- [ ] As an influencer on the influencer shopping page, I should a dropdown that allows me to filter the posts based on body type.
-- [ ] As an influencer on the influencer shopping page, I should see the posts update after filtering the posts using the dropdown. 
+- [x] As an influencer on the influencer shopping page, I should see all of my posts. The photos must have these fields as a caption below them: Size, Item type (bundle or individual), Brand, Original selling price, condition of item(s), and a description (optional).
 
 ## Moderator 
 - [ ] As a moderator, I should be able to access a link to the moderator dashboard login by navigating to moderator dashboard on the fashionxproject home page. 
