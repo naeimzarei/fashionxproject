@@ -80,7 +80,12 @@
                     $(this).attr('placeholder',$(this).data('holder'));
                 });
     
-    
+                $('.notify-badge').on("click", function(event){
+                    // Remove image from display
+                    event.target.parentElement.parentElement.remove();
+                    // Remove image URL
+                    document.getElementById('photo-upload-hidden').value = document.getElementById('photo-upload-hidden').value.replace(event.target.parentElement.dataset.imgUrl + ',', '');
+                });
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
             //Takes in boolean to denote whether its an add or drop operation
