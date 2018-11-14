@@ -47,15 +47,19 @@ app.use(passport.session());
 authenticate_controller.strategy();
 
 // set routes 
-app.use('/', indexRouter);
+app.use('/', checkAuth, indexRouter);
 app.use('/template', templateRouter);
 app.use('/users', usersRouter);
 app.use('/influencers', checkAuth, influencersRouter);
 
 function checkAuth(req, res, next) {
-  if (req.originalUrl !== '/influencers/login' && req.originalUrl !== '/influencers/signup' && !req.user) {
-    res.locals.user = undefined;
-    return res.redirect('/influencers/login');
+  debugger;
+  if (!req.user) {
+    res.locals.user = null;
+    if (req.originalUrl !== '/influencers/login' && req.originalUrl !== '/influencers/signup') {
+      return res.redirect('/influencers/login');
+    }
+    next();
   } else {
     //authenticate user
     res.locals.user = req.user;
