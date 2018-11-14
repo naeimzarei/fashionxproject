@@ -176,6 +176,10 @@
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append("<img class = 'img-thumbnail' src = '" + croppedImage.src + "'/>");
 
+                    if ($('.img-thumbnail').length >= 10) {
+                        $("input[type='file']").attr("disabled", "disabled");
+                    }
+
                     //clear UI for next image crop if need be
                     $('#imgDiv').empty();
                 });
