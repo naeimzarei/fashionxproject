@@ -204,7 +204,7 @@ router.get('/posts/:id', async (req, res, next) => {
         data = post[0];
     }
 
-    res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data });
+    res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data, moment: moment });
 });
 
 /**

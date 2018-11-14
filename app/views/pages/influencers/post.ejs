@@ -25,7 +25,7 @@
             <h4><b>Description:</b> <%= post.description %></h4>            
 
 
-            Date posted: <%= post.date %>
+            Date posted: <%= moment(post.date).format('M/D/YYYY') %>
         </div>
     </main>
 
