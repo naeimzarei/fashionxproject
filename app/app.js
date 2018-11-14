@@ -54,6 +54,7 @@ app.use('/influencers', checkAuth, influencersRouter);
 
 function checkAuth(req, res, next) {
   if (req.originalUrl !== '/influencers/login' && req.originalUrl !== '/influencers/signup' && !req.user) {
+    res.locals.user = undefined;
     return res.redirect('/influencers/login');
   } else {
     //authenticate user
