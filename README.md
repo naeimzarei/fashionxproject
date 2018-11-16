@@ -272,3 +272,17 @@ eb open production-staging
 ```
 
 Opens the 'production-staging' environment on the browser.
+
+### Administration
+
+```bash
+node app/util/create_admin.js --email <email> --password <password>
+```
+
+Creates a new administrator with a valid email and password. 
+
+```bash
+node app/util/remove_admin.js --email <email>
+```
+
+Removes an administrator with the provided email.
