@@ -11,9 +11,8 @@ var rightsSchema = new mongoose.Schema({
         required: true
     },
     rights: {
-        type: Number,
-        required: true,
-        enum: [0, 1, 2]
+        type: String,
+        required: true
     }
 });
 

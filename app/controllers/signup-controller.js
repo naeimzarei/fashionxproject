@@ -187,7 +187,7 @@ signup_controller.signup = async (profile) => {
     );
 
     await credentials_controller.push(profile.email, profile.password);
-    await rights_controller.push(profile.email, 0);
+    await rights_controller.push(profile.email, '0');
     return profiles;
 };
 
@@ -197,7 +197,7 @@ signup_controller.signup = async (profile) => {
  * verification
  */
 signup_controller.verify = async (email) => {
-    // await rights_controller.push(email, 1);
+    // await rights_controller.push(email, '1');
 }
 
 module.exports = signup_controller;
