@@ -4,6 +4,7 @@ var util = require('../util/util');
 
 var profile_controller = require('./profile-controller');
 var credentials_controller = require('./credentials-controller');
+var rights_controller = require('./rights-controller');
 var signup_controller = {};
 
 const VALIDATION_ERRORS = util.VALIDATION_ERRORS;
@@ -186,7 +187,17 @@ signup_controller.signup = async (profile) => {
     );
 
     await credentials_controller.push(profile.email, profile.password);
+    await rights_controller.push(profile.email, 0);
     return profiles;
 };
+
+/**
+ * TODO: change right of influencer to 1, that is change the right of an
+ * influencer to verified once they have succeeded going through email
+ * verification
+ */
+signup_controller.verify = async (email) => {
+    // await rights_controller.push(email, 1);
+}
 
 module.exports = signup_controller;

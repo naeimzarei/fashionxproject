@@ -1,6 +1,7 @@
 
 var minimist = require('minimist');
 var administrator_controller = require('../controllers/administrator-controller');
+var rights_controller = require('../controllers/rights-controller');
 var VALIDATION_ERRORS = require('../util/util').VALIDATION_ERRORS;
 
 var credentials = minimist(process.argv.slice(2));
@@ -28,6 +29,7 @@ result.then(async (res) => {
         process.exit();
     }
     await administrator_controller.removeAdministrator(credentials['email']);
+    await rights_controller.removeRights(credentials['email']);
     console.log('Successfully removed administrator with the provided email.');
     process.exit();
 });

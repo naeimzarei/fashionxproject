@@ -1,6 +1,7 @@
 
 var minimist = require('minimist');
 var administrator_controller = require('../controllers/administrator-controller');
+var rights_controller = require('../controllers/rights-controller');
 var VALIDATION_ERRORS = require('../util/util').VALIDATION_ERRORS;
 
 var credentials = minimist(process.argv.slice(2));
@@ -34,6 +35,7 @@ result.then(async (res) => {
         process.exit();
     }
     await administrator_controller.push(credentials['email'], credentials['password']);
+    await rights_controller.push(credentials['email'], 2);
     console.log('Successfully created an administrator with provided credentials.');
     process.exit();
 });
