@@ -6,10 +6,12 @@ var passport = require('passport');
 var aws = require('aws-sdk')
 var multer = require('multer')
 var multerS3 = require('multer-s3')
+const nodemailer = require('nodemailer');
 
 var signup_controller = require('../controllers/signup-controller');
 var post_controller = require('../controllers/post-controller');
 var profile_controller = require('../controllers/profile-controller');
+var config = require('../config/config');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
@@ -111,6 +113,52 @@ router.post('/signup', async (req, res, next) => {
         passport.authenticate('local', (err, user, info) => {
             if (user) {
                 req.logIn(user, (err) => {
+                    //TODO check that user is flagged as approved in database before redirecting them to /home
+                    //send email to the person that applied
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                        user: 'testingemailfunctionality123@gmail.com',
+                        pass: 'testing123!'
+                        }
+                    });
+                    const mailOptions = {
+                        from: 'testingemailfunctionality123@gmail.com',
+                        to: `${req.body.email}`,
+                        subject: 'Thank You',
+                        text: 'Thanks for applying to become an influencer, we will review your application shortly.',
+                        replyTo: 'testingemailfunctionality123@gmail.com'
+                    }
+                    transporter.sendMail(mailOptions, function(err, res) {
+                        if (err) {
+                        console.error('there was an error: ', err);
+                        } else {
+                        console.log('here is the res: ', res)
+                        }
+                    })
+
+                    //send email to fashionx that a new influencer applied
+                    const transporter2 = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                        user: 'testingemailfunctionality123@gmail.com',
+                        pass: 'testing123!'
+                        }
+                    });
+                    const mailOptions2 = {
+                        from: 'testingemailfunctionality123@gmail.com',
+                        to: 'testingemailfunctionality123@gmail.com',
+                        subject: 'New Applicant',
+                        text: 'Someone applied to be an influencer. Email: ' + req.body.email,
+                        replyTo: 'testingemailfunctionality123@gmail.com'
+                    }
+                    transporter2.sendMail(mailOptions2, function(err, res) {
+                        if (err) {
+                        console.error('there was an error: ', err);
+                        } else {
+                        console.log('here is the res: ', res)
+                        }
+                    })
                     return res.redirect('/influencers/home');
                 })
             } else {
@@ -120,6 +168,11 @@ router.post('/signup', async (req, res, next) => {
     } else {
         res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors, fields: req.body});
     }
+
+    
+
+      //TODO: send email to fashionxproject
+
 });
 
 /**
