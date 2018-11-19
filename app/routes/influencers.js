@@ -116,6 +116,7 @@ router.post('/signup', async (req, res, next) => {
                     //TODO check that user is flagged as approved in database before redirecting them to /home
                     //send email to the person that applied
                     const transporter = nodemailer.createTransport({
+                        //TODO: replace dummy account with config.EMAIL and config.PASS
                         service: 'gmail',
                         auth: {
                         user: 'testingemailfunctionality123@gmail.com',
@@ -146,7 +147,8 @@ router.post('/signup', async (req, res, next) => {
                         }
                     });
                     const mailOptions2 = {
-                        from: 'testingemailfunctionality123@gmail.com',
+                        //TODO: replace dummy account with config.EMAIL and config.PASS
+                        from: 'testingemailfunctionality123@gmail.com', 
                         to: 'testingemailfunctionality123@gmail.com',
                         subject: 'New Applicant',
                         text: 'Someone applied to be an influencer. Email: ' + req.body.email,
