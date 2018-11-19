@@ -57,7 +57,7 @@ signup_controller.validate = async (profile) => {
         }
 
         //check if instagram handle contains '@'
-        if(!profile.instagram_handle.includes('@')){
+        if(!profile.instagram_handle.startsWith('@')){
             error_object['instagram_handle'] = VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'];
         }
 
@@ -74,8 +74,8 @@ signup_controller.validate = async (profile) => {
             error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
         }
 
-        //check if paypal account has '@'
-        if(!profile.paypal.includes('@')){
+        //check if paypal account has valid email address
+        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
             error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
         }
 
