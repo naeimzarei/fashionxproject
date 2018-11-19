@@ -31,6 +31,11 @@ administratorSchema.statics.findAdministrator = async (email) => {
     return administrator;
 };
 
+administratorSchema.statics.findAllAdministrators = async () => {
+    var administrators = await Administrator.find({});
+    return administrators;
+};
+
 administratorSchema.statics.removeAdministrator = async (email) => {
     var administrator = await Administrator.findOneAndRemove({email: email});
     return administrator;

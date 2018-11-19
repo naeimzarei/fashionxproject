@@ -203,8 +203,8 @@ profile_controller.push = async (
 Find profile
 @param {integer} id - Profile id.
 */
-profile_controller.find = async (id) => {
-    return await Profile.find(id);
+profile_controller.findByIds = async (id) => {
+    return await Profile.findByIds(id);
 };
 
 /**
@@ -215,6 +215,11 @@ profile_controller.findProfile = async (email) => {
     var profile = await Profile.findOne({email: email});
     return profile;
 };
+
+profile_controller.findAllProfiles = async () => {
+    var profiles = await Profile.findAllProfiles();
+    return profiles;
+};  
 
 /**
 Delete profile

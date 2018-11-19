@@ -34,10 +34,15 @@ rightsSchema.statics.push = async (email, rights) => {
 Find access level per user
 @param {integer} id - User account id.
 */
-rightsSchema.statics.find = async (id) => {
+rightsSchema.statics.findByIds = async (id) => {
     var rights = await Rights.findById(id);
     return rights;
 };
+
+rightsSchema.statics.findAllRights = async () => {
+    var rights = await Rights.find({});
+    return rights;
+}
 
 /**
  * Find access level per user 

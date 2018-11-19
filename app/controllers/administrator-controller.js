@@ -10,6 +10,10 @@ administrator_controller.findAdministrator = async (email) => {
     return await Administrator.findAdministrator(email);
 };
 
+administrator_controller.findAllAdministrators = async () => {
+    return await Administrator.findAllAdministrators();
+};
+
 administrator_controller.removeAdministrator = async (email) => {
     return await Administrator.removeAdministrator(email);
 };

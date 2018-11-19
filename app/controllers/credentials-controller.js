@@ -32,8 +32,8 @@ credentials_controller.removeCredentials = async (email) => {
 Find authentication credentials
 @param {integer} id - Authentication id
 */
-credentials_controller.find = async (id) => {
-    return await Credentials.find(id);
+credentials_controller.findByIds = async (id) => {
+    return await Credentials.findByIds(id);
 };
 
 /**
@@ -42,6 +42,13 @@ credentials_controller.find = async (id) => {
  */
 credentials_controller.findCredentials = async (email) => {
     return await Credentials.findCredentials(email);
+};
+
+/**
+ * Find all credentials of influencers 
+ */
+credentials_controller.findAllCredentials = async () => {
+    return await Credentials.findAllCredentials();
 };
 
 /**

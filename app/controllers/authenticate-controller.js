@@ -36,7 +36,7 @@ authenticate_controller.strategy = () => {
 
     // deserialize the user given the user's session id 
     passport.deserializeUser(async (id, done) => {
-        var credentials = await credentials_controller.find(id);
+        var credentials = await credentials_controller.findByIds(id);
         done(null, credentials);
     });
 }
