@@ -38,7 +38,7 @@ credentialsSchema.statics.push = async (email, password) => {
 Find authentication credentials
 @param {integer} id - Authentication id
 */
-credentialsSchema.statics.find = async (id) => {
+credentialsSchema.statics.findByIds = async (id) => {
     var credentials = await Credentials.findById(id);
     return credentials;
 };
@@ -51,6 +51,14 @@ credentialsSchema.statics.findCredentials = async (email) => {
     var credentials = await Credentials.findOne({email: email});
     return credentials;
 };
+
+/**
+ * Find all credentials of influencers 
+ */
+credentialsSchema.statics.findAllCredentials = async () => {
+    var credentials = await Credentials.find({});
+    return credentials;
+}
 
 /**
 Delete authentication credentials

@@ -16,8 +16,8 @@ rights_controller.push = async(email, rights) => {
 Find access level per user
 @param {integer} id - User account id.
 */
-rights_controller.find = async(id) => {
-    return await Rights.find(id);
+rights_controller.findByIds = async(id) => {
+    return await Rights.findByIds(id);
 };
 
 /**
@@ -26,6 +26,10 @@ rights_controller.find = async(id) => {
  */
 rights_controller.findRights = async (email) => {
     return await Rights.findRights(email);
+};
+
+rights_controller.findAllRights = async () => {
+    return await Rights.findAllRights();
 };
 
 /**
