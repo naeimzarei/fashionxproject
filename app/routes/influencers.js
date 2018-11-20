@@ -232,7 +232,7 @@ router.post('/submit', async (req,res,next) => {
     if (data.img_urls[data.img_urls.length - 1].length < 2) {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
-    await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.push(data.item, data.type, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 
@@ -288,7 +288,7 @@ router.post('/updatePost', async (req, res, next) => {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
 
-    await post_controller.update(data.id, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.update(data.id, data.item, data.type, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 

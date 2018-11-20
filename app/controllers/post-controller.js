@@ -9,6 +9,7 @@ Create new Post based off of passed in data
 */
 post_controller.push = async (
     item,
+    type,
     size,
     brand,
     selling_price,
@@ -21,15 +22,16 @@ post_controller.push = async (
 ) => {
     return await Post.push(
         item,
-    size,
-    brand,
-    selling_price,
-    original_price,
-    condition,
-    description,
-    date,
-    email,
-    img_urls
+        type,
+        size,
+        brand,
+        selling_price,
+        original_price,
+        condition,
+        description,
+        date,
+        email,
+        img_urls
     );
 };
 
@@ -63,6 +65,7 @@ Update Post with passed in data
 */
 post_controller.update = async (
     item,
+    type,
     size,
     brand,
     selling_price,
@@ -75,6 +78,7 @@ post_controller.update = async (
 ) => {
     return await Post.update(
         item,
+        type,
         size,
         brand,
         selling_price,
@@ -90,6 +94,7 @@ post_controller.update = async (
 post_controller.update = async(
     id,
     item,
+    type,
     size,
     brand,
     selling_price,
@@ -104,6 +109,7 @@ post_controller.update = async(
     return await Post.update(
         id,
         item,
+        type,
         size,
         brand,
         selling_price,

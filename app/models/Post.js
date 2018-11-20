@@ -10,6 +10,10 @@ var postSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true
+    },
     size: {
         type: String,
         required: true
@@ -57,6 +61,7 @@ Create new post based off of passed in data
 */
 postSchema.statics.push = async (
     item,
+    type,
     size,
     brand,
     selling_price,
@@ -69,6 +74,7 @@ postSchema.statics.push = async (
 ) => {
     var post = new Post({
         item: item,
+        type: type,
         size: size,
         brand: brand,
         selling_price: selling_price,
@@ -117,6 +123,7 @@ Update post with passed in data
 postSchema.statics.update = async (
     id,
     item,
+    type,
     size,
     brand,
     selling_price,
@@ -129,6 +136,7 @@ postSchema.statics.update = async (
 ) => {
     var post = await Post.findByIdAndUpdate(id, {
         item: item,
+        type: type,
         size: size,
         brand: brand,
         selling_price: selling_price,
