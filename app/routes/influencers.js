@@ -126,11 +126,11 @@ router.post('/signup', async (req, res, next) => {
                         }
                     });
                     const mailOptions = {
-                        from: 'testingemailfunctionality123@gmail.com',
+                        from: config.EMAIL,
                         to: `${req.body.email}`,
                         subject: 'Thank You',
-                        text: 'Thanks for applying to become an influencer, we will review your application shortly.',
-                        replyTo: 'testingemailfunctionality123@gmail.com'
+                        text: 'Thanks for applying to become an influencer. We will review your application shortly.',
+                        replyTo: config.EMAIL
                     }
                     transporter.sendMail(mailOptions, function(err, res) {
                         if (err) {
@@ -152,11 +152,11 @@ router.post('/signup', async (req, res, next) => {
                     });
                     const mailOptions2 = {
                         //TODO: replace dummy account with config.EMAIL and config.PASS
-                        from: 'testingemailfunctionality123@gmail.com', 
-                        to: 'testingemailfunctionality123@gmail.com',
+                        from: config.EMAIL, 
+                        to: config.EMAIL,
                         subject: 'New Applicant',
                         text: 'Someone applied to be an influencer. Email: ' + req.body.email,
-                        replyTo: 'testingemailfunctionality123@gmail.com'
+                        replyTo: config.EMAIL
                     }
                     transporter2.sendMail(mailOptions2, function(err, res) {
                         if (err) {
