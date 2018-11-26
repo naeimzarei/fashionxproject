@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 var signup_controller = require('../controllers/signup-controller');
 var post_controller = require('../controllers/post-controller');
 var profile_controller = require('../controllers/profile-controller');
-var config = require('../config/config');
+
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
@@ -117,10 +117,12 @@ router.post('/signup', async (req, res, next) => {
                     //send email to the person that applied
                     const transporter = nodemailer.createTransport({
                         //TODO: replace dummy account with config.EMAIL and config.PASS
-                        service: 'gmail',
+                        service: 'Godaddy',
                         auth: {
-                        user: 'testingemailfunctionality123@gmail.com',
-                        pass: 'testing123!'
+                        // user: 'testingemailfunctionality123@gmail.com',
+                        // pass: 'testing123!'
+                        user: config.EMAIL,
+                        pass: config.PASSWORD
                         }
                     });
                     const mailOptions = {
@@ -140,10 +142,12 @@ router.post('/signup', async (req, res, next) => {
 
                     //send email to fashionx that a new influencer applied
                     const transporter2 = nodemailer.createTransport({
-                        service: 'gmail',
+                        service: 'Godaddy',
                         auth: {
-                        user: 'testingemailfunctionality123@gmail.com',
-                        pass: 'testing123!'
+                        //user: 'testingemailfunctionality123@gmail.com',
+                        //pass: 'testing123!'
+                        user: config.EMAIL,
+                        pass: config.PASSWORD
                         }
                     });
                     const mailOptions2 = {
