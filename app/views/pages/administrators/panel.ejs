@@ -86,7 +86,7 @@
                                        Leg Length:  ${profile.leg_length}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick = "hide()">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                                 </div>
                             </div>
@@ -103,25 +103,8 @@
             var clickedId = $(this).attr('id');
             var modalId = "modal-"+clickedId
             
-            //document.getElementById(modalId).style.visibility = "visible";
             $("#"+modalId).modal('show')
             
-            //TODO, unhide modal linked to clicked user
-            
-            // var clickedProfile;
-           
-            // profileArray.forEach((profile, index) => {
-                    
-            //                 if(profile['email']=== clickedId){
-            //                     clickedProfile = profile;
-            //                 }
-            //             });
-            
-            
         })
-        function hide(){
-            $(this).modal('hide');
-            $(this).hide();
-        }
     </script>
 </html>
