@@ -16,6 +16,7 @@
                     <th scope='col'>#</th>
                     <th scope='col'>Name</th>
                     <th scope='col'>Email</th>
+                    <th scope='col'>Instagram</th>
                     <th scope='col'>Status</th>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                                             <th scope='col'>${ind}</th>
                                             <td>${profile.first_name}</td>
                                             <td>${profile.email}</td>
+                                            <td>${profile.instagram_handle}</td>
                                             <td>${(rights[i].rights == 0) ? 'Unverified Influnecer' : 'Verified Influencer'}</td>
                                         </tr>
                                     `);
