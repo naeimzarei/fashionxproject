@@ -21,18 +21,20 @@
                 </tr>
             </thead>
         </table>
-
+        <div id = "modal"></div>
         <footer>
             <% include ../../partials/footer %>
         </footer>
     </body>
 
     <script>
+        var profileArray;
         var ind = 1;
         $.ajax({
             method: 'GET', 
             url: '/administrators/profiles',
             success: (profiles) => {
+                profileArray = profiles;
                 $.ajax({
                     method: 'GET',
                     url: '/administrators/rights',
@@ -42,7 +44,7 @@
                                 var possibleRights = ['0', '1']
                                 if (profile.email === rights[i].email && possibleRights.includes(rights[i].rights)) {
                                     var row = $(`
-                                        <tr>
+                                        <tr class = "profileRow" id = "${profile.email}" data-toggle="modal" data-target = "">
                                             <th scope='col'>${ind}</th>
                                             <td>${profile.first_name}</td>
                                             <td>${profile.email}</td>
@@ -55,10 +57,59 @@
                                     break;
                                 }
                             }
+                            `<div class="modal fade" id="modal-${profile.email}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" hidden>
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">${profile.first_name}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                        ${profile.email} <br>
+                                        ${profile.dob} <br>
+                                        ${profile.instagram_handle} <br>
+                                        ${profile.likeToKnowIt}<br>
+                                        ${profile.blog}<br>
+                                        ${profile.paypal}<br>
+                                        ${profile.height_ft} + ' + ${profile.height_in} + "
+                                        ${profile.bust_band}<br>
+                                        ${profile.bust_cup}<br>
+                                        ${profile.waist}<br>
+                                        ${profile.shirt_size}<br>
+                                        ${profile.jean_size}<br>
+                                        ${profile.torso_length}<br>
+                                        ${profile.leg_length}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>`
                         }); 
                     }
                 });
             }
         });
+        //create modal with applicant info when admin clicks on profile 
+        $('#administrative-panel').on("click", ".profileRow", function(){
+
+            var clickedId = $(this).attr('id');
+            var clickedEmail = clickedId.replace("modal-", "")
+            //TODO, unhide modal linked to clicked user
+            
+            // var clickedProfile;
+           
+            // profileArray.forEach((profile, index) => {
+                    
+            //                 if(profile['email']=== clickedId){
+            //                     clickedProfile = profile;
+            //                 }
+            //             });
+            
+            
+        })
     </script>
 </html>

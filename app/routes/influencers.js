@@ -139,7 +139,6 @@ router.post('/signup', async (req, res, next) => {
         passport.authenticate('local', (err, user, info) => {
             if (user) {
                 req.logIn(user, (err) => {
-                    //TODO check that user is flagged as approved in database before redirecting them to /home
                     //send email to the person that applied (outgoing)
                     const transporter = nodemailer.createTransport({
                         
@@ -148,8 +147,6 @@ router.post('/signup', async (req, res, next) => {
                         secureConnection: true,
                         port: 465,
                         auth: {
-                        //user: 'testingemailfunctionality123@gmail.com',
-                        //pass: 'testing123!'
                         user: config.EMAIL,
                         pass: config.PASSWORD
                         }
@@ -176,14 +173,11 @@ router.post('/signup', async (req, res, next) => {
                         secureConnection: true,
                         port: 993,
                         auth: {
-                        //user: 'testingemailfunctionality123@gmail.com',
-                        //pass: 'testing123!'
                         user: config.EMAIL,
                         pass: config.PASSWORD
                         }
                     });
                     const mailOptions2 = {
-                        //TODO: replace dummy account with config.EMAIL and config.PASS
                         from: config.EMAIL, 
                         to: config.EMAIL,
                         subject: 'New Applicant',
