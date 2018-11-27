@@ -43,8 +43,10 @@
                             for (var i = 0; i < rights.length; i++) {
                                 var possibleRights = ['0', '1']
                                 if (profile.email === rights[i].email && possibleRights.includes(rights[i].rights)) {
+                                    //make row id the users email until the '@'
+                                    var rowIndex = profile.email.substring(0,profile.email.indexOf("@"));
                                     var row = $(`
-                                        <tr class = "profileRow" id = "${profile.email}" data-toggle="modal" data-target = "">
+                                        <tr class = "profileRow" id = "${rowIndex}" data-toggle="modal" data-target = "#modal-${rowIndex}" href = "#">
                                             <th scope='col'>${ind}</th>
                                             <td>${profile.first_name}</td>
                                             <td>${profile.email}</td>
@@ -57,7 +59,8 @@
                                     break;
                                 }
                             }
-                            `<div class="modal fade" id="modal-${profile.email}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" hidden>
+                            var modal = $(
+                            `<div class="modal fade" id="modal-${rowIndex}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
@@ -67,27 +70,28 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                        ${profile.email} <br>
-                                        ${profile.dob} <br>
-                                        ${profile.instagram_handle} <br>
-                                        ${profile.likeToKnowIt}<br>
-                                        ${profile.blog}<br>
-                                        ${profile.paypal}<br>
-                                        ${profile.height_ft} + ' + ${profile.height_in} + "
-                                        ${profile.bust_band}<br>
-                                        ${profile.bust_cup}<br>
-                                        ${profile.waist}<br>
-                                        ${profile.shirt_size}<br>
-                                        ${profile.jean_size}<br>
-                                        ${profile.torso_length}<br>
-                                        ${profile.leg_length}
+                                       Email: ${profile.email} 
+                                       Date of Birth:  ${profile.dob} 
+                                       Instrgram:  ${profile.instagram_handle} 
+                                       LikeToKnowIt:  ${profile.likeToKnowIt}
+                                       Blog:  ${profile.blog}
+                                       Paypal:  ${profile.paypal}
+                                       Height:  ${profile.height_ft} feet ${profile.height_in} inches
+                                       Bust Band:  ${profile.bust_band}
+                                       Bust Cup:  ${profile.bust_cup}
+                                       Waist:  ${profile.waist}
+                                       Shirt Size:  ${profile.shirt_size}
+                                       Jean Size:  ${profile.jean_size}
+                                       Torso Length:  ${profile.torso_length}
+                                       Leg Length:  ${profile.leg_length}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick = "hide()">Close</button>
                                 </div>
                                 </div>
                             </div>
-                            </div>`
+                            </div>`);
+                            $("body").append(modal)
                         }); 
                     }
                 });
@@ -97,7 +101,11 @@
         $('#administrative-panel').on("click", ".profileRow", function(){
 
             var clickedId = $(this).attr('id');
-            var clickedEmail = clickedId.replace("modal-", "")
+            var modalId = "modal-"+clickedId
+            
+            //document.getElementById(modalId).style.visibility = "visible";
+            $("#"+modalId).modal('show')
+            
             //TODO, unhide modal linked to clicked user
             
             // var clickedProfile;
@@ -111,5 +119,9 @@
             
             
         })
+        function hide(){
+            $(this).modal('hide');
+            $(this).hide();
+        }
     </script>
 </html>
