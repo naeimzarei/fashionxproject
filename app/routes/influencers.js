@@ -114,13 +114,16 @@ router.post('/signup', async (req, res, next) => {
             if (user) {
                 req.logIn(user, (err) => {
                     //TODO check that user is flagged as approved in database before redirecting them to /home
-                    //send email to the person that applied
+                    //send email to the person that applied (outgoing)
                     const transporter = nodemailer.createTransport({
-                        //TODO: replace dummy account with config.EMAIL and config.PASS
-                        service: 'Godaddy',
+                        
+                        service: 'Outlook365',
+                        host: "smtpout.secureserver.net",  
+                        secureConnection: true,
+                        port: 465,
                         auth: {
-                        // user: 'testingemailfunctionality123@gmail.com',
-                        // pass: 'testing123!'
+                        //user: 'testingemailfunctionality123@gmail.com',
+                        //pass: 'testing123!'
                         user: config.EMAIL,
                         pass: config.PASSWORD
                         }
@@ -140,9 +143,12 @@ router.post('/signup', async (req, res, next) => {
                         }
                     })
 
-                    //send email to fashionx that a new influencer applied
+                    //send email to fashionx that a new influencer applied (incoming)
                     const transporter2 = nodemailer.createTransport({
-                        service: 'Godaddy',
+                        service: 'Outlook365',
+                        host: "imap.secureserver.net",  
+                        secureConnection: true,
+                        port: 993,
                         auth: {
                         //user: 'testingemailfunctionality123@gmail.com',
                         //pass: 'testing123!'
@@ -155,7 +161,7 @@ router.post('/signup', async (req, res, next) => {
                         from: config.EMAIL, 
                         to: config.EMAIL,
                         subject: 'New Applicant',
-                        text: 'Someone applied to be an influencer. Email: ' + req.body.email,
+                        text: 'Someone applied to be an influencer: ' + req.body.email,
                         replyTo: config.EMAIL
                     }
                     transporter2.sendMail(mailOptions2, function(err, res) {
