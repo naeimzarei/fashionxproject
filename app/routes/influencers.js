@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 var signup_controller = require('../controllers/signup-controller');
 var post_controller = require('../controllers/post-controller');
 var profile_controller = require('../controllers/profile-controller');
-
+var rights_controller = require('../controllers/rights-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
@@ -45,9 +45,14 @@ const upload = multer({
  * Loads the login page once the user selects "influencer" on landing page.
  */
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
     if (req.user) {
-        res.redirect('/influencers/home');
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            return res.redirect('/influencers/home');
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
@@ -55,9 +60,14 @@ router.get('/', (req, res, next) => {
 /**
  * Route the user to the login page
  */
-router.get('/login', (req, res, next) => {
+router.get('/login', async (req, res, next) => {
     if (req.user) {
-        res.redirect('/influencers/home');
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            return res.redirect('/influencers/home');
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
@@ -71,6 +81,13 @@ router.get('/logout', (req, res, next) => {
 });
 
 /**
+ * After user has submitted application to be an influencer 
+ */
+router.get('/applied', (req, res, next) => {
+    res.render('pages/influencers/applied', { title: 'Thank You' });
+});
+
+/**
  * This checks that the given credentials for login page were correct/found in the DB. If so, it will redirect user to 
  * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
  */
@@ -79,10 +96,15 @@ router.post('/login', async (req, res, next) => {
         //req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
         req.session.cookie.maxAge = 21 * 24 * 60 * 60 * 1000;
     }
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('local', async (err, user, info) => {
         if (user) {
+            var rights = await rights_controller.findRights(user.email);
             req.logIn(user, (err) => {
-                return res.redirect('/influencers/home');
+                if (rights.rights == '1') {
+                    return res.redirect('/influencers/home');
+                } else {
+                    return res.redirect('/influencers/applied')
+                }
             })
         } else {
             return res.render('pages/influencers/login', { title: 'Login', errors: {'email': VALIDATION_ERRORS['CREDENTIALS_INVALID']}, fields: ''})
@@ -93,9 +115,13 @@ router.post('/login', async (req, res, next) => {
 /**
  * Loads signup form when user uses the signup link in the footer, or by typing it manually
  */
-router.get('/signup', (req, res, next) => {
+router.get('/signup', async (req, res, next) => {
     if (req.user) {
-        return res.redirect('/influencers/home');
+        if (rights.rights == '1') {
+            return res.redirect('/influencers/home');
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     }
     res.render('pages/influencers/signup', { title: 'Sign Up', errors: '', fields: ''});
 });
@@ -171,7 +197,7 @@ router.post('/signup', async (req, res, next) => {
                         console.log('here is the res: ', res)
                         }
                     })
-                    return res.redirect('/influencers/home');
+                    return res.redirect('/influencers/applied');
                 })
             } else {
                 return res.render('pages/influencers/login', { title: 'Login', errors: {'email': VALIDATION_ERRORS['CREDENTIALS_INVALID']}, fields: ''})
@@ -210,8 +236,13 @@ router.post('/updateProfile', async (req, res, next) => {
  */
 router.get('/home', async (req, res, next) => {
     if (req.user) {
-        var posts = await post_controller.findAll(req.user.email);
-        res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var posts = await post_controller.findAll(req.user.email);
+            return res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     } else {
         res.redirect('/influencers/login');
     }
@@ -227,8 +258,17 @@ router.get('/manual', (req, res, next) => {
 /**
  * Routes user to uplaod page when user clicks on plus square icon in the header.
  */
-router.get('/submit', (req, res, next) => {
-    res.render('pages/influencers/submit', { title: 'Submit Picture', errors: '', fields: '' });
+router.get('/submit', async (req, res, next) => {
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            return res.render('pages/influencers/submit', { title: 'Submit Picture', errors: '', fields: '' });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
+    }
 });
 
 /**
@@ -263,27 +303,43 @@ router.post('/uploadPhoto', async (req,res,next) => {
  * View post
  */
 router.get('/posts/:id', async (req, res, next) => {
-    var post = await post_controller.find(req.params.id);
-    var data;
-    if (post.length) {
-        data = post[0];
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var post = await post_controller.find(req.params.id);
+            var data;
+            if (post.length) {
+                data = post[0];
+            }
+            return res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data, moment: moment });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
     }
-
-    res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data, moment: moment });
 });
 
 /**
  * Edit post
  */
 router.get('/posts/:id/edit', async (req, res, next) => {
-    var post = await post_controller.find(req.params.id);
-    var data;
-    if (post.length) {
-        data = post[0];
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var post = await post_controller.find(req.params.id);
+            var data;
+            if (post.length) {
+                data = post[0];
+            }
+            data.img_urls = data.img_urls.join(',') + ',';
+            return res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
     }
-    data.img_urls = data.img_urls.join(',') + ',';
-
-    res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
 });
 
 /**
@@ -305,8 +361,17 @@ router.post('/updatePost', async (req, res, next) => {
  * View user profile
  */
 router.get('/profile', async (req, res, next) => {
-    var profile = await profile_controller.findProfile(req.user.email);
-    res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: '', fields: '' });
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var profile = await profile_controller.findProfile(req.user.email);
+            return res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: '', fields: '' });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
+    }
 });
 
 /**
