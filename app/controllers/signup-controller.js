@@ -4,6 +4,7 @@ var util = require('../util/util');
 
 var profile_controller = require('./profile-controller');
 var credentials_controller = require('./credentials-controller');
+var rights_controller = require('./rights-controller');
 var signup_controller = {};
 
 const VALIDATION_ERRORS = util.VALIDATION_ERRORS;
@@ -56,7 +57,7 @@ signup_controller.validate = async (profile) => {
         }
 
         //check if instagram handle contains '@'
-        if(!profile.instagram_handle.includes('@')){
+        if(!profile.instagram_handle.startsWith('@')){
             error_object['instagram_handle'] = VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'];
         }
 
@@ -73,8 +74,8 @@ signup_controller.validate = async (profile) => {
             error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
         }
 
-        //check if paypal account has '@'
-        if(!profile.paypal.includes('@')){
+        //check if paypal account has valid email address
+        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
             error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
         }
 
@@ -186,7 +187,17 @@ signup_controller.signup = async (profile) => {
     );
 
     await credentials_controller.push(profile.email, profile.password);
+    await rights_controller.push(profile.email, '0');
     return profiles;
 };
+
+/**
+ * TODO: change right of influencer to 1, that is change the right of an
+ * influencer to verified once they have succeeded going through email
+ * verification
+ */
+signup_controller.verify = async (email) => {
+    // await rights_controller.push(email, '1');
+}
 
 module.exports = signup_controller;

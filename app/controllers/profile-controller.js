@@ -57,7 +57,7 @@ profile_controller.validate = async (profile) => {
             }
         }
         //check if instagram handle contains '@'
-        if(!profile.instagram_handle.includes('@')){
+        if(!profile.instagram_handle.startsWith('@')){
             error_object['instagram_handle'] = VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'];
         }
          //check if zipcode is valid
@@ -65,8 +65,8 @@ profile_controller.validate = async (profile) => {
          if(!isValidZip){
              error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
          }
-         //check if paypal account has '@'
-        if(!profile.paypal.includes('@')){
+         //check if paypal account has valid email address
+        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
             error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
         }
 
@@ -203,8 +203,8 @@ profile_controller.push = async (
 Find profile
 @param {integer} id - Profile id.
 */
-profile_controller.find = async (id) => {
-    return await Profile.find(id);
+profile_controller.findByIds = async (id) => {
+    return await Profile.findByIds(id);
 };
 
 /**
@@ -215,6 +215,11 @@ profile_controller.findProfile = async (email) => {
     var profile = await Profile.findOne({email: email});
     return profile;
 };
+
+profile_controller.findAllProfiles = async () => {
+    var profiles = await Profile.findAllProfiles();
+    return profiles;
+};  
 
 /**
 Delete profile

@@ -22,6 +22,7 @@ util.connect = async () => {
 };
 
 util.VALIDATION_ERRORS = {
+    
     FIRST_NAME_INVALID: 'Please provide a valid first name.',
     EMAIL_INVALID_SYNTAX: 'Please provide a valid email address.',
     EMAIL_DOES_NOT_EXIST: 'Email does not exist. Please provide a valid email address.',
@@ -29,10 +30,10 @@ util.VALIDATION_ERRORS = {
     PASSWORD_INVALID: 'Password must be 6-12 characters long and must contain at least one number and capital letter.',
     CREDENTIALS_INVALID: 'The email and or password combination is incorrect.',
     AGE_INVALID: 'You must be at least 18 years or older to register.',
-    INSTAGRAM_HANDLE_INVALID: "Please be sure to include '@'",
+    INSTAGRAM_HANDLE_INVALID: "Please be sure to include '@' at the start",
     BLOG_INVALID: 'Please provide a valid blog URL.',
     ZIP_INVALID: 'Please provide a valid zip code',
-    PAYPAL_INVALID: "Please include '@'",
+    PAYPAL_INVALID: "Please include the email address used on your Paypal account",
     HEIGHT_FT_INVALID: 'Please provide a valid height (ft).',
     HEIGHT_IN_INVALID: 'Please provide a valid height (in).',
     BUST_CUP_INVALID: 'Please select a valid bust (cup).',

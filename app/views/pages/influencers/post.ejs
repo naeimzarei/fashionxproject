@@ -22,8 +22,9 @@
             <h4><b>Asking Price:</b> <%= post.selling_price %></h4>
             <h4><b>Original Price:</b> <%= post.original_price %></h4>
             <h4><b>Condition:</b> <%= post.condition %></h4>
+            <%if (post.description.length != 0) { %>
             <h4><b>Description:</b> <%= post.description %></h4>            
-
+            <% } %>
 
             Date posted: <%= moment(post.date).format('M/D/YYYY') %>
         </div>

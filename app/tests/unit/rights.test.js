@@ -11,11 +11,6 @@ test('push to rights works', async () => {
     expect(rights.rights).toEqual('moderator');
 });
 
-test('removing new rights works', async () => {
-    var rights = await rights_controller.remove(id);
-    var rights_info = await rights_controller.find(rights.id);
-    expect(rights_info).toBeNull();
-});
 
 test('push to rights works', async () => {
     var rights = await rights_controller.push('sample@gmail.com', 'moderator');
@@ -26,21 +21,9 @@ test('push to rights works', async () => {
     expect(rights.rights).toEqual('moderator');
 });
 
-test('finding new rights works', async () => {
-    var rights_info = await rights_controller.find(id);
-    expect(rights_info).not.toBeNull();
-});
-
 test('finding new rights works, by email', async () => {
     var rights_info = await rights_controller.findRights(email);
     expect(rights_info).not.toBeNull();
-});
-
-test('updating new rights works', async () => {
-    await rights_controller.update(id, 'anotheremail@gmail.com', 'influencer');
-    var rights = await rights_controller.find(id);
-    expect(rights.rights).toEqual('influencer');
-    expect(rights.email).toEqual('anotheremail@gmail.com');
 });
 
 test('updating new rights works, by email', async () => {

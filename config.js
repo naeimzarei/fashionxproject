@@ -10,4 +10,7 @@ config.REGION ='us-east-2';
 config.ACCESS_KEY_ID = '';
 config.SECRET_ACCESS_KEY = '';
 
+//credentials for Fashionx email
+config.EMAIL = "";
+config.PASSWORD = ""
 module.exports = config;

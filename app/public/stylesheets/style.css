@@ -170,6 +170,11 @@ footer {
 
 /* Forms */
 
+textarea {
+    width: 300px;
+    height: 150px;
+  }
+
 #end-signup{
     align-content: center;
 

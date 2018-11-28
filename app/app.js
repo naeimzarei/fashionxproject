@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var templateRouter = require('./routes/template');
 var usersRouter = require('./routes/users');
 var influencersRouter = require('./routes/influencers');
+var administratorsRouter = require('./routes/administrators');
 
 // initialize express app
 var app = express();
@@ -47,10 +48,11 @@ app.use(passport.session());
 authenticate_controller.strategy();
 
 // set routes 
-app.use('/', checkAuth, indexRouter);
+app.use('/', indexRouter);
 app.use('/template', templateRouter);
 app.use('/users', usersRouter);
 app.use('/influencers', checkAuth, influencersRouter);
+app.use('/administrators', administratorsRouter);
 
 function checkAuth(req, res, next) {
   if (!req.user) {

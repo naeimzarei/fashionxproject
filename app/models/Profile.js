@@ -152,7 +152,7 @@ profileSchema.statics.push = async (
 Find profile
 @param {integer} id - Profile id.
 */
-profileSchema.statics.find = async (id) => {
+profileSchema.statics.findByIds = async (id) => {
     var profile = await Profile.findById(id);
     return profile;
 };
@@ -161,6 +161,11 @@ profileSchema.statics.findProfile = async (email) => {
     var profile = await Profile.findOne({email: email});
     return profile;
 };
+
+profileSchema.statics.findAllProfiles = async () => {
+    var profiles = await Profile.find({});
+    return profiles;
+}
 
 /**
 Delete profile

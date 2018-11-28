@@ -1,5 +1,6 @@
 /** Post - Handles influencer account creation and contains all collected body information and routes to models/Post.js */
 var Post = require('../models/Post');
+const nodemailer = require('nodemailer');
 
 var post_controller = {};
 
