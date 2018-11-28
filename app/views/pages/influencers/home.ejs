@@ -18,7 +18,7 @@
                 <tr>
                   <th scope="col">Thumbnail</th>
                   <th scope="col">Brand</th>
-                  <th scope="col">Date Posted</th>
+                  <th scope="col">Price</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -27,7 +27,7 @@
                     <tr>
                       <td><img src="<%= post.img_urls[0] %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail" style="max-width: 200px;"></td>
                       <th scope="row"><a href="posts/<%= post.id %>"><%= post.brand %></a></th>
-                      <td><%= moment(post.date).format('M/D/YYYY') %></td>
+                      <td>$<%= post.selling_price %></td>
                       <td>
                         <form action="/influencers/posts/<%= post.id %>/delete" method="post">
                           <a href="/influencers/posts/<%= post.id %>/edit"><button type="button" class="btn btn-secondary btn-sm">Edit</button></a>
