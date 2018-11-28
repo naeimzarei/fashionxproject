@@ -177,10 +177,10 @@ router.post('/signup', async (req, res, next) => {
                         pass: config.PASSWORD
                         }
                     });
-                    var emailText = 'Someone applied to be an influencer: \n' + req.body.email + '\n'+ req.body.dob + '\n' +req.body.instagram_handle + '\n'+
-                    req.body.likeToKnowIt + '\n' + req.body.blog + '\n'+req.body.paypal + '\n'+req.body.height_ft + 'ft '+req.body.height_in + 'in\n'
-                    +req.body.bust_band + '\n'+req.body.bust_cup + '\n'+req.body.waist + '\n'+req.body.shirt_size + '\n'+req.body.jean_size + '\n'
-                    +req.body.torso_length + '\n'+req.body.leg_length + '\n';
+                    var emailText = 'Someone applied to be an influencer: \n' + "Email: "+ req.body.email + '\n'+ "Birthdate: "+req.body.dob + '\n' +"Instagram: "+req.body.instagram_handle + '\n'+
+                    "LikeToKnowIt: "+req.body.likeToKnowIt + '\n' + "Blog: "+req.body.blog + '\n'+"Paypal: "+req.body.paypal + '\n'+"Height: "+req.body.height_ft + 'ft '+req.body.height_in + 'in\n'
+                    +"Bust Band: "+req.body.bust_band + '\n'+"Bust cup: "+req.body.bust_cup + '\n'+"Waist: "+req.body.waist + '\n'+"Shirt Size: "+req.body.shirt_size + '\n'+"Jean Size: "+req.body.jean_size + '\n'
+                    +"Torso Length: "+req.body.torso_length + '\n'+"Leg Length: "+req.body.leg_length + '\n';
 
                     const mailOptions2 = {
                         from: config.EMAIL, 
