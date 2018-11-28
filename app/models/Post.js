@@ -40,8 +40,7 @@ var postSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     img_urls: {
         type: Array,
