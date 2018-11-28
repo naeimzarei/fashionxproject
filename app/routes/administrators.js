@@ -22,6 +22,9 @@ router.get('/', async (req, res, next) => {
 router.get('/login', async (req, res, next) => {
     return res.render('pages/administrators/login', { title: 'Login', errors: '', fields: '', user: ''});
 });
+router.get('/admin-manual', async (req, res, next) => {
+    return res.render('pages/administrators/admin-manual', { title: 'Admin Manual', errors: '', fields: '', user: ''});
+});
 
 router.get('/panel', async (req, res, next) => {
     if (req.cookies.isAuthenticated != 'true') {
