@@ -16,12 +16,11 @@
                     <th scope='col'>#</th>
                     <th scope='col'>Name</th>
                     <th scope='col'>Email</th>
-                    <th scope='col'>Instagram</th>
                     <th scope='col'>Status</th>
+                    <th scope = 'col'>Action</th>
                 </tr>
             </thead>
         </table>
-        <div id = "modal"></div>
         <footer>
             <% include ../../partials/footer %>
         </footer>
@@ -50,8 +49,8 @@
                                             <th scope='col'>${ind}</th>
                                             <td>${profile.first_name}</td>
                                             <td>${profile.email}</td>
-                                            <td>${profile.instagram_handle}</td>
-                                            <td>${(rights[i].rights == 0) ? 'Unverified Influnecer' : 'Verified Influencer'}</td>
+                                            <td>${(rights[i].rights == 0) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
+                                            
                                         </tr>
                                     `);
                                     $('#administrative-panel tr:last').after(row);
@@ -59,6 +58,7 @@
                                     break;
                                 }
                             }
+                            
                             var modal = $(
                             `<div class="modal fade" id="modal-${rowIndex}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                             <div class="modal-dialog" role="document">
@@ -70,20 +70,20 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                       Email: ${profile.email} 
-                                       Date of Birth:  ${profile.dob} 
-                                       Instrgram:  ${profile.instagram_handle} 
-                                       LikeToKnowIt:  ${profile.likeToKnowIt}
-                                       Blog:  ${profile.blog}
-                                       Paypal:  ${profile.paypal}
-                                       Height:  ${profile.height_ft} feet ${profile.height_in} inches
-                                       Bust Band:  ${profile.bust_band}
-                                       Bust Cup:  ${profile.bust_cup}
-                                       Waist:  ${profile.waist}
-                                       Shirt Size:  ${profile.shirt_size}
-                                       Jean Size:  ${profile.jean_size}
-                                       Torso Length:  ${profile.torso_length}
-                                       Leg Length:  ${profile.leg_length}
+                                       Email: ${profile.email} <br/>
+                                       Date of Birth:  ${profile.dob} <br/>
+                                       Instrgram:  ${profile.instagram_handle} <br/>
+                                       LikeToKnowIt:  ${profile.likeToKnowIt}<br/>
+                                       Blog:  ${profile.blog}<br/>
+                                       Paypal:  ${profile.paypal}<br/>
+                                       Height:  ${profile.height_ft} feet ${profile.height_in} inches<br/>
+                                       Bust Band:  ${profile.bust_band}<br/>
+                                       Bust Cup:  ${profile.bust_cup}<br/>
+                                       Waist:  ${profile.waist}<br/>
+                                       Shirt Size:  ${profile.shirt_size}<br/>
+                                       Jean Size:  ${profile.jean_size}<br/>
+                                       Torso Length:  ${profile.torso_length}<br/>
+                                       Leg Length:  ${profile.leg_length}<br/>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
