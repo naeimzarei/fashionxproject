@@ -9,6 +9,7 @@
             <form id='sign-out' action="/administrators/signout" method="GET" style='display: inline;'>
                 <input type="submit" name="signout" value="Sign Out" />
             </form>
+            <a href = "/administrators/admin-manual"> Administrator Manual </a>
         </div>
         <table id='administrative-panel' class='table'>
             <thead>
@@ -17,21 +18,23 @@
                     <th scope='col'>Name</th>
                     <th scope='col'>Email</th>
                     <th scope='col'>Status</th>
+                    <th scope = 'col'>Action</th>
                 </tr>
             </thead>
         </table>
-
         <footer>
             <% include ../../partials/footer %>
         </footer>
     </body>
 
     <script>
+        var profileArray;
         var ind = 1;
         $.ajax({
             method: 'GET', 
             url: '/administrators/profiles',
             success: (profiles) => {
+                profileArray = profiles;
                 $.ajax({
                     method: 'GET',
                     url: '/administrators/rights',
@@ -40,12 +43,15 @@
                             for (var i = 0; i < rights.length; i++) {
                                 var possibleRights = ['0', '1']
                                 if (profile.email === rights[i].email && possibleRights.includes(rights[i].rights)) {
+                                    //make row id the users email until the '@'
+                                    var rowIndex = profile.email.substring(0,profile.email.indexOf("@"));
                                     var row = $(`
-                                        <tr>
+                                        <tr class = "profileRow" id = "${rowIndex}" data-toggle="modal" data-target = "#modal-${rowIndex}" href = "#">
                                             <th scope='col'>${ind}</th>
                                             <td>${profile.first_name}</td>
                                             <td>${profile.email}</td>
-                                            <td>${(rights[i].rights == 0) ? 'Unverified Influnecer' : 'Verified Influencer'}</td>
+                                            <td>${(rights[i].rights == 0) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
+                                            
                                         </tr>
                                     `);
                                     $('#administrative-panel tr:last').after(row);
@@ -53,10 +59,53 @@
                                     break;
                                 }
                             }
+                            
+                            var modal = $(
+                            `<div class="modal fade" id="modal-${rowIndex}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">${profile.first_name}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                       Email: ${profile.email} <br/>
+                                       Date of Birth:  ${profile.dob} <br/>
+                                       Instrgram:  ${profile.instagram_handle} <br/>
+                                       LikeToKnowIt:  ${profile.likeToKnowIt}<br/>
+                                       Blog:  ${profile.blog}<br/>
+                                       Paypal:  ${profile.paypal}<br/>
+                                       Height:  ${profile.height_ft} feet ${profile.height_in} inches<br/>
+                                       Bust Band:  ${profile.bust_band}<br/>
+                                       Bust Cup:  ${profile.bust_cup}<br/>
+                                       Waist:  ${profile.waist}<br/>
+                                       Shirt Size:  ${profile.shirt_size}<br/>
+                                       Jean Size:  ${profile.jean_size}<br/>
+                                       Torso Length:  ${profile.torso_length}<br/>
+                                       Leg Length:  ${profile.leg_length}<br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>`);
+                            $("body").append(modal)
                         }); 
                     }
                 });
             }
         });
+        //create modal with applicant info when admin clicks on profile 
+        $('#administrative-panel').on("click", ".profileRow", function(){
+
+            var clickedId = $(this).attr('id');
+            var modalId = "modal-"+clickedId
+            
+            $("#"+modalId).modal('show')
+            
+        })
     </script>
 </html>

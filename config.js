@@ -12,5 +12,5 @@ config.SECRET_ACCESS_KEY = '';
 
 //credentials for Fashionx email
 config.EMAIL = "";
-config.PASS = ""
+config.PASSWORD = ""
 module.exports = config;

@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 var signup_controller = require('../controllers/signup-controller');
 var post_controller = require('../controllers/post-controller');
 var profile_controller = require('../controllers/profile-controller');
-var config = require('../config/config');
+var rights_controller = require('../controllers/rights-controller');
 
 var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 
@@ -46,9 +46,14 @@ const upload = multer({
  * Loads the login page once the user selects "influencer" on landing page.
  */
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
     if (req.user) {
-        res.redirect('/influencers/home');
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            return res.redirect('/influencers/home');
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
@@ -56,9 +61,14 @@ router.get('/', (req, res, next) => {
 /**
  * Route the user to the login page
  */
-router.get('/login', (req, res, next) => {
+router.get('/login', async (req, res, next) => {
     if (req.user) {
-        res.redirect('/influencers/home');
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            return res.redirect('/influencers/home');
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     }
     res.render('pages/influencers/login', { title: 'Login', errors: '', fields: ''});
 });
@@ -72,6 +82,13 @@ router.get('/logout', (req, res, next) => {
 });
 
 /**
+ * After user has submitted application to be an influencer 
+ */
+router.get('/applied', (req, res, next) => {
+    res.render('pages/influencers/applied', { title: 'Thank You' });
+});
+
+/**
  * This checks that the given credentials for login page were correct/found in the DB. If so, it will redirect user to 
  * home page, else, appear the login form populated with error messages (e.g. email not found in DB)
  */
@@ -80,10 +97,15 @@ router.post('/login', async (req, res, next) => {
         //req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
         req.session.cookie.maxAge = 21 * 24 * 60 * 60 * 1000;
     }
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('local', async (err, user, info) => {
         if (user) {
+            var rights = await rights_controller.findRights(user.email);
             req.logIn(user, (err) => {
-                return res.redirect('/influencers/home');
+                if (rights.rights == '1') {
+                    return res.redirect('/influencers/home');
+                } else {
+                    return res.redirect('/influencers/applied')
+                }
             })
         } else {
             return res.render('pages/influencers/login', { title: 'Login', errors: {'email': VALIDATION_ERRORS['CREDENTIALS_INVALID']}, fields: ''})
@@ -94,9 +116,13 @@ router.post('/login', async (req, res, next) => {
 /**
  * Loads signup form when user uses the signup link in the footer, or by typing it manually
  */
-router.get('/signup', (req, res, next) => {
+router.get('/signup', async (req, res, next) => {
     if (req.user) {
-        return res.redirect('/influencers/home');
+        if (rights.rights == '1') {
+            return res.redirect('/influencers/home');
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     }
     res.render('pages/influencers/signup', { title: 'Sign Up', errors: '', fields: ''});
 });
@@ -114,22 +140,24 @@ router.post('/signup', async (req, res, next) => {
         passport.authenticate('local', (err, user, info) => {
             if (user) {
                 req.logIn(user, (err) => {
-                    //TODO check that user is flagged as approved in database before redirecting them to /home
-                    //send email to the person that applied
+                    //send email to the person that applied (outgoing)
                     const transporter = nodemailer.createTransport({
-                        //TODO: replace dummy account with config.EMAIL and config.PASS
-                        service: 'gmail',
+                        
+                        service: 'Outlook365',
+                        host: "smtpout.secureserver.net",  
+                        secureConnection: true,
+                        port: 465,
                         auth: {
-                        user: 'testingemailfunctionality123@gmail.com',
-                        pass: 'testing123!'
+                        user: config.EMAIL,
+                        pass: config.PASSWORD
                         }
                     });
                     const mailOptions = {
-                        from: 'testingemailfunctionality123@gmail.com',
+                        from: config.EMAIL,
                         to: `${req.body.email}`,
                         subject: 'Thank You',
-                        text: 'Thanks for applying to become an influencer, we will review your application shortly.',
-                        replyTo: 'testingemailfunctionality123@gmail.com'
+                        text: 'Thanks for applying to become an influencer. We will review your application shortly.',
+                        replyTo: config.EMAIL
                     }
                     transporter.sendMail(mailOptions, function(err, res) {
                         if (err) {
@@ -139,21 +167,28 @@ router.post('/signup', async (req, res, next) => {
                         }
                     })
 
-                    //send email to fashionx that a new influencer applied
+                    //send email to fashionx that a new influencer applied (incoming)
                     const transporter2 = nodemailer.createTransport({
-                        service: 'gmail',
+                        service: 'Outlook365',
+                        host: "imap.secureserver.net",  
+                        secureConnection: true,
+                        port: 993,
                         auth: {
-                        user: 'testingemailfunctionality123@gmail.com',
-                        pass: 'testing123!'
+                        user: config.EMAIL,
+                        pass: config.PASSWORD
                         }
                     });
+                    var emailText = 'Someone applied to be an influencer: \n' + "Email: "+ req.body.email + '\n'+ "Birthdate: "+req.body.dob + '\n' +"Instagram: "+req.body.instagram_handle + '\n'+
+                    "LikeToKnowIt: "+req.body.likeToKnowIt + '\n' + "Blog: "+req.body.blog + '\n'+"Paypal: "+req.body.paypal + '\n'+"Height: "+req.body.height_ft + 'ft '+req.body.height_in + 'in\n'
+                    +"Bust Band: "+req.body.bust_band + '\n'+"Bust cup: "+req.body.bust_cup + '\n'+"Waist: "+req.body.waist + '\n'+"Shirt Size: "+req.body.shirt_size + '\n'+"Jean Size: "+req.body.jean_size + '\n'
+                    +"Torso Length: "+req.body.torso_length + '\n'+"Leg Length: "+req.body.leg_length + '\n';
+
                     const mailOptions2 = {
-                        //TODO: replace dummy account with config.EMAIL and config.PASS
-                        from: 'testingemailfunctionality123@gmail.com', 
-                        to: 'testingemailfunctionality123@gmail.com',
+                        from: config.EMAIL, 
+                        to: config.EMAIL,
                         subject: 'New Applicant',
-                        text: 'Someone applied to be an influencer. Email: ' + req.body.email,
-                        replyTo: 'testingemailfunctionality123@gmail.com'
+                        text: emailText,
+                        replyTo: config.EMAIL
                     }
                     transporter2.sendMail(mailOptions2, function(err, res) {
                         if (err) {
@@ -162,7 +197,7 @@ router.post('/signup', async (req, res, next) => {
                         console.log('here is the res: ', res)
                         }
                     })
-                    return res.redirect('/influencers/home');
+                    return res.redirect('/influencers/applied');
                 })
             } else {
                 return res.render('pages/influencers/login', { title: 'Login', errors: {'email': VALIDATION_ERRORS['CREDENTIALS_INVALID']}, fields: ''})
@@ -201,8 +236,13 @@ router.post('/updateProfile', async (req, res, next) => {
  */
 router.get('/home', async (req, res, next) => {
     if (req.user) {
-        var posts = await post_controller.findAll(req.user.email);
-        res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var posts = await post_controller.findAll(req.user.email);
+            return res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
     } else {
         res.redirect('/influencers/login');
     }
@@ -218,8 +258,17 @@ router.get('/manual', (req, res, next) => {
 /**
  * Routes user to uplaod page when user clicks on plus square icon in the header.
  */
-router.get('/submit', (req, res, next) => {
-    res.render('pages/influencers/submit', { title: 'Submit Picture', errors: '', fields: '' });
+router.get('/submit', async (req, res, next) => {
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            return res.render('pages/influencers/submit', { title: 'Submit Picture', errors: '', fields: '' });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
+    }
 });
 
 /**
@@ -254,27 +303,43 @@ router.post('/uploadPhoto', async (req,res,next) => {
  * View post
  */
 router.get('/posts/:id', async (req, res, next) => {
-    var post = await post_controller.find(req.params.id);
-    var data;
-    if (post.length) {
-        data = post[0];
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var post = await post_controller.find(req.params.id);
+            var data;
+            if (post.length) {
+                data = post[0];
+            }
+            return res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data, moment: moment });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
     }
-
-    res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data, moment: moment });
 });
 
 /**
  * Edit post
  */
 router.get('/posts/:id/edit', async (req, res, next) => {
-    var post = await post_controller.find(req.params.id);
-    var data;
-    if (post.length) {
-        data = post[0];
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var post = await post_controller.find(req.params.id);
+            var data;
+            if (post.length) {
+                data = post[0];
+            }
+            data.img_urls = data.img_urls.join(',') + ',';
+            return res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
     }
-    data.img_urls = data.img_urls.join(',') + ',';
-
-    res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
 });
 
 /**
@@ -296,8 +361,17 @@ router.post('/updatePost', async (req, res, next) => {
  * View user profile
  */
 router.get('/profile', async (req, res, next) => {
-    var profile = await profile_controller.findProfile(req.user.email);
-    res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: '', fields: '' });
+    if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
+        if (rights.rights == '1') {
+            var profile = await profile_controller.findProfile(req.user.email);
+            return res.render('pages/influencers/profile', { title: 'My Profile', profile: profile, errors: '', fields: '' });
+        } else {
+            return res.redirect('/influencers/applied')
+        }
+    } else {
+        return res.redirect('/influencers/login');
+    }
 });
 
 /**

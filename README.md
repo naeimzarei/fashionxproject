@@ -249,6 +249,14 @@ echo -n <password> | openssl sha256
 
 Use this CLI command to produce the SHA256 of any string of text using the UNIX terminal. Save this string of text in ```config.js```.
 
+```javascript
+config.EMAIL = '...';
+config.PASSWORD = '...';
+```
+
+The two above fields are the credentials for the ShopHerLook email account that will be used for sending confirmation emails to newly applied influencers, and the client themselves as a notification that someone new applied.
+
+
 ```bash
 eb deploy production
 ```

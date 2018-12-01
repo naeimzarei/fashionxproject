@@ -105,7 +105,6 @@ post_controller.update = async(
     email,
     img_urls
 ) => {
-    console.log(id);
     return await Post.update(
         id,
         item,
