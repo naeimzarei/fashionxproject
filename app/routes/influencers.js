@@ -280,7 +280,7 @@ router.post('/submit', async (req,res,next) => {
     if (data.img_urls[data.img_urls.length - 1].length < 2) {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
-    await post_controller.push(data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.push(data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 
@@ -310,7 +310,7 @@ router.get('/posts/:id', async (req, res, next) => {
             if (post.length) {
                 data = post[0];
             }
-            return res.render('pages/influencers/post', { title: 'View Post', brand: data.brand, post: data, moment: moment });
+            return res.render('pages/influencers/post', { title: 'View Post', item: data.item, post: data, moment: moment });
         } else {
             return res.redirect('/influencers/applied')
         }
@@ -332,7 +332,7 @@ router.get('/posts/:id/edit', async (req, res, next) => {
                 data = post[0];
             }
             data.img_urls = data.img_urls.join(',') + ',';
-            return res.render('pages/influencers/edit', { title: 'Edit Post', brand: data.brand, post: data, errors: '', fields: '' });
+            return res.render('pages/influencers/edit', { title: 'Edit Post', item: data.item, post: data, errors: '', fields: '' });
         } else {
             return res.redirect('/influencers/applied')
         }
@@ -352,7 +352,7 @@ router.post('/updatePost', async (req, res, next) => {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
 
-    await post_controller.update(data.id, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.update(data.id, data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 

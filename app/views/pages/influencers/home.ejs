@@ -17,8 +17,8 @@
               <thead>
                 <tr>
                   <th scope="col">Pictures</th>
+                  <th scope="col">Item</th>
                   <th scope = "col">Description</th>
-                  <th scope="col">Brand</th>
                   <th scope="col">Price</th>
                   <th scope="col">Actions</th>
                 </tr>
@@ -27,8 +27,8 @@
                   <% posts.forEach(function(post) { %>
                     <tr>
                       <td><img src="<%= post.img_urls[0] %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail" style="max-width: 200px;"></td>
+                      <th scope="row"><%= post.item %></th>
                       <th scope = "row"><%= post.description %></th>
-                      <th scope="row"><%= post.brand %></th>
                       <td>$<%= post.selling_price %></td>
                       <td>
                         <form action="/influencers/posts/<%= post.id %>/delete" method="post">
