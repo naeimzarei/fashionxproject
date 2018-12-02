@@ -57,7 +57,7 @@ app.use('/administrators', administratorsRouter);
 function checkAuth(req, res, next) {
   if (!req.user) {
     res.locals.user = null;
-    if (req.originalUrl !== '/influencers/login' && req.originalUrl !== '/influencers/signup' && req.originalUrl !== '/') {
+    if (req.originalUrl !== '/influencers/login' && req.originalUrl !== '/influencers/signup' && req.originalUrl !== '/' && req.originalUrl !== '/influencers/manual') {
       return res.redirect('/influencers/login');
     }
     next();

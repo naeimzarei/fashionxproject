@@ -85,4 +85,14 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
+router.post('/approve', async (req, res, next) => {
+    await rights_controller.updateRights(req.body.email, '1');
+    res.json({isApproved: true});
+});
+
+router.post('/reject', async (req, res, next) => {
+    await rights_controller.updateRights(req.body.email, '0');
+    res.json({isApproved: false});
+});
+
 module.exports = router;
