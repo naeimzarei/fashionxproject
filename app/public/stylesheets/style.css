@@ -147,6 +147,10 @@ img.logo {
 .justify-start {
     margin-right: auto;
 }
+#navButtons{
+    float: right;
+    padding-right: 40px;
+}
 
 /* Footers and headers */
 .footer {
