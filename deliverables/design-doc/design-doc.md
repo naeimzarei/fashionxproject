@@ -152,9 +152,9 @@ Profile {
 ```
 
 ```javascript
-Auth {  
-    Email: string  
-    Hash: string  
+Administrator {
+    Email: string,
+    Password: string
 }
 ```
 
