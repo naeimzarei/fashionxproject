@@ -3,8 +3,7 @@
 ## User Types
 1. Shopper: shoppers are the fundamental user. They can only sign in to the shopper interface. The shopper interface is being designed by a team at Duke University.
 2. Influencer: influencers are shoppers that have the ability to post content. Influencers can log in to the shopper interface but shoppers cannot login to the influencer interface. 
-3. Moderator: moderators are separate from shoppers and influencers. They have the ability to edit, approve, or reject influencer posts. Moderators cannot login to the shopper or influencer interfaces. 
-4. Administrator: administrators are moderators with elevated privilege. They can grant or revoke moderator access to people.
+3. Administrator: administrators are users who can approve/deny applicants. (admin can only be created via script)
 
 ## Access Rights
 1. Shopper: 
@@ -16,24 +15,19 @@
     * View their own posts 
     * Delete or modify their posts 
     * View posts by other influencers 
-    * Account flag: influencer 
-3. Moderator
-    * Access to adminstrative panel
-    * Ability to approve or reject posts made by influencers
-    * Account Flag: moderator 
-4. Administrator
+    * Account flag: influencer  
+3. Administrator
     * Access to administrative panel 
     * Ability to approve or reject posts made by influencers 
-    * Ability to remove or add moderator access to accounts 
     * Flag: administrator
 
 ## General Requirements 
 1. Header
-    * Header for fashionxproject should be present on all influencer pages.
+    * Header for shopherlook should be present on all influencer pages.
     * Required Fields: total clicks, four buttons (home, profile, submit, shop).
-    * Note: these fields will not be present on the home page of fashionxproject. 
+    * Note: these fields will not be present on the home page of shopherlook. 
 2. Footer
-    * Footer for fashionxproject should be present on all influencer pages. 
+    * Footer for shopherlook should be present on all influencer pages. 
     * All of the following must be present in all pages except the home page: About Us, Sign Up to Newsletter, Privacy Policy, Terms of Service, Cookie Policy
 3. Error pages
     * Making these error messages user friendly
@@ -58,7 +52,7 @@
 ## Use Cases
 
 ### Influencer
-1. Visit home page of fashionxproject
+1. Visit home page of shopherlook
     * Two buttons, one for Influencer page and the other for Shopper page
     * The influencer clicks on the Influencer page to be redirected to the login page for Influencers.
     * There is no error checking required here. One must ensure that only the button redirects to the page and that is it.
@@ -135,11 +129,10 @@
     * Route: ~/fashionxproject/admin/dashboard
 
 ### Administrator
-1. Same as Moderator except on the Administrative Panel, administrators can give moderators access on the moderator dashboard page since they have an administartive flag on their account. 
-2. Administrators are moderators with elevated privileges. While moderators can only edit, remove, or approve influencer posts, administrators have the ability to provide moderator rights. They also have any other rights that moderators have.
-3. Controller 1: in the moderator dashboard page, administrators are presented with an extra tab that allows them to view moderators that have requested to be moderators. The administrator can approve or reject the person's request to be a moderator. If the person's request to be a moderator is rejected, they will be removed from the database completely. That means that their account will no longer exist to prevent overflowing of moderator requests. If a person was initially granted moderator access that got removed later, their account will remain on the database. 
-4. Controller 2 (optional): for scalability purposes, their needs to be a search function to find moderators to approve or reject their access. The administrator will search for a particular moderator via email or full name. Everyone who has requested access to be a moderator will be populated on the extra tab for administrators. This is an optional controller because the frontend can do this as well without the need for a controller. 
-5. Route: ~/fashionxproject/admin/dashboard/rights
+1. Via the Administrative Panel, administrators can approve or deny users who applied to become an influencer. 
+2. Controller 1: in the moderator dashboard page, administrators are presented with an extra tab that allows them to view moderators that have requested to be moderators. The administrator can approve or reject the person's request to be a moderator. If the person's request to be a moderator is rejected, they will be removed from the database completely. That means that their account will no longer exist to prevent overflowing of moderator requests. If a person was initially granted moderator access that got removed later, their account will remain on the database. 
+3. Controller 2 (optional): for scalability purposes, their needs to be a search function to find moderators to approve or reject their access. The administrator will search for a particular moderator via email or full name. Everyone who has requested access to be a moderator will be populated on the extra tab for administrators. This is an optional controller because the frontend can do this as well without the need for a controller. 
+4. Route: ~/fashionxproject/admin/dashboard/rights
 
 ## Requirements by Priority 
 1. Landing Page -- Sprint 1
@@ -153,7 +146,7 @@
         1. Upload and crop pictures
         2. Brand, size, and link to product
     3. Login Page -- Sprint 2
-3. Moderator/adminstrator
+3. Moderator/adminstrator -- Sprint 4
     1. Approve/Reject posts to appear in shopper feed
     2. Edit feed
     3. Manage users
