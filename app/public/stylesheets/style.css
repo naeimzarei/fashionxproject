@@ -147,6 +147,10 @@ img.logo {
 .justify-start {
     margin-right: auto;
 }
+#navButtons{
+    float: right;
+    padding-right: 40px;
+}
 
 /* Footers and headers */
 .footer {
@@ -208,4 +212,17 @@ a{
     position: absolute;
     right:-20px;
     top:10px;
+}
+
+.login-logo {
+    display: block;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: 'Cabin', arial, sans-serif;
+    font-size: 50px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
 }
