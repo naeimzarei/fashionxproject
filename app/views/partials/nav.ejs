@@ -1,5 +1,27 @@
 <div class = "text-center pb-3" id = "navButtons">
-        <button class="btn btn-pink btn-primary text-center" onclick="location.href = '/influencers/profile'">My Profile</button>
-        <button class="btn btn-pink btn-primary text-center"onclick="location.href = '/influencers/submit'">Sell</button>
-        <button class="btn btn-pink btn-primary text-center"onclick="location.href = '/influencers/home'">Manage My Listings</button>
+        <button class="btn btn-pink btn-primary text-center" id = "profile"onclick="location.href = '/influencers/profile'">My Profile</button>
+        <button class="btn btn-pink btn-primary text-center" id = "sell" onclick="location.href = '/influencers/submit'">Sell</button>
+        <button class="btn btn-pink btn-primary text-center" id = "home" onclick="location.href = '/influencers/home'">Manage My Listings</button>
 </div>
+<script>
+
+var arr = window.location.href.split("/")
+var page = arr[arr.length-1]
+console.log("curr page" + page)
+switch(page){
+
+        case "home":
+                $('button').removeClass('active')
+                $('#home').addClass('active');
+                break;
+        case "profile":
+                $('button').removeClass('active')
+                $('#profile').addClass('active');
+                break;
+        case "submit":
+                $('button').removeClass('active')
+                $('#sell').addClass('active');
+                break;
+}
+
+</script>
