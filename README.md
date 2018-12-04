@@ -31,7 +31,7 @@
 # General Materials
 
 ## Project Introduction
-The goal of this project is to add a page on the current fashionxproject website to allow 'influencers' to login, create a profile, and submit photos of their fashion content. The platform, fashionxproject, is a fashion start-up that finds clothing that looks good on people based on their body dimensions. As part of this project, the uploading of influencer profiles and content will be automated to reduce the amount of time it takes to process what is shown on the actual website to the shoppers. 
+The goal of this project is to add a page on the current shoperlook website to allow 'influencers' to login, create a profile, and submit photos of their fashion content. The platform, shopherlook, is a fashion start-up that finds clothing that looks good on people based on their body dimensions. As part of this project, the uploading of influencer profiles and content will be automated to reduce the amount of time it takes to process what is shown on the actual website to the shoppers. 
 
 ## Meeting Times
 Team- Friday 10 AM  
@@ -84,10 +84,10 @@ All meetings are documented under [docs/meetings-notes](docs/meeting-notes) on G
 ## Project Concept
 
 ### Summary
-A page will be created for Influencers to login to fashionxproject, load their profile, accept the Terms and Conditions, and continue to a page where they are prompted with the option to upload their fashion content. The goal is for the Influencers to appeal to shoppers with similar body dimensions by providing the brand and link to the clothing via a post on the fashionxproject website. The program is designed to work on both mobile and desktop browsers, which means it will be a web app. 
+A page will be created for Influencers to login to shoperherlook, load their profile, accept the Terms and Conditions, and continue to a page where they are prompted with the option to upload their fashion content. The goal is for the Influencers to appeal to shoppers with similar body dimensions by providing the brand and link to the clothing via a post on the shopherlook website. The program is designed to work on both mobile and desktop browsers, which means it will be a web app. 
 
 ### Tweet
->#fashionxproject is all about body positivity and is centered around you, your body, and your fashion interests!
+>#shopherlook is all about body positivity and is centered around you, your body, and your fashion interests!
 
 ## User Stories
 All user stories documented under [deliverables/user-stories](deliverables/user-stories). 
@@ -121,7 +121,7 @@ Update #1: our team is leaning towards using Express for the server-side develop
 
 Update #2: our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used.
 
-Update #3: our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used. For AWS, we are using Elastic Beanstalk to render the pages on the web. The EC2 service on AWS will be used to connect with MongoDB Atlas for database management. The S3 service will be used to upload pictures that the users upload on fashionxproject. 
+Update #3: our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used. For AWS, we are using Elastic Beanstalk to render the pages on the web. The EC2 service on AWS will be used to connect with MongoDB Atlas for database management. The S3 service will be used to upload pictures that the users upload on shopherlook. 
 
 ### Server Selection
 Possible server options
@@ -137,7 +137,7 @@ AWS will be used to host and run the code and databse. AWS credentials will be s
 ### Development Environment
 Visual Studio Code
 
-Our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used. For AWS, we are using Elastic Beanstalk to render the pages on the web. The EC2 service on AWS will be used to connect with MongoDB Atlas for database management. The S3 service will be used to upload pictures that the users upload on fashionxproject. 
+Our team will be using Express for server-side development, MongoDB Atlas for the database, possibly Mongoose (ODM), and EJS for the view. For hosting, the client has decided that AWS will be used. For AWS, we are using Elastic Beanstalk to render the pages on the web. The EC2 service on AWS will be used to connect with MongoDB Atlas for database management. The S3 service will be used to upload pictures that the users upload on shopherlook. 
 
 ## Prototype
 [Prototype](https://drive.google.com/file/d/1Yt6UFAvHgwCzlnjb5xTHu6BkIHmLdmth/view?usp=sharing)  
@@ -250,12 +250,35 @@ echo -n <password> | openssl sha256
 Use this CLI command to produce the SHA256 of any string of text using the UNIX terminal. Save this string of text in ```config.js```.
 
 ```javascript
+config.BUCKET_NAME = 'fashionx-influencer-photos';
+```
+
+The above code is the S3 bucket name for shopherlook.
+
+```javascript
+config.REGION ='us-east-2';
+```
+
+The above code is the S3 region.
+
+```javascript
+config.ACCESS_KEY_ID = '...';
+```
+
+This is access key id for S3. You will need to configure it by yourself. 
+
+```javascript
+config.SECRET_ACCESS_KEY = '...';
+```
+
+The above coce is the secret access key for S3. You will need to configure it by yourself. 
+
+```javascript
 config.EMAIL = '...';
 config.PASSWORD = '...';
 ```
 
 The two above fields are the credentials for the ShopHerLook email account that will be used for sending confirmation emails to newly applied influencers, and the client themselves as a notification that someone new applied.
-
 
 ```bash
 eb deploy production
@@ -263,11 +286,6 @@ eb deploy production
 
 Deploy changes to 'production' environment on Elastic Beanstalk
 
-```bash
-eb deploy production-staging
-```
-
-Deploy changes to 'production-staging' environment on Elastic Beanstalk
 
 ```bash
 eb open production
@@ -275,11 +293,6 @@ eb open production
 
 Opens the 'production' environment on the browser.
 
-```bash
-eb open production-staging
-```
-
-Opens the 'production-staging' environment on the browser.
 
 ### Administration
 
