@@ -206,13 +206,13 @@ Administrator {
 
 ### Routes 
 
-Routes are all coded using Node. They forward requests to controllers, such visiting the home page of the web app. To simplify routing, the Express module is imported within each route file. Express has 'routers', which are files that route a specific path of the web app. For instance, ~/fashionxproject/influencers gets forwarded to the influencer router. Within each router, individual routes are defined. 
+Routes are all coded using Node. They forward requests to controllers, such visiting the home page of the web app. To simplify routing, the Express module is imported within each route file. Express has 'routers', which are files that route a specific path of the web app. For instance, ~/shopherlook/influencers gets forwarded to the influencer router. Within each router, individual routes are defined. 
 
-1. ```app/routes/index.js```: routes all requests on the main page of fashionxproject using Express. 
-2. ```app/routes/influencers.js```: routes all requests on the influencer page of fashionxproject using Express. 
-3. ```app/routes/dashboard.js```: routes all requests on the dashboard page of fashionxproject using Express.
+1. ```app/routes/index.js```: routes all requests on the main page of shopherlook using Express. 
+2. ```app/routes/influencers.js```: routes all requests on the influencer page of shopherlook using Express. 
+3. ```app/routes/dashboard.js```: routes all requests on the dashboard page of shopherlook using Express.
 4. ```app/routes/template.js```: routes GET request to display template base used for all pages using Express.
-5. ```app/routes/administrator.js```: routes all requests from administrator panel of fashionxproject using Express.
+5. ```app/routes/administrator.js```: routes all requests from administrator panel of shopherlook using Express.
 
 ### Server
 
@@ -236,11 +236,11 @@ In this web app, the views are EJS files, which are JavaScript template engine f
 
 ```views/pages/influencers```
 
-1. ```views/pages/index.ejs```: the main page of fashionxproject when navigating to ~/fashionxproject 
-2. ```views/pages/influencers/home.ejs```: the home page of influencers when navigating to ~/fashionxproject/influencers or ~/fashionxproject/influencers/home
-3. ```views/pages/influencers/login.ejs```: the login page for influencers to login when navigating to ~/fashionxproject/influencers/login
-4. ```views/pages/influencers/manual.ejs```: the page where the fashionxproject manual is stored
-5. ```views/pages/influencers/signup.ejs```: the page for influencers to sign up when navigating to ~/fashionxproject/influencers/signup
+1. ```views/pages/index.ejs```: the main page of shopherlook when navigating to ~/shopherlook 
+2. ```views/pages/influencers/home.ejs```: the home page of influencers when navigating to ~/shopherlook/influencers or ~/shopherlook/influencers/home
+3. ```views/pages/influencers/login.ejs```: the login page for influencers to login when navigating to ~/shopherlook/influencers/login
+4. ```views/pages/influencers/manual.ejs```: the page where the shopherlook manual is stored
+5. ```views/pages/influencers/signup.ejs```: the page for influencers to sign up when navigating to ~/shopherlook/influencers/signup
 6. ```views/pages/influencers/applied.ejs```: the landing page once an influencer applies but hasn't been approved.
 7. ```views/pages/influencers/edit.ejs```: the page where users can edit the fields/images from a selected post
 8. ```views/pages/influencers/post.ejs```: the page where users can view a selected post
