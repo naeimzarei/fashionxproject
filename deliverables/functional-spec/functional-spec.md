@@ -66,7 +66,7 @@
     * When the user has correctly filled the fields and checked the box, he or she clicks the Sign Up button. The Sign Up button sends a request to the server for validating the information. If the information is accepted, the Influencer has succesfully created a profile. If not, an error message will be presented.  
     * If more fields are required over time, they would not harm the structure of the database. The database will be fluid and accomodate extra fields being added over time. If previous users did not fill the newly required fields, then the the functionality of their account will not be compromised. Only new users signing up will be required to fill in those information. 
     * API fields: First Name, Email, Password, Date of Birth, Instagram handle, Liketoknowit profile URL, blog, zipcode, paypal account, height (ft), height (in), bust (cup), bust (band), natural waist, usual shirt size, usual jean size, usual torso length, usual leg length
-    * Controllers: a validation controller to check the types and valid input for each field. This is done in ```app/controllers/signup-controller.js```.
+    * Controllers: a validation controller to check the types and valid input for each field. This is done in ```app/controllers/signup-controller.js```. In that validation controller, a signup function is implemented that will save the user's information to the database and mark the user as an 'unverified influencer' until they are either approved or rejected by an administrator. The user is redirected to a page letting them know that their application has been submitted and they will receive an email from an administrator later on after they submit their application. 
     * Route: ~/shopherlook/influencer/signup
 5. Influencer login page 
     * API fields: Email, Password
@@ -118,7 +118,7 @@ Done via the Administrative Panel, administrators can approve or reject who has 
     * Route: ~/shopherlook/administrators/login
 2. Administrator panel page 
     * A page that allows the administrator to approve or reject influencers.
-    * Controller: the rights controller takes care of changing the rights of influencers from unverified influencer to that of verified influencer or vice versa: ```app/controllers/rights-controller.js```
+    * Controller: the rights controller takes care of changing the rights of influencers from unverified influencer to that of verified influencer or vice versa: ```app/controllers/rights-controller.js```. It also sends an email to the user who applied to be an influencer letting them know they have been approved or rejected. 
     * A search functionality allows the administrators to search via first name or email to find a particular user more quickly. 
     * API fields: First Name, Email, Status ('Verified Influencer' or 'Unverified influencer')
     * Route: ~/shopherlook/administrators/panel

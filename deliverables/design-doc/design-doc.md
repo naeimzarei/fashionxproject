@@ -108,6 +108,10 @@ This file contains documentation.
 
 Contains fields necessary for npm to run properly on Elastic Beanstalk. 
 
+    nightwatch.conf.js
+
+Contains necessary configuration for nightwatch functional testing to work properly. 
+
 ## Module Definitions, Data Definitions 
 
 ### Configuration (Node)
