@@ -22,6 +22,7 @@ This application is constructed using Express, EJS, and MnogoDB. It is a typical
 7. Views (EJS): controllers render data obtained from models and database on a web page using a JavaScript templating engine.
 8. Node modules (Node): contain all necessary packages to get the application up and running 
 9. Server: Hosted on AWS. AWS runs on Elastic Beanstalk to run a Node server 24/7 and handle restarts when updating code.
+10. S3: upload photos to Amazon's S3 service for post images. 
 
 ### Modules
 
@@ -69,6 +70,10 @@ This folder contains Jest unit testing files.
 
 This folder contains view files, which are responsible for rendering data to the browser. These files output what the user sees on the screen.
 
+    /util
+
+This folder contains helper functions for the various parts of the application, such as validation error enumerations. In addition, it contains helper functions to provide administrative privilege to a user. 
+
 ### Other Data
     .elasticbeanstalk
 
@@ -99,6 +104,10 @@ This file is used to setup the node package manager.
 
 This file contains documentation.
 
+    .npmrc
+
+Contains fields necessary for npm to run properly on Elastic Beanstalk. 
+
 ## Module Definitions, Data Definitions 
 
 ### Configuration (Node)
@@ -114,7 +123,7 @@ Controllers are all coded using Node.
 3. ```app/controllers/signup-controller.js```: this controller is used to validate a sign up request from an influencer or administrator. It checks that required fields have been completed and stores the newly created user profile on the database. It invokes the Profile model, which is the Mongoose schema used to model a request for profile data. 
 4. ```app/controllers/post-controller.js```: this controller is used to validate a post creation request from an influencer. It checks that required fields have been completed and stores the newly created post on the database. It invokes the Post model, which is the Mongoose schema used to model a request for post data. 
 5. ```app/controllers/rights-controller.js```: this controller is used to set, remove, and find access levels for users. Access levels denote what a user can do within the app (e.g. shopper, influencer, moderator) each of which having their own rights (e.g. uploading pictures, approving them, etc.).
-6. ```app/controllers/administrator-controller.js```: this controller is used to find, remove, update, or authenticate administrators. 
+6. ```app/controllers/administrator-controller.js```: this controller is used to find, remove, or update administrator information on the database. 
 7. ```app/controllers/profile-controller.js```: this controller is used to validate inputs from the sign up form, when a user is applying to become an influencer.
 
 ### Models
@@ -151,13 +160,6 @@ Profile {
     Jean Size: int  
     Shirt Size: string  
     Leg Length: string  
-}
-```
-
-```javascript
-Administrator {
-    Email: string,
-    Password: string
 }
 ```
 
@@ -242,6 +244,7 @@ In this web app, the views are EJS files, which are JavaScript template engine f
 10.```views/pages/influencers/submit.ejs```: the page where users are directed when clicking the purple "sell" button in the navigation bar. This page allows users to create new posts
 
 ```views/pages/administrators```
+
 1.```views/pages/administrators/admin-manual.ejs```: this is the user manual for administrators
 2. ```views/pages/administrators/login.ejs```: this is the login page for administrators only
 3. ```views/pages/administrators/panel.ejs```: this is the main page for administrators where they can approve/deny influencers
@@ -280,3 +283,5 @@ A moderator is neither an influencer nor shopper. A moderator is an independent 
 At the moment, anyone can sign up to be an influencer. We will talk with the client to see if that is something they really want or if influencers need to go through an extra step of authentication in order to sign up to use the services. 
 
 For authentication, we are using bcrypt module to hash the passwords and compare the hash with the inputted password during login. 
+
+There are no longer moderators in this application. This application is no longer called 'fashionxproject' but rather it is called 'shopherlook' after our client went through some business changes. There are only three types of users within shopherlook: administrator, influencer, and shopper. An administrator approves who gets to be an influencer within the shopherlook application, an influencer creates the posts and content and shoppers buy the content that influencers promote. 
