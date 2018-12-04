@@ -108,7 +108,7 @@ This is access key id for S3. You will need to configure it by yourself.
 config.SECRET_ACCESS_KEY = '...';
 ```
 
-The above coce is the secret access key for S3. You will need to configure it by yourself. 
+The above code is the secret access key for S3. You will need to configure it by yourself. 
 
 ```javascript
 config.EMAIL = '...';
