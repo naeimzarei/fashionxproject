@@ -100,7 +100,7 @@ router.post('/approve', async (req, res, next) => {
         port: 465,
         auth: {
         user: config.EMAIL,
-        pass: config.PASSWORD
+        pass: config.PASS
         }
     });
     const mailOptions = {
@@ -130,7 +130,7 @@ router.post('/reject', async (req, res, next) => {
         port: 465,
         auth: {
         user: config.EMAIL,
-        pass: config.PASSWORD
+        pass: config.PASS
         }
     });
     
