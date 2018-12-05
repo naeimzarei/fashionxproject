@@ -26,7 +26,7 @@ Unit testing will specifically focus on test cases centered around the programmi
 
 Regression testing will be done only when new code requires unit testing. Basic CSS changes such as changing the color of an HTML element will not require regression testing to be done. However, controllers, routes, and models need to be tested for regression each time a branch wants to merge with the master branch.
 
-### Credentials
+### Credentials (both administrator and influencers)
 1. Create credentials with valid inputs
 2. Remove credentails by ID
 3. Find credentials by ID
@@ -47,7 +47,7 @@ Regression testing will be done only when new code requires unit testing. Basic 
 3. Invalid inputs
     1. Size: Blank
     2. Brand: Blank
-    3. Selling price: -10
+    3. Selling price: -10, must be greater than 40
     4. Original price: -10
     5. File: None chosen
     6. Type: Blank
@@ -64,6 +64,9 @@ Regression testing will be done only when new code requires unit testing. Basic 
     5. Waist (in): abc
     6. Hips (in): abc
     7. Leg Length: abc
+    8. Zip code: 00000
+    9. Instagram: insta_profile
+    10. Paypal: mypaypalaccount
 3. Valid input test: Fill in all required fields with valid inputs
 4. Find a created profile by ID
 5. Find a created profile by email
