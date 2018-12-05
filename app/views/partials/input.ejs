@@ -18,8 +18,11 @@
     <% value = '' %>
 <% } %>
 
-<% if (required) { %>
+<% if (locals.readonly) { %>
+    <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>' readonly>
+<% } else if (locals.required) { %>
     <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>' required>
 <% } else { %>
     <input name='<%= name %>' class='<%= classes %>' type='<%= type %>' id='<%= id %>' placeholder='<%= placeholder %>' min='<%= min %>' max='<%= max %>' value='<%= value %>'>
 <% } %>
+

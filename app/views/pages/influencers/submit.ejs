@@ -10,38 +10,49 @@
         <% include ../../partials/nav %>
         
         <form id='submit-pic-form' class='bg-grey' action='/influencers/submit' method='post'>
-            <div class="container text-center monospace-font pb-3 mt-5" >
+            <div class="container monospace-font pb-3 mt-5" >
 
-                <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
-
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: ''}) %>
+                <div class = 'container monospace-font' id = "formFieldsDiv">
+                    <div class='pl-3 pr-3 text-left'>
+                        <h2>New&nbsp;Listing</h2> 
                     </div>
-
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <select name='type' class='form-control col-sm-2 border-pink' required>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <select name='type' class='form-control col-md-3 border-pink' required>
                             <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'type', selected: false}) %>
                             <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'type', selected: false}) %>
                         </select>    
                     </div>
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item/s *', min: '', max: '', required: true, value: ''}) %>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink  col-md-3', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: ''}) %>
                     </div>
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: ''}) %>
+
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink col-md-3', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: ''}) %>
+                    </div>
+
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink col-md-3', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: ''}) %>
                     </div>
 
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: ''}) %>
+                        <input name='selling_price' onchange="updateFinal" class='form-control border-pink col-md-3 mr-md-2' id="selling-price" type='number' step = 0.01 placeholder='Selling Price *' min='40' max='' value=''>
+                        <!-- Will change this shipping price -->
+                        <input name='shipping_price' onchange="updateFinal" class='form-control border-pink col-md-3 mr-md-2 mt-md' id="shipping-price" type='number' step = 0.01 placeholder='Shipping Cost *' min='40' max='' value=''>
+                        <input name='final_price' class='form-control border-pink col-md-3 mt-md' id="final-price" type='text' placeholder='Final Price *' value='' readonly>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'selling_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Selling Price *', min: 40, max: '', required: true, value: ''}) %>
-                        <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Original Price (just as a reference for shoppers) *', min: 0, max: '', required: true, value: ''}) %>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink col-md-3', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true, value: ''}) %>
+                        <small class="form-text text-muted text-left">Just as a reference to the shoppers</small>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <select name='condition' class='form-control col-sm-2 border-pink' required>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <input name='earnings' class='form-control border-pink col-md-3' id="earnings" type='text' placeholder='Earnings from this sale *' value='' readonly>
+                        <small class="form-text text-muted text-left">75% of the selling price</small>
+                    </div>
+
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <select name='condition' class='form-control col-md-3 border-pink' required>
                             <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: false}) %>
                             <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: false}) %>
                             <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: false}) %>
@@ -50,11 +61,11 @@
                         </select>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <textarea name="description" class = 'form-control border-pink desc' rows = "4"placeholder = "Description: Here you can add any comment you would like about the item you are selling (optional)"></textarea>  
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <textarea name="description" class = 'form-control border-pink desc col-md-3' rows = "4" placeholder = "Description: Here you can add any comment you would like about the item you are selling (optional)"></textarea>  
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
+                    <div class='form-group pl-3 pr-3' id = "photo-upload-div">
                         <!-- only accept image types, nothing else -->
 
                         <div>
@@ -63,13 +74,13 @@
                         <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*"hidden>
                         <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden>
 
-                        <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
+                        <div id = "uploadHelp" class = 'form-group pl-3 pr-3'></div>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3'>
+                    <div class='form-group pl-3 pr-3'>
                         <button type="submit" id = "createPost" class="btn btn-pink btn-primary text-center" >Create Post</button>
                     </div>
-                    <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
+                    <div class = 'form-group pl-3 pr-3 ' id = "thumbnails"></div>
 
                     <!-- Render thumbnails for cropped images -->
                     <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>     
@@ -78,8 +89,19 @@
         </form>
 
         <script>            
+            const $selling = document.querySelector('#selling-price');
+            const $shipping = document.querySelector('#shipping-price');
+            const $final = document.querySelector('#final-price');
+            const $earning = document.querySelector('#earnings');
+            $selling.addEventListener('input', updateFinal)
+            $shipping.addEventListener('input', updateFinal)
 
-        
+            function updateFinal() {
+                var selling = $selling.value ? parseFloat($selling.value) : 0.;
+                var shipping = $shipping.value ? parseFloat($shipping.value) : 0.;
+                $final.value = Math.round((selling + shipping) * 100) / 100;
+                $earning.value = Math.round(selling * 0.75 * 100) / 100;
+            }
 
             //used for custom upload file button to get file  
             function FileSelected(e)
