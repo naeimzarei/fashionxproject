@@ -195,7 +195,7 @@
                                 for (var i = 0; i < rights.length; i++) {
                                     var possibleRights = ['0', '1']
                                     if (profile.email === rights[i].email && possibleRights.includes(rights[i].rights)) {
-                                        if (profile.email.includes($("input#searchParam").val()) || profile.first_name.includes($("input#searchParam").val())) {
+                                        if (profile.email.toLowerCase().includes($("input#searchParam").val()) || profile.first_name.toLowerCase().includes($("input#searchParam").val())) {
                                             //make row id the users email until the '@'
                                             var isVerified = rights[i].rights == 0;
                                             var rowIndex = profile.email.substring(0,profile.email.indexOf("@"));
