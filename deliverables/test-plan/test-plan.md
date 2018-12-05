@@ -36,7 +36,7 @@ Regression testing will be done only when new code requires unit testing. Basic 
 7. Delete existing credentials by ID
 8. Delete existing credentials by email
 
-### Login
+### Login (both administrator and influencers)
 1. Accessing influencer base URL should redirect to login view
 2. Access login view
 3. Incorrect login credentials display error message
