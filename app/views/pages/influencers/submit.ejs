@@ -143,6 +143,7 @@
 
                 $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
                 $('#imgDiv').append(img1); //wrap img in container
+                $("#photo-upload").attr("disabled", "disabled"); // Disable file upload until image cropped and uploaded
                 $("#createPost").attr("disabled", "disabled"); // Disable form submit until image cropped and uploaded
 
                 //done cropping button event handler
@@ -183,6 +184,7 @@
                                 document.getElementById('photo-upload-hidden').value += response + ",";
                                 document.getElementById('photo-upload').value = null;
                                 $("#createPost").removeAttr("disabled"); // Allow form submit
+                                $("#photo-upload").removeAttr("disabled"); // Allow file upload
 
                                 //Add thumbnail of cropped image to page
                                 $('#thumbnails').append(`
