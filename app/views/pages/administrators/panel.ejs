@@ -4,6 +4,7 @@
         <% include ../../partials/head %>
     </head>
     <body>
+        <span class="login-logo">SHOPHERLOOK</span>            
         <div class='container text-center mt-2 mb-2'>
             <input type='text' id="searchParam" name="searchParam" placeholder='Search'>
             <a href="/administrators/admin-manual"> Administrator Manual </a>
@@ -11,7 +12,7 @@
                 <button>Sign Out</button>
             </a>            
         </div>
-        <table id='administrative-panel' class='table'>
+        <table id='administrative-panel' class="table table-hover">
             <thead>
                 <tr>
                     <th scope='col'>#</th>
@@ -49,11 +50,11 @@
                                     var isVerified = rights[i].rights == 0;
                                     var rowIndex = profile.email.substring(0,profile.email.indexOf("@"));
                                     var row = $(`
-                                        <tr class="profileRow" id="${rowIndex}" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">
-                                            <th scope='col'>${ind}</th>
-                                            <td>${profile.first_name}</td>
-                                            <td>${profile.email}</td>
-                                            <td>${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
+                                        <tr>
+                                            <th scope='col'id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${ind}</th>
+                                            <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.first_name}</td>
+                                            <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.email}</td>
+                                            <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
                                             <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Reject'}</button></td>
                                         </tr>
                                     `);

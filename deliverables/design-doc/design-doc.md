@@ -22,6 +22,7 @@ This application is constructed using Express, EJS, and MnogoDB. It is a typical
 7. Views (EJS): controllers render data obtained from models and database on a web page using a JavaScript templating engine.
 8. Node modules (Node): contain all necessary packages to get the application up and running 
 9. Server: Hosted on AWS. AWS runs on Elastic Beanstalk to run a Node server 24/7 and handle restarts when updating code.
+10. S3: upload photos to Amazon's S3 service for post images. 
 
 ### Modules
 
@@ -69,6 +70,10 @@ This folder contains Jest unit testing files.
 
 This folder contains view files, which are responsible for rendering data to the browser. These files output what the user sees on the screen.
 
+    /util
+
+This folder contains helper functions for the various parts of the application, such as validation error enumerations. In addition, it contains helper functions to provide administrative privilege to a user. 
+
 ### Other Data
     .elasticbeanstalk
 
@@ -99,6 +104,14 @@ This file is used to setup the node package manager.
 
 This file contains documentation.
 
+    .npmrc
+
+Contains fields necessary for npm to run properly on Elastic Beanstalk. 
+
+    nightwatch.conf.js
+
+Contains necessary configuration for nightwatch functional testing to work properly. 
+
 ## Module Definitions, Data Definitions 
 
 ### Configuration (Node)
@@ -114,7 +127,7 @@ Controllers are all coded using Node.
 3. ```app/controllers/signup-controller.js```: this controller is used to validate a sign up request from an influencer or administrator. It checks that required fields have been completed and stores the newly created user profile on the database. It invokes the Profile model, which is the Mongoose schema used to model a request for profile data. 
 4. ```app/controllers/post-controller.js```: this controller is used to validate a post creation request from an influencer. It checks that required fields have been completed and stores the newly created post on the database. It invokes the Post model, which is the Mongoose schema used to model a request for post data. 
 5. ```app/controllers/rights-controller.js```: this controller is used to set, remove, and find access levels for users. Access levels denote what a user can do within the app (e.g. shopper, influencer, moderator) each of which having their own rights (e.g. uploading pictures, approving them, etc.).
-6. ```app/controllers/administrator-controller.js```: this controller is used to find, remove, update, or authenticate administrators. 
+6. ```app/controllers/administrator-controller.js```: this controller is used to find, remove, or update administrator information on the database. 
 7. ```app/controllers/profile-controller.js```: this controller is used to validate inputs from the sign up form, when a user is applying to become an influencer.
 
 ### Models
@@ -151,13 +164,6 @@ Profile {
     Jean Size: int  
     Shirt Size: string  
     Leg Length: string  
-}
-```
-
-```javascript
-Auth {  
-    Email: string  
-    Hash: string  
 }
 ```
 
@@ -200,13 +206,13 @@ Administrator {
 
 ### Routes 
 
-Routes are all coded using Node. They forward requests to controllers, such visiting the home page of the web app. To simplify routing, the Express module is imported within each route file. Express has 'routers', which are files that route a specific path of the web app. For instance, ~/fashionxproject/influencers gets forwarded to the influencer router. Within each router, individual routes are defined. 
+Routes are all coded using Node. They forward requests to controllers, such visiting the home page of the web app. To simplify routing, the Express module is imported within each route file. Express has 'routers', which are files that route a specific path of the web app. For instance, ~/shopherlook/influencers gets forwarded to the influencer router. Within each router, individual routes are defined. 
 
-1. ```app/routes/index.js```: routes all requests on the main page of fashionxproject using Express. 
-2. ```app/routes/influencers.js```: routes all requests on the influencer page of fashionxproject using Express. 
-3. ```app/routes/dashboard.js```: routes all requests on the dashboard page of fashionxproject using Express.
+1. ```app/routes/index.js```: routes all requests on the main page of shopherlook using Express. 
+2. ```app/routes/influencers.js```: routes all requests on the influencer page of shopherlook using Express. 
+3. ```app/routes/dashboard.js```: routes all requests on the dashboard page of shopherlook using Express.
 4. ```app/routes/template.js```: routes GET request to display template base used for all pages using Express.
-5. ```app/routes/administrator.js```: routes all requests from administrator panel of fashionxproject using Express.
+5. ```app/routes/administrator.js```: routes all requests from administrator panel of shopherlook using Express.
 
 ### Server
 
@@ -230,11 +236,11 @@ In this web app, the views are EJS files, which are JavaScript template engine f
 
 ```views/pages/influencers```
 
-1. ```views/pages/index.ejs```: the main page of fashionxproject when navigating to ~/fashionxproject 
-2. ```views/pages/influencers/home.ejs```: the home page of influencers when navigating to ~/fashionxproject/influencers or ~/fashionxproject/influencers/home
-3. ```views/pages/influencers/login.ejs```: the login page for influencers to login when navigating to ~/fashionxproject/influencers/login
-4. ```views/pages/influencers/manual.ejs```: the page where the fashionxproject manual is stored
-5. ```views/pages/influencers/signup.ejs```: the page for influencers to sign up when navigating to ~/fashionxproject/influencers/signup
+1. ```views/pages/index.ejs```: the main page of shopherlook when navigating to ~/shopherlook 
+2. ```views/pages/influencers/home.ejs```: the home page of influencers when navigating to ~/shopherlook/influencers or ~/shopherlook/influencers/home
+3. ```views/pages/influencers/login.ejs```: the login page for influencers to login when navigating to ~/shopherlook/influencers/login
+4. ```views/pages/influencers/manual.ejs```: the page where the shopherlook manual is stored
+5. ```views/pages/influencers/signup.ejs```: the page for influencers to sign up when navigating to ~/shopherlook/influencers/signup
 6. ```views/pages/influencers/applied.ejs```: the landing page once an influencer applies but hasn't been approved.
 7. ```views/pages/influencers/edit.ejs```: the page where users can edit the fields/images from a selected post
 8. ```views/pages/influencers/post.ejs```: the page where users can view a selected post
@@ -242,6 +248,7 @@ In this web app, the views are EJS files, which are JavaScript template engine f
 10.```views/pages/influencers/submit.ejs```: the page where users are directed when clicking the purple "sell" button in the navigation bar. This page allows users to create new posts
 
 ```views/pages/administrators```
+
 1.```views/pages/administrators/admin-manual.ejs```: this is the user manual for administrators
 2. ```views/pages/administrators/login.ejs```: this is the login page for administrators only
 3. ```views/pages/administrators/panel.ejs```: this is the main page for administrators where they can approve/deny influencers
@@ -280,3 +287,5 @@ A moderator is neither an influencer nor shopper. A moderator is an independent 
 At the moment, anyone can sign up to be an influencer. We will talk with the client to see if that is something they really want or if influencers need to go through an extra step of authentication in order to sign up to use the services. 
 
 For authentication, we are using bcrypt module to hash the passwords and compare the hash with the inputted password during login. 
+
+There are no longer moderators in this application. This application is no longer called 'fashionxproject' but rather it is called 'shopherlook' after our client went through some business changes. There are only three types of users within shopherlook: administrator, influencer, and shopper. An administrator approves who gets to be an influencer within the shopherlook application, an influencer creates the posts and content and shoppers buy the content that influencers promote. 

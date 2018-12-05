@@ -148,7 +148,7 @@ router.post('/signup', async (req, res, next) => {
                         port: 465,
                         auth: {
                         user: config.EMAIL,
-                        pass: config.PASSWORD
+                        pass: config.PASS
                         }
                     });
                     const mailOptions = {
@@ -174,7 +174,7 @@ router.post('/signup', async (req, res, next) => {
                         port: 993,
                         auth: {
                         user: config.EMAIL,
-                        pass: config.PASSWORD
+                        pass: config.PASS
                         }
                     });
                     var emailText = 'Someone applied to be an influencer: \n' + "Email: "+ req.body.email + '\n'+ "Birthdate: "+req.body.dob + '\n' +"Instagram: "+req.body.instagram_handle + '\n'+
