@@ -1,4 +1,5 @@
 # Test Plan
+The app has been tested to work correctly on Google Chrome 71.0.3578.80 and Mozilla Firefox 62.0.3.
 
 ## Platforms
 1. Node files: use Jest for unit testing Node files on the server side 
