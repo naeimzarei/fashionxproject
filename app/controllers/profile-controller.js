@@ -20,6 +20,11 @@ profile_controller.validate = async (profile) => {
             error_object['first_name'] = VALIDATION_ERRORS['FIRST_NAME_INVALID'];
         }
 
+        profile.last_name = profile.last_name.toString().trim();
+        if (/\d/.test(profile.last_name) || profile.last_name === '') {
+            error_object['last_name'] = VALIDATION_ERRORS['LAST_NAME_INVALID'];
+        }
+
         // check if email has valid syntax 
         // if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
         //     error_object['email'] = VALIDATION_ERRORS['EMAIL_INVALID_SYNTAX'];
@@ -56,19 +61,26 @@ profile_controller.validate = async (profile) => {
                 error_object['blog'] = VALIDATION_ERRORS['BLOG_INVALID'];
             }
         }
+
         //check if instagram handle contains '@'
         if(!profile.instagram_handle.startsWith('@')){
             error_object['instagram_handle'] = VALIDATION_ERRORS['INSTAGRAM_HANDLE_INVALID'];
         }
-         //check if zipcode is valid
-         var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(profile.zip);
-         if(!isValidZip){
-             error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
-         }
-         //check if paypal account has valid email address
+
+        //check if paypal account has valid email address
         if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
             error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
         }
+
+
+
+        //check if zipcode is valid
+        var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(profile.zip);
+        if(!isValidZip){
+            error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
+        }
+
+        //todo: add checks for shipping information
 
         // check if height_ift is valid 
         if (isNaN(parseInt(profile.height_ft)) === false) {
@@ -173,13 +185,22 @@ Create new profile based off of passed in data
 */
 profile_controller.push = async (
     first_name,
+    last_name,
     email,
     dob,
     instagram_handle,
     likeToKnowIt,
     blog,
-    zip,
     paypal,
+
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    country,
+    phone_number,
+
     height_ft,
     height_in,
     bust_band,
@@ -191,10 +212,31 @@ profile_controller.push = async (
     leg_length
 ) => {
     return await Profile.push(
-        first_name, email, dob,
-        instagram_handle, likeToKnowIt, blog, zip, paypal, height_ft,
-        height_in, bust_band, bust_cup,
-        waist, shirt_size,jean_size, torso_length,
+        first_name,
+        last_name,
+        email,
+        dob,
+        instagram_handle,
+        likeToKnowIt,
+        blog,
+        paypal,
+
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        country,
+        phone_number,
+
+        height_ft,
+        height_in,
+        bust_band,
+        bust_cup,
+        waist,
+        shirt_size,
+        jean_size,
+        torso_length,
         leg_length
     );
 };
@@ -244,13 +286,22 @@ Update profile with passed in data
 profile_controller.update = async (
     id,
     first_name,
+    last_name,
     email,
     dob,
     instagram_handle,
     likeToKnowIt,
     blog,
-    zip,
     paypal,
+
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    country,
+    phone_number,
+
     height_ft,
     height_in,
     bust_band,
@@ -264,13 +315,22 @@ profile_controller.update = async (
     return await Profile.update(
         id,
         first_name,
+        last_name,
         email,
         dob,
         instagram_handle,
         likeToKnowIt,
         blog,
-        zip,
         paypal,
+
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        country,
+        phone_number,
+
         height_ft,
         height_in,
         bust_band,
@@ -285,13 +345,22 @@ profile_controller.update = async (
 
 profile_controller.updateProfile = async(
     first_name,
+    last_name,
     email,
     dob,
     instagram_handle,
     likeToKnowIt,
     blog,
-    zip,
     paypal,
+
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    country,
+    phone_number,
+
     height_ft,
     height_in,
     bust_band,
@@ -304,13 +373,22 @@ profile_controller.updateProfile = async(
 ) => {
     return await Profile.updateProfile(
         first_name,
+        last_name,
         email,
         dob,
         instagram_handle,
         likeToKnowIt,
         blog,
-        zip,
         paypal,
+
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        country,
+        phone_number,
+
         height_ft,
         height_in,
         bust_band,
@@ -319,7 +397,7 @@ profile_controller.updateProfile = async(
         shirt_size,
         jean_size,
         torso_length,
-        leg_length 
+        leg_length
     );
 }
 

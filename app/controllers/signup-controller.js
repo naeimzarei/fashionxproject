@@ -29,6 +29,11 @@ signup_controller.validate = async (profile) => {
             error_object['first_name'] = VALIDATION_ERRORS['FIRST_NAME_INVALID'];
         }
 
+        profile.last_name = profile.last_name.toString().trim();
+        if (/\d/.test(profile.last_name) || profile.last_name === '') {
+            error_object['last_name'] = VALIDATION_ERRORS['LAST_NAME_INVALID'];
+        }
+
         // check if password is valid 
         if(/^((?=.*\d)(?=.*[A-Z])).{6,12}$/.test(profile.password) === false){
             error_object['password'] = VALIDATION_ERRORS['PASSWORD_INVALID'];
@@ -68,16 +73,19 @@ signup_controller.validate = async (profile) => {
             }
         }
 
+        //check if paypal account has valid email address
+        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
+            error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
+        }
+
+        // TODO: add checks for mailing information        
+
         //check if zipcode is valid
         var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(profile.zip);
         if(!isValidZip){
             error_object['zip'] = VALIDATION_ERRORS['ZIP_INVALID'];
         }
 
-        //check if paypal account has valid email address
-        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(profile.email) === false){
-            error_object['paypal'] = VALIDATION_ERRORS['PAYPAL_INVALID'];
-        }
 
         // check if height_ft is valid 
         if (isNaN(parseInt(profile.height_ft)) === false) {
@@ -168,13 +176,22 @@ Executes profile account creation
 signup_controller.signup = async (profile) => {
     var profiles = await profile_controller.push(
         profile.first_name,
+        profile.last_name,
         profile.email,
         profile.dob,
         profile.instagram_handle,
         profile.likeToKnowIt,
         profile.blog,
-        profile.zip,
         profile.paypal,
+
+        profile.address1,
+        profile.address2,
+        profile.city,
+        profile.state,
+        profile.zip,
+        profile.country,
+        profile.phone_number,
+
         profile.height_ft,
         profile.height_in,
         profile.bust_band,

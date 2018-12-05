@@ -52,7 +52,7 @@
                                     var row = $(`
                                         <tr>
                                             <th scope='col'id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${ind}</th>
-                                            <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.first_name}</td>
+                                            <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.first_name + ' ' + profile.last_name}</td>
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.email}</td>
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
                                             <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Reject'}</button></td>

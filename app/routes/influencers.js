@@ -178,10 +178,31 @@ router.post('/signup', async (req, res, next) => {
                         pass: config.PASS
                         }
                     });
-                    var emailText = 'Someone applied to be an influencer: \n' + "Email: "+ req.body.email + '\n'+ "Birthdate: "+req.body.dob + '\n' +"Instagram: "+req.body.instagram_handle + '\n'+
-                    "LikeToKnowIt: "+req.body.likeToKnowIt + '\n' + "Blog: "+req.body.blog + '\n'+"Paypal: "+req.body.paypal + '\n'+"Height: "+req.body.height_ft + 'ft '+req.body.height_in + 'in\n'
-                    +"Bust Band: "+req.body.bust_band + '\n'+"Bust cup: "+req.body.bust_cup + '\n'+"Waist: "+req.body.waist + '\n'+"Shirt Size: "+req.body.shirt_size + '\n'+"Jean Size: "+req.body.jean_size + '\n'
-                    +"Torso Length: "+req.body.torso_length + '\n'+"Leg Length: "+req.body.leg_length + '\n';
+                    var emailText = 
+                        'Someone applied to be an influencer: \n' + 
+                        "Email: "+ req.body.email + '\n' + 
+                        "Birthdate: "+req.body.dob + '\n' +
+                        "Instagram: "+req.body.instagram_handle + '\n'+
+                        "LikeToKnowIt: "+req.body.likeToKnowIt + '\n' +
+                        "Blog: "+req.body.blog + '\n'+
+                        "Paypal: "+req.body.paypal + '\n'+
+
+                        "Address Line 1: " + req.body.address1 + '\n' +
+                        "Address Line 2: " + req.body.address2 + "\n" +
+                        "City: " + req.body.city + "\n" +
+                        "State: " + req.body.state + "\n" +
+                        "ZIP or Postal Code" + req.body.zip + "\n" +
+                        "Country: " + req.body.country + "\n" +
+                        "Phone Number: " + req.body.phone_number + "\n" + 
+
+                        "Height: "+req.body.height_ft + 'ft '+req.body.height_in + 'in\n' +
+                        "Bust Band: "+req.body.bust_band + '\n' + 
+                        "Bust cup: "+req.body.bust_cup + '\n' + 
+                        "Waist: "+req.body.waist + '\n' + 
+                        "Shirt Size: "+req.body.shirt_size + '\n' + 
+                        "Jean Size: "+req.body.jean_size + '\n' +
+                        "Torso Length: "+req.body.torso_length + '\n' + 
+                        "Leg Length: "+req.body.leg_length + '\n';
 
                     const mailOptions2 = {
                         from: config.EMAIL, 
@@ -222,7 +243,34 @@ router.post('/updateProfile', async (req, res, next) => {
     var errors = await profile_controller.validate(req.body);
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
-        await profile_controller.updateProfile(req.body.first_name, req.body.email, req.body.dob, req.body.instagram_handle, req.body.likeToKnowIt, req.body.blog, req.body.zip, req.body.paypal, req.body.height_ft, req.body.height_in, req.body.bust_band, req.body.bust_cup, req.body.waist, req.body.shirt_size, req.body.jean_size, req.body.torso_length, req.body.leg_length);
+        await profile_controller.updateProfile(
+            req.body.first_name, 
+            req.body.last_name, 
+            req.body.email, 
+            req.body.dob, 
+            req.body.instagram_handle,
+            req.body.likeToKnowIt,
+            req.body.blog, 
+            req.body.paypal,
+
+            req.body.address1,
+            req.body.address2,
+            req.body.city,
+            req.body.state,
+            req.body.zip,
+            req.body.country,
+            req.body.phone_number,
+
+            req.body.height_ft, 
+            req.body.height_in, 
+            req.body.bust_band, 
+            req.body.bust_cup,
+            req.body.waist, 
+            req.body.shirt_size,
+            req.body.jean_size,
+            req.body.torso_length, 
+            req.body.leg_length
+        );
         return res.redirect('/influencers/profile');
     } else {
         console.log(error);

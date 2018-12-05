@@ -63,7 +63,7 @@ var profileSchema = mongoose.Schema({
         enum: ['AK' , 'AL' , 'AR' , 'AZ' , 'CA' , 'CO' , 'CT' , 'DC' , 'DE' , 'FL' , 'GA' , 'HI' , 'IA' , 'ID' , 'IL' , 'IN' , 'KS' , 'KY' , 'LA' , 'MA' , 'MD' , 'ME' , 'MI' , 'MN' , 'MO' , 'MS' , 'MT' , 'NC' , 'ND' , 'NE' , 'NH' , 'NJ' , 'NM' , 'NV' , 'NY' , 'OH' , 'OK' , 'OR' , 'PA' , 'PR' , 'RI' , 'SC' , 'SD' , 'TN' , 'TX' , 'UT' , 'VA' , 'VT' , 'WA' , 'WI' , 'WV' , 'WY']
     },
 
-    shipping_zip: {
+    zip: {
         type: String,
         required: true
     },
@@ -160,7 +160,7 @@ profileSchema.statics.push = async (
     address2,
     city,
     state,
-    shipping_zip,
+    zip,
     country,
     phone_number,
 
@@ -188,7 +188,7 @@ profileSchema.statics.push = async (
         address2: address2,
         city: city,
         state: state,
-        shipping_zip: shipping_zip,
+        zip: zip,
         country: country,
         phone_number: phone_number,
 
@@ -253,7 +253,7 @@ profileSchema.statics.update = async (
     address2,
     city,
     state,
-    shipping_zip,
+    zip,
     country,
     phone_number,
 
@@ -281,7 +281,7 @@ profileSchema.statics.update = async (
         address2: address2,
         city: city,
         state: state,
-        shipping_zip: shipping_zip,
+        zip: zip,
         country: country,
         phone_number: phone_number,
 
@@ -312,7 +312,7 @@ profileSchema.statics.updateProfile = async (
     address2,
     city,
     state,
-    shipping_zip,
+    zip,
     country,
     phone_number,
 
@@ -340,7 +340,7 @@ profileSchema.statics.updateProfile = async (
         address2: address2,
         city: city,
         state: state,
-        shipping_zip: shipping_zip,
+        zip: zip,
         country: country,
         phone_number: phone_number,
 
