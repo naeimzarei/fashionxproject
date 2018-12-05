@@ -225,3 +225,20 @@ a{
     background-color: #000;
     color: #fff;
 }
+
+/* Generic */
+.margin-top-sm {
+    margin-top: 10px;
+}
+.margin-right-sm {
+    margin-right: 10px;
+}
+.margin-left-sm {
+    margin-left: 10px;
+}
+.padding-left-sm {
+    padding-left: 10px;
+}
+.padding-right-sm {
+    padding-right: 10px;
+}

@@ -9,11 +9,17 @@
         <div class='container-fluid '>
             <h1>My Profile</h1>
                 <div class="row justify-content-center">
-                    <form id='signup-form' class='bg-grey col-md-5' action='/influencers/updateProfile' method='post'>
-                        <div class='form-group pt-3 pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: profile.first_name}) %>
+                    <form id='signup-form' class='bg-grey col-md-8' action='/influencers/updateProfile' method='post'>
+
+                        <div class='pl-3 pr-3'>
+                            <h5> Personal & Payment Information </h5> 
+                            <small class="form-text text-muted">Only your Instagram handle will be shared in your listings</small>
                         </div>
 
+                        <div class='form-group form-inline margin-top-sm pl-3 pr-3'>
+                            <%- include('../../partials/input', {name: 'first_name', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: profile.first_name}) %>
+                            <%- include('../../partials/input', {name: 'last_name', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'Last Name *', min: '', max: '', required: true, value: profile.last_name}) %>
+                        </div>
                         <div class='form-group pl-3 pr-3'>
                             <%- include('../../partials/input', {name: 'dob', classes: 'form-control border-pink', type: 'month', id: '', placeholder: 'Date of Birth *', min: '', max: '', required: true, value: profile.dob}) %>
                         </div>
@@ -21,25 +27,112 @@
                             <%- include('../../partials/input', {name: 'instagram_handle', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Instagram Handle *', min: '', max: '', required: true, value: profile.instagram_handle}) %>
                         </div>
                         <div class='form-group pl-3 pr-3'>
-                                <%- include('../../partials/input', {name: 'likeToKnowIt', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Liketoknowit Profile URL', min: '', max: '', required: false, value: profile.likeToKnowIt}) %>
+                            <%- include('../../partials/input', {name: 'likeToKnowIt', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Liketoknowit Profile URL', min: '', max: '', required: false, value: profile.likeToKnowIt}) %>
                         </div>
                         
                         <div class='form-group pl-3 pr-3'>
                             <%- include('../../partials/input', {name: 'blog', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Blog', min: '', max: '', required: false, value: profile.blog}) %>
                         </div>
                         <div class='form-group pl-3 pr-3'>
-                                <%- include('../../partials/input', {name: 'zip', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Zip Code *', min: '', max: '', required: true, value: profile.zip}) %>
-                            </div>
+                            <%- include('../../partials/input', {name: 'paypal', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Paypal Account *', min: '', max: '', required: true, value: profile.paypal}) %>
+                        </div>
+
+                        <hr>
+
+                        <div class='pl-3 pr-3'>
+                            <h5>Shipping Information</h5> 
+                            <small class="form-text text-muted">We will send you shipping supplies and pre-shipping label so you can ship easily to your listing's shoppers
+                                These are all required fields by our shipping provider and will not be shared in your listings</small>
+                        </div>
+
+                        <div class='form-group margin-top-sm pl-3 pr-3'>
+                            <%- include('../../partials/input', {name: 'address1', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 1', min: '', max: '', required: true, value: profile.address1}) %>
+                        </div>
                         <div class='form-group pl-3 pr-3'>
-                                <%- include('../../partials/input', {name: 'paypal', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Paypal Account *', min: '', max: '', required: true, value: profile.paypal}) %>
+                            <%- include('../../partials/input', {name: 'address2', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 2', min: '', max: '', required: true, value: profile.address2}) %>
                         </div>
                         <div class='form-group form-inline pl-3 pr-3'>
-                                The following information will be included in your listings to help shoppers better understand how the item fits.                                
+                            <%- include('../../partials/input', {name: 'city', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'City', min: '', max: '', required: true, value: profile.city}) %>
+                            <select name='state' class='form-control col-6 border-pink' required>
+                                <%- include('../../partials/option', {value: "State *", placeholder: 'State *', name: 'state', selected: profile.state === 'State *'}) %>
+                                <%- include('../../partials/option', {value: "AK", placeholder: 'AK', name: 'state', selected: profile.state === 'AK'}) %>
+                                <%- include('../../partials/option', {value: "AL", placeholder: 'AL', name: 'state', selected: profile.state === 'AL'}) %>
+                                <%- include('../../partials/option', {value: "AR", placeholder: 'AR', name: 'state', selected: profile.state === 'AR'}) %>
+                                <%- include('../../partials/option', {value: "AZ", placeholder: 'AZ', name: 'state', selected: profile.state === 'AZ'}) %>
+                                <%- include('../../partials/option', {value: "CA", placeholder: 'CA', name: 'state', selected: profile.state === 'CA'}) %>
+                                <%- include('../../partials/option', {value: "CO", placeholder: 'CO', name: 'state', selected: profile.state === 'CO'}) %>
+                                <%- include('../../partials/option', {value: "CT", placeholder: 'CT', name: 'state', selected: profile.state === 'CT'}) %>
+                                <%- include('../../partials/option', {value: "DC", placeholder: 'DC', name: 'state', selected: profile.state === 'DC'}) %>
+                                <%- include('../../partials/option', {value: "DE", placeholder: 'DE', name: 'state', selected: profile.state === 'DE'}) %>
+                                <%- include('../../partials/option', {value: "FL", placeholder: 'FL', name: 'state', selected: profile.state === 'FL'}) %>
+                                <%- include('../../partials/option', {value: "GA", placeholder: 'GA', name: 'state', selected: profile.state === 'GA'}) %>
+                                <%- include('../../partials/option', {value: "HI", placeholder: 'HI', name: 'state', selected: profile.state === 'HI'}) %>
+                                <%- include('../../partials/option', {value: "IA", placeholder: 'IA', name: 'state', selected: profile.state === 'IA'}) %>
+                                <%- include('../../partials/option', {value: "ID", placeholder: 'ID', name: 'state', selected: profile.state === 'ID'}) %>
+                                <%- include('../../partials/option', {value: "IL", placeholder: 'IL', name: 'state', selected: profile.state === 'IL'}) %>
+                                <%- include('../../partials/option', {value: "IN", placeholder: 'IN', name: 'state', selected: profile.state === 'IN'}) %>
+                                <%- include('../../partials/option', {value: "KS", placeholder: 'KS', name: 'state', selected: profile.state === 'KS'}) %>
+                                <%- include('../../partials/option', {value: "KY", placeholder: 'KY', name: 'state', selected: profile.state === 'KY'}) %>
+                                <%- include('../../partials/option', {value: "LA", placeholder: 'LA', name: 'state', selected: profile.state === 'LA'}) %>
+                                <%- include('../../partials/option', {value: "MA", placeholder: 'MA', name: 'state', selected: profile.state === 'MA'}) %>
+                                <%- include('../../partials/option', {value: "MD", placeholder: 'MD', name: 'state', selected: profile.state === 'MD'}) %>
+                                <%- include('../../partials/option', {value: "ME", placeholder: 'ME', name: 'state', selected: profile.state === 'ME'}) %>
+                                <%- include('../../partials/option', {value: "MI", placeholder: 'MI', name: 'state', selected: profile.state === 'MI'}) %>
+                                <%- include('../../partials/option', {value: "MN", placeholder: 'MN', name: 'state', selected: profile.state === 'MN'}) %>
+                                <%- include('../../partials/option', {value: "MO", placeholder: 'MO', name: 'state', selected: profile.state === 'MO'}) %>
+                                <%- include('../../partials/option', {value: "MS", placeholder: 'MS', name: 'state', selected: profile.state === 'MS'}) %>
+                                <%- include('../../partials/option', {value: "MT", placeholder: 'MT', name: 'state', selected: profile.state === 'MT'}) %>
+                                <%- include('../../partials/option', {value: "NC", placeholder: 'NC', name: 'state', selected: profile.state === 'NC'}) %>
+                                <%- include('../../partials/option', {value: "ND", placeholder: 'ND', name: 'state', selected: profile.state === 'ND'}) %>
+                                <%- include('../../partials/option', {value: "NE", placeholder: 'NE', name: 'state', selected: profile.state === 'NE'}) %>
+                                <%- include('../../partials/option', {value: "NH", placeholder: 'NH', name: 'state', selected: profile.state === 'NH'}) %>
+                                <%- include('../../partials/option', {value: "NJ", placeholder: 'NJ', name: 'state', selected: profile.state === 'NJ'}) %>
+                                <%- include('../../partials/option', {value: "NM", placeholder: 'NM', name: 'state', selected: profile.state === 'NM'}) %>
+                                <%- include('../../partials/option', {value: "NV", placeholder: 'NV', name: 'state', selected: profile.state === 'NV'}) %>
+                                <%- include('../../partials/option', {value: "NY", placeholder: 'NY', name: 'state', selected: profile.state === 'NY'}) %>
+                                <%- include('../../partials/option', {value: "OH", placeholder: 'OH', name: 'state', selected: profile.state === 'OH'}) %>
+                                <%- include('../../partials/option', {value: "OK", placeholder: 'OK', name: 'state', selected: profile.state === 'OK'}) %>
+                                <%- include('../../partials/option', {value: "OR", placeholder: 'OR', name: 'state', selected: profile.state === 'OR'}) %>
+                                <%- include('../../partials/option', {value: "PA", placeholder: 'PA', name: 'state', selected: profile.state === 'PA'}) %>
+                                <%- include('../../partials/option', {value: "PR", placeholder: 'PR', name: 'state', selected: profile.state === 'PR'}) %>
+                                <%- include('../../partials/option', {value: "RI", placeholder: 'RI', name: 'state', selected: profile.state === 'RI'}) %>
+                                <%- include('../../partials/option', {value: "SC", placeholder: 'SC', name: 'state', selected: profile.state === 'SC'}) %>
+                                <%- include('../../partials/option', {value: "SD", placeholder: 'SD', name: 'state', selected: profile.state === 'SD'}) %>
+                                <%- include('../../partials/option', {value: "TN", placeholder: 'TN', name: 'state', selected: profile.state === 'TN'}) %>
+                                <%- include('../../partials/option', {value: "TX", placeholder: 'TX', name: 'state', selected: profile.state === 'TX'}) %>
+                                <%- include('../../partials/option', {value: "UT", placeholder: 'UT', name: 'state', selected: profile.state === 'UT'}) %>
+                                <%- include('../../partials/option', {value: "VA", placeholder: 'VA', name: 'state', selected: profile.state === 'VA'}) %>
+                                <%- include('../../partials/option', {value: "VT", placeholder: 'VT', name: 'state', selected: profile.state === 'VT'}) %>
+                                <%- include('../../partials/option', {value: "WA", placeholder: 'WA', name: 'state', selected: profile.state === 'WA'}) %>
+                                <%- include('../../partials/option', {value: "WI", placeholder: 'WI', name: 'state', selected: profile.state === 'WI'}) %>
+                                <%- include('../../partials/option', {value: "WV", placeholder: 'WV', name: 'state', selected: profile.state === 'WV'}) %>
+                                <%- include('../../partials/option', {value: "WY", placeholder: 'WY', name: 'state', selected: profile.state === 'WY'}) %>
+                            </select>
+                        </div>
+
+                        <div class='form-group form-inline pl-3 pr-3'>
+                            <%- include('../../partials/input', {name: 'country', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'Country', min: '', max: '', required: true, value: profile.country}) %>
+                            <%- include('../../partials/input', {name: 'shipping_zip', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'ZIP or Postal Code', min: '', max: '', required: true, value: profile.shipping_zip}) %>
+                        </div>
+
+                        <div class='form-group pl-3 pr-3'>
+                            <%- include('../../partials/input', {name: 'phone_number', classes: 'form-control border-pink', type: 'tel', id: '', placeholder: 'Phone Number', min: '', max: '', required: true, value: profile.phone_number}) %>
+                        </div>
+
+                        <hr>
+                        
+                        <div class='pl-3 pr-3'>
+                            <h5>Fit Information</h5> 
+                            <small class="form-text text-muted">The following information will be included in your listings to help shoppers better understand how the item fits.</small>
+                        </div>
+
+
+                        <div class='form-group form-inline margin-top-sm pl-3 pr-3'>
                             <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true, value: profile.height_ft}) %>
                             <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: profile.height_in}) %>
                         </div>
                         <div class='form-group form-inline pl-3 pr-3'>
-                            <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
+                            <select name='bust_cup' class='form-control col-6 border-pink' required>
                                     <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup', selected: profile.bust_cup === 'Bust (cup) *'}) %>
                                     <%- include('../../partials/option', {value: 'AA', placeholder: 'AA', name: 'bust_cup', selected: profile.bust_cup === 'AA'}) %>
                                     <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'bust_cup', selected: profile.bust_cup === 'A'}) %>

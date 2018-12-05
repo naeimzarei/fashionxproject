@@ -6,7 +6,12 @@ util.connect();
 
 // schema 
 var profileSchema = mongoose.Schema({
+    /* personal/payment info */
     first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -31,14 +36,49 @@ var profileSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    zip: {
-        type: Number,
-        required: true
-    },
     paypal: {
         type: String,
         required: true
     },
+
+    /* shipping info */
+    address1: {
+        type: String,
+        required: true
+    },
+
+    address2: {
+        type: String,
+        required: true
+    },
+
+    city: {
+        type: String,
+        required: true
+    },
+
+    state: {
+        type: String,
+        required: true,
+        enum: ['AK' , 'AL' , 'AR' , 'AZ' , 'CA' , 'CO' , 'CT' , 'DC' , 'DE' , 'FL' , 'GA' , 'HI' , 'IA' , 'ID' , 'IL' , 'IN' , 'KS' , 'KY' , 'LA' , 'MA' , 'MD' , 'ME' , 'MI' , 'MN' , 'MO' , 'MS' , 'MT' , 'NC' , 'ND' , 'NE' , 'NH' , 'NJ' , 'NM' , 'NV' , 'NY' , 'OH' , 'OK' , 'OR' , 'PA' , 'PR' , 'RI' , 'SC' , 'SD' , 'TN' , 'TX' , 'UT' , 'VA' , 'VT' , 'WA' , 'WI' , 'WV' , 'WY']
+    },
+
+    shipping_zip: {
+        type: String,
+        required: true
+    },
+
+    country: {
+        type: String,
+        required: true
+    },
+
+    phone_number: {
+        type: String,
+        required: true
+    },
+
+    /* fit info */
     height_ft: {
         type: Number,
         required: true,
@@ -108,13 +148,22 @@ Create new profile based off of passed in data
 */
 profileSchema.statics.push = async (
     first_name,
+    last_name,
     email,
     dob,
     instagram_handle,
     likeToKnowIt,
     blog,
-    zip,
     paypal,
+
+    address1,
+    address2,
+    city,
+    state,
+    shipping_zip,
+    country,
+    phone_number,
+
     height_ft,
     height_in,
     bust_band,
@@ -127,13 +176,22 @@ profileSchema.statics.push = async (
 ) => {
     var profile = new Profile({
         first_name: first_name,
+        last_name: last_name,
         email: email,
         dob: dob,
         instagram_handle: instagram_handle,
         likeToKnowIt: likeToKnowIt,
         blog: blog,
-        zip: zip,
         paypal: paypal,
+
+        address1: address1,
+        address2: address2,
+        city: city,
+        state: state,
+        shipping_zip: shipping_zip,
+        country: country,
+        phone_number: phone_number,
+
         height_ft: height_ft,
         height_in: height_in,
         bust_band: bust_band,
@@ -183,13 +241,22 @@ Update profile with passed in data
 profileSchema.statics.update = async (
     id,
     first_name,
+    last_name,
     email,
     dob,
     instagram_handle,
     likeToKnowIt,
     blog,
-    zip,
     paypal,
+
+    address1,
+    address2,
+    city,
+    state,
+    shipping_zip,
+    country,
+    phone_number,
+
     height_ft,
     height_in,
     bust_band,
@@ -202,13 +269,22 @@ profileSchema.statics.update = async (
 ) => {
     var profile = await Profile.findByIdAndUpdate(id, {
         first_name: first_name,
+        last_name: last_name,
         email: email,
         dob: dob,
         instagram_handle: instagram_handle,
         likeToKnowIt: likeToKnowIt,
         blog: blog,
-        zip: zip,
         paypal: paypal,
+
+        address1: address1,
+        address2: address2,
+        city: city,
+        state: state,
+        shipping_zip: shipping_zip,
+        country: country,
+        phone_number: phone_number,
+
         height_ft: height_ft,
         height_in: height_in,
         bust_band: bust_band,
@@ -224,13 +300,22 @@ profileSchema.statics.update = async (
 
 profileSchema.statics.updateProfile = async (
     first_name,
+    last_name,
     email,
     dob,
     instagram_handle,
     likeToKnowIt,
     blog,
-    zip,
     paypal,
+
+    address1,
+    address2,
+    city,
+    state,
+    shipping_zip,
+    country,
+    phone_number,
+
     height_ft,
     height_in,
     bust_band,
@@ -243,13 +328,22 @@ profileSchema.statics.updateProfile = async (
 ) => {
     var profile = await Profile.findOneAndUpdate({email: email}, {
         first_name: first_name,
+        last_name: last_name,
         email: email,
         dob: dob,
         instagram_handle: instagram_handle,
         likeToKnowIt: likeToKnowIt,
         blog: blog,
-        zip: zip,
         paypal: paypal,
+
+        address1: address1,
+        address2: address2,
+        city: city,
+        state: state,
+        shipping_zip: shipping_zip,
+        country: country,
+        phone_number: phone_number,
+
         height_ft: height_ft,
         height_in: height_in,
         bust_band: bust_band,

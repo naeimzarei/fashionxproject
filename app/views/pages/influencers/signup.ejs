@@ -5,10 +5,18 @@
     </head>
     <body>
         <span class="login-logo">SHOPHERLOOK</span>
-        <div class='container col-5 mb-5'>
+        <div class='container col-md-8 mb-5'>
+
             <form id='signup-form' class='bg-grey' action='/influencers/signup' method='post'>
-                <div class='form-group pt-3 pl-3 pr-3'>
-                    <%- include('../../partials/input', {name: 'first_name', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: ''}) %>
+
+                <div class='pl-3 pr-3'>
+                    <h5> Personal & Payment Information </h5> 
+                    <small class="form-text text-muted">Only your Instagram handle will be shared in your listings</small>
+                </div>
+
+                <div class='form-group form-inline pt-3 pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'first_name', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'First Name *', min: '', max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'last_name', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'Last Name *', min: '', max: '', required: true, value: ''}) %>
                 </div>                
                 <div class='form-group pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true, value: ''}) %>
@@ -38,18 +46,104 @@
                     <%- include('../../partials/input', {name: 'blog', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Blog', min: '', max: '', required: false, value: ''}) %>
                 </div>
                 <div class='form-group pl-3 pr-3'>
-                        <%- include('../../partials/input', {name: 'zip', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Zip Code (for shipping purposes only)*', min: '', max: '', required: true, value: ''}) %>
-                    </div>
-                <div class='form-group pl-3 pr-3'>
                      <%- include('../../partials/input', {name: 'paypal', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Paypal Account (you will receive your selling proceeds to this account) *', min: '', max: '', required: true, value: ''}) %>
                 </div>
+
+                <hr>
+
+                <div class='pl-3 pr-3'>
+                    <h5>Shipping Information</h5> 
+                    <small class="form-text text-muted">We will send you shipping supplies and pre-shipping label so you can ship easily to your listing's shoppers
+                        These are all required fields by our shipping provider and will not be shared in your listings</small>
+                </div>
+
+                <div class='form-group margin-top-sm pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'address1', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 1', min: '', max: '', required: true, value: ''}) %>
+                </div>
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'address2', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 2', min: '', max: '', required: true, value: ''}) %>
+                </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    The following information will be included in your listings to help shoppers better understand how the item fits.
+                    <%- include('../../partials/input', {name: 'city', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'City', min: '', max: '', required: true, value: ''}) %>
+                    <select name='state' class='form-control col-6 border-pink' required>
+                        <%- include('../../partials/option', {value: "State *", placeholder: 'State *', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "AK", placeholder: 'AK', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "AL", placeholder: 'AL', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "AR", placeholder: 'AR', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "AZ", placeholder: 'AZ', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "CA", placeholder: 'CA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "CO", placeholder: 'CO', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "CT", placeholder: 'CT', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "DC", placeholder: 'DC', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "DE", placeholder: 'DE', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "FL", placeholder: 'FL', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "GA", placeholder: 'GA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "HI", placeholder: 'HI', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "IA", placeholder: 'IA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "ID", placeholder: 'ID', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "IL", placeholder: 'IL', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "IN", placeholder: 'IN', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "KS", placeholder: 'KS', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "KY", placeholder: 'KY', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "LA", placeholder: 'LA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MA", placeholder: 'MA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MD", placeholder: 'MD', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "ME", placeholder: 'ME', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MI", placeholder: 'MI', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MN", placeholder: 'MN', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MO", placeholder: 'MO', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MS", placeholder: 'MS', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "MT", placeholder: 'MT', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NC", placeholder: 'NC', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "ND", placeholder: 'ND', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NE", placeholder: 'NE', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NH", placeholder: 'NH', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NJ", placeholder: 'NJ', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NM", placeholder: 'NM', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NV", placeholder: 'NV', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "NY", placeholder: 'NY', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "OH", placeholder: 'OH', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "OK", placeholder: 'OK', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "OR", placeholder: 'OR', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "PA", placeholder: 'PA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "PR", placeholder: 'PR', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "RI", placeholder: 'RI', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "SC", placeholder: 'SC', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "SD", placeholder: 'SD', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "TN", placeholder: 'TN', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "TX", placeholder: 'TX', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "UT", placeholder: 'UT', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "VA", placeholder: 'VA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "VT", placeholder: 'VT', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "WA", placeholder: 'WA', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "WI", placeholder: 'WI', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "WV", placeholder: 'WV', name: 'state', selected: false}) %>
+                        <%- include('../../partials/option', {value: "WY", placeholder: 'WY', name: 'state', selected: false}) %>
+                    </select>
+                </div>
+
+                <div class='form-group form-inline pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'country', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'Country', min: '', max: '', required: true, value: ''}) %>
+                    <%- include('../../partials/input', {name: 'shipping_zip', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'ZIP or Postal Code', min: '', max: '', required: true, value: ''}) %>
+                </div>
+
+                <div class='form-group pl-3 pr-3'>
+                    <%- include('../../partials/input', {name: 'phone_number', classes: 'form-control border-pink', type: 'tel', id: '', placeholder: 'Phone Number', min: '', max: '', required: true, value: ''}) %>
+                </div>
+
+                <hr>
+
+                <div class='pl-3 pr-3'>
+                    <h5>Fit Information</h5> 
+                    <small class="form-text text-muted">The following information will be included in your listings to help shoppers better understand how the item fits.</small>
+                </div>
+
+                <div class='form-group form-inline margin-top-sm pl-3 pr-3'>
                     <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true, value: ''}) %>
                     <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: ''}) %>
                 </div>
                 <div class='form-group form-inline pl-3 pr-3'>
-                    <select name='bust_cup' class='form-control col-sm-6 border-pink' required>
+                    <select name='bust_cup' class='form-control col-6 border-pink' required>
                             <%- include('../../partials/option', {value: 'Bust (cup) *', placeholder: 'Bust (cup) *', name: 'bust_cup', selected: false}) %>
                             <%- include('../../partials/option', {value: 'AA', placeholder: 'AA', name: 'bust_cup', selected: false}) %>
                             <%- include('../../partials/option', {value: 'A', placeholder: 'A', name: 'bust_cup', selected: false}) %>
@@ -145,10 +239,7 @@
                         </select>                
                 </div>
                 
-                <div class='form-group bg-white' id = "end-signup">
-                        <label class = "form-check-label text muted">
-                            <button type="button" class="btn btn-pink btn-sm btn-block" onclick="location.href='/influencers/manual'">Need help?</button>
-                        </label>
+                <div class='form-group bg-white pl-3 pr-3'>
                     <div class='form-check'>
                         <input class='form-check-input' type='checkbox' value='' id='validCheck' required>
                         <label class='form-check-label text-muted' for='validCheck'>
@@ -156,11 +247,13 @@
                             to be bound by our <a href='http://www.fashionxproject.com/terms-of-service/' target='_blank'>
                             <u>Terms of Service</u></a>. By signing up, you agree to subscribe to our mailing list. 
                         </label>
-                        
                     </div>
                 </div>
-                <div class='text-right mb-4'>
-                    <button class='btn btn-pink btn-primary text-center' type='submit'>Apply</button>
+                <div class='form-group bg-white pl-3 pr-3'>
+                    <button type="button" class="form-control btn btn-pink btn-sm" onclick="location.href='/influencers/manual'">Need help?</button>
+                </div>
+                <div class='form-group bg-white pl-3 pr-3'>
+                    <button type='submit' class='form-control btn btn-pink btn-sm'>Apply</button>
                 </div>
             </form>
         </div>
