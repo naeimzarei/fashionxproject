@@ -4,9 +4,8 @@
         <% include ../../partials/head %>
     </head>
     <body>
-
+        <span class="login-logo">SHOPHERLOOK</span>
         <div class = "container col-5 mb-5">
-            <span class="login-logo">SHOPHERLOOK</span>
             <form class='bg-grey' action='/influencers/login' method='post'>
                 <div class='form-group pl-3 pr-3 pt-3'>
                     <%- include('../../partials/input', {name: 'email', classes: 'form-control border-pink', type: 'email', id: '', placeholder: 'Email *', min: '', max: '', required: true, value: ''}) %>
