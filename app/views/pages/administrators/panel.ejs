@@ -55,14 +55,14 @@
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.first_name}</td>
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.email}</td>
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
-                                            <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Reject'}</button></td>
+                                            <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Disable'}</button></td>
                                         </tr>
                                     `);
                                     $(row).on('click', (evt) => {
                                         if ($(evt.target).is('button')) {
                                             if ($(evt.target).text() === 'Approve') {
                                                 approve(evt);
-                                            } else if ($(evt.target).text() === 'Reject') {
+                                            } else if ($(evt.target).text() === 'Disable') {
                                                 reject(evt);
                                             }
                                         }
@@ -137,7 +137,7 @@
                     if (data.isApproved === true) {
                         $(button).removeClass('btn-warning');
                         $(button).addClass('btn-danger');
-                        $(button).text('Reject');
+                        $(button).text('Disable');
                     }
                 },
                 error: (err) => {
@@ -205,14 +205,14 @@
                                                     <td>${profile.first_name}</td>
                                                     <td>${profile.email}</td>
                                                     <td>${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
-                                                    <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Reject'}</button></td>
+                                                    <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Disable'}</button></td>
                                                 </tr>
                                             `);
                                             $(row).on('click', (evt) => {
                                                 if ($(evt.target).is('button')) {
                                                     if ($(evt.target).text() === 'Approve') {
                                                         approve(evt);
-                                                    } else if ($(evt.target).text() === 'Reject') {
+                                                    } else if ($(evt.target).text() === 'Disable') {
                                                         reject(evt);
                                                     }
                                                 }
