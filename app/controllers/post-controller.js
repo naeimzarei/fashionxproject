@@ -8,8 +8,8 @@ var post_controller = {};
 Create new Post based off of passed in data
 */
 post_controller.push = async (
-    item,
     type,
+    item,
     size,
     brand,
     selling_price,
@@ -21,8 +21,8 @@ post_controller.push = async (
     img_urls
 ) => {
     return await Post.push(
-        item,
         type,
+        item,
         size,
         brand,
         selling_price,
@@ -64,8 +64,8 @@ Update Post with passed in data
 @param {integer} id - Post id.
 */
 post_controller.update = async (
-    item,
     type,
+    item,
     size,
     brand,
     selling_price,
@@ -77,8 +77,8 @@ post_controller.update = async (
     img_urls
 ) => {
     return await Post.update(
-        item,
         type,
+        item,
         size,
         brand,
         selling_price,
@@ -93,8 +93,8 @@ post_controller.update = async (
 
 post_controller.update = async(
     id,
-    item,
     type,
+    item,
     size,
     brand,
     selling_price,
@@ -107,8 +107,8 @@ post_controller.update = async(
 ) => {
     return await Post.update(
         id,
-        item,
         type,
+        item,
         size,
         brand,
         selling_price,

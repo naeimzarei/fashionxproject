@@ -6,11 +6,11 @@ mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PA
 
 // schema 
 var postSchema = mongoose.Schema({
-    item: {
+    type:{
         type: String,
         required: true
     },
-    type: {
+    item: {
         type: String,
         required: true
     },
@@ -59,8 +59,8 @@ var postSchema = mongoose.Schema({
 Create new post based off of passed in data
 */
 postSchema.statics.push = async (
-    item,
     type,
+    item,
     size,
     brand,
     selling_price,
@@ -72,8 +72,8 @@ postSchema.statics.push = async (
     img_urls
 ) => {
     var post = new Post({
-        item: item,
         type: type,
+        item: item,
         size: size,
         brand: brand,
         selling_price: selling_price,
@@ -121,8 +121,8 @@ Update post with passed in data
 */
 postSchema.statics.update = async (
     id,
-    item,
     type,
+    item,
     size,
     brand,
     selling_price,
@@ -134,8 +134,8 @@ postSchema.statics.update = async (
     img_urls
 ) => {
     var post = await Post.findByIdAndUpdate(id, {
-        item: item,
         type: type,
+        item: item,
         size: size,
         brand: brand,
         selling_price: selling_price,

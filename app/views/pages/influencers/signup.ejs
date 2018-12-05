@@ -4,7 +4,7 @@
         <% include ../../partials/head %>
     </head>
     <body>
-        <% include ../../partials/logo %>
+        <span class="login-logo">SHOPHERLOOK</span>
         <div class='container col-5 mb-5'>
             <form id='signup-form' class='bg-grey' action='/influencers/signup' method='post'>
                 <div class='form-group pt-3 pl-3 pr-3'>
@@ -147,8 +147,8 @@
                 
                 <div class='form-group bg-white' id = "end-signup">
                         <label class = "form-check-label text muted">
-                                <button type="button" class="btn btn-pink btn-sm btn-block" onclick = "window.open('manual', '_blank')">Need help?</button>
-                            </label>
+                            <button type="button" class="btn btn-pink btn-sm btn-block" onclick="location.href='/influencers/manual'">Need help?</button>
+                        </label>
                     <div class='form-check'>
                         <input class='form-check-input' type='checkbox' value='' id='validCheck' required>
                         <label class='form-check-label text-muted' for='validCheck'>
@@ -159,8 +159,8 @@
                         
                     </div>
                 </div>
-                <div class='text-center mb-4'>
-                    <button class='btn btn-pink btn-primary text-center' type='submit'>Sign Up</button>
+                <div class='text-right mb-4'>
+                    <button class='btn btn-pink btn-primary text-center' type='submit'>Apply</button>
                 </div>
             </form>
         </div>
