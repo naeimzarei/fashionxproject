@@ -332,7 +332,7 @@ router.post('/submit', async (req,res,next) => {
     if (data.img_urls[data.img_urls.length - 1].length < 2) {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
-    await post_controller.push(data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.push(data.type, data.item, data.size, data.brand, data.selling_price, data.shipping_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 
@@ -379,6 +379,7 @@ router.get('/posts/:id/edit', async (req, res, next) => {
         var rights = await rights_controller.findRights(req.user.email);
         if (rights.rights == '1') {
             var post = await post_controller.find(req.params.id);
+            console.log(post);
             var data;
             if (post.length) {
                 data = post[0];
@@ -404,7 +405,7 @@ router.post('/updatePost', async (req, res, next) => {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
 
-    await post_controller.update(data.id, data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.update(data.id, data.type, data.item, data.size, data.brand, data.selling_price, data.shipping_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
     return res.redirect('/influencers/home');
 });
 

@@ -10,40 +10,49 @@
         <% include ../../partials/nav %>
         <form id='submit-pic-form' class='bg-grey' action='/influencers/updatePost' method='post'>
             <input name='id' type='text' value='<%= post.id %>' hidden>
-            <div class="container text-center monospace-font pb-3 mt-5" >
-                <div class = 'container text-center monospace-font pb-3 mt-5' id = "formFieldsDiv">
+            <div class="container monospace-font pb-3 mt-5" >
+                <div class = 'container monospace-font pb-3 mt-5' id = "formFieldsDiv">
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: post.item}) %>
+                    <div class='pl-3 pr-3 text-left'>
+                        <h2>Edit&nbsp;Listing</h2> 
                     </div>
-
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        
-                        <select name='type' class='form-control col-sm-2 border-pink' required>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <select name='type' class='form-control col-md-3 border-pink' required>
                             <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'type', selected: post.type === 'Individual Item'}) %>
-                            <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'type', selected: post.type === 'Bundle of Items'}) %>                        
+                            <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'type', selected: post.type === 'Bundle of Items'}) %>
                         </select>    
                     </div>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink  col-md-3', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: post.item}) %>
+                    </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Item/s *', min: '', max: '', required: true, value: post.item}) %>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink col-md-3', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: post.size}) %>
+                    </div>
+
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink col-md-3', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: post.brand}) %>
                     </div>
 
                     <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: post.size}) %>
+                        <input name='selling_price' class='form-control border-pink col-md-3 mr-md-2' id="selling-price" type='number' step = 0.01 placeholder='Selling Price *' min='40' max='' value='<%= post.selling_price %>'>
+                        <!-- Will change this shipping price -->
+                        <input name='shipping_price' class='form-control border-pink col-md-2 mr-md-2 mt-md' id="shipping-price" type='number' step = 0.01 placeholder='Shipping Cost *' min='40' max='' value='<%= post.shipping_price %>'>
+                        <input name='final_price' class='form-control border-pink col-md-2 mt-md' id="final-price" type='text' placeholder='Final Price *' value='' readonly>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: post.brand}) %>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <input name='earnings' class='form-control border-pink col-md-3' id="earnings" type='text' placeholder='Earnings from this sale *' value='' readonly>
+                        <small class="form-text text-muted text-left">75% of the selling price</small>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <%- include('../../partials/input', {name: 'selling_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Selling Price *', min: 40, max: '', required: true, value: post.selling_price}) %>
-                        <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true, value: post.original_price}) %>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink col-md-3', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true, value: post.original_price}) %>
+                        <small class="form-text text-muted text-left">Just as a reference to the shoppers</small>
                     </div>
                         
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <select name='condition' class='form-control col-sm-2 border-pink' required>
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <select name='condition' class='form-control col-md-3 border-pink' required>
                                 <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: post.condition === 'New with tags (Never worn, tags attached)'}) %>
                                 <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: post.condition === 'Excellent (Worn just a few times, looks as new)'}) %>
                                 <%- include('../../partials/option', {value: 'Very Good (Worn, but still looks great)', placeholder: 'Very Good', name: 'condition', selected: post.condition === 'Very Good (Worn, but still looks great)'}) %>
@@ -52,32 +61,64 @@
                         </select>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                        <textarea name="description" form="submit-pic-form" class = 'form-control border-pink desc' placeholder = "Enter description here... (optional)"><%= post.description %></textarea>  
-                        <button class = "btn btn-pink btn-primary text-center" id = "deleteRow" onclick = "deleteRow()" hidden> Delete</button>                 
+                    <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <textarea name="description" form="submit-pic-form" rows="4" class = 'form-control col-md-3 border-pink desc' placeholder = "Enter description here... (optional)"><%= post.description %></textarea>  
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3' id = "photo-upload-div">
-                        <!-- only accept image types, nothing else -->
-                        <input type="file" id="photo-upload" name="photo-upload" class="form-control border-pink" accept="image/*">
+                    <!-- <div id = "uploadHelp" class = 'form-group pl-3 pr-3'></div> -->
+
+                    <div class='form-group pl-3 pr-3'>
+                        <button type="submit" id="updatePost" class="btn btn-pink btn-primary text-center col-md-3" >Update Post</button>
+                    </div>
+
+                    <hr>
+                    <h3> Images </h3>
+
+                    <div class = 'card-group pl-3 pr-3' id = "thumbnails"></div>
+
+                    <hr>
+                    <h3> Add New Image </h3>
+
+                    <div class='form-group pl-3 pr-3'>
+                        <div class="col-md-4">
+                            <input type="file" id="photo-upload" name="photo-upload" class="custom-file-input" accept="image/*">
+                            <small class="form-text text-muted text-left">You may upload up to 10 images in a post.</small>
+                            <label class="custom-file-label text-left" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+
+                    <div id="imgDiv" class="card col-md-4">
+                        <div id="imgDivImg" class="card-img-top mt-3"></div>
+                        <div id="imgDivButton" class="card-body pt-3"></div>
+                    </div>
+
+                    <!-- Hidden -->
+                    <div class='form-group pl-3 pr-3' id = "photo-upload-div">
                         <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden value="<%= post.img_urls %>">
-
-                        <div id = "uploadHelp" class = 'form-group form-inline pl-3 pr-3'></div>
                     </div>
 
-                    <div class='form-group form-inline pl-3 pr-3'>
-                        <button type="submit" id="updatePost" class="btn btn-pink btn-primary text-center" >Update Post</button>
-                    </div>
-                    <div class = 'form-group form-inline pl-3 pr-3 ' id = "thumbnails"></div>
-
-                    <!-- Render thumbnails for cropped images -->
-                    <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>     
                 </div>           
             </div>
             
         </form>
         
         <script>
+            const $selling = document.querySelector('#selling-price');
+            const $shipping = document.querySelector('#shipping-price');
+            const $final = document.querySelector('#final-price');
+            const $earning = document.querySelector('#earnings');
+            $selling.addEventListener('input', updateFinal)
+            $shipping.addEventListener('input', updateFinal)
+            
+            function updateFinal() {
+                var selling = $selling.value ? parseFloat($selling.value) : 0.;
+                var shipping = $shipping.value ? parseFloat($shipping.value) : 0.;
+                $final.value = Math.round((selling + shipping) * 100) / 100;
+                $earning.value = Math.round(selling * 0.75 * 100) / 100;
+            }
+
+            updateFinal(); 
+
             //Description text box will populate placeholder when out of focus.
             $(function(){
     
@@ -95,20 +136,26 @@
                 for (var i = 0; i < imgUrls.length; i++) {
                     //Add thumbnail of cropped image to page
                     $('#thumbnails').append(`
-                        <div class="item mr-4">
-                            <span class="notify-badge" data-img-url='${imgUrls[i]}'>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </span>
-                            <img class='img-thumbnail' src = '${imgUrls[i]}'/>
+                        <div class="card col-md-4">
+                            <img class="card-img-top img-thumbnail" src="${imgUrls[i]}">
+                            <div class="card-body pt-3 ">
+                                <span class="notify-badge" data-img-url='${imgUrls[i]}'>
+                                    <button type="button" class="btn btn-danger btn-block">Delete</button>
+                                </span>
+                            </div>
                         </div>
                     `);
                 }
 
                 $('#thumbnails').on("click", '.notify-badge', function(event){
-                    // Remove image from display
-                    event.target.parentElement.parentElement.remove();
                     // Remove image URL
-                    document.getElementById('photo-upload-hidden').value = document.getElementById('photo-upload-hidden').value.replace(event.target.parentElement.dataset.imgUrl + ',', '');
+                    console.log(event.target.parentElement.getAttribute('data-img-url'));
+                    document.getElementById('photo-upload-hidden').value = 
+                        document.getElementById('photo-upload-hidden').value
+                                .replace(event.target.parentElement.getAttribute('data-img-url') + ',', '');
+                    // Remove image from display
+                    console.log(event.target.parentElement.parentElement.parentElement)
+                    event.target.parentElement.parentElement.parentElement.remove();
                 });
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
@@ -138,11 +185,11 @@
             // }
             
             //help info for uploading images
-            $("input[type='file']").hover(function(){
-                $('#uploadHelp').append("<small class='form-text text-danger'>You may upload/crop up to 10 images in one post.</small>")
-            }, function(){
-                $('#uploadHelp').empty();
-            });
+            // $("input[type='file']").hover(function(){
+            //     $('#uploadHelp').append("<small class='form-text text-danger'>You may upload/crop up to 10 images in one post.</small>")
+            // }, function(){
+            //     $('#uploadHelp').empty();
+            // });
 
             //image cropping and saving image
             var img1;
@@ -152,8 +199,8 @@
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
 
-                $('#imgDiv').append(img1); //wrap img in container
-                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
+                $('#imgDivImg').append(img1); //wrap img in container
+                $('#imgDivButton').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary btn-block'>Done Cropping</button>")
                 $("#photo-upload").attr("disabled", "disabled"); // Disable file upload until image cropped and uploaded
                 $("#updatePost").attr("disabled", "disabled"); // Disable form submit until image cropped and uploaded
  
@@ -173,6 +220,7 @@
                 
 
                     var hidden = document.getElementById('photo-upload-hidden');
+                    var photoUpload = document.getElementById('photo-upload');
                     
                     //created in case this is what's passed on form submit
                     var croppedImage = new Image();
@@ -183,7 +231,7 @@
                     croppedCanvas.toBlob(function(blob){
                         var formData = new FormData();
                         // Get the original pictures names without extension
-                        var filename = document.getElementById('photo-upload').value.split(/(\\|\/)/g).pop().split('.').slice(0, -1).join('.');
+                        var filename = photoUpload.value.split(/(\\|\/)/g).pop().split('.').slice(0, -1).join('.');
                         formData.append('croppedImage', blob, filename + '.png');
                         $.ajax('/influencers/uploadPhoto', {
                             method: "POST",
@@ -192,18 +240,21 @@
                             contentType: false,
                             success: function(response) {
                                 console.log('Upload success');
-                                document.getElementById('photo-upload-hidden').value += response + ","
-                                document.getElementById('photo-upload').value = null;
+                                hidden.value += response + ","
+                                photoUpload.value = null;
                                 $("#updatePost").removeAttr("disabled"); // Allow form submit
                                 $("#photo-upload").removeAttr("disabled"); // Allow file upload
 
                                 //Add thumbnail of cropped image to page
+
                                 $('#thumbnails').append(`
-                                    <div class="item mr-4">
-                                        <span class="notify-badge" data-img-url='${response}'>
-                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                        </span>
-                                        <img class='img-thumbnail' src = '${response}'/>
+                                    <div class="card col-md-4">
+                                        <img class="card-img-top img-thumbnail" src="${response}">
+                                        <div class="card-body pt-3">
+                                            <span class="notify-badge" data-img-url='${response}'>
+                                                <button type="button" class="btn btn-danger btn-block">Delete</button>
+                                            </span>
+                                        </div>
                                     </div>
                                 `);
 
@@ -219,9 +270,9 @@
                     }, 'image/png', .95) //convert to JPEG at 95% quality 
 
                     //clear UI for next image crop if need be
-                    $('#imgDiv').empty();
+                    $('#imgDivImg').empty();
+                    $('#imgDivButton').empty();
                 });
-
 
                 cropper = new Cropper(img1, {
                     aspectRatio: 1/1,
