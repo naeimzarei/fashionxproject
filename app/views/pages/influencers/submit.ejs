@@ -87,10 +87,7 @@
 
                         <!-- Render thumbnails for cropped images -->
 
-                        <div id="imgDiv" class="card col-md-4">
-                            <div id="imgDivImg" class="card-img-top mt-3"></div>
-                            <div id="imgDivButton" class="card-body pt-3"></div>
-                        </div>
+                        <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>     
                     </form>
                 </div>           
             </div>    
@@ -129,12 +126,10 @@
                 });
     
                 $('#thumbnails').on("click", '.notify-badge', function(event){
-                    // Remove image URL
-                    document.getElementById('photo-upload-hidden').value = 
-                        document.getElementById('photo-upload-hidden').value
-                                .replace(event.target.parentElement.getAttribute('data-img-url') + ',', '');
                     // Remove image from display
-                    event.target.parentElement.parentElement.parentElement.remove();
+                    event.target.parentElement.parentElement.remove();
+                    // Remove image URL
+                    document.getElementById('photo-upload-hidden').value = document.getElementById('photo-upload-hidden').value.replace(event.target.parentElement.dataset.imgUrl + ',', '');
                 });
             })
             //will append a new line of form fields if 'add line' is clicked, or deletes a line if 'delete line' clicked
@@ -173,17 +168,15 @@
             //image cropping and saving image
             var img1;
             var cropper;
-            $('#imgDiv').hide();
             $("input[type='file']").on("change", function(event1) {
                 src1 = URL.createObjectURL(event1.target.files[0]);
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
 
-                $('#imgDivImg').append(img1); //wrap img in container
-                $('#imgDivButton').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary btn-block'>Done Cropping</button>")
+                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
+                $('#imgDiv').append(img1); //wrap img in container
                 $("#photo-upload").attr("disabled", "disabled"); // Disable file upload until image cropped and uploaded
                 $("#createPost").attr("disabled", "disabled"); // Disable form submit until image cropped and uploaded
-                $('#imgDiv').show();
 
                 //done cropping button event handler
                 $('#doneCropping').on("click", function(){
@@ -228,13 +221,11 @@
                                 //Add thumbnail of cropped image to page
 
                                 $('#thumbnails').append(`
-                                    <div class="card col-md-3">
-                                        <img class="card-img-top mt-3 img-thumbnail" src="${response}">
-                                        <div class="card-body pt-3 ">
-                                            <span class="notify-badge" data-img-url='${response}'>
-                                                <button type="button" class="btn btn-danger btn-block">Delete</button>
-                                            </span>
-                                        </div>
+                                    <div class="item mr-4">
+                                        <span class="notify-badge" data-img-url='${response}'>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </span>
+                                        <img class='img-thumbnail' src = '${response}'/>
                                     </div>
                                 `);
 
@@ -250,9 +241,7 @@
                     }, 'image/png', .95) //convert to PNG at 95% quality 
 
                     //clear UI for next image crop if need be
-                    $('#imgDivImg').empty();
-                    $('#imgDivButton').empty();
-                    $('#imgDiv').hide();
+                    $('#imgDiv').empty();
                 });
 
                 cropper = new Cropper(img1, {
