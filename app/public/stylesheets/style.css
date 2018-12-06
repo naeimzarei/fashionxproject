@@ -246,3 +246,10 @@ button :active{
 .padding-right-sm {
     padding-right: 10px;
 }
+
+.ml-10 {
+    margin-left: 20px;
+}
+.mr-10 {
+    margin-right: 20px;
+}
