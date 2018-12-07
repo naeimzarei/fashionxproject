@@ -123,6 +123,7 @@
         function approve(evt) {
             var email = $($(evt.currentTarget).children()[2]).text();
             var button = $($($(evt.currentTarget).children()[4])).children()[0];
+            var status = $($(evt.currentTarget).children()[3]);
             $(button).removeClass('btn-success');
             $(button).addClass('btn-warning');
             $(button).text('Pending')
@@ -138,6 +139,7 @@
                         $(button).removeClass('btn-warning');
                         $(button).addClass('btn-danger');
                         $(button).text('Disable');
+                        $(status).text('Verified Influencer');
                     }
                 },
                 error: (err) => {
@@ -151,6 +153,7 @@
         function reject(evt) {
             var email = $($(evt.currentTarget).children()[2]).text();
             var button = $($($(evt.currentTarget).children()[4])).children()[0];
+            var status = $($(evt.currentTarget).children()[3]);
             $(button).removeClass('btn-danger');
             $(button).addClass('btn-warning');
             $(button).text('Pending');
@@ -166,6 +169,7 @@
                         $(button).removeClass('btn-warning');
                         $(button).addClass('btn-success');
                         $(button).text('Approve');
+                        $(status).text('Unverified influencer');
                     }
                 },
                 error: (err) => {

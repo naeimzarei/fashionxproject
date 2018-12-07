@@ -26,10 +26,6 @@ var postSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    shipping_price: {
-        type: Number,
-        required: true
-    },
     original_price: {
         type: Number,
         required: true
@@ -68,7 +64,6 @@ postSchema.statics.push = async (
     size,
     brand,
     selling_price,
-    shipping_price,
     original_price,
     condition,
     description,
@@ -82,7 +77,6 @@ postSchema.statics.push = async (
         size: size,
         brand: brand,
         selling_price: selling_price,
-        shipping_price: shipping_price,
         original_price: original_price,
         condition: condition,
         description: description,
@@ -132,7 +126,6 @@ postSchema.statics.update = async (
     size,
     brand,
     selling_price,
-    shipping_price,
     original_price,
     condition,
     description,
@@ -146,7 +139,6 @@ postSchema.statics.update = async (
         size: size,
         brand: brand,
         selling_price: selling_price,
-        shipping_price: shipping_price,
         original_price: original_price,
         condition: condition,
         description: description,
