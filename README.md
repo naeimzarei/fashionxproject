@@ -29,7 +29,6 @@
 	* [Version-Controlled Repository](#version-controlled-repository)
 	* [Deployed Application](#deployed-application)
 	* [Video of Working System](#video-of-working-system)
-	* [Deployed Application](#deployed-application)
 	* [Executable Code](#executable-code)
 
 # General Materials
