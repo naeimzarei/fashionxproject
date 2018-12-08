@@ -118,6 +118,7 @@ router.post('/login', async (req, res, next) => {
  */
 router.get('/signup', async (req, res, next) => {
     if (req.user) {
+        var rights = await rights_controller.findRights(req.user.email);
         if (rights.rights == '1') {
             return res.redirect('/influencers/home');
         } else {
