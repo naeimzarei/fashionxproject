@@ -150,14 +150,23 @@ Functional specification documented under [deliverables/functional-spec](deliver
 ## Design Doc
 Design documented under [deliverables/design-doc](deliverables/design-doc).
 
-## Test Plan
-Test plan documented under [deliverables/design-doc](deliverables/test-plan).
-
 ## User Manual
 User manual documented under [deliverables/user-manual](deliverables/user-manual).
 
+## Administrator Manual
+Administrator manual documented under [deliverables/administrative-manual](deliverables/administrative-manual).
+
+## Test Plan
+Test plan documented under [deliverables/design-doc](deliverables/test-plan).
+
 ## Version-Controlled Repository
 [GitHub](https://github.com/naeimzarei/fashionxproject)
+
+## Deployed Application
+[ShopHerLook-sell.app](https://shopherlook-sell.app/)
+
+## Video of Working System
+[YouTube Link](https://www.youtube.com/watch?v=ercHKUuABR8)
 
 ## Executable Code
 
