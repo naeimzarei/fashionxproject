@@ -29,7 +29,7 @@
                     <tr>
                       <td><img src="<%= post.img_urls[0] %>" alt="<%= post.title %> Thumbnail" class="img-thumbnail" style="max-width: 200px;"></td>
                       <td scope="row"><%= post.item %></td>
-                      <td scope="row" style="max-width: 200px;"><%= post.description %></td>
+                      <td scope="row" style="max-width: 200px; word-wrap: break-word;"><%= post.description %></td>
                       <td>$<%= post.selling_price %></td>
                       <td>
                         <form action="/influencers/posts/<%= post.id %>/delete" method="post">
