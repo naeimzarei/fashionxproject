@@ -23,9 +23,13 @@
 * [Sprint Deliverables](#sprint-deliverables)
 	* [Functional Specification](#functional-specification)
 	* [Design Doc](#design-doc)
-	* [Test Plan](#test-plan)
 	* [User Manual](#user-manual)
+	* [Administrator Manual](#administrator-manual)
+	* [Test Plan](#test-plan)
 	* [Version-Controlled Repository](#version-controlled-repository)
+	* [Deployed Application](#deployed-application)
+	* [Video of Working System](#video-of-working-system)
+	* [Deployed Application](#deployed-application)
 	* [Executable Code](#executable-code)
 
 # General Materials
