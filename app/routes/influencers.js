@@ -289,7 +289,9 @@ router.get('/home', async (req, res, next) => {
         if (rights.rights == '1') {
             var posts = await post_controller.findAll(req.user.email);
             posts.forEach(post => {
-                post.description = post.description.substring(0, 200);
+                if (post.description.length > 200) {
+                    post.description = post.description.substring(0, 200) + '...';
+                }
             });
             return res.render('pages/influencers/home', { title: 'Home', posts: posts, moment: moment });
         } else {
