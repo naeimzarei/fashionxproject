@@ -332,7 +332,7 @@ router.post('/submit', async (req,res,next) => {
     if (data.img_urls[data.img_urls.length - 1].length < 2) {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
-    await post_controller.push(data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.push(data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls, 'New');
     return res.redirect('/influencers/home');
 });
 
@@ -405,7 +405,7 @@ router.post('/updatePost', async (req, res, next) => {
         data.img_urls.pop(); // Remove empty string since all img urls have , appended to end
     }
 
-    await post_controller.update(data.id, data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls);
+    await post_controller.update(data.id, data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls, data.status);
     return res.redirect('/influencers/home');
 });
 
@@ -424,6 +424,57 @@ router.get('/profile', async (req, res, next) => {
     } else {
         return res.redirect('/influencers/login');
     }
+});
+
+/**
+ * Ask for preshipping label
+ */
+router.post('/preshippingLabel', async(req, res, next) => {
+    //send email to fashionx that a new influencer applied (incoming)
+    const transporter = nodemailer.createTransport({
+            service: 'Outlook365',
+            host: "imap.secureserver.net",  
+            secureConnection: true,
+            port: 993,
+            auth: {
+                user: config.EMAIL,
+                pass: config.PASS
+            }
+        });
+    var emailText = 'Box weight: ' + (req.body.box_weight || '') + '\n'
+                + 'Requester name: ' + (req.user.first_name || '') + (req.user.last_name || '') + '\n'
+                + 'Requester email: ' + (req.user.email || '') + '\n'
+                + 'Address: ' + (req.user.address1 || '') + '\n'
+                + 'Address2: ' + (req.user.address2 || 'N/A') + '\n'
+                + 'City: ' + (req.user.city || '') + '\n'
+                + 'State: ' + (req.user.state || '') + '\n'
+                + 'Zip: ' + (req.user.zip || '') + '\n'
+                + 'Country: ' +  (req.user.country || '') + '\n'
+                + 'Phone number: ' + (req.user.phone_number || '')
+    const mailOptions = {
+        from: config.EMAIL, 
+        to: config.EMAIL,
+        subject: 'Request for Preshipping Label',
+        text: emailText,
+        replyTo: config.EMAIL
+    }
+    transporter.sendMail(mailOptions, function(err, res) {
+        if (err) {
+            console.error('there was an error: ', err);
+        } else {
+            console.log('here is the res: ', res)
+        }
+    })
+    
+    var posts = await post_controller.findAll(req.user.email);
+    for (var post of posts){
+        var data = post;
+        data.date = new Date();
+        if(data.status && data.status == 'New'){
+            await post_controller.update(data.id, data.type, data.item, data.size, data.brand, data.selling_price, data.original_price, data.condition, data.description, data.date, req.user.email, data.img_urls, 'Pre-shipping label');
+        }
+    }
+    return res.redirect('/influencers/home')
 });
 
 /**
