@@ -49,6 +49,11 @@ var postSchema = mongoose.Schema({
     img_urls: {
         type: Array,
         required: true
+    },
+    status: {
+        type: String,
+        default: 'New',
+        required: true
     }
 });
 
@@ -69,7 +74,8 @@ postSchema.statics.push = async (
     description,
     date,
     email,
-    img_urls
+    img_urls,
+    status
 ) => {
     var post = new Post({
         type: type,
@@ -82,7 +88,8 @@ postSchema.statics.push = async (
         description: description,
         date: date,
         email: email,
-        img_urls: img_urls
+        img_urls: img_urls, 
+        status: status
     });
     await post.save();
     return post;
@@ -131,7 +138,8 @@ postSchema.statics.update = async (
     description,
     date,
     email,
-    img_urls
+    img_urls,
+    status
 ) => {
     var post = await Post.findByIdAndUpdate(id, {
         type: type,
@@ -144,7 +152,8 @@ postSchema.statics.update = async (
         description: description,
         date: date,
         email: email,
-        img_urls: img_urls
+        img_urls: img_urls,
+        status: status
     });
     return post;
 };
