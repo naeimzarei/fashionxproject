@@ -85,6 +85,10 @@ body {
 }
 
 /* Buttons */
+#pre-shipping[disabled] { 
+    pointer-events: none;
+}
+
 .btn-pink {
     color: #fff;
     background-color: #7C4889;
