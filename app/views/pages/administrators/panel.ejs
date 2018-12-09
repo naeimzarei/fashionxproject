@@ -44,10 +44,11 @@
                     success: (rights) => {
                         profiles.forEach((profile, index) => {
                             for (var i = 0; i < rights.length; i++) {
-                                var possibleRights = ['0', '1']
+                                var possibleRights = ['0', '1', '2'] // 0 - pending // 1 - accepted // 2 - rejected
                                 if (profile.email === rights[i].email && possibleRights.includes(rights[i].rights)) {
                                     //make row id the users email until the '@'
-                                    var isVerified = rights[i].rights == 0;
+                                    var isPending = rights[i].rights == 0;
+                                    var isVerified = rights[i].rights == 1;
                                     var rowIndex = profile.email.substring(0,profile.email.indexOf("@"));
                                     var row = $(`
                                         <tr>
@@ -55,15 +56,16 @@
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.first_name + ' ' + profile.last_name}</td>
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.email}</td>
                                             <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
-                                            <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Disable'}</button></td>
+                                            <td><button type='button' class='${(isPending || !isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block disabled'}'>${(!isPending && isVerified) ? 'Approved' : 'Approve'}</button></td>
+                                            <td><button type='button' class='${(isPending || isVerified) ? 'btn btn-sm btn-block btn-danger' : 'btn btn-sm btn-block disabled'}'>${(!isPending && !isVerified) ? 'Denied' : 'Deny'}</button></td>
                                         </tr>
                                     `);
                                     $(row).on('click', (evt) => {
                                         if ($(evt.target).is('button')) {
                                             if ($(evt.target).text() === 'Approve') {
-                                                approve(evt);
-                                            } else if ($(evt.target).text() === 'Disable') {
-                                                reject(evt);
+                                                decision(evt, true);
+                                            } else if ($(evt.target).text() === 'Deny') {
+                                                decision(evt, false);
                                             }
                                         }
                                     });
@@ -120,61 +122,41 @@
             $("#"+modalId).modal('show')
         });
 
-        function approve(evt) {
+        function decision(evt, approved) {
             var email = $($(evt.currentTarget).children()[2]).text();
-            var button = $($($(evt.currentTarget).children()[4])).children()[0];
+            var approveButton = $($($(evt.currentTarget).children()[4])).children()[0];
+            var denyButton = $($($(evt.currentTarget).children()[5])).children()[0];
             var status = $($(evt.currentTarget).children()[3]);
-            $(button).removeClass('btn-success');
-            $(button).addClass('btn-warning');
-            $(button).text('Pending')
+
+            if(approved) {
+                $(approveButton).removeClass('btn-success');
+                $(approveButton).addClass('disabled');
+                $(approveButton).text('Approved');
+                $(denyButton).removeClass('disabled');
+                $(denyButton).addClass('btn-danger');
+                $(denyButton).text('Deny')
+            } else {
+                $(approveButton).removeClass('disabled');
+                $(approveButton).addClass('btn-success');
+                $(approveButton).text('Approve');
+                $(denyButton).removeClass('btn-danger');
+                $(denyButton).addClass('disabled');
+                $(denyButton).text('Denied')
+            }
 
             $.ajax({
                 method: 'POST',
-                url: '/administrators/approve',
+                url: approved ? '/administrators/approve' : '/administrators/reject',
                 data: {
                     email: email
                 },
                 success: (data) => {
-                    if (data.isApproved === true) {
-                        $(button).removeClass('btn-warning');
-                        $(button).addClass('btn-danger');
-                        $(button).text('Disable');
-                        $(status).text('Verified Influencer');
-                    }
+                    if (data.isApproved) $(status).text('Verified Influencer');
+                    else $(status).text('Unverified influencer');
                 },
                 error: (err) => {
-                    $(button).removeClass('btn-warning');
-                    $(button).addClass('btn-danger');
-                    $(button).text('Error');
-                }
-            });
-        }
-
-        function reject(evt) {
-            var email = $($(evt.currentTarget).children()[2]).text();
-            var button = $($($(evt.currentTarget).children()[4])).children()[0];
-            var status = $($(evt.currentTarget).children()[3]);
-            $(button).removeClass('btn-danger');
-            $(button).addClass('btn-warning');
-            $(button).text('Pending');
-
-            $.ajax({
-                method: 'POST',
-                url: '/administrators/reject',
-                data: {
-                    email: email
-                },
-                success: (data) => {
-                    if (data.isApproved === false) {
-                        $(button).removeClass('btn-warning');
-                        $(button).addClass('btn-success');
-                        $(button).text('Approve');
-                        $(status).text('Unverified influencer');
-                    }
-                },
-                error: (err) => {
-                    $(button).removeClass('btn-warning');
-                    $(button).addClass('btn-danger');
+                    $(button).removeClass('disabled');
+                    $(button).addClass('btn-warning');
                     $(button).text('Error');
                 }
             })
@@ -196,28 +178,30 @@
                         success: (rights) => {
                             profiles.forEach((profile, index) => {
                                 for (var i = 0; i < rights.length; i++) {
-                                    var possibleRights = ['0', '1']
+                                    var possibleRights = ['0', '1', '2']
                                     if (profile.email === rights[i].email && possibleRights.includes(rights[i].rights)) {
                                         if (profile.email.toLowerCase().includes($("input#searchParam").val().toLowerCase()) ||
                                         profile.first_name.toLowerCase().includes($("input#searchParam").val().toLowerCase())) {
                                             //make row id the users email until the '@'
-                                            var isVerified = rights[i].rights == 0;
+                                            var isPending = rights[i].rights == 0;
+                                            var isVerified = rights[i].rights == 1;
                                             var rowIndex = profile.email.substring(0,profile.email.indexOf("@"));
                                             var row = $(`
-                                                <tr class="profileRow" id="${rowIndex}" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">
-                                                    <th scope='col'>${ind}</th>
-                                                    <td>${profile.first_name}</td>
-                                                    <td>${profile.email}</td>
-                                                    <td>${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
-                                                    <td><button type='button' class='${(isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block btn-danger'}'>${(isVerified) ? 'Approve' : 'Disable'}</button></td>
+                                                <tr>
+                                                    <th scope='col'id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${ind}</th>
+                                                    <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.first_name + ' ' + profile.last_name}</td>
+                                                    <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${profile.email}</td>
+                                                    <td id="${rowIndex}" class="profileRow" data-toggle="modal" data-target="#modal-${rowIndex}" href="#">${(isVerified) ? 'Unverified Influencer' : 'Verified Influencer'}</td>
+                                                    <td><button type='button' class='${(isPending || !isVerified) ? 'btn btn-sm btn-block btn-success' : 'btn btn-sm btn-block disabled'}'>${(!isPending && isVerified) ? 'Approved' : 'Approve'}</button></td>
+                                                    <td><button type='button' class='${(isPending || isVerified) ? 'btn btn-sm btn-block btn-danger' : 'btn btn-sm btn-block disabled'}'>${(!isPending && !isVerified) ? 'Denied' : 'Deny'}</button></td>
                                                 </tr>
                                             `);
                                             $(row).on('click', (evt) => {
                                                 if ($(evt.target).is('button')) {
                                                     if ($(evt.target).text() === 'Approve') {
-                                                        approve(evt);
-                                                    } else if ($(evt.target).text() === 'Disable') {
-                                                        reject(evt);
+                                                        decision(evt, true);
+                                                    } else if ($(evt.target).text() === 'Deny') {
+                                                        decision(evt, false);
                                                     }
                                                 }
                                             });

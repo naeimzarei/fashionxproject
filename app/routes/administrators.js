@@ -120,7 +120,7 @@ router.post('/approve', async (req, res, next) => {
 });
 
 router.post('/reject', async (req, res, next) => {
-    await rights_controller.updateRights(req.body.email, '0');
+    await rights_controller.updateRights(req.body.email, '2');
     res.json({isApproved: false});
     //send decision email to applicant 
     const transporter2 = nodemailer.createTransport({
