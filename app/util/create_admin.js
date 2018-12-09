@@ -18,7 +18,7 @@ if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}
 }
 
 // check if password is valid 
-if(/^((?=.*\d)(?=.*[A-Z])).{6,12}$/.test(credentials['password']) === false ){
+if(/^((?=.*\d)(?=.*[A-Z])).{6,20}$/.test(credentials['password']) === false ){
     console.log(VALIDATION_ERRORS['PASSWORD_INVALID']);
     process.exit();
 }
