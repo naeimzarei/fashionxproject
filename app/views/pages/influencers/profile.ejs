@@ -46,13 +46,13 @@
                         </div>
 
                         <div class='form-group margin-top-sm pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'address1', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 1', min: '', max: '', required: true, value: profile.address1}) %>
+                            <%- include('../../partials/input', {name: 'address1', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 1 *', min: '', max: '', required: true, value: profile.address1}) %>
                         </div>
                         <div class='form-group pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'address2', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 2', min: '', max: '', required: true, value: profile.address2}) %>
+                            <%- include('../../partials/input', {name: 'address2', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Address Line 2', min: '', max: '', required: false, value: profile.address2}) %>
                         </div>
                         <div class='form-group form-inline pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'city', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'City', min: '', max: '', required: true, value: profile.city}) %>
+                            <%- include('../../partials/input', {name: 'city', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'City *', min: '', max: '', required: true, value: profile.city}) %>
                             <select name='state' class='form-control col-6 border-pink' required>
                                 <%- include('../../partials/option', {value: "State *", placeholder: 'State *', name: 'state', selected: profile.state === 'State *'}) %>
                                 <%- include('../../partials/option', {value: "AK", placeholder: 'AK', name: 'state', selected: profile.state === 'AK'}) %>
@@ -111,12 +111,12 @@
                         </div>
 
                         <div class='form-group form-inline pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'country', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'Country', min: '', max: '', required: true, value: profile.country}) %>
-                            <%- include('../../partials/input', {name: 'zip', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'ZIP or Postal Code', min: '', max: '', required: true, value: profile.zip}) %>
+                            <input name='country' class='form-control border-pink col-6' id="" type='text' value='United States' readonly>
+                            <%- include('../../partials/input', {name: 'zip', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'ZIP or Postal Code *', min: '', max: '', required: true, value: profile.zip}) %>
                         </div>
 
                         <div class='form-group pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'phone_number', classes: 'form-control border-pink', type: 'tel', id: '', placeholder: 'Phone Number', min: '', max: '', required: true, value: profile.phone_number}) %>
+                            <%- include('../../partials/input', {name: 'phone_number', classes: 'form-control border-pink', type: 'tel', id: '', placeholder: 'Phone Number *', min: '', max: '', required: true, value: profile.phone_number}) %>
                         </div>
 
                         <hr>
@@ -128,8 +128,8 @@
 
 
                         <div class='form-group form-inline margin-top-sm pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true, value: profile.height_ft}) %>
-                            <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'number', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: profile.height_in}) %>
+                            <%- include('../../partials/input', {name: 'height_ft', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: 'Height (ft) *', min: '0', max: '', required: true, value: profile.height_ft}) %>
+                            <%- include('../../partials/input', {name: 'height_in', classes: 'form-control col-6 border-pink', type: 'text', id: '', placeholder: '(in) *', min: '0', max: '11', required: true, value: profile.height_in}) %>
                         </div>
                         <div class='form-group form-inline pl-3 pr-3'>
                             <select name='bust_cup' class='form-control col-6 border-pink' required>
@@ -154,7 +154,8 @@
                             <select name='bust_band' class='form-control col-6 border-pink' required>
                                     <%- include('../../partials/option', {value: 'Bust (band) *', placeholder: 'Bust (band) *', name: 'bust_band', selected: profile.bust_band === 'Bust (band) *'}) %>
                                     <%- include('../../partials/option', {value: '28', placeholder: '28', name: 'bust_band', selected: profile.bust_band === '28'}) %>
-                                    <%- include('../../partials/option', {value: '30', placeholder: '32', name: 'bust_band', selected: profile.bust_band === '32'}) %>
+                                    <%- include('../../partials/option', {value: '30', placeholder: '30', name: 'bust_band', selected: profile.bust_band === '30'}) %>
+                                    <%- include('../../partials/option', {value: '32', placeholder: '32', name: 'bust_band', selected: profile.bust_band === '32'}) %>
                                     <%- include('../../partials/option', {value: '34', placeholder: '34', name: 'bust_band', selected: profile.bust_band === '34'}) %>
                                     <%- include('../../partials/option', {value: '36', placeholder: '36', name: 'bust_band', selected: profile.bust_band === '36'}) %>
                                     <%- include('../../partials/option', {value: '38', placeholder: '38', name: 'bust_band', selected: profile.bust_band === '38'}) %>
@@ -172,7 +173,7 @@
                                 </select>
                         </div>
                         <div class='form-group pl-3 pr-3'>
-                            <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'number', id: '', placeholder: 'Natural Waist (in) *', min: '0', max: '', required: true, value: profile.waist}) %>
+                            <%- include('../../partials/input', {name: 'waist', classes: 'form-control border-pink', type: 'text', id: '', placeholder: 'Natural Waist (in) *', min: '0', max: '', required: true, value: profile.waist}) %>
                         </div>
                         <div class='form-group pl-3 pr-3'>
                             <select name='shirt_size' class='form-control border-pink' required>

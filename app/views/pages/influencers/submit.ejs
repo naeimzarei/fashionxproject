@@ -13,43 +13,32 @@
             <h1>New&nbsp;Listing</h1>
                 <div class="row justify-content-center">
                     <form id='submit-pic-form' class='bg-grey col-md-12 pt-4' action='/influencers/submit' method='post'>
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+
+                        <h3>Pricing</h3>
+                        <div class='form-group pl-3 pr-3 mb-1' id = "fieldsDiv">
+                            <small class="form-text text-muted text-left">Type*</small>
                             <select name='type' class='form-control col-md-3 border-pink' required>
                                 <%- include('../../partials/option', {value: 'Individual Item', placeholder: 'Individual Item', name: 'type', selected: false}) %>
                                 <%- include('../../partials/option', {value: 'Bundle of Items', placeholder: 'Bundle of Items', name: 'type', selected: false}) %>
                             </select>    
                         </div>
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <div class='form-group pl-3 pr-3 mb-1' id = "fieldsDiv">
+                            <small class="form-text text-muted text-left">Item*</small>
                             <%- include('../../partials/input', {name: 'item', classes: 'form-control border-pink  col-md-3', type: 'text', id: '', placeholder: 'Item *', min: '', max: '', required: true, value: ''}) %>
                         </div>
 
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <div class='form-group pl-3 pr-3 mb-1' id = "fieldsDiv">
+                            <small class="form-text text-muted text-left">Size*</small>
                             <%- include('../../partials/input', {name: 'size', classes: 'form-control border-pink col-md-3', type: 'text', id: '', placeholder: 'Size *', min: '', max: '', required: true, value: ''}) %>
                         </div>
 
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <div class='form-group pl-3 pr-3 mb-1' id = "fieldsDiv">
+                            <small class="form-text text-muted text-left">Brand*</small>
                             <%- include('../../partials/input', {name: 'brand', classes: 'form-control border-pink col-md-3', type: 'text', id: '', placeholder: 'Brand *', min: '', max: '', required: true, value: ''}) %>
                         </div>
 
-                        <div class='form-group form-inline pl-3 pr-3' id = "fieldsDiv">
-                            <input name='selling_price' onchange="updateFinal" class='form-control border-pink col-md-3 mr-md-2 mt-2' id="selling-price" type='number' step = 0.01 placeholder='Selling Price *' min='40' max='' value=''>
-                            <!-- Will change this shipping price -->
-                            <input name='shipping_price' onchange="updateFinal" class='form-control border-pink col-md-2 mr-md-2 mt-2' id="shipping-price" type='number' step = 0.01 placeholder='Shipping Cost *' value='7' readonly>
-                            <input name='final_price' class='form-control border-pink col-md-2 mt-2' id="final-price" type='text' placeholder='Final Price *' value='' readonly>
-                        </div>
-
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
-                            <input name='earnings' class='form-control border-pink col-md-3' id="earnings" type='text' placeholder='Earnings from this sale *' value='' readonly>
-                            <small class="form-text text-muted text-left">75% of the selling price</small>
-                        </div>
-
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
-                            <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink col-md-3', type: 'number', id: '', placeholder: 'Original Price *', min: 0, max: '', required: true, value: ''}) %>
-                            <small class="form-text text-muted text-left">Just as a reference to the shoppers</small>
-                        </div>
-
-
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <div class='form-group pl-3 pr-3 mb-1' id = "fieldsDiv">
+                            <small class="text-muted text-left">Condition*</small>
                             <select name='condition' class='form-control col-md-3 border-pink' required>
                                 <%- include('../../partials/option', {value: 'New with tags (Never worn, tags attached)', placeholder: 'New', name: 'condition', selected: false}) %>
                                 <%- include('../../partials/option', {value: 'Excellent (Worn just a few times, looks as new)', placeholder: 'Excellent', name: 'condition', selected: false}) %>
@@ -59,14 +48,46 @@
                             </select>
                         </div>
 
-                        <div class='form-group pl-3 pr-3' id = "fieldsDiv">
+                        <div class='form-group pl-3 pr-3 mb-1' id = "fieldsDiv">
+                            <small class="form-text text-muted text-left">Description</small>
                             <textarea name="description" class = 'form-control border-pink desc col-md-3' rows = "4" placeholder = "Description: Here you can add any comment you would like about the item you are selling (optional)"></textarea>  
                         </div>
 
+                        <hr>
+                        <h3>Pricing</h3>
 
-                        <div class='form-group pl-3 pr-3'>
-                            <button type="submit" id = "createPost" class="btn btn-pink btn-primary text-center col-md-3" >Create Post</button>
+                        <div class="form-row pl-3 pr-3">
+                            <div class="col-md-3 mb-1">
+                                <small class="form-text text-muted text-left">Selling price*</small>
+                                <span style="position: absolute;" class="ml-2 pt-2">$</span>
+                                <input name='selling_price' class='form-control border-pink pl-4' id="selling-price" type='text' placeholder='' value=''>
+                            </div>
+                            <div class="col-md-3 mb-1">
+                                <small class="form-text text-muted text-left">Shipping cost</small>
+                                <span style="position: absolute;" class="ml-2 pt-2">$</span>
+                                <input name='shipping_price' class='form-control border-pink pl-4' id="shipping-price" type='text' value='7' readonly>
+                            </div>
+                            <div class="col-md-3 mb-1">
+                                <small class="form-text text-muted text-left">Final selling price</small>
+                                <span style="position: absolute;" class="ml-2 pt-2">$</span>
+                                <input name='final_price' class='form-control border-pink pl-4' id="final-price" type='text' placeholder='' value='' readonly>
+                            </div>
                         </div>
+
+                        <div class="form-row pl-3 pr-3">
+                            <div class='col-md-3' id = "fieldsDiv">
+                                <small class="form-text text-muted text-left">Your earnings (75% of the selling price)</small>
+                                <span style="position: absolute;" class="ml-2 pt-2">$</span>
+                                <input name='earnings' class='form-control border-pink pl-4' id="earnings" type='text' placeholder='' value='' readonly>
+                            </div>
+
+                            <div class='col-md-3' id = "fieldsDiv">
+                                <small class="form-text text-muted text-left">Original Price* (as a reference to the shoppers)</small>
+                                <span style="position: absolute;" class="ml-2 pt-2">$</span>
+                                <%- include('../../partials/input', {name: 'original_price', classes: 'form-control border-pink pl-4', type: 'text', id: 'original-price', placeholder: '', min: 0, max: '', required: true, value: ''}) %>
+                            </div>
+                        </div>
+
 
                         <hr>
                         <h3> Images </h3>
@@ -79,7 +100,7 @@
                         <div class='form-group pl-3 pr-3'>
                             <div class="col-md-4">
                                 <input type="file" id="photo-upload" name="photo-upload" class="custom-file-input" accept="image/*">
-                                <small class="form-text text-muted text-left">You may upload up to 10 images in a post.</small>
+                                <small class="form-text text-muted text-left">If you are selling one single item, submit one "Covershot" picture (it can be the picture you took for an old Instagram post with that item, or just a picture in front of a mirror) and two more pictures; one front picture in front of a mirror wearing the item and one back picture. You may upload up to 10 images in a post.</small>
                                 <label class="custom-file-label text-left" for="customFile">Choose file</label>
                                 <input type="text" id="photo-upload-hidden" name="img_urls" class="form-control border-pink" hidden>
                             </div>
@@ -87,7 +108,15 @@
 
                         <!-- Render thumbnails for cropped images -->
 
-                        <div id = "imgDiv" class='container mx-auto' style='width: 500px; height: 500px;'></div>     
+                        <div id="imgDiv" class='card col-md-4'>
+                            <div id="cropImage" class="card-img-top mt-3"></div>
+                            <div id="cropButton" class="card-body pt-2 pb-2"></div>
+                        </div>     
+
+                        <hr>
+                        <div class='form-group pl-3 pr-3'>
+                            <button type="submit" id = "createPost" class="btn btn-pink btn-primary text-center col-md-3" >Create Post</button>
+                        </div>
                     </form>
                 </div>           
             </div>    
@@ -95,17 +124,15 @@
 
         <script>            
             const $selling = document.querySelector('#selling-price');
-            const $shipping = document.querySelector('#shipping-price');
+            const $original = document.querySelector('#original-price');
             const $final = document.querySelector('#final-price');
             const $earning = document.querySelector('#earnings');
-            $selling.addEventListener('input', updateFinal)
-            $shipping.addEventListener('input', updateFinal)
+            $selling.addEventListener('input', updateFinal);
 
             function updateFinal() {
                 var selling = $selling.value ? parseFloat($selling.value) : 0.;
-                var shipping = $shipping.value ? parseFloat($shipping.value) : 0.;
-                $final.value = Math.round((selling + shipping) * 100) / 100;
-                $earning.value = Math.round(selling * 0.75 * 100) / 100;
+                $final.value = isNaN(selling) ? "Not a Number" : Math.round((selling + 7) * 100) / 100;
+                $earning.value = isNaN(selling) ? "Not a Number" : Math.round(selling * 0.75 * 100) / 100;
             }
 
             //used for custom upload file button to get file  
@@ -175,8 +202,8 @@
                 img1 = new Image(); //html image element passed into cropper.js
                 img1.src = src1;
 
-                $('#imgDiv').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary text-center'>Done Cropping</button>")
-                $('#imgDiv').append(img1); //wrap img in container
+                $('#cropButton').append("<button type = 'button' id = 'doneCropping' class = 'btn btn-pink btn-primary btn-block'>Done Cropping</button>")
+                $('#cropImage').append(img1); //wrap img in container
                 $("#photo-upload").attr("disabled", "disabled"); // Disable file upload until image cropped and uploaded
                 $("#createPost").attr("disabled", "disabled"); // Disable form submit until image cropped and uploaded
                 imgDiv.show();
@@ -244,7 +271,8 @@
                     }, 'image/png', .95) //convert to PNG at 95% quality 
 
                     //clear UI for next image crop if need be
-                    $('#imgDiv').empty();
+                    $('#cropImage').empty();
+                    $('#cropButton').empty();
                     imgDiv.hide();
                 });
 
