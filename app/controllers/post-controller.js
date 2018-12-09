@@ -18,7 +18,8 @@ post_controller.push = async (
     description,
     date,
     email,
-    img_urls
+    img_urls,
+    status
 ) => {
     return await Post.push(
         type,
@@ -31,7 +32,8 @@ post_controller.push = async (
         description,
         date,
         email,
-        img_urls
+        img_urls,
+        status
     );
 };
 
@@ -74,7 +76,8 @@ post_controller.update = async (
     description,
     date,
     email,
-    img_urls
+    img_urls,
+    status
 ) => {
     return await Post.update(
         type,
@@ -87,7 +90,8 @@ post_controller.update = async (
         description,
         date,
         email,
-        img_urls
+        img_urls,
+        status
     );
 }
 
@@ -103,7 +107,8 @@ post_controller.update = async(
     description,
     date,
     email,
-    img_urls
+    img_urls,
+    status
 ) => {
     return await Post.update(
         id,
@@ -117,7 +122,8 @@ post_controller.update = async(
         description,
         date,
         email,
-        img_urls
+        img_urls,
+        status
     );
 }
 
