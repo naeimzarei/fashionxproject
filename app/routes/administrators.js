@@ -13,22 +13,28 @@ var VALIDATION_ERRORS = util.VALIDATION_ERRORS;
 // config 
 var config = require('../config/config');
 
+// Check if account authenticated
 isAdministratorAuthenticated = async  (req, res, next) => {
     var result = await administrator_controller.authenticate({email: req.body.email, password: req.body.password});
     return (result !== false) ? true : false;
 };
 
+// Base URL
 router.get('/', async (req, res, next) => {
     res.redirect('administrators/login');
 });
 
+// Login page
 router.get('/login', async (req, res, next) => {
     return res.render('pages/administrators/login', { title: 'Login', errors: '', fields: '', user: ''});
 });
+
+// Admin manual
 router.get('/admin-manual', async (req, res, next) => {
     return res.render('pages/administrators/admin-manual', { title: 'Admin Manual', errors: '', fields: '', user: ''});
 });
 
+// Admin panel
 router.get('/panel', async (req, res, next) => {
     if (req.cookies.isAuthenticated != 'true') {
         return res.redirect('login');
@@ -36,6 +42,7 @@ router.get('/panel', async (req, res, next) => {
     res.render('pages/administrators/panel', {title: 'Panel', errors: '', fields: '', user: ''});
 });
 
+// View all profiles created as a JSON
 router.get('/profiles', async (req, res, next) => {
     if (req.cookies.isAuthenticated != 'true') {
         return res.redirect('login');
@@ -44,6 +51,7 @@ router.get('/profiles', async (req, res, next) => {
     res.json(profiles);
 });
 
+// View all access rights as a JSON
 router.get('/rights', async (req, res, next) => {
     if (req.cookies.isAuthenticated != 'true') {
         return res.redirect('login');
@@ -52,11 +60,13 @@ router.get('/rights', async (req, res, next) => {
     res.json(rights);
 });
 
+// Signout of admin account
 router.get('/signout', async (req, res, next) => {
     res.cookie('isAuthenticated', false);
     return res.redirect('/administrators/login');
 });
 
+// Login to admin account
 router.post('/login', async (req, res, next) => {
     var emailExists = await administrator_controller.findAdministrator(req.body.email);
     emailExists = (emailExists !== null) ? true : false;
@@ -88,6 +98,7 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
+// Approve influencer and send email
 router.post('/approve', async (req, res, next) => {
     await rights_controller.updateRights(req.body.email, '1');
     res.json({isApproved: true});
@@ -119,6 +130,7 @@ router.post('/approve', async (req, res, next) => {
     })
 });
 
+// Reject influencer and send email
 router.post('/reject', async (req, res, next) => {
     await rights_controller.updateRights(req.body.email, '0');
     res.json({isApproved: false});

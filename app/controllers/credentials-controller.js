@@ -63,6 +63,7 @@ credentials_controller.update = async (id, email, password) => {
 
 /**
  * Update authentication credentials
+ * @param {string} previous_email
  * @param {string} email
  * @param {string} password 
  */

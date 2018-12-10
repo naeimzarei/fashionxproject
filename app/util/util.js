@@ -16,11 +16,13 @@ util.format_errors_object = (object_info, object) => {
     return errors;
 };
 
+// Connect to MongoDB Atlas
 util.connect = async () => {
     await mongoose.set('useFindAndModify', false);
     return await mongoose.connect(`mongodb+srv://${config.DATABASE_USERNAME}:${config.DATABASE_PASSWORD}@cluster0-zz5rm.mongodb.net/users`, { useNewUrlParser: true, useCreateIndex: true});
 };
 
+// Validation error messages
 util.VALIDATION_ERRORS = {
     
     FIRST_NAME_INVALID: 'Please provide a valid first name.',

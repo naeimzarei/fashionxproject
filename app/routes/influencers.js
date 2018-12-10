@@ -205,11 +205,6 @@ router.post('/signup', async (req, res, next) => {
     } else {
         res.render('pages/influencers/signup', { title: 'Sign Up', errors: errors, fields: req.body});
     }
-
-    
-
-      //TODO: send email to fashionxproject
-
 });
 
 /**

@@ -54,6 +54,7 @@ app.use('/users', usersRouter);
 app.use('/influencers', checkAuth, influencersRouter);
 app.use('/administrators', administratorsRouter);
 
+// Check if user is authenticated
 function checkAuth(req, res, next) {
   if (!req.user) {
     res.locals.user = null;

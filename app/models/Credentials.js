@@ -1,4 +1,4 @@
-/** Credentials - Handles creating login information for each account - Currently a duplicate of model and controller */
+/** Credentials - Handles creating login information for each account */
 var mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 var util = require('../util/util');
@@ -94,7 +94,8 @@ credentialsSchema.statics.update = async (id, email, password) => {
 };
 
 /**
- * Update authentication credentails
+ * Update authentication credentials
+ * @param {string} previous_email 
  * @param {string} email 
  * @param {string} password 
  */

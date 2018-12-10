@@ -157,11 +157,18 @@ profileSchema.statics.findByIds = async (id) => {
     return profile;
 };
 
+/**
+Find profile
+@param {string} email
+*/
 profileSchema.statics.findProfile = async (email) => {
     var profile = await Profile.findOne({email: email});
     return profile;
 };
 
+/**
+Find all profiles
+*/
 profileSchema.statics.findAllProfiles = async () => {
     var profiles = await Profile.find({});
     return profiles;
