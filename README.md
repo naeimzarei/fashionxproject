@@ -1,3 +1,14 @@
+* [Final Deliverables](#sprint-deliverables)
+	* [Functional Specification](#functional-specification)
+	* [Design Doc](#design-doc)
+	* [User Manual](#user-manual)
+	* [Administrator Manual](#administrator-manual)
+	* [Test Plan](#test-plan)
+	* [Version-Controlled Repository](#version-controlled-repository)
+	* [Deployed Application](#deployed-application)
+	* [Video of Working System](#video-of-working-system)
+	* [Executable Code](#executable-code)
+
 # Navigation
 * [General Materials](#general-materials)
 	* [Project Information](#project-introduction)
@@ -20,7 +31,7 @@
 		* [Server Selection](#server-selection)
 		* [Development Environment](#development-environment)
 	* [Prototype](#prototype)
-* [Sprint Deliverables](#sprint-deliverables)
+* [Final Deliverables](#sprint-deliverables)
 	* [Functional Specification](#functional-specification)
 	* [Design Doc](#design-doc)
 	* [User Manual](#user-manual)
@@ -167,6 +178,8 @@ Test plan documented under [deliverables/design-doc](deliverables/test-plan).
 
 ## Deployed Application
 [ShopHerLook-sell.app](https://shopherlook-sell.app/)
+
+If for some reason, your browser has issues loading up the DNS records, the direct AWS server URL is [http://production.2hhw2cxiwt.us-east-2.elasticbeanstalk.com/](http://production.2hhw2cxiwt.us-east-2.elasticbeanstalk.com/)
 
 ## Video of Working System
 [YouTube Link](https://www.youtube.com/watch?v=ercHKUuABR8)
