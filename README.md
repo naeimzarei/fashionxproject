@@ -177,6 +177,10 @@ Test plan documented under [deliverables/test-plan](deliverables/test-plan).
 [GitHub](https://github.com/naeimzarei/fashionxproject)
 
 ## Deployed Application
+UNC Live:
+[http://production-unc-team-demo.us-east-2.elasticbeanstalk.com/](http://production-unc-team-demo.us-east-2.elasticbeanstalk.com/)
+
+Duke Team Live:
 [ShopHerLook-sell.app](https://shopherlook-sell.app/)
 
 If for some reason, your browser has issues loading up the DNS records, the direct AWS server URL is [http://production.2hhw2cxiwt.us-east-2.elasticbeanstalk.com/](http://production.2hhw2cxiwt.us-east-2.elasticbeanstalk.com/)
