@@ -44,7 +44,7 @@ Regression testing will be done only when new code requires unit testing. Basic 
 
 ### Post
 1. Find all posts by user email
-2. Find no posts when invaliid user email
+2. Find no posts when invalid user email
 3. Create/Update Invalid inputs
     1. Size: Blank
     2. Brand: Blank
