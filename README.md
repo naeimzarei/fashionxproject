@@ -171,7 +171,7 @@ User manual documented under [deliverables/user-manual](deliverables/user-manual
 Administrator manual documented under [deliverables/administrative-manual](deliverables/administrative-manual).
 
 ## Test Plan
-Test plan documented under [deliverables/design-doc](deliverables/test-plan).
+Test plan documented under [deliverables/test-plan](deliverables/test-plan).
 
 ## Version-Controlled Repository
 [GitHub](https://github.com/naeimzarei/fashionxproject)

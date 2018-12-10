@@ -268,7 +268,7 @@ The ```.ebignore``` and ```.gitignore``` files define which files should be igno
 
 ## Design Descisions 
 
-For the database, we decided to go with MongoDB Atlas for the purposes of this application. It is simple to implement and works really well with Express. 
+For the database, we decided to go with MongoDB Atlas for the purposes of this application. It is simple to implement and works really well with Express. MongoDB Atlas allows us to quickly make changes to the schema as the client changes requirements without needing to worry about updating relationships and old fields.
 
 For the view, we decided to go with EJS because it is really easy to implement since Express routes support templating engines very well. 
 
@@ -278,13 +278,13 @@ For the controllers and routes, we decided to go with Express because it is a ve
 
 We originally were thinking of using React.js or some other framework such as Angular for the view, but that required more work than necessary. It would have required us to brush up on an external dependency, which would increase the amount of time it takes to produce the product. As a result, we went with EJS, which is easily implemented and does not require an extensive learning curve. 
 
-In the future, we will be using AWS S3 service to store the thumbnails for the influencer posts. 
+We chose to use AWS S3 to store the thumbnails for the influencer posts because it is cheap to store large amounts of data and AWS provides a reliable, well-known way handle uploading and retrieving static files.
 
 An influencer is a shopper, but a shopper is not an influencer. An influencer can be directed to the shopping side, but a shopper cannot be directed to the influencer experience. If a person is marked as an influencer, then a button will appear on the shopping experience that will allow the influencer to go back to the influencer experience. This button will only appear on the shopping experience if and only if the user is marked as an influencer.
 
-A moderator is neither an influencer nor shopper. A moderator is an independent user that checks the posts of influencers before they are published. An administrator grants moderator access and can add or remove it at any time in the administrative panel.
+~~A moderator is neither an influencer nor shopper. A moderator is an independent user that checks the posts of influencers before they are published. An administrator grants moderator access and can add or remove it at any time in the administrative panel.~~
 
-At the moment, anyone can sign up to be an influencer. We will talk with the client to see if that is something they really want or if influencers need to go through an extra step of authentication in order to sign up to use the services. 
+At the moment, anyone can sign up to be an influencer. Once signed up, an administrator must approve the influencer through the admin portal. Once signing up, the influencer receives an email. Once approved/rejected, the influencer then receives another email with the updated status.
 
 For authentication, we are using bcrypt module to hash the passwords and compare the hash with the inputted password during login. 
 

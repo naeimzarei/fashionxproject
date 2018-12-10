@@ -38,22 +38,22 @@ Regression testing will be done only when new code requires unit testing. Basic 
 8. Delete existing credentials by email
 
 ### Login (both administrator and influencers)
-1. Accessing influencer base URL should redirect to login view
+1. Accessing influencer/administrator base URL should redirect to the respectively login view
 2. Access login view
 3. Incorrect login credentials display error message
 
 ### Post
 1. Find all posts by user email
 2. Find no posts when invaliid user email
-3. Invalid inputs
+3. Create/Update Invalid inputs
     1. Size: Blank
     2. Brand: Blank
-    3. Selling price: -10, must be greater than 40
+    3. Selling price: -10, 0, 20, must be greater than 40
     4. Original price: -10
     5. File: None chosen
-    6. Type: Blank
-    7. Condition: Blank
-4. Must have atleast one picture to upload for each post
+    6. Condition: Blank
+    7. Item/s: Blank
+4. Must have at least one picture to upload for each post
 
 ### Profile
 1. Submit form with missing required fields: all missing except first name
@@ -68,6 +68,12 @@ Regression testing will be done only when new code requires unit testing. Basic 
     8. Zip code: 00000
     9. Instagram: insta_profile
     10. Paypal: mypaypalaccount
+    11. Bust (cup): None selected
+    12. Bust (band): None selected
+    13. Shirt size: None selected
+    14. Jean size: None selected
+    14. Usual torso length: None selected
+    14. Usual leg length: None selected
 3. Valid input test: Fill in all required fields with valid inputs
 4. Find a created profile by ID
 5. Find a created profile by email
